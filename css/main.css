@@ -11,19 +11,22 @@ body {
   background: rgb(219, 219, 223);
 }
 
-ol {
+#links-list-container {
   display: block;
-  list-style-type: circle;
-  margin-top: 1em;
-  margin-bottom: 1px;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 20px;
 }
 
-h1 {
+#links-list {
+  display: block;
+  list-style-type: none;
+  padding: 0px;
+}
+
+#main-title {
   color:rgb(173, 6, 6);
-  /* font-family: 'Open Sans', sans-serif; */
+}
+
+#main-subtitle {
+  color:rgb(13, 18, 157);
 }
 
 hr {
