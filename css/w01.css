@@ -1,0 +1,48 @@
+/*	Carlos N Reina
+  cnreina@gmail.com
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 30px;
+  font-family: 'Open Sans', sans-serif;
+  background: rgb(219, 219, 223);
+}
+
+#links-list-container {
+  display: block;
+}
+
+#links-list {
+  display: block;
+  list-style-type: none;
+  padding: 0px;
+}
+
+#main-title {
+  color:rgb(173, 6, 6);
+}
+
+#main-subtitle {
+  color:rgb(13, 18, 157);
+}
+
+hr {
+  margin-top:20px;
+}
+
+textarea{
+  width:800px;
+  height: 250px;
+  background-color: lightyellow;
+}
+
+footer {
+  color: rgb(152, 138, 138);
+  font-size:70%;
+}
