@@ -14,35 +14,35 @@ body {
   background: rgb(219, 219, 223);
 }
 
-#links-list-container {
-  display: block;
-}
-
-#links-list {
-  display: block;
-  list-style-type: none;
-  padding: 0px;
-}
-
-#main-title {
-  color:rgb(173, 6, 6);
-}
-
-#main-subtitle {
-  color:rgb(13, 18, 157);
+footer {
+  color: rgb(152, 138, 138);
+  font-size:70%;
 }
 
 hr {
   margin-top:20px;
 }
 
-textarea{
-  width:800px;
-  height: 250px;
-  background-color: lightyellow;
+.buttons {
+  padding: 5px;
+  margin: 5px;
 }
 
-footer {
-  color: rgb(152, 138, 138);
-  font-size:70%;
+/* ------------------------------------------------------------------------- */
+
+#main-title {
+  color:rgb(173, 6, 6);
+}
+
+#name_input {
+  padding: 3px;
+  margin: 3px;
+}
+
+#story_editor{
+  width: 98%;
+  height: 250px;
+  background-color: lightyellow;
+  padding: 5px;
+  margin: 5px;
 }
