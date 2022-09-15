@@ -46,3 +46,16 @@ hr {
   padding: 5px;
   margin: 5px;
 }
+
+#story_display{
+  width: 98%;
+  height: 200px;
+  background-color: rgb(228, 228, 224);
+  padding: 5px;
+  margin: 5px;
+}
+
+#home_link {
+  color: rgb(43, 82, 221);
+  font-size:80%;
+}
