@@ -43,7 +43,7 @@ hr {
 }
 
 #headerh1{
-  color: #611BBD;
+  color: #f9f6f7;
   font-weight: 600;
   text-align: center;
   text-shadow: 2px 4px 8px #2b2929; /* h-shadow v-shadow blur-radius color|none|initial|inherit */
