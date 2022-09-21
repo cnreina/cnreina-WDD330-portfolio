@@ -169,6 +169,10 @@ const links = [
   {
     label: "Week 2 (Quiz Ninja)",
     url: "html/w02/w02.html"
+  },
+  {
+    label: "Week 2 (Assignment 01)",
+    url: "html/w02/w02_01.html"
   }
 ];
 
