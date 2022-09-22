@@ -168,7 +168,7 @@ const links = [
   },
   {
     label: "Week 2 (Quiz Ninja)",
-    url: "html/w02/w02.html"
+    url: "html/w02/w02_00.html"
   },
   {
     label: "Week 2 (Assignment 01)",
