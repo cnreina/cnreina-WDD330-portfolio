@@ -177,6 +177,14 @@ const links = [
   {
     label: "Week 2 (Assignment 02)",
     url: "html/w02/w02_02.html"
+  },
+  {
+    label: "Week 2 (Assignment 03)",
+    url: "html/w02/w02_03.html"
+  },
+  {
+    label: "Week 2 (Stretch 03)",
+    url: "html/w02/w02_04.html"
   }
 ];
 
