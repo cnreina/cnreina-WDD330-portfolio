@@ -161,6 +161,95 @@
 
 */
 
+/*	JS Objects
+  All objects are mutable at any time when a program is running. Even if it
+  was declared using const.
+
+  Objects are assigned by reference. If a variable is assigned to an object
+  that already exists, it will simply point to the exact same space in memory.
+  This doesn't happen when primitive values are used instead of objects.
+
+  The object literal notation is the preferred way of creating objects:
+    const objectVar = {
+      objectProperty: 'objectValue',
+      'tringProperty': 'stringValue',
+      numberProperty: 0,
+      booleanProperty: false,
+      arrayProperty: ['arrayValue1','arrayValue2','arrayValue3'],
+      functionProperty() {
+        return 'Hello World!';
+    }
+  };
+
+  A new property can be added to an object using a symbol as a key if
+  the square bracket notation is used:
+    const propertyName = Symbol('Symbol Value');
+    objectVar[propertyName] = 'Property Value';
+
+  Check whether an object has a property that is its own, rather than one
+  that has been inherited from another object:
+    objectVar.hasOwnProperty('objectProperty');
+
+  Iterate over an object's own properties:
+    for(const key of Object.keys(objectVar)){
+      console.log(key);
+    };
+
+    for(const key in objectVar){
+      if(objectVar.hasOwnProperty(key)){
+        console.log(key + ": " + objectVar[key]);
+      };
+    };
+
+  Objects as Parameters to Functions:
+    function greet({greeting,name,age}) {
+      return `${greeting}! My name is ${name} and I am ${age} years old.`;
+    };
+
+*/
+
+/*	JS Namespacing
+  Use the object literal pattern to create a namespace for related functions:
+    const myMaths = {
+      square(x) {
+        return x * x;
+      },
+      mean(array,callback) {
+        if (callback) {
+          array.map( callback );
+        }
+        const total = array.reduce((a, b) => a + b);
+        return total/array.length;
+      }
+    };
+
+*/
+
+/*	JSON
+  JavaScript Object Notation, or JSON, is a lightweight data-storage format
+  for data serialization and configuration.
+
+  JSON is a string representation of an object literal notation.
+  There are, however, a couple of key differences:
+    1. Property names must be double-quoted
+    2. Permitted values are double-quoted strings, numbers, true, false, null, arrays and objects
+    3. Functions are not permitted values
+
+*/
+
+/*	JS Math
+  The Math object has eight properties to represent commonly used math constants:
+    Math.PI // The ratio of the circumference and diameter of a circle
+    Math.SQRT2 // The square root of 2
+    Math.SQRT1_2 // The reciprocal of the square root of 2
+    Math.E // Euler's constant
+    Math.LN2 // The natural logarithm of 2
+    Math.LN10 // The natural logarithm of 10
+    Math.LOG2E // Log base 2 of Euler's constant
+    Math.LOG10E // Log base 10 of Euler's constant
+
+*/
+
 const links = [
   {
     label: "Week 1 (Portfolio)",
@@ -185,6 +274,10 @@ const links = [
   {
     label: "Week 2 (Stretch 03)",
     url: "html/w02/w02_04.html"
+  },
+  {
+    label: "Week 3",
+    url: "html/w03/w03.html"
   }
 ];
 
