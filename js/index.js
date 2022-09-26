@@ -276,7 +276,7 @@ const links = [
     url: "html/w02/w02_04.html"
   },
   {
-    label: "Week 3",
+    label: "Week 3 (Quiz Ninja)",
     url: "html/w03/w03.html"
   }
 ];
