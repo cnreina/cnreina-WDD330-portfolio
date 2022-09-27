@@ -28,9 +28,9 @@ const game = {
   check(response) {
     const answer = this.question.realName;
 
-    console.log(answer.toLowerCase());
+    // console.log(answer.toLowerCase());
 
-      if(response === answer){
+      if(response.toLowerCase() === answer.toLowerCase()){
       alert('Correct!');
       this.score++;
       } else {
