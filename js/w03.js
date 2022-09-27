@@ -2,10 +2,16 @@
   cnreina@gmail.com
 */
 
+// const quiz = [
+//   ["What is Superman's real name?","Clark Kent"],
+//   ["What is Wonder Woman's real name?","Diana Prince"],
+//   ["What is Batman's real name?","Bruce Wayne"]
+// ];
+
 const quiz = [
-  ["What is Superman's real name?","Clark Kent"],
-  ["What is Wonder Woman's real name?","Diana Prince"],
-  ["What is Batman's real name?","Bruce Wayne"]
+  { name: "Superman",realName: "Clark Kent" },
+  { name: "Wonder Woman",realName: "Diana Prince" },
+  { name: "Batman",realName: "Bruce Wayne" },
 ];
 
 const game = {
@@ -15,7 +21,7 @@ const game = {
       // main game loop
       for(const question of this.questions){
       this.question = question;
-      this.ask(quiz);
+      this.ask();
       }
       // end of main game loop
       this.gameOver();
