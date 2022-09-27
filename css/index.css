@@ -14,16 +14,6 @@ body {
   background: rgb(219, 219, 223);
 }
 
-#links-list-container {
-  display: block;
-}
-
-#links-list {
-  display: block;
-  list-style-type: none;
-  padding: 0px;
-}
-
 #main-title {
   color:rgb(173, 6, 6);
 }
@@ -39,4 +29,16 @@ hr {
 footer {
   color: rgb(152, 138, 138);
   font-size:70%;
+}
+
+#links-list-container {
+  display: block;
+}
+
+#links-list {
+  display: block;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  font-size: small;
 }

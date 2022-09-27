@@ -12,6 +12,10 @@
       in caches, but the response must be validated with the origin server before
       each reuse, even when the cache is disconnected from the origin server.
 
+   Cache-Control: no-store
+      The no-store response directive indicates that any caches of any kind
+      (private or shared) should not store this response.
+
    https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
    
 -->
@@ -25,21 +29,22 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name=	"Cache-Control" content="no-cache"/>
       <style>
-         @import "../../css/w03_01.css" screen and (max-width:640px);
-         @import "../../css/w03_01.css" screen and (min-width:640px);
-         @import "../../css/w03_01.css" screen and (min-width:1024px);
+         @import "../../css/w0300.css" screen and (max-width:640px);
+         @import "../../css/w0300.css" screen and (min-width:640px);
+         @import "../../css/w0300.css" screen and (min-width:1024px);
       </style>
+      <script src="../../js/w0300.js"></script>
    </head>
 
    <body>
       <h1 id="main-title" title="WDD-330">Week 3</h1>
-      <h5 id="main-subtitle">Assignment 01</h5>
+      <h5 id="main-subtitle">Quiz Ninja with JavaScript namespace, 'this', and events</h5>
       <hr>
       <section class='dojo'>
          <div class='quiz-body'>
             <header>
                <div id='score'>Score: <strong>0</strong></div>
-               <h1>Quiz Ninja!</h1>
+               <h1 id="quizTitle">Quiz Ninja!</h1>
             </header>
             <div id='question'></div>
             <div id='result'></div>
@@ -51,6 +56,5 @@
 
       <a href="../../index.html">Home Page</a>
       <footer>Carlos N Reina 2022</footer>
-      <script src="../../js/w03_01.js"></script>
    </body>
 </html>

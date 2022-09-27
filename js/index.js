@@ -365,35 +365,35 @@
 const links = [
   {
     label: "Week 1 (Portfolio)",
-    url: "html/w01/w01.html"
+    url: "html/w01/w0100.html"
   },
   {
     label: "Week 2 (Quiz Ninja)",
-    url: "html/w02/w02_00.html"
+    url: "html/w02/w0200.html"
   },
   {
     label: "Week 2 (Assignment 01)",
-    url: "html/w02/w02_01.html"
+    url: "html/w02/w0201.html"
   },
   {
     label: "Week 2 (Assignment 02)",
-    url: "html/w02/w02_02.html"
+    url: "html/w02/w0202.html"
   },
   {
     label: "Week 2 (Assignment 03)",
-    url: "html/w02/w02_03.html"
+    url: "html/w02/w0203.html"
   },
   {
     label: "Week 2 (Stretch 03)",
-    url: "html/w02/w02_04.html"
+    url: "html/w02/w0204.html"
   },
   {
     label: "Week 3 (Quiz Ninja)",
-    url: "html/w03/w03_00.html"
+    url: "html/w03/w0300.html"
   },
   {
     label: "Week 3 (Assignment 01)",
-    url: "html/w03/w03_01.html"
+    url: "html/w03/w0301.html"
   }
 ];
 
@@ -416,7 +416,7 @@ function loadMainLinks() {
     aElement.setAttribute("href", links[linksCounter].url);
     liElement.appendChild(aElement);
     // insert label
-    var h3Element = document.createElement('h3');
+    var h3Element = document.createElement('p');
     aElement.appendChild(h3Element);
     h3Element.appendChild(document.createTextNode(links[linksCounter].label));
     // add item to list

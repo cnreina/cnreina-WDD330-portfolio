@@ -11,7 +11,7 @@
 body {
   margin: 30px;
   font-family: 'Open Sans', sans-serif;
-  background: #5F1C1C;
+  background: #e2dfb5;
 }
 
 footer {
@@ -47,7 +47,7 @@ hr {
   box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
 }
 
-h1{
+#quizTitle{
   color: #611BBD;
   font-weight: 600;
   text-align: left;
