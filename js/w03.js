@@ -27,12 +27,12 @@ const game = {
   },
   check(response){
     const answer = this.question.realName;
-      if(response === answer){
+    if(response.toLowerCase() === answer.toLowerCase()){
       alert('Correct!');
       this.score++;
-      } else {
+    } else {
       alert(`Wrong! The correct answer was ${answer}`);
-      }
+    }
   },
   gameOver(){
       alert(`Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
