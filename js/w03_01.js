@@ -50,7 +50,7 @@ const game = {
   },
   check(response){
     const answer = this.question.realName;
-    if(response === answer){
+    if(response.toLowerCase() === answer.toLowerCase()){
       view.render(view.result,'Correct!',{'class':'correct'});
       alert('Correct!');
       this.score++;
