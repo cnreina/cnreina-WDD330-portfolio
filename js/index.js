@@ -250,6 +250,40 @@
 
 */
 
+/*	JS DOM Access
+  The DOM treats everything on a web page as a node.
+  The HTML tag is the root node, and every other part of the
+  document is a child node of this.
+  The DOM stores any whitespace in the HTML document as text nodes.
+
+  We can use JavaScript to access and modify different parts of a
+  web page using a special built-in object called document.
+
+  All nodes have a numerical code to signify what type they are:
+    Code	Type
+    1	    element
+    2	    attribute
+    3	    text
+    8	    comment
+    9	    body
+
+    Ex; body.nodeType;
+    Ex; body.nodeName;
+  
+  Turn a node list into an array:
+    const imageArray = Array.from(document.images);
+    const imageArray = [...document.images];
+
+  Getting elements:
+    const h1 = document.getElementById('title');
+    const heroes = document.getElementsByClassName('hero');
+    const listItems = document.getElementsByTagName('li');
+    document.querySelector('#bats');
+    document.querySelectorAll('.hero');
+  
+    
+*/
+
 const links = [
   {
     label: "Week 1 (Portfolio)",
@@ -277,7 +311,11 @@ const links = [
   },
   {
     label: "Week 3 (Quiz Ninja)",
-    url: "html/w03/w03.html"
+    url: "html/w03/w03_00.html"
+  },
+  {
+    label: "Week 3 (Assignment 01)",
+    url: "html/w03/w03_01.html"
   }
 ];
 
