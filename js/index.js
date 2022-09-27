@@ -259,6 +259,37 @@
   We can use JavaScript to access and modify different parts of a
   web page using a special built-in object called document.
 
+  Any CSS property names that are separated by dashes must be written
+  in camelCase notation, so the dash is removed.
+
+  When you click on an element, you are actually clicking on all the elements
+  it’s nested inside of.
+  Event propagation is the order that the events fire on each element.
+  There are two forms of event propagation: bubbling and capturing.
+  Bubbling is when the event fires on the element clicked on first, then
+  bubbles up the document tree, firing an event on each parent element until
+  it reaches the root node.
+  Capturing starts by firing an event on the root element, then propagates
+  downwards, firing an event on each child element until it reaches the target
+  element that was clicked on.
+  The addEventListener() method has a third parameter, which is a boolean value
+  that specifies whether capturing should be used or not.
+
+  Stopping event propagattion:
+    liElement.addEventListener('click', eventHandler, false);
+    eventHandler(event){
+      event.stopPropagation();
+    }
+  
+  The click event is safer than the touchstart event as it still fires when
+  the screen is touched, but there’s a slight delay of 300ms, allowing the user
+  time to perform another action with the device.
+  The click event can be thought of as a "tap" in the context of a touch event.
+
+  Swipe events need to be created by using a combination of touchstart,
+  touchmove, and touchleave events that monitor the distance and direction
+  moved from start to finish of a touch event.
+
   All nodes have a numerical code to signify what type they are:
     Code	Type
     1	    element
@@ -281,7 +312,54 @@
     document.querySelector('#bats');
     document.querySelectorAll('.hero');
   
-    
+  Getting attributes:
+    wonderWoman.getAttribute('class');
+    wonderWoman.classList.contains('hero');
+
+  Setting attributes:
+    wonderWoman.setAttribute('class', 'hero');
+    wonderWoman.classList.add('warrior');
+    wonderWoman.classList.remove('warrior');
+
+  Creating elements:
+    const flash = document.createElement('li');
+    flash.textContent = 'Flash';
+    flash.style.border = "red 2px solid";
+    heroes.appendChild(flash);
+    heroes.insertBefore(flash,wonderWoman);
+
+    function createElement (tag,text) {
+      const el = document.createElement(tag);
+      el.textContent = text;
+      return el
+    }
+    const aquaman = createElement('li','Aquaman');
+
+    const h1 = document.getElementById('title');
+    const oldText = h1.firstChild;
+    const newText = document.createTextNode('Justice League of America');
+    h1.replaceChild(newText,oldText);
+
+    heroes.innerHTML = 
+      '<li>Harley Quinn</li>
+      <li>Deadshot</li>';
+    NOTE: To stop malicious content using innerHTML, any code contained
+          within <script> tags is not executed.
+  
+  Using Event Listeners:
+    addEventListener('keypress', (event) => console.log(`You pressed the ${event.key} character`));
+
+    document.body.addEventListener('click',doSomething);
+    function doSomething(event){
+      console.log(event.type);
+      console.log(event.target);
+      console.log(
+        `screen: (${event.screenX},${event.screenY}),
+        page: (${event.pageX},${event.pageY}),
+        client: (${event.screenX},${event.screenY})`
+      )
+    }
+
 */
 
 const links = [
