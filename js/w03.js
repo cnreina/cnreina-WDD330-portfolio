@@ -26,8 +26,9 @@ const game = {
       this.check(response);
   },
   check(response){
-      const answer = this.question.realName;
-      if(String.toLower(response) === String.toLower(answer)){
+    const answer = this.question.realName.toLower();
+    const responseLower = response.toLower();
+      if(responseLower === answer){
       alert('Correct!');
       this.score++;
       } else {
