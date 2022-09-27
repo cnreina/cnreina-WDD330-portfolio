@@ -15,7 +15,7 @@ const game = {
       // main game loop
       for(const question of this.questions){
       this.question = question;
-      this.ask();
+      this.ask(quiz);
       }
       // end of main game loop
       this.gameOver();
