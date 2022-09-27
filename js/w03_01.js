@@ -25,10 +25,10 @@ const game = {
       const response =  prompt(question);
       this.check(response);
   },
-  check(response){
-    const answer = this.question.realName.textContent().toLower();
-    const responseLower = response.textContent().toLower();
-      if(responseLower === answer){
+  check(response) {
+    const answer = this.question.realName;
+    console.log(answer.toLowerCase);
+      if(response === answer){
       alert('Correct!');
       this.score++;
       } else {
