@@ -55,7 +55,9 @@ function displayResult(resultParam) {
   // }
 
   for(const value of Object.values(resultParam)){
-    console.log(value);
+    console.log(value.first);
+    console.log(value.last);
+    console.log(value.year);
   }
   
   let text = resultParam.textContent;
