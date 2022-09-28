@@ -25,7 +25,7 @@ const inventors = [
 
 window.onload = function() {
   console.log("window.onload");
-  validateInput();
+  document.getElementById('startbutton').addEventListener('click', validateInput);
 };
 
 function validateInput() {
@@ -46,24 +46,16 @@ function checkCentury(inventors) {
 };
 
 function displayResult(resultParam) {
-  console.log("displayResult > resultParam:\n" + resultParam);
-
-  const displayElement = document.getElementById("instructionsdiv");
+  const displayElement = document.getElementById("displaydiv");
   
   for (const value of Object.values(resultParam)) {
-    var divElement = document.createElement('div');
-    // name
-    const h3Element = document.createElement('h3');
-    h3Element.appendChild(document.createTextNode(value.first + ' ' + value.last));
-    divElement.appendChild(h3Element);
-    // year
+    const divElement = document.createElement('div');
+    divElement.className = 'displaydivs';
     const pElement = document.createElement('p');
-    pElement.appendChild(document.createTextNode(value.year));
+    pElement.appendChild(document.createTextNode(value.first + ' ' + value.last + '' + ' (' + value.year + ')'));
     divElement.appendChild(pElement);
 
-    // add item to list
     displayElement.appendChild(divElement);
   }
-  
   displayElement.style.display = 'block';
 };
