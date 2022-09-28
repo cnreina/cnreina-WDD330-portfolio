@@ -24,14 +24,11 @@ const inventors = [
 // 1. Filter the list of inventors for those who were born in the 1500's
 
 window.onload = function() {
-  console.log("window.onload");
   document.getElementById('startbutton').addEventListener('click', validateInput);
 };
 
 function validateInput() {
-  let validInput = inventors.filter(checkCentury);
-  console.log("validateInput > validInput:\n" + validInput);
-
+  const validInput = inventors.filter(checkCentury);
   if (validInput !== undefined && validInput !== null) {
     displayResult(validInput);
   } else {
@@ -40,14 +37,19 @@ function validateInput() {
 };
 
 function checkCentury(inventors) {
-  console.log("checkCentury > inventors.year: " + inventors.year);
-
   return inventors.year >= 1500 && inventors.year <= 1599;
 };
 
 function displayResult(resultParam) {
   const displayElement = document.getElementById("displaydiv");
-  
+
+  const divElement = document.createElement('div');
+  divElement.className = 'infodivs';
+  const pElement = document.createElement('p');
+  pElement.appendChild(document.createTextNode('const validInput = inventors.filter(checkCentury);'));
+  divElement.appendChild(pElement);
+  displayElement.appendChild(divElement);
+
   for (const value of Object.values(resultParam)) {
     const divElement = document.createElement('div');
     divElement.className = 'displaydivs';

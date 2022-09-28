@@ -22,3 +22,39 @@ const inventors = [
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
+
+window.onload = function() {
+  console.log("window.onload");
+  document.getElementById('startbutton').addEventListener('click', start);
+};
+
+function start() {
+  inventors.sort((a, b) => a.year - b.year);
+  const newArray = inventors.map(({ first, last, year }) => ({ first, last, year }));
+  if (newArray !== undefined && newArray !== null) {
+    displayResult(newArray);
+  } else {
+    displayResult("ERROR");
+  }
+};
+
+function displayResult(resultParam) {
+  const displayElement = document.getElementById("displaydiv");
+
+  const divElement = document.createElement('div');
+  divElement.className = 'infodivs';
+  const pElement = document.createElement('p');
+  pElement.appendChild(document.createTextNode('inventors.sort((a, b) => a.year - b.year);'));
+  divElement.appendChild(pElement);
+  displayElement.appendChild(divElement);
+
+  for (const value of resultParam) {
+    const divElement = document.createElement('div');
+    divElement.className = 'displaydivs';
+    const pElement = document.createElement('p');
+    pElement.appendChild(document.createTextNode(value.first + ' ' + value.last + ' (' + value.year + ')'));
+    divElement.appendChild(pElement);
+    displayElement.appendChild(divElement);
+  }
+  displayElement.style.display = 'block';
+};

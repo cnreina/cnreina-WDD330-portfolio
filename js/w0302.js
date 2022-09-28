@@ -22,3 +22,38 @@ const inventors = [
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors' first and last names
+
+window.onload = function() {
+  console.log("window.onload");
+  document.getElementById('startbutton').addEventListener('click', start);
+};
+
+function start() {
+  const newArray = inventors.map(({ first, last }) => ({ first, last }));
+  if (newArray !== undefined && newArray !== null) {
+    displayResult(newArray);
+  } else {
+    displayResult("ERROR");
+  }
+};
+
+function displayResult(resultParam) {
+  const displayElement = document.getElementById("displaydiv");
+
+  const divElement = document.createElement('div');
+  divElement.className = 'infodivs';
+  const pElement = document.createElement('p');
+  pElement.appendChild(document.createTextNode('const newArray = inventors.map(({ first, last }) => ({ first, last }));'));
+  divElement.appendChild(pElement);
+  displayElement.appendChild(divElement);
+
+  for (const value of resultParam) {
+    const divElement = document.createElement('div');
+    divElement.className = 'displaydivs';
+    const pElement = document.createElement('p');
+    pElement.appendChild(document.createTextNode(value.first + ' ' + value.last));
+    divElement.appendChild(pElement);
+    displayElement.appendChild(divElement);
+  }
+  displayElement.style.display = 'block';
+};
