@@ -30,9 +30,9 @@ window.onload = function() {
 
 function validateInput() {
   let validInput = inventors.filter(checkCentury);
-  console.log("validInput:\n" + validInput);
+  console.log("validateInput > validInput:\n" + validInput);
 
-  if (validInput != undefined && validInput != null) {
+  if (validInput !== undefined && validInput !== null) {
     displayResult(validInput);
   } else {
     displayResult("ERROR");
@@ -49,8 +49,11 @@ function displayResult(resultParam) {
   console.log("displayResult > resultParam:\n" + resultParam);
 
   const displayElement = document.getElementById("instructionsdiv");
-  console.log("displayResult > displayElement:\n" + displayElement);
-
+  
+  for(const [key, value] of Object.entries(resultParam)){
+    console.log("displayResult > displayElement: " + `${key}: ${value}`);
+  }
+  
   let text = resultParam.textContent;
   displayElement.innerHTML = text;
 };
