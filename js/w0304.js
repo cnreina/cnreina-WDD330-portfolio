@@ -20,11 +20,5 @@ const inventors = [
 
 /* ************************************************************************* */
 
-// Array.prototype.filter()
-// 1. Filter the list of inventors for those who were born in the 1500's
-
-document.getElementById("textarea1").innerHTML = inventors.filter(checkCentury);
-
-function checkCentury(inventors) {
-  return inventors.year >= 1500 && inventors.year <= 1599;
-};
+// Array.prototype.reduce()
+// 4. How many years did all the inventors live?
