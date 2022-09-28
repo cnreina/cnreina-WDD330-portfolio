@@ -40,6 +40,7 @@ function run() {
 
 function displayResult(resultParam) {
   const displayElement = document.getElementById("displaydiv");
+  clearContent(displayElement);
 
   const divElement = document.createElement('div');
   divElement.className = 'infodivs';
@@ -57,4 +58,10 @@ function displayResult(resultParam) {
     displayElement.appendChild(divElement);
   }
   displayElement.style.display = 'block';
+};
+
+function clearContent(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 };
