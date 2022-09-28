@@ -37,7 +37,7 @@ window.onload = function() {
 function validateInput(){
   let validInput = inventors.filter(checkCentury);
   if (validInput != null && validInput != undefined) {
-    displayResult(validInput.textContent);
+    displayResult(validInput);
   } else {
     displayResult("ERROR");
   }
@@ -47,6 +47,7 @@ function checkCentury(inventors) {
   return inventors.year >= 1500 && inventors.year <= 1599;
 };
 
-function displayResult(resultParam){
-  displayElement.innerHTML = resultParam.textContent;
+function displayResult(resultParam) {
+  let text = resultParam.textContent;
+  displayElement.innerHTML = text;
 };
