@@ -37,7 +37,7 @@ window.onload = function() {
 function validateInput(){
   let validInput = inventors.filter(checkCentury);
   if (validInput != null && validInput != undefined) {
-    displayResult(validInput);
+    displayResult(validInput.textContent);
   } else {
     displayResult("ERROR");
   }
@@ -48,5 +48,5 @@ function checkCentury(inventors) {
 };
 
 function displayResult(resultParam){
-  displayElement.innerHTML = resultParam;
+  displayElement.innerHTML = resultParam.textContent;
 };
