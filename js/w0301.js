@@ -50,8 +50,12 @@ function displayResult(resultParam) {
 
   const displayElement = document.getElementById("instructionsdiv");
   
-  for(const [key, value] of Object.entries(resultParam)){
-    console.log("displayResult > displayElement: " + `${key}: ${value}`);
+  // for(const [key, value] of Object.entries(resultParam)){
+  //   console.log("displayResult > displayElement: " + `${key}: ${value}`);
+  // }
+
+  for(const value of Object.values(resultParam)){
+    console.log(value);
   }
   
   let text = resultParam.textContent;
