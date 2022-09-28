@@ -23,8 +23,30 @@ const inventors = [
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
 
-document.getElementById('textarea1').innerHTML = inventors.filter(checkCentury);
+let displayElement;
+
+window.onload = function() {
+  console.log("window.onload");
+
+  displayElement = document.getElementById("textarea1");
+  console.log(displayElement);
+
+  validateInput();
+};
+
+function validateInput(){
+  let validInput = inventors.filter(checkCentury);
+  if (validInput != null && validInput != undefined) {
+    displayResult(validInput);
+  } else {
+    displayResult("ERROR");
+  }
+};
 
 function checkCentury(inventors) {
   return inventors.year >= 1500 && inventors.year <= 1599;
+};
+
+function displayResult(resultParam){
+  displayElement.innerHTML = resultParam;
 };
