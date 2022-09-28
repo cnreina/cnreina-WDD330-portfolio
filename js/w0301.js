@@ -30,7 +30,9 @@ window.onload = function() {
 
 function validateInput() {
   let validInput = inventors.filter(checkCentury);
-  if (validInput != null && validInput != undefined) {
+  console.log("validInput:\n" + validInput);
+
+  if (validInput != undefined && validInput != null) {
     displayResult(validInput);
   } else {
     displayResult("ERROR");
@@ -38,16 +40,17 @@ function validateInput() {
 };
 
 function checkCentury(inventors) {
-  console.log(inventors.year);
+  console.log("checkCentury > inventors.year: " + inventors.year);
 
   return inventors.year >= 1500 && inventors.year <= 1599;
 };
 
 function displayResult(resultParam) {
-  console.log(resultParam);
+  console.log("displayResult > resultParam:\n" + resultParam);
 
   const displayElement = document.getElementById("instructionsdiv");
-  console.log(displayElement);
+  console.log("displayResult > displayElement:\n" + displayElement);
+
   let text = resultParam.textContent;
   displayElement.innerHTML = text;
 };
