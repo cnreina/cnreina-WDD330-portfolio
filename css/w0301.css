@@ -31,7 +31,8 @@ hr {
   color:rgb(13, 18, 157);
 }
 
-#instructionsdiv{
+#displaydiv{
+  display: none; /*	See: w0301.js */
   width: 98%;
   height: 60px;
   background-color: rgb(184, 184, 181);

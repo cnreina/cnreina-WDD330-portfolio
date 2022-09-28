@@ -50,16 +50,20 @@ function displayResult(resultParam) {
 
   const displayElement = document.getElementById("instructionsdiv");
   
-  // for(const [key, value] of Object.entries(resultParam)){
-  //   console.log("displayResult > displayElement: " + `${key}: ${value}`);
-  // }
+  for (const value of Object.values(resultParam)) {
+    var divElement = document.createElement('div');
+    // name
+    const h3Element = document.createElement('h3');
+    h3Element.appendChild(document.createTextNode(value.first + ' ' + value.last));
+    divElement.appendChild(h3Element);
+    // year
+    const pElement = document.createElement('p');
+    pElement.appendChild(document.createTextNode(value.year));
+    divElement.appendChild(pElement);
 
-  for(const value of Object.values(resultParam)){
-    console.log(value.first);
-    console.log(value.last);
-    console.log(value.year);
+    // add item to list
+    displayElement.appendChild(divElement);
   }
   
-  let text = resultParam.textContent;
-  displayElement.innerHTML = text;
+  displayElement.style.display = 'block';
 };
