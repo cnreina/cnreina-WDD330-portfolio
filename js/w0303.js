@@ -25,10 +25,10 @@ const inventors = [
 
 window.onload = function() {
   console.log("window.onload");
-  document.getElementById('startbutton').addEventListener('click', start);
+  document.getElementById('startbutton').addEventListener('click', run);
 };
 
-function start() {
+function run() {
   inventors.sort((a, b) => a.year - b.year);
   const newArray = inventors.map(({ first, last, year }) => ({ first, last, year }));
   if (newArray !== undefined && newArray !== null) {
