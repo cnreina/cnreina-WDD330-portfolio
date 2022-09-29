@@ -28,12 +28,13 @@
 	   <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+
       <style>
          @import "../../css/w0300.css" screen and (max-width:640px);
          @import "../../css/w0300.css" screen and (min-width:640px);
          @import "../../css/w0300.css" screen and (min-width:1024px);
       </style>
-      <script src="../../js/w0300.js"></script>
    </head>
 
    <body>
@@ -42,21 +43,22 @@
       <hr>
       <br>
 
-      <section class='dojo'>
-         <div class='quiz-body'>
+      <section class="dojo">
+         <div class="quiz-body">
             <header>
-               <div id='score'>Score: <strong>0</strong></div>
+               <div id="score">Score: <strong>0</strong></div>
                <h1 id="quizTitle">Quiz Ninja!</h1>
             </header>
-            <div id='question'></div>
-            <div id='result'></div>
-            <div id='info'></div>
-            <button id='start'>Click to Start</button>
+            <div id="question"></div>
+            <div id="result"></div>
+            <div id="info"></div>
+            <button id="start">Click to Start</button>
          </div>
       </section>
       <br>
       
       <a href="../../index.html">Home Page</a>
       <footer>Carlos N Reina 2022</footer>
+      <script src="../../js/w0300.js"></script>
    </body>
 </html>
