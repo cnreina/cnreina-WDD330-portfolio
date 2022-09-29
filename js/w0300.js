@@ -8,6 +8,13 @@ const quiz = [
   { name: "Batman",realName: "Bruce Wayne" },
 ];
 
+// window.onload = function() {
+//   document.getElementById('start').addEventListener('click', game.start(quiz));
+
+//   view.start.addEventListener('click', game.start);
+
+// };
+
 // View Object
 const view = {
   start: document.getElementById('start'),
@@ -65,7 +72,5 @@ const game = {
     view.render(view.info,`Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
   }
 }
-
-// game.start(quiz);
 
 view.start.addEventListener('click', () => game.start(quiz), false);
