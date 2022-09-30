@@ -22,7 +22,6 @@ const inventors = [
 
 // 5. Sort the inventors by years lived
 
-
 window.onload = function() {
   console.log("window.onload");
   document.getElementById('startbutton').addEventListener('click', run);
