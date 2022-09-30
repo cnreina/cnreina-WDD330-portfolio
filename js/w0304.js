@@ -3,6 +3,11 @@
   cnreina.com
 */
 
+/* ************************************************************************* */
+
+// Array.prototype.reduce()
+// 4. How many years did all the inventors live?
+
 const inventors = [
   { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
   { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -18,7 +23,34 @@ const inventors = [
   { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
 ];
 
-/* ************************************************************************* */
+window.onload = function() {
+  console.log("window.onload");
+  document.getElementById('startbutton').addEventListener('click', run);
+};
 
-// Array.prototype.reduce()
-// 4. How many years did all the inventors live?
+function run() {
+  displayResult();
+};
+
+function displayResult(resultParam) {
+  const totalYears = inventors.reduce((total, inventors) => {
+    return total + (inventors.passed - inventors.year);
+  }, 0);
+
+  const displayElement = document.getElementById("displaydiv");
+  clearContent(displayElement);
+
+  const divElement = document.createElement('div');
+  divElement.className = 'displaydivs';
+  const pElement = document.createElement('p');
+  pElement.innerHTML = totalYears + ' years';
+  divElement.appendChild(pElement);
+  displayElement.appendChild(divElement);
+  displayElement.style.display = 'block';
+};
+
+function clearContent(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+};
