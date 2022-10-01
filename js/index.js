@@ -414,6 +414,10 @@ const links = [
   {
     label: "Week 3 (Assignment 06 (Stretch))",
     url: "html/w03/w0306.html"
+  },
+  {
+    label: "Week 4 ()",
+    url: "html/w04/w0400.html"
   }
 ];
 
