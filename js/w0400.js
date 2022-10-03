@@ -34,6 +34,7 @@ window.onload = function() {
 
 function search(event) {
   event.preventDefault();
+  const input = form.elements.searchInput;
   alert(`You Searched for: ${input.value}`);
 };
 
