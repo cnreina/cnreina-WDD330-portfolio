@@ -416,7 +416,7 @@ const links = [
     url: "html/w03/w0306.html"
   },
   {
-    label: "Week 4 ()",
+    label: "Week 4 (Search Demo)",
     url: "html/w04/w0400.html"
   }
 ];
