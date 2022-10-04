@@ -3,39 +3,82 @@
   cnreina.com
 */
 
-/* ************************************************************************* */
-
 /*	FORMS
   The form.submit() method will submit the form automatically but won’t
   trigger the form submit event.
+
+  Spread operator:
+    hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
+
+    This uses the spread operator to turn the node list into an array.
+    This then allows us to use the filter() method that returns an array
+    containing only the check boxes that were checked (this is because
+    their 'checked' property will be truthy).
+    We then chain the map() method to the end, which replaces each checkbox
+    in the array with its 'value' property.
+    This array is then returned and stored in the hero.powers variable.
+  
+  Array iteration:
+    hero.powers = [];
+    for (let i=0; i < heroForm.powers.length; i++) {
+        if (heroForm.powers[i].checked) {
+            hero.powers.push(heroForm.powers[i].value);
+        }
+    }
   
 */
 
+/* ************************************************************************* */
+
+
 window.onload = function() {
   console.log("window.onload");
-  const form = document.forms['search'];
-  form.addEventListener('submit', search, false);
+  const heroForm = document.forms['hero'];
+  heroForm.addEventListener('submit', makeHero, false);
+  heroForm.heroName.addEventListener('keyup', validateInline);
 
-  // const input = form.elements.searchInput;
-  // input.addEventListener('focus', function(){
-  //   if (input.value==='Search Here') {
-  //       input.value = ''
-  //   }
-  // }, false);
+  const label = heroForm.querySelector('label');
+  const error = document.createElement('div');
+  error.classList.add('error');
+  error.id = 'errordiv';
+  error.textContent = '! Your name is not allowed to start with X.';
+  label.append(error);
 
-  // input.addEventListener('blur', function(){
-  //   if(input.value === '') {
-  //       input.value = 'Search Here';
-  //   }
-  // }, false);
-  
-  
 };
 
-function search(event) {
-  event.preventDefault();
-  const input = form.elements.searchInput;
-  alert(`You Searched for: ${input.value}`);
+function makeHero(event) {
+  event.preventDefault(); // prevent form submition
+
+  const heroForm = document.forms['hero'];
+  const hero = {};
+  hero.name = heroForm.heroName.value;
+  hero.realName = heroForm.realName.value;
+  hero.age = heroForm.age.value;
+  hero.category = heroForm.category.value;
+  hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
+  hero.city = heroForm.city.value;
+
+  displayResult(hero);
+  return hero;
+};
+
+// function validateHero(hero) {
+//   const firstLetter = hero.name[0];
+//   if (firstLetter.toUpperCase() === 'X') {
+//     alert('Your name is not allowed to start with X!');
+//   }
+
+//   displayResult(hero);
+// };
+
+function validateInline() {
+  const error = document.getElementById('errordiv');
+  const heroName = this.value.toUpperCase();
+  if (heroName.startsWith('X')) {
+    error.style.display = 'block'
+  } else {
+    error.style.display = 'none'
+  };
 };
 
 function displayResult(resultParam) {
@@ -45,7 +88,7 @@ function displayResult(resultParam) {
   const divElement = document.createElement('div');
   divElement.className = 'displaydivs';
   const pElement = document.createElement('p');
-  pElement.innerHTML = '1. Navigate to https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris<br>2. Paste the following code in the console:<br><br>const category = document.querySelector(\'.mw-category\');<br>const links = Array.from(category.querySelectorAll(\'a\'));<br>const newArray = links.map(arr => arr.textContent);<br>newArray.filter(streets => streets.includes(\'de\'));';
+  pElement.innerHTML = JSON.stringify(resultParam);
   divElement.appendChild(pElement);
   displayElement.appendChild(divElement);
   displayElement.style.display = 'block';
@@ -54,5 +97,5 @@ function displayResult(resultParam) {
 function clearContent(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
-  }
+  };
 };

@@ -24,23 +24,102 @@
 
    <body>
       <h1 class="maintitles" title="WDD-330">Week 4</h1>
-      <h5 class="mainsubtitles">Week 4 - Search Demo</h5>
+      <h5 class="mainsubtitles">Week 4 - Hero Form</h5>
       <hr>
       <br>
       <!-- Main Section -->
       <section class="mainsections">
          <div class="maindivs">
             <div class="infodivs">
-               <form class="mainforms" name='search' action='/html/w04/w0400b.html'>
-                  <input class="maininputs" name='searchInput' placeholder="Search Here">
-                  <button class="mainbuttons" type='submit'>Search</button>
-                  <button class="mainbuttons" type='reset'>Reset</button>
+               <!-- HERO -->
+               <form class="mainforms" id='hero'>
+
+                  <div class="displaydivs">
+                     <div>
+                        <label for='heroName'>Name:
+                           <input class="maininputs" type='text' id='heroName' name='heroName' autofocus placeholder='Hero Name Here' maxlength=32>
+                        </label>
+                     </div>
+                     <div>
+                        <label for='realName'>Real Name:
+                           <input class="maininputs" type='password' name='realName' id='realName'>
+                        </label>
+                     </div>
+                     <div>
+                        <label for='age'>Age:
+                           <input type='number' id='age' name='age' min=18 step=1>
+                        </label>
+                     </div>
+                  </div>
+
+                  <div class="displaydivs">
+                     <p>Category:</p>
+                     <label for='hero'>Hero:
+                        <input type='radio' name='category' value='Hero' id='hero'>
+                     </label>
+                     &nbsp;
+                     <label for='villain'>Villain:
+                        <input type='radio' name='category' value='Villain' id='villain'>
+                     </label>
+                     &nbsp;
+                     <label for='anti-hero'>Anti-Hero:
+                        <input type='radio' name='category' value='Antihero' id='anti-hero'>
+                     </label>
+                  </div>
+                  
+                  <div class="displaydivs">
+                     <p>Super Powers:</p>
+                     <label for='flight'>Flight:
+                        <input type='checkbox' id='flight' value='Flight' name='powers'>
+                     </label>
+                     &nbsp;
+                     <label for='strength'>Super Strength:
+                        <input type='checkbox' id='strength' value='Strength' name='powers'>
+                     </label>
+                     &nbsp;
+                     <label for='speed'>Super Speed:
+                        <input type='checkbox' id='speed' value='Super Speed' name='powers'>
+                     </label>
+                     &nbsp;
+                     <label for='energy'>Energy Blasts:
+                        <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+                     </label>
+                     &nbsp;
+                     <label for='telekinesis'>Telekinesis:
+                        <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
+                     </label>
+                  </div>
+
+                  <div class="displaydivs">
+                     <label for='City'>Base of Operations:
+                        <select name='city' id='city'>
+                            <option value='' selected>Choose a City</option>
+                            <option value='Metropolis'>Metropolis</option>
+                            <option value='Gotham City'>Gotham City</option>
+                            <option value='Keystone City'>Keystone City</option>
+                            <option value='Coast City'>Coast City</option>
+                            <option value='Star City'>Star City</option>
+                        </select>
+                    </label>
+                  </div>
+
+                  <div class="displaydivs">
+                     <button class="mainbuttons" type='submit'>Submit</button>
+                     &nbsp;
+                     <button class="mainbuttons" type='reset'>Reset</button>
+                  </div>
+
                </form>
             </div>
          </div>
       </section>
       <br>
-      
+
+      <section class='mainsections'>
+         <div class="displaydivs" id="displaydiv"></div> <!-- See: w0400.js -->
+      </section>
+     <br>
+
       <a href="../../index.html">Home Page</a>
       <footer>Carlos N Reina 2022</footer>
       <script src="../../js/w0400.js"></script>

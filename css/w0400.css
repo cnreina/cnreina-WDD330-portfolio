@@ -60,7 +60,7 @@ hr {
   height: auto;
   background-color: rgb(29, 29, 25);
   color: rgb(224, 218, 218);
-  padding: 1px 8px;
+  padding: 10px;
   margin: 6px 3px;
   border-radius: 4px;
   -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
@@ -93,4 +93,14 @@ hr {
   margin: 0.2em 0;
   font-size: 14px;
   min-width: 20%;
+}
+
+.error{
+  background: rgb(215, 4, 4);
+  border: #900 1px solid;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0.2em 0;
+  font-size: 14px;
+  display: none;
 }
