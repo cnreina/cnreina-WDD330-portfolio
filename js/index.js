@@ -362,6 +362,222 @@
 
 */
 
+/*	JS FORMS
+  The form.submit() method will submit the form automatically but won’t
+  trigger the form submit event.
+
+  Spread operator:
+    hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
+
+    This uses the spread operator to turn the node list into an array.
+    This then allows us to use the filter() method that returns an array
+    containing only the check boxes that were checked (this is because
+    their 'checked' property will be truthy).
+    We then chain the map() method to the end, which replaces each checkbox
+    in the array with its 'value' property.
+    This array is then returned and stored in the hero.powers variable.
+  
+  Array iteration:
+    hero.powers = [];
+    for (let i=0; i < heroForm.powers.length; i++) {
+        if (heroForm.powers[i].checked) {
+            hero.powers.push(heroForm.powers[i].value);
+        }
+    }
+  
+*/
+
+/*	JS ASYNC FUNCTION
+    Async functions allow you to write asynchronous code as if it was synchronous.
+    This is achieved by using the await operator before an asynchronous function.
+    This will wrap the return value of the function in a promise that can then be
+    assigned to a variable.
+    The next line of code is not executed until the promise is resolved.
+
+    async function loadGame(userName) {
+      try {
+          const user = await login(userName);
+          const info = await getPlayerInfo (user.id);
+          // load the game using the returned info
+      }
+      catch (error){
+          throw error;
+      }
+    }
+*/
+
+/*	JS Classes (Object-Oriented Programming)
+  A class defines a blueprint for an object.
+  Objects are then created as an instance of that class, and inherit all the
+  properties and methods of the class.
+  
+  Object-oriented programming is used to model representations of objects in
+  the real world.
+  There are three main concepts in OOP: encapsulation, polymorphism and inheritance.
+  
+  Encapsulation
+    The inner workings are kept hidden inside the object and only the essential functionalities
+    are exposed to the end user.
+    In OOP, this involves keeping all the programming logic inside an object and making methods
+    available to implement the functionality, without the outside world needing to know how it’s done.
+    
+  Polymorphism
+    The same process can be used for different objects.
+    In OOP, this means various objects can share the same method, but also have the ability to
+    override shared methods with a more specific implementation.
+    
+  Inheritance
+    Taking the features of one object then adding some new features.
+    In OOP, this means we can take an object that already exists and inherit all its properties and methods.
+    We can then improve on its functionality by adding new properties and methods.
+
+  The static keyword can be used in class declarations to create a static method.
+  These are called class methods in other programming languages.
+  A static method is called by the class directly rather than by instances of the class.
+
+    class Dice {
+      constructor(sides=6) {
+        this.sides = sides;
+      }
+      roll() {
+          return Math.floor(this.sides * Math.random() + 1)
+      }
+      static description() {
+          return 'A way of choosing random numbers'
+      }
+    }
+
+  The prototype object is live, so if a new property or method is added to the prototype,
+  any instances of its class will inherit the new properties and methods automatically, even if
+  that instance has already been created. It should be used to define any properties that will
+  remain the same for every instance of the class.
+
+  Use variable scope to keep some properties and methods private inside of a class declaration.
+  This will prevent them from being accessed or changed.
+  Provide a getter method to return the values of any private properties.
+
+    class Turtle {
+      constructor(name,color) {
+        this.name = name;
+        let _color = color;
+        this.setColor = color => { return _color = color; }
+        this.getColor = () => _color;
+      }
+    }
+
+  A class can inherit from another class using the extends keyword in a class declaration.
+
+    class NinjaTurtle extends Turtle {
+      constructor(name) {
+        super(name);
+        this.weapon = 'hands';
+      }
+      attack() { return `Feel the power of my ${this.weapon}!` } 
+    }
+
+  The get and set property descriptors are particularly useful for controlling
+  the getting and setting of properties in classes.
+
+    class Dice {
+      constructor(sides=6){    
+        Object.defineProperty(this, 'sides', {
+          get() {
+            return `This dice has ${sides} sides`;
+          },
+          set(value) {
+            if(value > 0) {
+              sides = value;
+              return sides;
+            } else {
+              throw new Error('The number of sides must be positive');
+            }
+          }
+        });
+
+        this.roll = function() {
+          return Math.floor(sides * Math.random() + 1)
+        }
+      }
+    }
+
+  Chaining Functions
+    If a method returns this, its methods can be chained together to form a sequence
+    of method calls that are called one after the other.
+
+      superman.fly().move().xray();
+
+  The for-of syntax for arrays and this does not require a nested function to be used,
+  so this remains bound to the superman object:
+
+    superman.findFriends = function() {
+      for(const friend of this.friends) {
+        console.log(`${friend.name} is friends with ${this.name}`);
+      };
+    }
+
+  Arrow functions don't have their own this context, so this remains bound to the
+  original object making the function call.
+
+    superman.findFriends = function() {
+      this.friends.forEach((friend) => {
+        console.log(`${friend.name} is friends with ${this.name}`);
+      });
+    }
+
+*/
+
+/*	JS MODULES
+  A module is a self-contained piece of code that provides functions and methods
+  that can then be used in other files and by other modules.
+
+  All code in modules is always in strict mode without the need for 'use strict'
+  and there is no way to opt out of this.
+
+  A module has its own global scope, any variables created in the top-level of a
+  module can only be accessed within that module.
+
+  The value of this in the top level of a module is undefined, rather than the global object.
+
+  You can't use HTML-style comments in modules.
+
+  Use default to export a single variable, function or class in a module that can
+  be imported without having to be explicitly named.
+  Having more than one default export will result in a syntax error.
+
+  Export Variable:
+    export const PI = 3.1415926;
+
+  Import Variable:
+    import { PI } from './pi.js';
+
+  Export Function:
+    function variance(array) {
+      return sum(array,square)/array.length - square(mean(array))
+    }
+
+    function mean(array) {
+      return sum(array) / array.length;
+    }
+
+    export {
+      variance
+    }
+
+  Import Function:
+    import  { variance } from './stats.js';
+  
+  Import all the functions from the stats.js module using a namespace of stats:
+    import * as stats from './stats.js';
+  
+  The mean function could be used as follows:
+    stats.mean([2,6,10]);
+
+*/
+
+
+/* ************************************************************************* */
+
+
 const links = [
   {
     label: "Week 1 (Portfolio)",
@@ -384,7 +600,7 @@ const links = [
     url: "html/w02/w0203.html"
   },
   {
-    label: "Week 2 (Stretch 03)",
+    label: "Week 2 (Stretch 03 - Callbacks)",
     url: "html/w02/w0204.html"
   },
   {
@@ -416,7 +632,7 @@ const links = [
     url: "html/w03/w0306.html"
   },
   {
-    label: "Week 4 (Search Demo)",
+    label: "Week 4 (Hero)",
     url: "html/w04/w0400.html"
   }
 ];

@@ -3,49 +3,6 @@
   cnreina.com
 */
 
-/*	FORMS
-  The form.submit() method will submit the form automatically but won’t
-  trigger the form submit event.
-
-  Spread operator:
-    hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
-
-    This uses the spread operator to turn the node list into an array.
-    This then allows us to use the filter() method that returns an array
-    containing only the check boxes that were checked (this is because
-    their 'checked' property will be truthy).
-    We then chain the map() method to the end, which replaces each checkbox
-    in the array with its 'value' property.
-    This array is then returned and stored in the hero.powers variable.
-  
-  Array iteration:
-    hero.powers = [];
-    for (let i=0; i < heroForm.powers.length; i++) {
-        if (heroForm.powers[i].checked) {
-            hero.powers.push(heroForm.powers[i].value);
-        }
-    }
-  
-*/
-
-/*	ASYNC FUNCTION
-    Async functions allow you to write asynchronous code as if it was synchronous.
-    This is achieved by using the await operator before an asynchronous function.
-    This will wrap the return value of the function in a promise that can then be
-    assigned to a variable.
-    The next line of code is not executed until the promise is resolved.
-
-    async function loadGame(userName) {
-      try {
-          const user = await login(userName);
-          const info = await getPlayerInfo (user.id);
-          // load the game using the returned info
-      }
-      catch (error){
-          throw error;
-      }
-    }
-*/
 
 /* ************************************************************************* */
 
