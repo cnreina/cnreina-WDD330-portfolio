@@ -634,6 +634,10 @@ const links = [
   {
     label: "Week 4 (Hero)",
     url: "html/w04/w0400.html"
+  },
+  {
+    label: "Week 4 (Assignment 01 Tic Tac Toe)",
+    url: "html/w04/w0401.html"
   }
 ];
 
