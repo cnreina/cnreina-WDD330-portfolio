@@ -28,6 +28,25 @@
   
 */
 
+/*	ASYNC FUNCTION
+    Async functions allow you to write asynchronous code as if it was synchronous.
+    This is achieved by using the await operator before an asynchronous function.
+    This will wrap the return value of the function in a promise that can then be
+    assigned to a variable.
+    The next line of code is not executed until the promise is resolved.
+
+    async function loadGame(userName) {
+      try {
+          const user = await login(userName);
+          const info = await getPlayerInfo (user.id);
+          // load the game using the returned info
+      }
+      catch (error){
+          throw error;
+      }
+    }
+*/
+
 /* ************************************************************************* */
 
 
