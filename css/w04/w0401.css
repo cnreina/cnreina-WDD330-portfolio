@@ -32,19 +32,20 @@ hr {
 }
 
 .mainsections {
-  width: 98%;
   height: auto;
-  background-color: rgb(30, 30, 28);
-  padding: 4px;
+  background-color: rgb(75, 75, 72);
+  padding: 8px;
   margin: 0px;
+  display: grid;
+  grid-template-columns: 300px;
+  justify-content: center;
 }
 
 .maindivs {
-  width: 98%;
   height: auto;
-  background-color: rgb(184, 184, 181);
+  background-color: rgb(192, 192, 160);
   padding: 4px;
-  margin: 4px;
+  margin: 0px;
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
@@ -111,11 +112,17 @@ hr {
 
 #playerinfolabel {
   font-size: 20px;
-  margin-right: 6px;
+  padding: 10px;
+  /* margin-right: 6px; */
 }
 
 #playerinfo {
   color: #4e0303;
   font-size: 20px;
   font-weight: bold;
+  padding: 10px;
+}
+
+.redColor {
+  color: red;
 }

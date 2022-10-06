@@ -40,6 +40,9 @@ function handleGridContainerEvent(event) {
   // prevent overwriting
   if (selectedCell.innerHTML === 'O' || selectedCell.innerHTML === 'X') { return; };
 
+  // game is over
+  if (currentPlayer() === '') { return; };
+
   // set cell
   if (currentPlayer() === 'O') {
     selectedCell.innerHTML = 'O';
@@ -119,74 +122,110 @@ function gameCompleted() {
   return '';
 };
 
-function columnCompleted() {
-  // column 1
+function rowCompleted() {
+  // 1
   const cell01 = document.getElementById('gridcell01');
   const cell02 = document.getElementById('gridcell02');
   const cell03 = document.getElementById('gridcell03');
   if (cell01.innerHTML === 'O' && cell02.innerHTML === 'O' && cell03.innerHTML === 'O') {
+    cell01.classList.add('redColor');
+    cell02.classList.add('redColor');
+    cell03.classList.add('redColor');
     return 'O';
   };
   if (cell01.innerHTML === 'X' && cell02.innerHTML === 'X' && cell03.innerHTML === 'X') {
+    cell01.classList.add('redColor');
+    cell02.classList.add('redColor');
+    cell03.classList.add('redColor');
     return 'X';
   };
 
-  // column 2
+  // 2
   const cell04 = document.getElementById('gridcell04');
   const cell05 = document.getElementById('gridcell05');
   const cell06 = document.getElementById('gridcell06');
   if (cell04.innerHTML === 'O' && cell05.innerHTML === 'O' && cell06.innerHTML === 'O') {
+    cell04.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell06.classList.add('redColor');
     return 'O';
   };
   if (cell04.innerHTML === 'X' && cell05.innerHTML === 'X' && cell06.innerHTML === 'X') {
+    cell04.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell06.classList.add('redColor');
     return 'X';
   };
 
-  // column 3
+  // 3
   const cell07 = document.getElementById('gridcell07');
   const cell08 = document.getElementById('gridcell08');
   const cell09 = document.getElementById('gridcell09');
   if (cell07.innerHTML === 'O' && cell08.innerHTML === 'O' && cell09.innerHTML === 'O') {
+    cell07.classList.add('redColor');
+    cell08.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'O';
   };
   if (cell07.innerHTML === 'X' && cell08.innerHTML === 'X' && cell09.innerHTML === 'X') {
+    cell07.classList.add('redColor');
+    cell08.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'X';
   };
 
   return '';
 };
 
-function rowCompleted() {
-  // row 1
+function columnCompleted() {
+  // 1
   const cell01 = document.getElementById('gridcell01');
   const cell04 = document.getElementById('gridcell04');
   const cell07 = document.getElementById('gridcell07');
   if (cell01.innerHTML === 'O' && cell04.innerHTML === 'O' && cell07.innerHTML === 'O') {
+    cell01.classList.add('redColor');
+    cell04.classList.add('redColor');
+    cell07.classList.add('redColor');
     return 'O';
   };
   if (cell01.innerHTML === 'X' && cell04.innerHTML === 'X' && cell07.innerHTML === 'X') {
+    cell01.classList.add('redColor');
+    cell04.classList.add('redColor');
+    cell07.classList.add('redColor');
     return 'X';
   };
 
-  // row 2
+  // 2
   const cell02 = document.getElementById('gridcell02');
   const cell05 = document.getElementById('gridcell05');
   const cell08 = document.getElementById('gridcell08');
   if (cell02.innerHTML === 'O' && cell05.innerHTML === 'O' && cell08.innerHTML === 'O') {
+    cell02.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell08.classList.add('redColor');
     return 'O';
   };
   if (cell02.innerHTML === 'X' && cell05.innerHTML === 'X' && cell08.innerHTML === 'X') {
+    cell02.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell08.classList.add('redColor');
     return 'X';
   };
 
-  // row 3
+  // 3
   const cell03 = document.getElementById('gridcell03');
   const cell06 = document.getElementById('gridcell06');
   const cell09 = document.getElementById('gridcell09');
   if (cell03.innerHTML === 'O' && cell06.innerHTML === 'O' && cell09.innerHTML === 'O') {
+    cell03.classList.add('redColor');
+    cell06.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'O';
   };
   if (cell03.innerHTML === 'X' && cell06.innerHTML === 'X' && cell09.innerHTML === 'X') {
+    cell03.classList.add('redColor');
+    cell06.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'X';
   };
 
@@ -199,9 +238,15 @@ function diagonalCompleted() {
   const cell05 = document.getElementById('gridcell05');
   const cell09 = document.getElementById('gridcell09');
   if (cell01.innerHTML === 'O' && cell05.innerHTML === 'O' && cell09.innerHTML === 'O') {
+    cell01.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'O';
   };
   if (cell01.innerHTML === 'X' && cell05.innerHTML === 'X' && cell09.innerHTML === 'X') {
+    cell01.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell09.classList.add('redColor');
     return 'X';
   };
 
@@ -210,9 +255,15 @@ function diagonalCompleted() {
   // const cell05 = document.getElementById('gridcell05');
   const cell07 = document.getElementById('gridcell07');
   if (cell03.innerHTML === 'O' && cell05.innerHTML === 'O' && cell07.innerHTML === 'O') {
+    cell03.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell07.classList.add('redColor');
     return 'O';
   };
   if (cell03.innerHTML === 'X' && cell05.innerHTML === 'X' && cell07.innerHTML === 'X') {
+    cell03.classList.add('redColor');
+    cell05.classList.add('redColor');
+    cell07.classList.add('redColor');
     return 'X';
   };
 
@@ -238,13 +289,13 @@ function currentPlayer() {
 function resetGame() {
   const playerInfoLabel = document.getElementById('playerinfolabel');
   playerInfoLabel.innerHTML = 'Current Player:';
-
   const playerInfo = document.getElementById('playerinfo');
   playerInfo.innerHTML = 'O';
 
   const gridCells = document.querySelectorAll('.gridcells');
   for(const cell of gridCells) {
     cell.innerHTML = '';
+    cell.classList.remove('redColor');
   };
 };
 
