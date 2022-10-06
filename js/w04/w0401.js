@@ -13,7 +13,7 @@ window.onload = function() {
   resetButton.addEventListener('click', handleResetButtonEvent);
 
   const gridContainer = document.getElementById('gridcontainer');
-  gridContainer.addEventListener('click', handleGridContainerEvent);
+  gridContainer.addEventListener('touchend', handleGridContainerEvent);
 
   const playerInfo = document.getElementById('playerinfo');
   playerInfo.innerHTML = 'O';
