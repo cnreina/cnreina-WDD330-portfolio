@@ -9,43 +9,26 @@
 
 window.onload = function() {
   console.log("window.onload");
-  const heroForm = document.forms['hero'];
-  heroForm.addEventListener('submit', makeHero, false);
-  heroForm.heroName.addEventListener('keyup', validateInline);
+  const resetButton = document.getElementById('resetbutton');
+  resetButton.addEventListener('click', handleResetButtonEvent);
 
-  const label = heroForm.querySelector('label');
-  const error = document.createElement('div');
-  error.classList.add('error');
-  error.id = 'errordiv';
-  error.textContent = '! Your name is not allowed to start with X.';
-  label.append(error);
+  const gridContainer = document.getElementById('gridcontainer');
+  gridContainer.addEventListener('touchend', handleGridContainerEvent);
 
 };
 
-function makeHero(event) {
-  event.preventDefault(); // prevent form submition
-
-  const heroForm = document.forms['hero'];
-  const hero = {};
-  hero.name = heroForm.heroName.value;
-  hero.realName = heroForm.realName.value;
-  hero.age = heroForm.age.value;
-  hero.category = heroForm.category.value;
-  hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
-  hero.city = heroForm.city.value;
-
-  displayResult(hero);
-  return hero;
+function handleResetButtonEvent(event) {
+  event.preventDefault();
 };
 
-// function validateHero(hero) {
-//   const firstLetter = hero.name[0];
-//   if (firstLetter.toUpperCase() === 'X') {
-//     alert('Your name is not allowed to start with X!');
-//   }
+function handleGridContainerEvent(event) {
+  event.preventDefault();
+};
 
-//   displayResult(hero);
-// };
+function currentPlayer() {
+  const player = document.getElementById('playerinfo');
+};
+
 
 function validateInline() {
   const error = document.getElementById('errordiv');
