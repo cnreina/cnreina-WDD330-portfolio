@@ -13,21 +13,29 @@ window.onload = function() {
   resetButton.addEventListener('click', handleResetButtonEvent);
 
   const gridContainer = document.getElementById('gridcontainer');
-  gridContainer.addEventListener('touchend', handleGridContainerEvent);
-
+  if ("ontouchend" in document.documentElement) {
+    console.log("Using touchend");
+    gridContainer.addEventListener('touchend', handleGridContainerEvent);
+  }
+  else {
+    console.log("Using click");
+    gridContainer.addEventListener('click', handleGridContainerEvent);
+  }
+  
   const playerInfo = document.getElementById('playerinfo');
   playerInfo.innerHTML = 'O';
 
 };
 
 function handleResetButtonEvent(event) {
-  console.log(event.target.id);
-
+  resetGame();
 };
 
 function handleGridContainerEvent(event) {
   const selectedCell = document.getElementById(event.target.id);
   const playerInfo = document.getElementById('playerinfo');
+
+  if (selectedCell.innerHTML === 'O' || selectedCell.innerHTML === 'X') { return; };
 
   if (currentPlayer() === 'O') {
     selectedCell.innerHTML = 'O';
@@ -41,4 +49,11 @@ function handleGridContainerEvent(event) {
 function currentPlayer() {
   const player = document.getElementById('playerinfo');
   return player.innerHTML;
+};
+
+function resetGame() {
+  const gridCells = document.querySelectorAll('.gridcells');
+  for(const cell of gridCells) {
+    cell.innerHTML = '';
+  };
 };
