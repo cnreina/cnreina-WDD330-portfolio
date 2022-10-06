@@ -34,7 +34,7 @@ hr {
 .mainsections {
   width: 98%;
   height: auto;
-  background-color: rgb(162, 162, 40);
+  background-color: rgb(30, 30, 28);
   padding: 4px;
   margin: 0px;
 }
@@ -53,7 +53,7 @@ hr {
 .infodivs {
   width: 98%;
   height: auto;
-  background-color: rgb(103, 103, 99);
+  /* background-color: rgb(103, 103, 99); */
   padding: 10px;
   margin:5px;
 }
@@ -78,6 +78,8 @@ hr {
   margin: 0.2em 0;
   font-size: 14px;
   min-width: 20%;
+  -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+  box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
 }
 
 #gridcontainer {
@@ -88,11 +90,11 @@ hr {
   max-width: 600px;
 }
 .gridcells {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 30px;
+  padding: 20px;
   font-size: 30px;
   text-align: center;
   -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
