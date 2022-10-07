@@ -124,5 +124,7 @@ hr {
 }
 
 .redColor {
-  color: red;
+  color: rgb(220, 17, 17);
+  font-weight: bolder;
+  text-shadow: 2px 2px 4px #e40f0f5c;
 }
