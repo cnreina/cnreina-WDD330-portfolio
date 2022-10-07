@@ -38,15 +38,6 @@ function makeHero(event) {
   return hero;
 };
 
-// function validateHero(hero) {
-//   const firstLetter = hero.name[0];
-//   if (firstLetter.toUpperCase() === 'X') {
-//     alert('Your name is not allowed to start with X!');
-//   }
-
-//   displayResult(hero);
-// };
-
 function validateInline() {
   const error = document.getElementById('errordiv');
   const heroName = this.value.toUpperCase();
