@@ -305,11 +305,11 @@ function displayResult(codeParam) {
   playerInfo.innerHTML = '';
   switch (codeParam) {
     case 'O':
-      playerInfoLabel.innerHTML = 'O winns!';
+      playerInfoLabel.innerHTML = 'O wins!';
     break;
 
     case 'X':
-      playerInfoLabel.innerHTML = 'X winns!';
+      playerInfoLabel.innerHTML = 'X wins!';
     break;
 
     case '.':
