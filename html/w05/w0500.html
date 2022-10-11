@@ -16,43 +16,43 @@
       <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
 
       <style>
-         @import "../../css/w04/w0400.css" screen and (max-width:640px);
-         @import "../../css/w04/w0400.css" screen and (min-width:640px);
-         @import "../../css/w04/w0400.css" screen and (min-width:1024px);
+         @import "../../css/w05/w0500.css" screen and (max-width:640px);
+         @import "../../css/w05/w0500.css" screen and (min-width:640px);
+         @import "../../css/w05/w0500.css" screen and (min-width:1024px);
       </style>
    </head>
 
    <body>
-      <h1 class="maintitles" title="WDD-330">Week 4</h1>
-      <h5 class="mainsubtitles">Hero Form</h5>
+      <h1 class="maintitles" title="WDD-330">Week 5</h1>
+      <h5 class="mainsubtitles">Error Handling</h5>
       <hr>
       <br>
       <!-- Main Section -->
       <section class="mainsections">
          <div class="maindivs">
             <div class="infodivs">
-               <!-- HERO -->
+               <!-- FORM -->
                <form class="mainforms" id='hero'>
 
                   <div class="displaydivs">
                      <div>
-                        <label for='heroName'>Name:
+                        <label for='heroName' id="heronamelabel">Name:
                            <input class="maininputs" type='text' id='heroName' name='heroName' autofocus placeholder='Hero Name Here' maxlength=32>
                         </label>
                      </div>
                      <div>
-                        <label for='realName'>Real Name:
+                        <label for='realName' id="realnamelabel">Real Name:
                            <input class="maininputs" type='password' name='realName' id='realName'>
                         </label>
                      </div>
                      <div>
-                        <label for='age'>Age:
+                        <label for='age' id="agelabel">Age:
                            <input type='number' id='age' name='age' min=18 step=1>
                         </label>
                      </div>
                   </div>
 
-                  <div class="displaydivs">
+                  <div class="displaydivs" id="categorydiv">
                      <p>Category:</p>
                      <label for='hero'>Hero:
                         <input type='radio' name='category' value='Hero' id='hero'>
@@ -67,7 +67,7 @@
                      </label>
                   </div>
                   
-                  <div class="displaydivs">
+                  <div class="displaydivs" id="powersdiv">
                      <p>Super Powers:</p>
                      <label for='flight'>Flight:
                         <input type='checkbox' id='flight' value='Flight' name='powers'>
@@ -90,7 +90,7 @@
                      </label>
                   </div>
 
-                  <div class="displaydivs">
+                  <div class="displaydivs" id="citydiv">
                      <label for='City'>Base of Operations:
                         <select name='city' id='city'>
                             <option value='' selected>Choose a City</option>
@@ -116,12 +116,12 @@
       <br>
 
       <section class='mainsections'>
-         <div class="displaydivs" id="displaydiv"></div> <!-- See: w0400.js -->
+         <div class="displaydivs" id="displaydiv"></div> <!-- See: w0500.js -->
       </section>
      <br>
 
       <a href="../../index.html">Home Page</a>
       <footer>Carlos N Reina 2022</footer>
-      <script src="../../js/w04/w0400.js"></script>
+      <script src="../../js/w05/w0500.js"></script>
    </body>
 </html>

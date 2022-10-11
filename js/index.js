@@ -638,6 +638,10 @@ const links = [
   {
     label: "Week 4 (Assignment 01 Tic Tac Toe)",
     url: "html/w04/w0401.html"
+  },
+  {
+    label: "Week 5 (Error Handling)",
+    url: "html/w05/w0500.html"
   }
 ];
 
