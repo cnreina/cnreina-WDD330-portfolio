@@ -84,8 +84,6 @@ function makeHero(event) {
   if (hero.city == null || hero.city == "") {
     return;
   };
-
-  TODO handle error views
   
   displayResult(hero);
   return hero;
