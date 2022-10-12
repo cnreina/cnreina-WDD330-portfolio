@@ -6,7 +6,7 @@
 
 /* ************************************************************************* */
 
-
+// INITIALIZE
 window.onload = function() {
   // init event listeners
   const heroForm = document.forms['hero'];
@@ -14,6 +14,9 @@ window.onload = function() {
   heroForm.heroName.addEventListener('keyup', validateName);
   heroForm.realName.addEventListener('keyup', validateRealName);
   heroForm.age.addEventListener('change', validateAge);
+  document.getElementById('categorydiv').addEventListener('change', resetCategoryError);
+  document.getElementById('powersdiv').addEventListener('change', resetPowersError);
+  document.getElementById('citydiv').addEventListener('change', resetCityError);
 
   // init error elements
   const heroNameLabel = document.getElementById("heronamelabel");
@@ -54,8 +57,11 @@ window.onload = function() {
 
 };
 
+// CREATE OBJECT
 function makeHero(event) {
   event.preventDefault(); // prevent form submition
+
+  let errorCounter = 0;
 
   const heroForm = document.forms['hero'];
   const hero = {};
@@ -67,26 +73,54 @@ function makeHero(event) {
   hero.city = heroForm.city.value;
 
   if (hero.name == null || hero.name == "") {
-    return;
+    handleError(true, "ERROR: Name is required", "heronameerrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "heronameerrordiv");
   };
+
   if (hero.realName == null || hero.realName == "") {
-    return;
+    handleError(true, "ERROR: Real Name is required", "realnameerrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "realnameerrordiv");
   };
+
   if (hero.age == null || hero.age == "") {
-    return;
+    handleError(true, "ERROR: Age is required", "ageerrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "ageerrordiv");
   };
+
   if (hero.category == null || hero.category == "") {
-    return;
+    handleError(true, "ERROR: Category is required", "categoryerrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "categoryerrordiv");
   };
+
   if (hero.powers == null || hero.powers.length == 0) {
-    return;
+    handleError(true, "ERROR: Powers is required", "powerserrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "powerserrordiv");
   };
+
   if (hero.city == null || hero.city == "") {
-    return;
+    handleError(true, "ERROR: City is required", "cityerrordiv");
+    errorCounter++;
+  } else {
+    handleError(false, "", "cityerrordiv");
   };
   
-  displayResult(hero);
-  return hero;
+  if (errorCounter == 0) {
+    displayResult(hero);
+    return hero;
+  };
+
+  return null;
+  
 };
 
 // FORM VALIDATORS
@@ -117,6 +151,18 @@ function validateAge() {
   } else {
     handleError(false, "", "ageerrordiv");
   };
+};
+
+function resetCategoryError() {
+  handleError(false, "", "categoryerrordiv");
+};
+
+function resetPowersError() {
+  handleError(false, "", "powerserrordiv");
+};
+
+function resetCityError() {
+  handleError(false, "", "cityerrordiv");
 };
 
 function displayResult(resultParam) {
