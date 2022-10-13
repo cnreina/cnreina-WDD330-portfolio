@@ -11,6 +11,7 @@ window.onload = function() {
   // init event listeners
   const heroForm = document.forms['hero'];
   heroForm.addEventListener('submit', makeHero, false);
+  heroForm.addEventListener('reset', resetForm, false);
   heroForm.heroName.addEventListener('keyup', validateName);
   heroForm.realName.addEventListener('keyup', validateRealName);
   heroForm.age.addEventListener('change', validateAge);
@@ -153,6 +154,7 @@ function validateAge() {
   };
 };
 
+// RESET
 function resetCategoryError() {
   handleError(false, "", "categoryerrordiv");
 };
@@ -165,6 +167,23 @@ function resetCityError() {
   handleError(false, "", "cityerrordiv");
 };
 
+function clearContent(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  };
+};
+
+function resetForm() {
+  // called by form reset event
+  handleError(false, "", "heronameerrordiv");
+  handleError(false, "", "realnameerrordiv");
+  handleError(false, "", "ageerrordiv");
+  handleError(false, "", "categoryerrordiv");
+  handleError(false, "", "powerserrordiv");
+  handleError(false, "", "cityerrordiv");
+};
+
+// DISPLAY
 function displayResult(resultParam) {
   const displayElement = document.getElementById("displaydiv");
   clearContent(displayElement);
@@ -176,12 +195,6 @@ function displayResult(resultParam) {
   divElement.appendChild(pElement);
   displayElement.appendChild(divElement);
   displayElement.style.display = 'block';
-};
-
-function clearContent(parent) {
-  while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
-  };
 };
 
 function handleError(displayErrorParam, errorMessageParam, elementIdParam) {

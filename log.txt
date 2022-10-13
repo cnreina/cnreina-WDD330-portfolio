@@ -1,0 +1,538 @@
+DEBUG|001.069|DataBreakpointsManager: Setting 0 data breakpoints
+DEBUG|001.077|FirefoxDebugAdapter: Setting exception filters: ["uncaught"]
+DEBUG|001.079|FirefoxDebugAdapter: 0 threads
+DEBUG|001.165|DebugConnection: Received response/event {"from":"root","applicationType":"browser","testConnectionPrefix":"server1.conn0.","traits":{"networkMonitor":true,"resources":{"extensions-backgroundscript-status":true},"supportsSwitchingMode":true,"workerConsoleApiMessagesDispatchedToMainThread":true}}
+DEBUG|001.165|RootActorProxy: Fetching root
+DEBUG|001.165|DebugConnection: Sending request {"to":"root","type":"getRoot"}
+DEBUG|001.190|DebugConnection: Received response/event {"preferenceActor":"server1.conn0.preferenceActor1","addonsActor":"server1.conn0.addonsActor2","deviceActor":"server1.conn0.deviceActor3","heapSnapshotFileActor":"server1.conn0.heapSnapshotFileActor4","perfActor":"server1.conn0.perfActor5","parentAccessibilityActor":"server1.conn0.parentAccessibilityActor6","screenshotActor":"server1.conn0.screenshotActor7","from":"root"}
+DEBUG|001.190|RootActorProxy: Received root response
+DEBUG|001.190|RootActorProxy: Fetching tabs
+DEBUG|001.190|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|001.270|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |001.270|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|001.371|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|001.477|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"New Tab","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"about:blank"}],"from":"root"}
+DEBUG|001.477|RootActorProxy: Received 1 tabs
+DEBUG|001.477|RootActorProxy: Tab server1.conn0.tabDescriptor8 opened
+DEBUG|001.477|TabDescriptorActorProxy: Connecting to tab
+DEBUG|001.477|DebugConnection: Sending request {"to":"server1.conn0.tabDescriptor8","type":"getTarget"}
+DEBUG|001.860|DebugConnection: Received response/event {"frame":{"actor":"server1.conn0.child10/windowGlobalTarget2","browsingContextID":10,"processID":88304,"innerWindowId":4294967297,"topInnerWindowId":4294967297,"isTopLevelTarget":true,"isPopup":false,"isPrivate":false,"traits":{"isBrowsingContext":true,"supportsTopLevelTargetFlag":true,"frames":true,"logInPage":true,"watchpoints":true,"navigation":true},"title":"","url":"about:blank","outerWindowID":21,"consoleActor":"server1.conn0.child10/consoleActor3","inspectorActor":"server1.conn0.child10/inspectorActor4","styleSheetsActor":"server1.conn0.child10/styleSheetsActor5","storageActor":"server1.conn0.child10/storageActor6","memoryActor":"server1.conn0.child10/memoryActor7","reflowActor":"server1.conn0.child10/reflowActor8","cssPropertiesActor":"server1.conn0.child10/cssPropertiesActor9","animationsActor":"server1.conn0.child10/animationsActor10","responsiveActor":"server1.conn0.child10/responsiveActor11","webExtensionInspectedWindowActor":"server1.conn0.child10/webExtensionInspectedWindowActor12","accessibilityActor":"server1.conn0.child10/accessibilityActor13","changesActor":"server1.conn0.child10/changesActor14","webSocketActor":"server1.conn0.child10/webSocketActor15","eventSourceActor":"server1.conn0.child10/eventSourceActor16","manifestActor":"server1.conn0.child10/manifestActor17","networkContentActor":"server1.conn0.child10/networkContentActor18","screenshotContentActor":"server1.conn0.child10/screenshotContentActor19","threadActor":"server1.conn0.child10/thread1"},"from":"server1.conn0.tabDescriptor8"}
+DEBUG|001.860|TabDescriptorActorProxy: Received getTarget response
+DEBUG|001.861|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+INFO |001.861|FirefoxDebugSession: Tab opened with url about:blank
+DEBUG|001.861|TabActorProxy: Attaching to tab server1.conn0.child10/windowGlobalTarget2
+DEBUG|001.861|ThreadActorProxy: Created thread server1.conn0.child10/thread1
+DEBUG|001.861|FirefoxDebugSession: Attached to tab server1.conn0.child10/windowGlobalTarget2
+DEBUG|001.862|TabActorProxy: Fetching workers
+DEBUG|001.862|DebugConnection: Sending request {"to":"server1.conn0.child10/windowGlobalTarget2","type":"listWorkers"}
+DEBUG|001.862|ThreadActorProxy: Attaching thread server1.conn0.child10/thread1
+DEBUG|001.862|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"attach","options":{"ignoreFrameEnvironment":true,"pauseOnExceptions":true,"ignoreCaughtExceptions":true}}
+DEBUG|001.863|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|001.874|DebugConnection: Received response/event {"workers":[],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|001.874|ThreadActorProxy: Received setBreakpoint or removeBreakpoint or pauseOnExceptions response
+DEBUG|001.874|ThreadActorProxy: Fetching sources from thread server1.conn0.child10/thread1
+DEBUG|001.874|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"sources"}
+DEBUG|001.874|DebugConnection: Received response/event {"from":"server1.conn0.child10/thread1"}
+DEBUG|001.874|TabActorProxy: Received 0 workers
+DEBUG|001.883|DebugConnection: Received response/event {"sources":[],"from":"server1.conn0.child10/thread1"}
+DEBUG|001.883|ThreadActorProxy: Received 0 sources from thread server1.conn0.child10/thread1
+DEBUG|001.883|ConsoleActorProxy: Starting console listeners
+DEBUG|001.883|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"startListeners","listeners":["PageError","ConsoleAPI"]}
+DEBUG|001.883|ConsoleActorProxy: Getting cached messages
+DEBUG|001.883|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"getCachedMessages","messageTypes":["PageError","ConsoleAPI"]}
+DEBUG|001.912|DebugConnection: Received response/event {"startedListeners":["PageError","ConsoleAPI"],"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|001.912|ConsoleActorProxy: Listeners started
+DEBUG|001.912|DebugConnection: Received response/event {"messages":[],"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|001.912|ConsoleActorProxy: Received cached messages
+DEBUG|002.040|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.043|FirefoxDebugAdapter: 1 threads
+DEBUG|002.059|DebugConnection: Received response/event {"type":"pageError","pageError":{"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1665614267300.481,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false},"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|002.059|ConsoleActorProxy: Received PageError message
+DEBUG|002.059|ConsoleActor: Page Error: {"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1665614267300.481,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false}
+DEBUG|002.059|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|002.059|RootActorProxy: Received tabListChanged event
+DEBUG|002.059|RootActorProxy: Fetching tabs
+DEBUG|002.059|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|002.059|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.059|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","title":"","state":"stop","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.059|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 did navigate to http://localhost/index.html
+DEBUG|002.075|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"localhost/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost/index.html"}],"from":"root"}
+DEBUG|002.075|RootActorProxy: Received 1 tabs
+DEBUG|002.165|FirefoxDebugAdapter: 1 threads
+DEBUG|046.751|DebugConnection: Received response/event {"from":"root","type":"forwardingCancelled","prefix":"server1.conn0.child10"}
+DEBUG|046.751|RootActorProxy: Received forwardingCancelled event from root (ignoring)
+DEBUG|046.751|DebugConnection: Received response/event {"type":"descriptor-destroyed","from":"server1.conn0.tabDescriptor8"}
+WARN |046.751|TabDescriptorActorProxy: Unknown message from TabDescriptorActor: {"type":"descriptor-destroyed","from":"server1.conn0.tabDescriptor8"}
+DEBUG|046.751|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|046.752|RootActorProxy: Fetching tabs
+DEBUG|046.752|RootActorProxy: Received tabListChanged event
+DEBUG|046.752|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|046.754|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |046.754|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|046.855|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|046.856|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |046.856|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|046.956|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|046.957|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |046.957|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.057|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.058|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.058|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.159|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.160|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.160|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.260|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.261|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.261|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.362|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.364|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.364|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.464|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.465|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.465|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.565|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.566|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.566|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.667|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.667|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.667|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.768|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.769|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.769|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.868|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.869|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.869|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|047.970|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|047.971|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |047.971|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.072|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.073|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.073|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.174|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.175|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.175|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.276|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.276|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.276|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.375|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.376|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.376|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.476|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.476|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.476|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.577|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.578|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.578|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.678|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.679|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.679|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.779|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.780|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.780|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.880|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.880|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.880|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|048.980|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|048.981|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |048.981|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.082|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.082|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.082|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.184|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.185|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.185|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.285|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.286|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.286|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.387|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.388|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.388|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.488|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.488|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.488|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.589|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.590|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.590|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.690|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.691|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.691|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.792|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.792|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.792|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.893|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.894|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.894|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|049.993|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|049.994|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |049.994|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.096|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.096|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.096|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.198|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.199|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.199|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.299|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.300|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.300|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.400|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.402|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.402|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.503|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.504|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.504|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.605|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.606|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.606|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.706|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.707|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.707|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.807|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.808|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.808|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|050.909|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|050.910|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |050.910|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.010|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.011|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.011|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.111|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.112|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.112|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.212|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.213|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.213|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.314|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.315|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.315|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.415|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.416|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.416|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.517|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.518|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.518|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.618|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.619|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.619|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.720|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.721|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.721|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.821|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.822|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.822|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|051.923|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|051.924|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |051.924|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.024|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.024|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.024|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.125|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.126|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.126|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.226|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.227|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.227|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.327|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.327|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.327|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.429|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.430|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.430|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.531|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.531|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.531|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.632|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.633|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.633|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.733|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.735|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.735|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.835|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.836|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.836|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|052.937|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|052.938|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |052.938|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.038|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.039|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.039|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.139|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.140|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.140|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.242|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.243|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.243|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.343|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.344|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.344|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.443|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.444|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.445|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.545|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.546|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.546|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.646|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.647|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.647|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.747|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.747|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.747|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.848|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.848|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.848|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|053.949|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|053.950|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |053.950|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.049|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.050|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.050|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.151|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.152|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.152|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.253|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.253|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.253|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.355|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.355|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.355|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.456|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.456|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.456|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.557|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.558|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.558|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.658|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.659|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.659|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.759|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.760|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.760|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.860|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.861|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.861|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|054.961|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|054.962|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |054.962|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.062|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.063|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.064|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.164|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.165|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.165|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.264|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.265|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.265|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.365|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.366|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.366|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.467|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.467|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.467|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.567|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.568|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.568|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.668|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.669|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.669|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.769|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.771|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.771|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.871|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.871|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.871|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|055.972|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|055.973|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |055.973|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.073|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.074|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.074|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.176|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.176|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.177|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.277|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.278|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.278|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.378|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.379|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.379|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.479|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.479|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.479|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.580|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.580|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.580|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.681|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.682|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.682|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.781|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.782|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.782|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.882|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.883|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.883|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|056.983|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|056.984|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |056.984|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.084|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.085|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.085|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.185|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.186|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.186|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.285|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.286|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.286|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.386|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.387|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.387|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.486|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.487|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.487|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.587|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.587|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.587|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.688|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.689|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.689|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.789|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.790|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.790|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.891|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.892|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.892|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|057.992|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|057.993|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |057.993|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.093|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.094|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.094|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.194|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.195|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.195|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.295|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.295|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.295|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.396|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.397|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.397|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.498|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.499|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.499|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.599|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.600|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.600|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.700|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.701|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.701|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.802|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.802|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.802|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|058.903|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|058.905|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |058.905|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.005|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.005|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.005|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.106|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.107|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.107|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.209|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.210|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.210|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.310|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.311|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.311|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.411|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.412|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.412|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.513|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.514|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.514|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.614|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.615|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.615|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.715|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.716|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.716|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.816|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.817|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.817|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|059.917|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|059.919|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |059.919|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.019|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.020|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.020|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.121|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.122|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.122|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.222|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.223|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.223|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.323|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.324|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.324|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.425|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.425|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.425|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.526|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.527|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.527|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.627|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.627|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.627|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.728|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.728|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.728|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.829|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.829|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.829|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|060.931|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|060.931|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |060.931|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.033|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.033|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.033|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.134|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.135|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.135|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.236|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.237|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.237|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.337|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.337|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.337|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.439|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.439|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.439|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.540|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.540|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.540|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.642|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.642|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.642|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.743|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.744|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.744|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.843|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.844|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.844|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|061.945|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|061.945|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |061.945|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|062.046|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|062.047|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |062.047|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|062.147|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|062.147|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |062.147|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|062.248|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|062.249|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |062.249|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|062.349|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|062.349|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |062.349|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|062.450|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|062.451|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |062.451|RootActorProxy: Received 0 tabs - will retry in 100ms
+INFO |062.520|FirefoxDebugSession: Connection to Firefox closed - terminating debug session
+DEBUG|062.553|DebugConnection: Sending request {"to":"root","type":"listTabs"}
