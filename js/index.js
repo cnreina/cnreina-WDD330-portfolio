@@ -642,6 +642,10 @@ const links = [
   {
     label: "Week 5 (Error Handling)",
     url: "html/w05/w0500.html"
+  },
+  {
+    label: "Week 5 (Assignment 01)",
+    url: "html/w05/w0501.html"
   }
 ];
 
