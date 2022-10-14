@@ -10,14 +10,8 @@ import cnrHikesClass from '../../js/w05/w0501hikes.js';
 
 // INITIALIZE
 window.onload = function() {
-  // init event listeners
-  // const cnrDetailsLinksVar = document.querySelectorAll('.detailslinks');
-  // for(const cnrDetailsLinkVar of cnrDetailsLinksVar) {
-  //   cnrDetailsLinkVar.addEventListener('click', cnrDetailsLinksClickHandler);
-  // };
-
-  const cnrHike = new cnrHikesClass('displaydiv');
-  cnrHike.cnrDisplayHikeList();
+  const cnrHike = new cnrHikesClass();
+  cnrHike.cnrDisplayHikeList('displaydiv');
 
 };
 

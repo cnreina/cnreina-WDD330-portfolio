@@ -6,8 +6,73 @@
 
 /* ************************************************************************* */
 
-// INITIALIZE
-//create an array of hikes
+
+export default class cnrHikesClass {
+  constructor() {};
+
+  cnrGetAllHikes() { return cnrHikeList; };
+  
+  cnrDisplayHikeList(cnrElementIdParam) {
+    this.cnrContainerElementVar = document.getElementById(cnrElementIdParam);
+
+    this.cnrContainerElementVar.innerHTML = '';
+    cnrRenderHikeList(this.cnrContainerElementVar, this.cnrGetAllHikes());
+  };
+}; // cnrHikesClass
+
+function cnrRenderHikeList(cnrContainerElementParam, cnrHikeListParam) {
+  cnrHikeListParam.forEach(cnrHikeVar => {
+    cnrContainerElementParam.appendChild(cnrRenderOneHike(cnrHikeVar));
+  });
+};
+
+function cnrRenderOneHike(cnrHikeParam) {
+  const cnrHikeObject = {
+    cnrName: cnrHikeParam.cnrName,
+    cnrImageURL: cnrHikeParam.cnrImageURL,
+    cnrLocation: cnrHikeParam.cnrLocation,
+    cnrRating: cnrHikeParam.cnrRating,
+    cnrDifficulty: cnrHikeParam.cnrDifficulty,
+    cnrDescription: cnrHikeParam.cnrDescription,
+    cnrDirections: cnrHikeParam.cnrDirections
+  };
+  const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
+  
+  const cnrCardDivVar = document.createElement('div');
+  cnrCardDivVar.classList.add('carddivs');
+  cnrCardDivVar.innerHTML = `
+    <div class="carddivs">
+      <div class="headerdivs">
+        <p class="headertitles">${cnrHikeParam.cnrName}</p>
+      </div>
+      <div class="gridcontainerdivs">
+        <div class="gridcelldivs">
+          <div class="imagedivs">
+              <img class="images" src=${cnrHikeParam.cnrImageURL} alt="Image">
+          </div>
+        </div>
+        <div class="gridcelldivs">
+          <div class="hikeinfodivs">
+            <div class="hikebasicinfodivs">
+              <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
+              <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
+              <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
+              <a class="detailslinks" href="../../html/w05/w0501B.html?${cnrEncodedStringVar}">Details</a>
+            </div>
+            <div class="hikefullinfodivs">
+              <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
+              <p><b>cnrDirections:</b></p><p>Go north . . .</p>
+              <p><b>cnrDescription:</b></p><p>blah blah blah . . .</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`;
+
+  return cnrCardDivVar;
+}; // cnrRenderOneHike
+
 const cnrHikeList = [
   {
     cnrName: 'Bechler Falls',
@@ -42,71 +107,3 @@ const cnrHikeList = [
       'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
   }
 ];
-
-export default class cnrHikesClass {
-  constructor(cnrElementIdParam) {
-    this.cnrContainerElementVar = document.getElementById(cnrElementIdParam);
-  };
-
-  cnrGetAllHikes() { return cnrHikeList; };
-  
-  cnrDisplayHikeList() {
-    this.cnrContainerElementVar.innerHTML = '';
-    cnrRenderHikeList(this.cnrContainerElementVar, this.cnrGetAllHikes());
-  };
-} // cnrHikesClass
-
-function cnrRenderHikeList(cnrContainerElementParam, cnrHikeListParam) {
-  cnrHikeListParam.forEach(cnrHikeVar => {
-    cnrContainerElementParam.appendChild(cnrRenderOneHike(cnrHikeVar));
-  });
-}
-
-function cnrRenderOneHike(cnrHikeParam) {
-  const cnrHikeObject = {
-    cnrName: cnrHikeParam.cnrName,
-    cnrImageURL: cnrHikeParam.cnrImageURL,
-    cnrLocation: cnrHikeParam.cnrLocation,
-    cnrRating: cnrHikeParam.cnrRating,
-    cnrDifficulty: cnrHikeParam.cnrDifficulty,
-    cnrDescription: cnrHikeParam.cnrDescription,
-    cnrDirections: cnrHikeParam.cnrDirections
-  };
-  const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
-  
-  const cnrCardDivVar = document.createElement('div');
-  cnrCardDivVar.classList.add('carddivs');
-  cnrCardDivVar.innerHTML = `
-    <div class="carddivs">
-      <div class="headerdivs">
-        <p class="headertitles">${cnrHikeParam.cnrName}</p>
-      </div>
-
-      <div class="gridcontainerdivs">
-        <div class="gridcelldivs">
-          <div class="imagedivs">
-              <img class="images" src=${cnrHikeParam.cnrImageURL} alt="Image">
-          </div>
-        </div>
-
-        <div class="gridcelldivs">
-          <div class="hikeinfodivs">
-            <div class="hikebasicinfodivs">
-              <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
-              <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
-              <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
-              <a class="detailslinks" href="../../html/w05/w0501B.html?${cnrEncodedStringVar}">Details</a>
-            </div>
-            <div class="hikefullinfodivs">
-              <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
-              <p><b>cnrDirections:</b></p><p>Go north . . .</p>
-              <p><b>cnrDescription:</b></p><p>blah blah blah . . .</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-`;
-
-  return cnrCardDivVar;
-};
