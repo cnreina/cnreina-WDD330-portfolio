@@ -50,8 +50,8 @@ export default class cnrHikesClass {
 
   cnrGetAllHikes() { return cnrHikeList; };
   
-  cnrShowHikeList() {
-    // this.cnrContainerElementVar.innerHTML = '';
+  cnrDisplayHikeList() {
+    this.cnrContainerElementVar.innerHTML = '';
     cnrRenderHikeList(this.cnrContainerElementVar, this.cnrGetAllHikes());
   };
 } // cnrHikesClass
@@ -63,6 +63,17 @@ function cnrRenderHikeList(cnrContainerElementParam, cnrHikeListParam) {
 }
 
 function cnrRenderOneHike(cnrHikeParam) {
+  const cnrHikeObject = {
+    cnrName: cnrHikeParam.cnrName,
+    cnrImageURL: cnrHikeParam.cnrImageURL,
+    cnrState: cnrHikeParam.cnrState,
+    cnrRating: cnrHikeParam.cnrRating,
+    cnrDifficulty: cnrHikeParam.cnrDifficulty,
+    cnrDescription: cnrHikeParam.cnrDescription,
+    cnrDirections: cnrHikeParam.cnrDirections
+  };
+  const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
+  
   const cnrCardDivVar = document.createElement('div');
   cnrCardDivVar.classList.add('carddivs');
   cnrCardDivVar.innerHTML = `
@@ -82,9 +93,9 @@ function cnrRenderOneHike(cnrHikeParam) {
           <div class="hikeinfodivs">
             <div class="hikebasicinfodivs">
               <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
-              <p><b>State:</b></p><p>Utah</p>
-              <p><b>Rating:</b></p><p>4.5</p>
-              <a class="detailslinks" id="1" href="../../html/w05/w0501B.html">Details</a>
+              <p><b>State:</b></p><p>${cnrHikeParam.cnrState}</p>
+              <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
+              <a class="detailslinks" href="../../html/w05/w0501B.html?${cnrEncodedStringVar}">Details</a>
             </div>
             <div class="hikefullinfodivs">
               <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>

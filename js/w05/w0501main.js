@@ -16,8 +16,8 @@ window.onload = function() {
   //   cnrDetailsLinkVar.addEventListener('click', cnrDetailsLinksClickHandler);
   // };
 
-  const cnrHike = new cnrHikesClass('maindiv1');
-  cnrHike.cnrShowHikeList();
+  const cnrHike = new cnrHikesClass('displaydiv');
+  cnrHike.cnrDisplayHikeList();
 
 };
 

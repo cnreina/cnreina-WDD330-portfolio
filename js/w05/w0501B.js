@@ -20,9 +20,13 @@ window.onload = function () {
 
 // EVENT HANDLERS
 function cnrWindowOnLoadHandler() {
-  // cnrEventParam.preventDefault();
-  console.log("cnrWindowOnLoadHandler\n" + cnrGetQueryStringValue('id'));
-  
+  document.getElementById('headertitle').innerText = cnrGetQueryStringValue('cnrName');
+  document.getElementById('image').setAttribute('src', cnrGetQueryStringValue('cnrImageURL'));
+  document.getElementById('location').innerText = cnrGetQueryStringValue('cnrState');
+  document.getElementById('rating').innerText = cnrGetQueryStringValue('cnrRating');
+  document.getElementById('difficulty').innerText = cnrGetQueryStringValue('cnrDifficulty');
+  document.getElementById('directions').innerText = cnrGetQueryStringValue('cnrDirections');
+  document.getElementById('description').innerText = cnrGetQueryStringValue('cnrDescription');
 };
 
 function cnrBackLinksClickHandler(cnrEventParam) {
@@ -33,6 +37,6 @@ function cnrBackLinksClickHandler(cnrEventParam) {
 function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrQueryStringVar = window.location.search;
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
-  const cnrValueVar = cnrURLParamsVar.get('id')
+  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
   return cnrValueVar;
 };
