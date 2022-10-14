@@ -655,7 +655,7 @@ window.onload = function() {
 };
 
 function loadMainLinks() {
-	console.log("loadLinks");
+	console.log("loadMainLinks");
 	// load links
   const linksElement = document.getElementById("links-list");
   var linksCounter = 0;
