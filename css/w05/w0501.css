@@ -45,7 +45,7 @@ hr {
 }
 
 .maindivs {
-  width: 400px;
+  width: 360px;
   height: 600px;
   background-color: rgb(245, 245, 242);
   padding: 0px;
@@ -58,7 +58,7 @@ hr {
   height: 60px;
   padding: 8px;
   margin-bottom: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(77, 75, 75, 0.8);
   background-color: rgb(141, 141, 138);
   display: grid;
   grid-template-columns: auto;
@@ -84,7 +84,7 @@ hr {
   height: 32px;
   padding: 0px;
   margin: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(146, 144, 144, 0.8);
   background-color: rgb(220, 220, 216);
 }
 
@@ -92,7 +92,7 @@ hr {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.3em;
   color:rgb(43, 39, 39);
 }
 
@@ -106,7 +106,7 @@ hr {
 }
 
 .gridcelldivs {
-  padding: 10px;
+  padding: 8px;
   margin: 0px;
 }
 
@@ -126,7 +126,7 @@ hr {
 
 .hikebasicinfodivs {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   width: 100%;
   padding: 0px;
   margin: 0px;

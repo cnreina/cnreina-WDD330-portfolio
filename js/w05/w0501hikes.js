@@ -12,8 +12,8 @@ const cnrHikeList = [
   {
     cnrName: 'Bechler Falls',
     cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-    cnrState: 'Utah',
-    cnrRating: '4.5',
+    cnrLocation: 'Ashton, Texas',
+    cnrRating: '3.5',
     cnrDifficulty: 'Easy',
     cnrDescription:
       'Beautiful short hike along the Bechler river to Bechler Falls',
@@ -23,18 +23,18 @@ const cnrHikeList = [
   {
     cnrName: 'Teton Canyon',
     cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-    cnrState: 'Utah',
+    cnrLocation: 'Driggs, Colorado',
     cnrRating: '4.5',
     cnrDifficulty: 'Easy',
     cnrDescription: 'Beautiful short (or long) hike through Teton Canyon.',
     cnrDirections:
-      'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short cnrRating, t4.5t onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
+      'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short time onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
   },
   {
     cnrName: 'Denanda Falls',
     cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-    cnrState: 'Utah',
-    cnrRating: '4.5',
+    cnrLocation: 'Somewhere, Utah',
+    cnrRating: '4.0',
     cnrDifficulty: 'Moderate',
     cnrDescription:
       'Beautiful hike through Bechler meadows river to Denanda Falls',
@@ -66,7 +66,7 @@ function cnrRenderOneHike(cnrHikeParam) {
   const cnrHikeObject = {
     cnrName: cnrHikeParam.cnrName,
     cnrImageURL: cnrHikeParam.cnrImageURL,
-    cnrState: cnrHikeParam.cnrState,
+    cnrLocation: cnrHikeParam.cnrLocation,
     cnrRating: cnrHikeParam.cnrRating,
     cnrDifficulty: cnrHikeParam.cnrDifficulty,
     cnrDescription: cnrHikeParam.cnrDescription,
@@ -93,7 +93,7 @@ function cnrRenderOneHike(cnrHikeParam) {
           <div class="hikeinfodivs">
             <div class="hikebasicinfodivs">
               <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
-              <p><b>State:</b></p><p>${cnrHikeParam.cnrState}</p>
+              <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
               <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
               <a class="detailslinks" href="../../html/w05/w0501B.html?${cnrEncodedStringVar}">Details</a>
             </div>

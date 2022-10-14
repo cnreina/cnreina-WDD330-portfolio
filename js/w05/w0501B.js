@@ -29,7 +29,7 @@ window.onload = function () {
 function cnrWindowOnLoadHandler() {
   document.getElementById('headertitle').innerText = cnrGetQueryStringValue('cnrName');
   document.getElementById('image').setAttribute('src', cnrGetQueryStringValue('cnrImageURL'));
-  document.getElementById('location').innerText = cnrGetQueryStringValue('cnrState');
+  document.getElementById('location').innerText = cnrGetQueryStringValue('cnrLocation');
   document.getElementById('rating').innerText = cnrGetQueryStringValue('cnrRating');
   document.getElementById('difficulty').innerText = cnrGetQueryStringValue('cnrDifficulty');
   document.getElementById('directions').innerText = cnrGetQueryStringValue('cnrDirections');
