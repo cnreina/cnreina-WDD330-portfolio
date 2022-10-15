@@ -2,7 +2,8 @@
   cnreina@gmail.com
 */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+/* ************************************************************************* */
+
 
 * {
   box-sizing: border-box;
@@ -10,97 +11,168 @@
 
 body {
   margin: 30px;
-  font-family: 'Open Sans', sans-serif;
   background: rgb(219, 219, 223);
 }
 
-footer {
-  color: rgb(152, 138, 138);
-  font-size:70%;
+.maintitles {
+  color:rgb(171, 9, 9);
+  margin: 0px;
+}
+
+.mainsubtitles {
+  color:rgb(13, 18, 157);
+  margin: 0px;
 }
 
 hr {
   margin-top:20px;
 }
 
-.maintitles {
-  color:rgb(173, 6, 6);
-}
-
-.mainsubtitles {
-  color:rgb(13, 18, 157);
-}
-
 .mainsections {
-  width: 98%;
+  width: 100%;
   height: auto;
-  background-color: rgb(162, 162, 40);
-  padding: 4px;
+  background-color: rgb(122, 122, 242);
+  padding: 8px;
   margin: 0px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
 }
 
 .maindivs {
-  width: 98%;
-  height: auto;
-  background-color: rgb(184, 184, 181);
-  padding: 5px;
-  margin: 5px;
+  width: 360px;
+  height: 600px;
+  background-color: rgb(234, 234, 96);
+  padding: 0px;
+  margin: 0px;
+  border: 6px solid rgba(232, 211, 77, 0.8);
 }
 
-.infodivs {
-  width: 98%;
-  height: auto;
-  background-color: rgb(103, 103, 99);
+.mainheaderdivs {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(77, 75, 75, 0.8);
+  background-color: rgb(116, 172, 114);
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+
+.mainheaderdivs p {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 2.2em;
+}
+
+.jscontainerdivs {
   padding: 10px;
-  margin:5px;
+  margin: 0px;
+  background-color: rgb(221, 87, 231);
 }
 
-.displaydivs {
-  width: 99%;
+.carddivs {
+  width: 100%;
   height: auto;
-  background-color: rgb(29, 29, 25);
-  color: rgb(224, 218, 218);
-  padding: 10px;
-  margin: 6px 3px;
-  border-radius: 4px;
-  -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
-  box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+  padding: 0px;
+  margin-bottom: 8px;
+  /* border: 1px solid rgba(77, 75, 75, 0.8); */
+  background-color: rgb(231, 87, 108);
 }
 
-.mainforms {
-  width: 98%;
+.cardheaderdivs {
+  width: 100%;
+  height: 32px;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid rgba(146, 144, 144, 0.8);
+  background-color: rgb(240, 135, 150);
+}
+
+.cardheadertitles {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 1.7em;
+  color:rgb(43, 39, 39);
+}
+
+.gridcontainerdivs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(135, 240, 229);
+}
+
+.gridcelldivs {
+  padding: 0px;
+  margin: 8px;
+}
+
+.thumbnaildivs {
+  width: 80%;
   height: auto;
-  background-color: rgb(235, 235, 222);
-  padding: 10px;
-  margin:5px;
+  padding: 0px;
+  margin: 0px;
 }
 
-.maininputs {
-  color: #120101;
-  background-color: #f5f6f1;
-  border-color: #130269;
-  border-radius: 4px;
-  margin: 0.2em 0;
-  font-size: 14px;
-  min-width: 30%;
+.images {
+  width: 100%;
+  height: auto;
 }
 
-.mainbuttons {
-  color: #ffffff;
-  background-color: #7a7e6e;
-  border-color: #130269;
-  border-radius: 5px;
-  margin: 0.2em 0;
-  font-size: 14px;
-  min-width: 20%;
+.carddatadivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
 }
 
-.error{
-  background: rgb(215, 4, 4);
-  border: #900 1px solid;
-  border-radius: 5px;
-  padding: 4px;
-  margin: 0.2em 0;
-  font-size: 14px;
+.cardbasicdatadivs {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.cardbasicdatadivs p {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.cardfulldatadivs {
   display: none;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.cardfulldatadivs p {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.detailslinks {
+  padding-top: 10px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+footer {
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: 2.5rem;
 }

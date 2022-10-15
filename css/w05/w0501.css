@@ -2,35 +2,26 @@
   cnreina@gmail.com
 */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 30px;
-  font-family: 'Open Sans', sans-serif;
   background: rgb(219, 219, 223);
-}
-
-footer {
-  color: rgb(152, 138, 138);
-  font-size:70%;
-}
-
-hr {
-  margin-top:20px;
 }
 
 .maintitles {
   color:rgb(171, 9, 9);
   margin: 0px;
 }
-
 .mainsubtitles {
   color:rgb(13, 18, 157);
   margin: 0px;
+}
+
+hr {
+  margin-top:20px;
 }
 
 .mainsections {
@@ -57,19 +48,18 @@ hr {
   width: 100%;
   height: 60px;
   padding: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   border: 1px solid rgba(77, 75, 75, 0.8);
   background-color: rgb(141, 141, 138);
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
 }
-
 .infodivs p {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2.2em;
 }
 
 .carddivs {
@@ -78,7 +68,6 @@ hr {
   padding: 0px;
   margin-bottom: 8px;
 }
-
 .headerdivs {
   width: 100%;
   height: 32px;
@@ -87,12 +76,11 @@ hr {
   border: 1px solid rgba(146, 144, 144, 0.8);
   background-color: rgb(220, 220, 216);
 }
-
 .headertitles {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.6em;
   color:rgb(43, 39, 39);
 }
 
@@ -104,7 +92,6 @@ hr {
   padding: 0px;
   margin: 0px;
 }
-
 .gridcelldivs {
   padding: 0px;
   margin: 8px;
@@ -116,6 +103,10 @@ hr {
   padding: 0px;
   margin: 0px;
 }
+.images {
+  width: 100%;
+  height: auto;
+}
 
 .hikeinfodivs {
   width: 100%;
@@ -123,7 +114,6 @@ hr {
   padding: 0px;
   margin: 0px;
 }
-
 .hikebasicinfodivs {
   display: grid;
   grid-template-columns: 40% 60%;
@@ -132,24 +122,17 @@ hr {
   margin: 0px;
 }
 .hikebasicinfodivs p {
-  padding: 0px;
+  padding: 0.5px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
 }
-
 .hikefullinfodivs {
   display: none;
   grid-template-columns: 30% 70%;
   width: 100%;
   padding: 0px;
   margin: 0px;
-}
-.hikefullinfodivs p {
-  padding: 0px;
-  margin: 0px;
-  text-align: left;
-  font-size: 0.8em;
 }
 
 .detailslinks {
@@ -159,7 +142,11 @@ hr {
   font-size: 0.8em;
 }
 
-.images {
-  width: 100%;
-  height: auto;
+footer {
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: 2.5rem;
 }

@@ -29,6 +29,10 @@ hr {
 footer {
   color: rgb(152, 138, 138);
   font-size:70%;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: 2.5rem;
 }
 
 #links-list-container {
