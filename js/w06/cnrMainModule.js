@@ -6,14 +6,11 @@
 
 /* ************************************************************************* */
 
-import cnrToDoClass from './cnrToDoModule.js';
+import * as cnrData from './cnrDataModule.js';
 import * as cnrStorage from './cnrStorageModule.js';
 
 // INITIALIZE
 window.onload = function() {
-  const cnrTODOInstance = new cnrToDoClass();
-  cnrTODOInstance.cnrDisplayToDoList('jscontainerdiv1');
-
   // init event handlers
   const cnrAddItemButtonVar = document.getElementById('cnradditembutton');
   if ("ontouchend" in document.documentElement) {
@@ -25,10 +22,15 @@ window.onload = function() {
     cnrAddItemButtonVar.addEventListener('click', cnrAddItemClickHandler);
   };
 
+  cnrWindowOnLoadHandler();
+
 };
 
 // EVENT HANDLERS
 function cnrWindowOnLoadHandler(cnrEventParam) {
+  // display todo list
+  const cnrTODOList = new cnrData.cnrDataListClass();
+  // cnrTODOList.cnrDataDisplayList('jscontainerdiv1');
   
 };
 
