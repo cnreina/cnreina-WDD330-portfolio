@@ -9,8 +9,8 @@
 
 export class cnrDataListClass {
   constructor() {
-    this.cnrDataList = new Object;
-    cnrDataList.appendChild()
+    this.cnrDataList = new [{}];
+    cnrDataList.add
   };
 
   cnrDataGetList() { return this.cnrDataList; };
@@ -20,7 +20,7 @@ export class cnrDataListClass {
     return cnrNewItemVar;
   };
 
-}; // cnrHikesClass
+}; // cnrDataListClass
 
 export class cnrDataItemClass {
   constructor() {
@@ -28,38 +28,23 @@ export class cnrDataItemClass {
     this.cnrItemCreatedTime = "cnrItemCreatedTime";
     this.cnrItemType = "cnrItemType";
     this.cnrItemData = {
-      cnrName: 'Bechler Falls',
-      cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-      cnrLocation: 'Ashton, Texas',
-      cnrRating: '3.5',
-      cnrDifficulty: 'Easy',
-      cnrDescription:
-        'Beautiful short hike along the Bechler river to Bechler Falls',
-      cnrDirections:
-        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+      cnrTitle: 'cnrTitle',
+      cnrStatus: 'x'
     };
   };
 }; // cnrDataItemClass
 
-function cnrDisplayLog(cnrParam) {
-  console.log(cnrParam);
-};
 
 function cnrDataRenderList(cnrContainerElementParam, cnrHikeListParam) {
   cnrHikeListParam.forEach(cnrHikeVar => {
-    cnrContainerElementParam.appendChild(cnrRenderOneHike(cnrHikeVar));
+    cnrContainerElementParam.appendChild(cnrDataRenderItem(cnrHikeVar));
   });
 };
 
-function cnrRenderOneHike(cnrHikeParam) {
+function cnrDataRenderItem(cnrDataObjectParam) {
   const cnrHikeObject = {
-    cnrName: cnrHikeParam.cnrName,
-    cnrImageURL: cnrHikeParam.cnrImageURL,
-    cnrLocation: cnrHikeParam.cnrLocation,
-    cnrRating: cnrHikeParam.cnrRating,
-    cnrDifficulty: cnrHikeParam.cnrDifficulty,
-    cnrDescription: cnrHikeParam.cnrDescription,
-    cnrDirections: cnrHikeParam.cnrDirections
+    cnrTitle: cnrDataObjectParam.cnrTitle,
+    cnrStatus: cnrDataObjectParam.cnrStatus
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
   
@@ -68,6 +53,8 @@ function cnrRenderOneHike(cnrHikeParam) {
   cnrCardDivVar.innerHTML = `
     <div class="carddivs" title="carddivs">
       <div class="cardheaderdivs" title="cardheaderdivs">
+        <p class="cardheadertitles">${cnrHikeParam.cnrName}</p>
+        <p class="cardheadertitles">${cnrHikeParam.cnrName}</p>
         <p class="cardheadertitles">${cnrHikeParam.cnrName}</p>
       </div>
     </div>

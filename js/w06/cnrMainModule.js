@@ -30,7 +30,7 @@ window.onload = function() {
 function cnrWindowOnLoadHandler(cnrEventParam) {
   // display todo list
   const cnrTODOList = new cnrData.cnrDataListClass();
-  // cnrTODOList.cnrDataDisplayList('jscontainerdiv1');
+  cnrTODOList.cnrDataDisplayList('jscontainerdiv1');
   
 };
 
