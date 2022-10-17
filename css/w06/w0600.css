@@ -14,12 +14,12 @@ body {
   background: rgb(219, 219, 223);
 }
 
-.maintitles {
+.cnrmaintitles {
   color:rgb(171, 9, 9);
   margin: 0px;
 }
 
-.mainsubtitles {
+.cnrmainsubtitles {
   color:rgb(13, 18, 157);
   margin: 0px;
 }
@@ -28,10 +28,10 @@ hr {
   margin-top:20px;
 }
 
-.mainsections {
+.cnrmainsections {
   width: 100%;
   height: auto;
-  background-color: rgb(122, 122, 242);
+  /* background-color: rgb(122, 122, 242); */
   padding: 8px;
   margin: 0px;
   display: grid;
@@ -39,41 +39,42 @@ hr {
   justify-content: center;
 }
 
-.maindivs {
+.cnrmaindivs {
   width: 360px;
   height: 600px;
-  background-color: rgb(234, 234, 96);
+  /* background-color: rgb(234, 234, 96); */
   padding: 0px;
   margin: 0px;
-  border: 6px solid rgba(232, 211, 77, 0.8);
+  border: 1px solid rgba(18, 18, 18, 0.8);
+  position: relative;
 }
 
-.mainheaderdivs {
+.cnrmainheaderdivs {
   width: 100%;
   height: 60px;
   padding: 8px;
   margin-bottom: 10px;
-  border: 1px solid rgba(77, 75, 75, 0.8);
-  background-color: rgb(116, 172, 114);
+  /* border: 1px solid rgba(77, 75, 75, 0.8); */
+  /* background-color: rgb(116, 172, 114); */
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
 }
 
-.mainheaderdivs p {
+.cnrmainheaderdivs p {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 2.2em;
+  font-size: 2.8em;
 }
 
-.jscontainerdivs {
+.cnrjscontainerdivs {
   padding: 10px;
   margin: 0px;
   background-color: rgb(221, 87, 231);
 }
 
-.carddivs {
+.cnrcarddivs {
   width: 100%;
   height: auto;
   padding: 0px;
@@ -82,7 +83,7 @@ hr {
   background-color: rgb(231, 87, 108);
 }
 
-.cardheaderdivs {
+.cnrcardheaderdivs {
   width: 100%;
   height: 32px;
   padding: 0px;
@@ -91,7 +92,7 @@ hr {
   background-color: rgb(240, 135, 150);
 }
 
-.cardheadertitles {
+.cnrcardheadertitles {
   padding: 0px;
   margin: 0px;
   text-align: center;
@@ -99,7 +100,7 @@ hr {
   color:rgb(43, 39, 39);
 }
 
-.gridcontainerdivs {
+.cnrgridcontainerdivs {
   width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -109,70 +110,59 @@ hr {
   background-color: rgb(135, 240, 229);
 }
 
-.gridcelldivs {
+.cnrgridcelldivs {
   padding: 0px;
   margin: 8px;
 }
 
-.thumbnaildivs {
-  width: 80%;
-  height: auto;
-  padding: 0px;
-  margin: 0px;
-}
-
-.images {
-  width: 100%;
-  height: auto;
-}
-
-.carddatadivs {
+.cnrcarddatadivs {
   width: 100%;
   height: auto;
   padding: 0px;
   margin: 0px;
 }
 
-.cardbasicdatadivs {
+.cnradditemdivs {
+  padding: 0px;
+  margin: 0px;
+  /* background-color: rgb(153, 178, 214); */
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
   display: grid;
-  grid-template-columns: 40% 60%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
+  grid-template-columns: 80% 20%;
+  justify-content: center;
 }
-.cardbasicdatadivs p {
+.cnradditeminputs{
+  width: 100%;
+  height: 50px;
+  font-size: larger;
+  padding: 4px;
+}
+.cnradditembuttons{
+  width: 90%;
+  height: 50px;
+  font-size: xx-large;
   padding: 0px;
   margin: 0px;
-  text-align: left;
-  font-size: 0.8em;
+  justify-self: right;
 }
 
-.cardfulldatadivs {
-  display: none;
-  grid-template-columns: 30% 70%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-.cardfulldatadivs p {
-  padding: 0px;
-  margin: 0px;
-  text-align: left;
-  font-size: 0.8em;
-}
-
-.detailslinks {
+.cnrhomelinks {
   padding-top: 10px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
+  position: absolute;
+  bottom: 20px;
+  width: auto;
 }
 
 footer {
   color: rgb(152, 138, 138);
   font-size:70%;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: auto;
-  height: 2.5rem;
+  /* height: 2.5rem; */
 }
