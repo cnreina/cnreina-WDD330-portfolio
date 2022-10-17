@@ -122,6 +122,48 @@ hr {
   margin: 0px;
 }
 
+.cnrmenudivs{
+  padding: 1px;
+  margin: 0px;
+  background-color: rgb(153, 178, 214);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 35% 15% 20% 30%;
+  height: 50px;
+  font-size: larger;
+}
+.cnrmenutaskcountdivs{
+  display: grid;
+  grid-template-columns: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 1px;
+}
+.cnrmenualltasksdivs{
+  display: grid;
+  grid-template-columns: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 1px;
+}
+.cnrmenuactivetasksdivs{
+  display: grid;
+  grid-template-columns: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 1px;
+}
+.cnrmenucompletedtasksdivs{
+  display: grid;
+  grid-template-columns: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 1px;
+}
+.cnrmenuselected{
+  border: 2px solid rgba(126, 4, 4, 0.8);
+}
+
 .cnradditemdivs {
   padding: 0px;
   margin: 0px;
