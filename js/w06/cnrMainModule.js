@@ -26,15 +26,15 @@ window.onload = function () {
     cnrAddItemButtonVar.addEventListener('click', cnrAddItemButtonHandler);
   };
 
-  const cnrDeleteItemButtonsVar = document.querySelectorAll('.cnrdeleteitembuttons');
+  const cnrDeleteItemButtonsVar = document.querySelectorAll('.cnrjscontentdivs');
   for (const cnrDeleteItemButtonVar of cnrDeleteItemButtonsVar) {
     if ("ontouchend" in document.documentElement) {
       console.log("Using touchend");
-      cnrDeleteItemButtonVar.addEventListener('touchend', cnrDeleteItemButtonHandler);
+      cnrDeleteItemButtonVar.addEventListener('touchend', cnrItemClickHandler);
     }
     else {
       console.log("Using click");
-      cnrDeleteItemButtonVar.addEventListener('click', cnrDeleteItemButtonHandler);
+      cnrDeleteItemButtonVar.addEventListener('click', cnrItemClickHandler);
     };
   };
 
@@ -80,13 +80,35 @@ function cnrAddItemButtonHandler(cnrEventParam) {
 
 };
 
-function cnrDeleteItemButtonHandler(cnrEventParam) {
+/**	Handles click event on each item. */
+function cnrItemClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  if (!cnrEventParam.classList.contains('cnrdeleteitembuttons')) { return; };
 
-  const cnrIDVar = cnrEventParam.target.id;
-  cnrStorageModule.cnrLocalStorageDeleteKey(cnrIDVar);
+  console.log("this = ", this);
+  console.log("cnrEventParam.target = ", cnrEventParam.target);
+  // console.log("cnrEventParam.parent = ", cnrEventParam.parent);
+
+  if (cnrEventParam == null) { return; };
   
+  // get target
+  if (cnrEventParam.target.classList.contains("cnrjsdeleteitemdivs")) {
+    cnrDeleteItem(this.id);
+    return;
+  };
+};
+
+/**	Removes item. */
+function cnrDeleteItem(cnrItemIDParam) {
+  console.log("cnrItemIDParam = ", cnrItemIDParam);
+
+  if (cnrItemIDParam == null || cnrItemIDParam == '') { return; };
+
+  const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
+  const cnrContentElementVar = document.getElementById(cnrItemIDParam);
+  cnrContainerElementVar.removeChild(cnrContentElementVar);
+  
+  // cnrStorageModule.cnrLocalStorageDeleteKey(cnrItemIDParam);
+
 };
 
 
@@ -105,17 +127,20 @@ function cnrDataRenderItem(cnrContainerElementParam, cnrDataItemParam) {
   console.log("cnrDataRenderItem > cnrDataItemParam = " + cnrDataItemParam);
 
   const cnrItemVar = cnrDataItemParam;
-
+  const cnrItemIDVar = cnrItemVar.cnrDataItemGetID();
   const cnrJSContentDivVar = document.createElement('div');
   cnrJSContentDivVar.classList.add('cnrjscontentdivs');
-  cnrJSContentDivVar.setAttribute('id', cnrItemVar.cnrDataItemGetID());
+  cnrJSContentDivVar.id = cnrItemIDVar;
+  cnrJSContentDivVar.onclick = cnrItemClickHandler;
   cnrJSContentDivVar.innerHTML = `
     <div class="cnrjsstatusdivs">X</div>
     <div class="cnrjstaskdivs">Task Name Goes Here</div>
     <div class="cnrjsdeleteitemdivs">X</div>
   `;
-
   cnrContainerElementParam.appendChild(cnrJSContentDivVar);
+
+  // const cnrNewItemVar = document.getElementById(cnrItemIDVar);
+  // cnrNewItemVar.addEventListener('click', cnrDeleteItemButtonHandler);
 
   return cnrJSContentDivVar;
 
