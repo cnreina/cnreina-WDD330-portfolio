@@ -23,26 +23,36 @@
    </head>
 
    <body>
-      <h1 class="maintitles" title="maintitles">Week 6</h1>
-      <h5 class="mainsubtitles" title="mainsubtitles">ToDo List</h5>
+      <h1 class="cnrmaintitles" title="cnrmaintitles">Week 6</h1>
+      <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">ToDo List</h5>
       <hr>
-      <br>
       <!-- Main Section -->
-      <section class="mainsections" title="mainsections">
-         <div class="maindivs" title="maindivs">
-            <div class="mainheaderdivs" title="mainheaderdivs">
-               <p>ToDo List</p>
-               <button class="mainbuttons" id="cnradditembutton" type="button">Add Item</button>
+      <section class="cnrmainsections" title="cnrmainsections">
+         <div class="cnrmaindivs" title="cnrmaindivs">
+            <div class="cnrmainheaderdivs" title="cnrmainheaderdivs">
+               <p>Todos</p>
             </div>
-            <div class="jscontainerdivs" id="jscontainerdiv1" title="jscontainerdivs">
+            <div class="cnrjscontainerdivs" id="cnrjscontainerdiv1" title="cnrjscontainerdivs">
                <!-- javascript -->
+            </div>
+            <div class="cnrmenudivs" title="cnrmenudivs">
+               <div class="cnrmenutaskcountdivs" title="cnrmenutaskcountdivs">3 tasks left</div>
+               <div class="cnrmenualltasksdivs cnrmenuselected" title="cnrmenualltasksdivs">All</div>
+               <div class="cnrmenuactivetasksdivs" title="cnrmenuactivetasksdivs">Active</div>
+               <div class="cnrmenucompletedtasksdivs" title="cnrmenucompletedtasksdivs">Completed</div>
+            </div>
+            <div class="cnradditemdivs" title="cnradditemdivs">
+               <label for='cnradditeminput'>
+                  <input type='text' class='cnradditeminputs' id='cnradditeminput' value='' name='cnradditeminput' title="cnradditeminput" placeholder="New Item">
+               </label>
+               <button class="cnradditembuttons" id="cnradditembutton" type="button">+</button>
             </div>
          </div>
       </section>
       <br>
       <br>
 
-      <a href="../../index.html">Home Page</a>
+      <a href="../../index.html" class="cnrhomelinks">Home Page</a>
       <footer>Carlos N Reina 2022</footer>
       <script src="../../js/w06/cnrMainModule.js" type="module"></script>
    </body>
