@@ -90,7 +90,7 @@ function cnrItemClickHandler(cnrEventParam) {
 
   if (cnrEventParam == null) { return; };
   
-  // get target
+  // DELETE ITEM
   if (cnrEventParam.target.classList.contains("cnrjsdeleteitemdivs")) {
     cnrDeleteItem(this.id);
     return;
