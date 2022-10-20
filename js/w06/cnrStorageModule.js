@@ -13,15 +13,15 @@
 */
 export function cnrLocalStorageCreate(cnrKeyParam, cnrValueParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is not a string");
+    cnrLocalStorageSetLastErrorMessage("Key is not a string");
     return -1;
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is null or empty");
+    cnrLocalStorageSetLastErrorMessage("Key is null or empty");
     return -1;
   };
   if (localStorage.getItem(cnrKeyParam) != null || localStorage.getItem(cnrKeyParam) == '') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key exists");
+    cnrLocalStorageSetLastErrorMessage("Key exists");
     return -1;
   };
   
@@ -36,15 +36,15 @@ export function cnrLocalStorageCreate(cnrKeyParam, cnrValueParam) {
 */
 export function cnrLocalStorageUpdate(cnrKeyParam, cnrValueParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is not a string");
+    cnrLocalStorageSetLastErrorMessage("Key is not a string");
     return -1;
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is null or empty");
+    cnrLocalStorageSetLastErrorMessage("Key is null or empty");
     return -1;
   };
   if (localStorage.getItem(cnrKeyParam) == null) {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key does not exist");
+    cnrLocalStorageSetLastErrorMessage("Key does not exist");
     return -1;
   };
   
@@ -53,25 +53,27 @@ export function cnrLocalStorageUpdate(cnrKeyParam, cnrValueParam) {
 };
 
 /** Retrieves value of key from LocalStorage if key exists.
- * Returns 0 on success.
- * Returns a negative number on errors.
+ * Returns value for key on success.
+ * Returns an empty string on errors.
  * Call cnrLocalStorageGetLastErrorMessage to know more.
 */
-export function cnrLocalStorageRetrieve(cnrKeyParam, cnrValueParam) {
+export function cnrLocalStorageRetrieve(cnrKeyParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is not a string");
+    cnrLocalStorageSetLastErrorMessage("Key is not a string");
     return '';
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is null or empty");
+    cnrLocalStorageSetLastErrorMessage("Key is null or empty");
     return '';
   };
-  if (localStorage.getItem(cnrKeyParam) == null) {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key does not exist");
+
+  const cnrDataValueVar = localStorage.getItem(cnrKeyParam);
+  if (cnrDataValueVar == null) {
+    cnrLocalStorageSetLastErrorMessage("Key does not exist");
     return '';
   };
   
-  return localStorage.GetItem(cnrKeyParam);
+  return cnrDataValueVar;
 };
 
 /** Returns true if key exist, false if it does not. */
@@ -90,25 +92,33 @@ export function cnrLocalStorageHasKey(cnrKeyParam) {
 */
 export function cnrLocalStorageDeleteKey(cnrKeyParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is not a string");
-    return '';
+    cnrLocalStorageSetLastErrorMessage("Key is not a string");
+    return -1;
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key is null or empty");
-    return '';
+    cnrLocalStorageSetLastErrorMessage("Key is null or empty");
+    return -1;
   };
   if (localStorage.getItem(cnrKeyParam) == null) {
-    cnrLocalStorageSetLastErrorMessage("ERROR: Key does not exist");
-    return '';
+    cnrLocalStorageSetLastErrorMessage("Key does not exist");
+    return -1;
   };
 
+  // remove key
   localStorage.removeItem(cnrKeyParam);
+
+  // validate key removal
+  if (localStorage.getItem(cnrKeyParam) !== null) {
+    cnrLocalStorageSetLastErrorMessage("Failed to remove Key");
+    return -1;
+  };
+
   return 0;
 };
 
-/** Returns last error message. */
+/** Returns last error message from localStorage. */
 export function cnrLocalStorageGetLastErrorMessage() {
-  const cnrLastErrorVar = localStorage.getItem("cnrLocalStorageLastErrorMessage");
+  const cnrLastErrorVar = localStorage.getItem("cnrLastErrorMessage");
   return cnrLastErrorVar;
 };
 
@@ -116,7 +126,7 @@ export function cnrLocalStorageGetLastErrorMessage() {
 /* ************************************************************************* */
 // PRIVATE
 
-/** Returns last error message. */
+/** Sets last error message in localStorage. */
 function cnrLocalStorageSetLastErrorMessage(cnrValueParam) {
-  localStorage.setItem("cnrLocalStorageLastErrorMessage", cnrValueParam);
+  localStorage.setItem("cnrLastErrorMessage", cnrValueParam);
 };
