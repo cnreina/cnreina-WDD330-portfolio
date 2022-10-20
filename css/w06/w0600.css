@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
   margin: 30px;
   background: rgb(219, 219, 223);
@@ -73,10 +77,16 @@ hr {
   padding: 0px;
   margin: 0px;
   width: 100%;
-  height: 50px;
+  height: auto;
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
+}
+.scrollable {
+  max-height: 70%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* text-align: justify; */
 }
 
 /*	JS CONTENT */
@@ -211,7 +221,7 @@ hr {
   text-align: left;
   font-size: 0.8em;
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   width: auto;
 }
 
@@ -219,6 +229,6 @@ footer {
   color: rgb(152, 138, 138);
   font-size:70%;
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   width: auto;
 }
