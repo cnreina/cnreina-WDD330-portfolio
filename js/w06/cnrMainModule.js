@@ -203,9 +203,9 @@ function cnrDeleteItem(cnrItemIDParam) {
 
 /**	Renders the passed list of data items in the passed element object. */
 function cnrDataRenderList(cnrDataListParam, cnrContainerElementParam) {
-  // cnrDataListParam.forEach(cnrDataItemVar => {
-  //   cnrDataRenderItem(cnrContainerElementParam, cnrDataItemVar);
-  // });
+  cnrDataListParam.forEach(cnrDataItemVar => {
+    cnrDataRenderItem(cnrContainerElementParam, cnrDataItemVar);
+  });
 };
 
 /**	Renders one data item. */
