@@ -11,7 +11,7 @@ import * as cnrDataModule from './cnrDataModule.js';
 import * as cnrStorageModule from './cnrStorageModule.js';
 
 // INITIALIZE CLASSES
-const cnrTODOList = new cnrDataModule.cnrDataListClass();
+let cnrTODOList = new cnrDataModule.cnrDataListClass();
 
 // INITIALIZE EVENT HANDLERS
 window.onload = function () {
@@ -53,69 +53,50 @@ window.onload = function () {
  * Requests the rendering of the item list in the selected element.
  */
 function cnrWindowOnLoadHandler() {
-  // get data list from storage
-  const cnrDataVar = cnrStorageModule.cnrLocalStorageRetrieve('cnrDataList');
-  if (cnrDataVar === null || cnrDataVar === '') {
+  // get cnrDataList string from storage
+  const cnrDataListVar = cnrStorageModule.cnrLocalStorageRetrieve('cnrDataList');
+  if (cnrDataListVar === null || cnrDataListVar === '') {
     console.log(cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
-  } else {
+    return;
+  };
 
-    // get cnrData
-    const cnrDataJSONVar = JSON.parse(cnrDataVar);
-    console.log("cnrDataJSONVar = ", cnrDataJSONVar);
-    // get cnrDataList
-    if (Object.hasOwn(cnrDataJSONVar, 'cnrDataItem')) {
+  // create new cnrTODOList
+  const cnrNewTODOList = new cnrDataModule.cnrDataListClass();
 
-      console.log('entries = ', Object.entries(cnrDataJSONVar));
-    };
-    // parse cnrDataList
-    let cnrDataListVar = [];
-    let cnrDataItemsVar = [];
-    if (typeof cnrDataJSONVar === 'object') {
-      if (Object.hasOwn(cnrDataJSONVar, 'cnrDataList')) {
-        for (const [key, value] of Object.entries(cnrDataJSONVar)) {
-          cnrDataListVar = value;
-          console.log("********** cnrDataListVar = ", cnrDataListVar);
+  // get cnrDataList object from JSON
+  const cnrDataJSONObject = JSON.parse(cnrDataListVar);
+  const cnrDataJSONKeys = Object.keys(cnrDataJSONObject);
+  // get cnrDataItem objects
+  const cnrLength = cnrDataJSONKeys.length;
+  let cnrCounter = 0;
+  for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+    const cnrDataItemVar = cnrDataJSONObject[cnrDataJSONKeys[cnrCounter]];
+    if (cnrDataItemVar == null) { console.log("ERROR: cnrDataItemVar == null"); return; };
+    const cnrDataItemObject = JSON.parse(cnrDataItemVar);
+    if (cnrDataItemObject == null) { console.log("ERROR: cnrDataItemObject == null"); return; };
 
-          // get cnrDataItem
-          for (const [key2, value2] of Object.entries(value)) {
-            const cnrItemsJONVar = JSON.parse(value2);
-            cnrDataItemsVar = cnrItemsJONVar;
-            
-          };
-        };
-      };
-    };
+    // load cnrTODOList
+    cnrNewTODOList.cnrDataListImportItem(cnrDataItemObject.cnrItemID, cnrDataItemObject.cnrItemCreatedTimeUTC, cnrDataItemObject.cnrItemUpdatedTimeUTC, cnrDataItemObject.cnrItemType, cnrDataItemObject.cnrItemStatus, cnrDataItemObject.cnrItemTag, cnrDataItemObject.cnrItemData);
 
-    // parse cnrDataItem
-    let cnrDataItemVar = [];
-    if (typeof cnrDataItemsVar === 'object') {
-      if (Object.hasOwn(cnrDataItemsVar, 'cnrDataItem')) {
-        for (const [key, value] of Object.entries(cnrDataItemsVar)) {
-          cnrDataItemVar = value;
-          console.log("********** cnrDataItemVar = ", cnrDataItemVar);
-          // for (const [key2, value2] of Object.entries(value)) {
-          //   const cnrData2JSONVar = JSON.parse(value2);
-          //   console.log("********** cnrData2JSONVar = ", cnrData2JSONVar);
-          // };
-        };
-      };
-    };
-    
-    let cnrCounterVar = 0;
-    const cnrLengthVar = cnrDataItemsVar.length;
-    for (cnrCounterVar = 0; cnrCounterVar < cnrLengthVar; cnrCounterVar++) {
-      const cnrItemVar = cnrDataItemsVar[cnrCounterVar];
-      console.log("cnrItemVar = ", cnrItemVar);
-    };
+    // console.log("cnrItemID = ", cnrDataItemObject.cnrItemID);
+    // console.log("cnrItemCreatedTimeUTC = ", cnrDataItemObject.cnrItemCreatedTimeUTC);
+    // console.log("cnrItemUpdatedTimeUTC = ", cnrDataItemObject.cnrItemUpdatedTimeUTC);
+    // console.log("cnrItemType = ", cnrDataItemObject.cnrItemType);
+    // console.log("cnrItemStatus = ", cnrDataItemObject.cnrItemStatus);
+    // console.log("cnrItemTag = ", cnrDataItemObject.cnrItemTag);
+    // console.log("cnrItemData = ", cnrDataItemObject.cnrItemData);
+    // console.log("\n");
 
   };
-  
+
+  cnrTODOList = cnrNewTODOList;
+
   // display item list
   const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
   const cnrDataListParamVar = cnrTODOList.cnrDataListGetList();
   cnrDataRenderList(cnrDataListParamVar, cnrContainerElementVar);
 
-};
+}; // cnrWindowOnLoadHandler
 
 /**	Adds a new item to the list */
 function cnrAddItemButtonHandler(cnrEventParam) {

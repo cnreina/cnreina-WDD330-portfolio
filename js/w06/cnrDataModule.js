@@ -28,13 +28,12 @@ export class cnrDataItemClass {
   #cnrItemTag;
   #cnrItemData;
 
-  constructor(cnrTypeParam, cnrTagParam, cnrDataParam) {
-    this.#cnrItemID = self.crypto.randomUUID();
-    const cnrDateTimeVar = cnrDataModuleGetCurrentTime();
-    this.#cnrItemCreatedTimeUTC = cnrDateTimeVar;
-    this.#cnrItemUpdatedTimeUTC = cnrDateTimeVar;
+  constructor(cnrIDParam, cnrCreatedUTCParam, cnrUpdatedUTCParam, cnrTypeParam, cnrStatusParam, cnrTagParam, cnrDataParam) {
+    this.#cnrItemID = cnrIDParam;
+    this.#cnrItemCreatedTimeUTC = cnrCreatedUTCParam;
+    this.#cnrItemUpdatedTimeUTC = cnrUpdatedUTCParam;
     this.#cnrItemType = cnrTypeParam;
-    this.#cnrItemStatus = 'active';
+    this.#cnrItemStatus = cnrStatusParam;
     this.#cnrItemTag = cnrTagParam;
     this.#cnrItemData = cnrDataParam;
   };
@@ -142,7 +141,6 @@ export class cnrDataListClass {
   #cnrDataListUpdatedTimeUTC;
   #cnrDataListType;
   #cnrDataList = [];
-  #cnrDataListJSON = [];
 
   constructor() {
     this.#cnrDataListID = self.crypto.randomUUID();
@@ -151,7 +149,6 @@ export class cnrDataListClass {
     this.#cnrDataListUpdatedTimeUTC = cnrDateTimeUTCVar;
     this.#cnrDataListType = "string";
     this.#cnrDataList = [];
-    this.#cnrDataListJSON = [];
   };
 
   // PUBLIC
@@ -175,15 +172,16 @@ export class cnrDataListClass {
   /**	Returns data list's items as a JSON string. 
    * Returns an empty string if empty */
   cnrDataListGetJSONString() {
-    if (this.#cnrDataList.length <= 0) { return null; };
+    if (this.#cnrDataList.length <= 0) { return ''; };
 
+    let cnrItemsVar = [];
     let cnrCounterVar = 0;
     const cnrLengthVar = this.#cnrDataList.length;
     for(cnrCounterVar = 0; cnrCounterVar < cnrLengthVar; cnrCounterVar++) {
-      this.#cnrDataListJSON.push(this.#cnrDataList[cnrCounterVar].cnrDataItemGetJSONString());
+      cnrItemsVar.push(this.#cnrDataList[cnrCounterVar].cnrDataItemGetJSONString());
     };
     
-    const cnrJSONString = JSON.stringify(this.#cnrDataListJSON);
+    const cnrJSONString = JSON.stringify(cnrItemsVar);
     
     return cnrJSONString;
   };
@@ -269,11 +267,40 @@ export class cnrDataListClass {
     if (cnrDataParam == null || cnrDataParam == '') {
       cnrDataVar = '';
     };
+
+    const cnrDateTimeVar = cnrDataModuleGetCurrentTime();
+    const cnrItemIDVar = self.crypto.randomUUID();
+    const cnrItemCreatedTimeUTCVar = cnrDateTimeVar;
+    const cnrItemUpdatedTimeUTCVar = cnrDateTimeVar;
+    const cnrItemTypeVar = cnrTypeParam;
+    const cnrItemStatusVar = 'active';
+    const cnrItemTagVar = cnrTagParam;
+    const cnrItemDataVar = cnrDataParam;
+
     // add new item
-    const cnrNewItemVar = new cnrDataItemClass(cnrTypeParam, cnrTagParam, cnrDataVar);
+    const cnrNewItemVar = new cnrDataItemClass(cnrItemIDVar, cnrItemCreatedTimeUTCVar, cnrItemUpdatedTimeUTCVar, cnrItemTypeVar, cnrItemStatusVar, cnrItemTagVar, cnrItemDataVar);
     this.#cnrDataList.push(cnrNewItemVar);
-    // save change date
-    this.#cnrDataListUpdatedTimeUTC = cnrDataModuleGetCurrentTime();
+    return cnrNewItemVar;
+  };
+
+  /**	Imports a previously created item to the array. 
+   * Replaces current data with the imported values.
+   * All values are required.
+   * Returns new item on success. 
+   * Returns null on errors.
+   * */
+  cnrDataListImportItem(cnrIDParam, cnrCreatedUTCParam, cnrUpdatedUTCParam, cnrItemTypeParam, cnrDataListParam) {
+    // validate
+    if (cnrIDParam == null || cnrIDParam == '') { return null; };
+    if (cnrCreatedUTCParam == null || cnrCreatedUTCParam == '') { return null; };
+    if (cnrUpdatedUTCParam == null || cnrUpdatedUTCParam == '') { return null; };
+    if (cnrItemTypeParam == null || cnrItemTypeParam == '') { return null; };
+    if (cnrDataListParam == null || cnrDataListParam == '') { return null; };
+    
+    // add new item
+    const cnrNewItemVar = new cnrDataItemClass(cnrIDParam, cnrCreatedUTCParam, cnrUpdatedUTCParam, cnrItemTypeParam, cnrDataListParam);
+    this.#cnrDataList.push(cnrNewItemVar);
+
     return cnrNewItemVar;
   };
 
