@@ -113,7 +113,7 @@ hr {
   font-size: 0px;
 }
 .cnrjsstatusdivscompleted{
-  border: 3px double rgba(0, 0, 0, 0.8);
+  border: 3px double rgba(0, 0, 0, 0.8) !important;
   font-size: x-large;
 }
 .cnrjstaskdivs{

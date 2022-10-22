@@ -67,18 +67,28 @@ export function cnrLocalStorageRetrieve(cnrKeyParam) {
     return '';
   };
 
+  if (cnrLocalStorageHasKey(cnrKeyParam) == false) {
+    cnrLocalStorageSetLastErrorMessage("Key does not exist");
+    return '';
+  };
+
   const cnrDataValueVar = localStorage.getItem(cnrKeyParam);
   if (cnrDataValueVar == null) {
-    cnrLocalStorageSetLastErrorMessage("Key does not exist");
+    cnrLocalStorageSetLastErrorMessage("Value for " + cnrKeyParam + " == null");
     return '';
   };
   
   return cnrDataValueVar;
 };
 
-/** Returns true if key exist, false if it does not. */
+/** Returns true if key exist and its value is not null or empty. 
+ * Returns false if key does not exist. 
+ * Deletes existent key with null or empty value, and returns false.
+ */
 export function cnrLocalStorageHasKey(cnrKeyParam) {
-  if (localStorage.getItem(cnrKeyParam) == null) {
+  const cnrStorageValueVar = localStorage.getItem(cnrKeyParam);
+  if (cnrStorageValueVar == null || cnrStorageValueVar == '') {
+    cnrLocalStorageDeleteKey(cnrKeyParam); // prevent empty keys
     return false;
   } else {
     return true;
@@ -92,27 +102,16 @@ export function cnrLocalStorageHasKey(cnrKeyParam) {
 */
 export function cnrLocalStorageDeleteKey(cnrKeyParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("Key is not a string");
+    cnrLocalStorageSetLastErrorMessage("cnrKeyParam is not a string");
     return -1;
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("Key is null or empty");
-    return -1;
-  };
-  if (localStorage.getItem(cnrKeyParam) == null) {
-    cnrLocalStorageSetLastErrorMessage("Key does not exist");
+    cnrLocalStorageSetLastErrorMessage("cnrKeyParam is null or empty");
     return -1;
   };
 
   // remove key
   localStorage.removeItem(cnrKeyParam);
-
-  // validate key removal
-  if (localStorage.getItem(cnrKeyParam) !== null) {
-    cnrLocalStorageSetLastErrorMessage("Failed to remove Key");
-    return -1;
-  };
-
   return 0;
 };
 
