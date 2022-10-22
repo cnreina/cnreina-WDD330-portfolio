@@ -83,12 +83,10 @@ export function cnrLocalStorageRetrieve(cnrKeyParam) {
 
 /** Returns true if key exist and its value is not null or empty. 
  * Returns false if key does not exist. 
- * Deletes existent key with null or empty value, and returns false.
  */
 export function cnrLocalStorageHasKey(cnrKeyParam) {
   const cnrStorageValueVar = localStorage.getItem(cnrKeyParam);
   if (cnrStorageValueVar == null || cnrStorageValueVar == '') {
-    cnrLocalStorageDeleteKey(cnrKeyParam); // prevent empty keys
     return false;
   } else {
     return true;

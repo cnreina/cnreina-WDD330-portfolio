@@ -44,7 +44,7 @@ window.onload = function () {
   // handle window onload event
   cnrWindowOnLoadHandler();
 
-};
+}; // window.onload
 
 /* ************************************************************************* */
 // HANDLE EVENTS
@@ -58,7 +58,7 @@ function cnrWindowOnLoadHandler() {
   // get cnrDataList string from storage
   const cnrDataListVar = cnrStorageModule.cnrLocalStorageRetrieve('cnrDataList');
   if (cnrDataListVar === null || cnrDataListVar === '') {
-    console.log(cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
+    console.log("ERROR: cnrWindowOnLoadHandler > cnrLocalStorageGetLastErrorMessage = " + cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
     return;
   };
 
@@ -83,18 +83,14 @@ function cnrWindowOnLoadHandler() {
   // save new loaded list to cnrTODOList
   cnrTODOList = cnrNewTODOList;
 
-  // render items
-  const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
-  cnrDataRenderItems(cnrContainerElementVar);
-
-  console.table(cnrTODOList.cnrDataListGetItems());
+  // refresh display
+  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
 
 }; // cnrWindowOnLoadHandler
 
 /**	Adds a new item to the list */
 function cnrAddItemButtonHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  console.clear();
 
   // validate
   const cnrIDVar = cnrEventParam.target.id;
@@ -109,7 +105,7 @@ function cnrAddItemButtonHandler(cnrEventParam) {
   // add task
   const cnrNewItemVar = cnrTODOList.cnrDataListAddItem('json', 'cnrDataItem', cnrItemDataVar);
   
-  // refresh items display
+  // refresh display
   cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
 
   // update storage
@@ -119,55 +115,54 @@ function cnrAddItemButtonHandler(cnrEventParam) {
     cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrTODOList.cnrDataListGetJSONString());
   };
 
-};
+}; // cnrAddItemButtonHandler
 
 /**	Handles click event on each item. */
 function cnrItemClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-
-  console.log("this = ", this);
-  console.log("cnrEventParam.target = ", cnrEventParam.target);
-
-  if (cnrEventParam == null) { return; };
+  if (cnrEventParam == null || cnrEventParam == '') {
+    console.log("ERROR: cnrEventParam = ", cnrItemIDParam);
+    return;
+  };
   
-  // DELETE ITEM
+  // DELETE EVENT
   if (cnrEventParam.target.classList.contains("cnrjsdeleteitemdivs")) {
-    cnrDeleteItem(this.id);
+    cnrRemoveItem(this.id);
     return;
   };
 
-  // UPDATE STATUS
+  // STATUS EVENT
   if (cnrEventParam.target.classList.contains("cnrjsstatusdivs")) {
     cnrUpdateStatus(this.id);
     return;
   };
 
-};
+  // TASK EVENT
+  if (cnrEventParam.target.classList.contains("cnrjstaskdivs")) {
+    console.log("Task Selected Event (" + this.id + ")");
+    return;
+  };
+
+}; // cnrItemClickHandler
 
 /**	Removes an item from the item list. 
  * Updates display element. 
  * Updates localStorage.
 */
-function cnrDeleteItem(cnrItemIDParam) {
-  console.clear();
+function cnrRemoveItem(cnrItemIDParam) {
   if (cnrItemIDParam == null || cnrItemIDParam == '') {
-    console.log("cnrItemIDParam = ", cnrItemIDParam);
+    console.log("ERROR: cnrItemIDParam = ", cnrItemIDParam);
     return;
   };
-
-  // remove from display element
-  const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
-  const cnrContentElementVar = document.getElementById(cnrItemIDParam);
-  cnrContainerElementVar.removeChild(cnrContentElementVar);
 
   // remove from list
   const cnrRemovedItemVar = cnrTODOList.cnrDataListRemoveItemForID(cnrItemIDParam);
   if (cnrRemovedItemVar == null || cnrRemovedItemVar == '') {
-    console.log("cnrRemovedItemVar == null || cnrRemovedItemVar == ''");
+    console.log("ERROR: cnrRemovedItemVar == null || cnrRemovedItemVar == ''");
   };
   
-  console.log("cnrRemovedItemVar = ", cnrRemovedItemVar);
-  console.table(cnrTODOList.cnrDataListGetItems());
+  // refresh display
+  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
 
   // update storage
   if (cnrStorageModule.cnrLocalStorageHasKey('cnrDataList')) {
@@ -176,16 +171,15 @@ function cnrDeleteItem(cnrItemIDParam) {
     cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrTODOList.cnrDataListGetJSONString());
   };
 
-};
+}; // cnrRemoveItem
 
 /**	Removes an item from the item list. 
  * Updates display element. 
  * Updates localStorage.
 */
 function cnrUpdateStatus(cnrItemIDParam) {
-  console.clear();
   if (cnrItemIDParam == null || cnrItemIDParam == '') {
-    console.log("cnrItemIDParam = ", cnrItemIDParam);
+    console.log("ERROR: cnrItemIDParam = ", cnrItemIDParam);
     return;
   };
 
@@ -195,7 +189,8 @@ function cnrUpdateStatus(cnrItemIDParam) {
     console.log("cnrStatusItemVar == null || cnrStatusItemVar == ''");
   };
   
-  console.table(cnrTODOList.cnrDataListGetItems());
+  // refresh display
+  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
 
   // update storage
   if (cnrStorageModule.cnrLocalStorageHasKey('cnrDataList')) {
@@ -204,11 +199,7 @@ function cnrUpdateStatus(cnrItemIDParam) {
     cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrTODOList.cnrDataListGetJSONString());
   };
 
-  // render items
-  const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
-  cnrDataRenderItems(cnrContainerElementVar);
-
-};
+}; // cnrUpdateStatus
 
 
 /* ************************************************************************* */
@@ -222,6 +213,9 @@ function cnrDataRenderItems(cnrContainerElementParam) {
     console.log("ERROR: cnrTODOList = ", cnrTODOList);
     return;
   };
+  if (cnrTODOList.cnrDataListGetItemCount() <= 0) {return;};
+
+  console.table(cnrTODOList.cnrDataListGetItems());
 
   // parse items
   const cnrLength = cnrTODOList.cnrDataListGetItemCount();
@@ -240,6 +234,7 @@ function cnrDataRenderItems(cnrContainerElementParam) {
     };
     const cnrDataStatusVar = cnrTODOList.cnrDataListGetItemStatusForIndex(cnrCounter);
     const cnrDataTitleVar = cnrDataObject.cnrTaskTitle;
+    
     // render data
     const cnrJSContentDivVar = document.createElement('div');
     cnrJSContentDivVar.classList.add('cnrjscontentdivs');
@@ -274,4 +269,4 @@ function cnrClearDisplay() {
   while (cnrContainerElementVar.firstChild) {
     cnrContainerElementVar.removeChild(cnrContainerElementVar.firstChild);
   };
-};
+}; // cnrClearDisplay
