@@ -17,28 +17,24 @@ let cnrTODOList = new cnrDataModule.cnrDataListClass();
 window.onload = function () {
   console.clear();
 
-  // add item handlers
-  const cnrAddItemButtonVar = document.getElementById('cnradditembutton');
+  let cnrEventNameVar = '';
   if ("ontouchend" in document.documentElement) {
     console.log("Using touchend");
-    cnrAddItemButtonVar.addEventListener('touchend', cnrAddItemButtonHandler);
+    cnrEventNameVar = 'touchend';
   }
   else {
     console.log("Using click");
-    cnrAddItemButtonVar.addEventListener('click', cnrAddItemButtonHandler);
+    cnrEventNameVar = 'click';
   };
 
+  // item handlers
+  const cnrAddItemButtonVar = document.getElementById('cnradditembutton');
+  cnrAddItemButtonVar.addEventListener(cnrEventNameVar, cnrAddItemButtonHandler);
+ 
   // item content handlers
   const cnrDeleteItemButtonsVar = document.querySelectorAll('.cnrjscontentdivs');
   for (const cnrDeleteItemButtonVar of cnrDeleteItemButtonsVar) {
-    if ("ontouchend" in document.documentElement) {
-      console.log("Using touchend");
-      cnrDeleteItemButtonVar.addEventListener('touchend', cnrItemClickHandler);
-    }
-    else {
-      console.log("Using click");
-      cnrDeleteItemButtonVar.addEventListener('click', cnrItemClickHandler);
-    };
+    cnrDeleteItemButtonVar.addEventListener(cnrEventNameVar, cnrItemClickHandler);
   };
 
   // handle window onload event
