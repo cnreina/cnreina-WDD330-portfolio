@@ -198,6 +198,23 @@ export class cnrDataListClass {
   /**	Returns data list's items array length. */
   cnrDataListGetItemCount() { return this.#cnrDataItemArray.length; };
 
+  /**	Returns count of active items.
+   * Returns a negative number on errors.
+   */
+  cnrDataListGetActiveItemCount() {
+    if (this.#cnrDataItemArray.length == 0) { return 0; };
+
+    let cnrActiveCountVar = 0;
+    let cnrCounterVar = 0;
+    const cnrLengthVar = this.#cnrDataItemArray.length;
+    for (cnrCounterVar = 0; cnrCounterVar < cnrLengthVar; cnrCounterVar++) {
+      const cnrStatusVar = this.#cnrDataItemArray[cnrCounterVar].cnrDataItemGetStatus().toString();
+      if (cnrStatusVar.toString() === '-') { cnrActiveCountVar++; };
+    };
+
+    return cnrActiveCountVar;
+  };
+
   /**	Returns item object for index.
    * Returns null if empty. 
    * Returns null on errors.
