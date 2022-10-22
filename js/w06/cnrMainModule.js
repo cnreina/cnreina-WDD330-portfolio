@@ -226,7 +226,7 @@ function cnrDataRenderItems(cnrContainerElementParam) {
     // get status
     const cnrStatusElementVar = cnrTODOList.cnrDataListGetItemStatusForIndex(cnrCounter);  
     // get data
-    const cnrItemData = cnrTODOList.cnrDataListGetItemDataForIndex(cnrCounter);
+    const cnrItemData = cnrTODOList.cnrDataListGetItemDataForIndex(cnrCounter)
     const cnrDataObject = JSON.parse(cnrItemData);
     if (cnrDataObject == null || cnrDataObject == '') {
       console.log("ERROR: cnrDataItemObject = ", cnrDataObject);
