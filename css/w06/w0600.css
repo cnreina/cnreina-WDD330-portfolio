@@ -77,7 +77,8 @@ hr {
   padding: 0px;
   margin: 0px;
   width: 100%;
-  height: auto;
+  /* height: auto; */
+  min-height: 42px;
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
@@ -95,7 +96,9 @@ hr {
   height: auto;
   padding: 4px;
   margin: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(99, 96, 96, 0.8);
+  border-top: 1px solid rgba(99, 96, 96, 0.8);
+  border-right: 1px solid rgba(99, 96, 96, 0.8);
   /* background-color: rgb(223, 223, 38); */
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -123,7 +126,7 @@ hr {
   text-align: left;
   padding: 4px;
   margin: 1px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(208, 205, 205, 0.8);
   font-size: large;
 }
 .cnrjstaskdivscompleted{
@@ -146,6 +149,10 @@ hr {
   padding: 1px;
   margin: 0px;
   background-color: rgb(153, 178, 214);
+  border-left: 1px solid rgba(99, 96, 96, 0.8);
+  border-top: 1px solid rgba(99, 96, 96, 0.8);
+  border-right: 1px solid rgba(99, 96, 96, 0.8);
+  border-bottom: 1px solid rgba(99, 96, 96, 0.8);
   width: 100%;
   display: grid;
   grid-template-columns: 35% 15% 20% 30%;

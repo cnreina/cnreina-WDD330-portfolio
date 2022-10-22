@@ -4,8 +4,4 @@ scrollable to main links.
 
 handle task title event > show details?
 
-refactor classes > datalist > dataitem > functions.
-
-menu click handler.
-
 item counter in menu.

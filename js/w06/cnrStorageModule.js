@@ -87,6 +87,7 @@ export function cnrLocalStorageRetrieve(cnrKeyParam) {
 export function cnrLocalStorageHasKey(cnrKeyParam) {
   const cnrStorageValueVar = localStorage.getItem(cnrKeyParam);
   if (cnrStorageValueVar == null || cnrStorageValueVar == '') {
+    cnrLocalStorageDeleteKey(cnrKeyParam);
     return false;
   } else {
     return true;
@@ -100,11 +101,11 @@ export function cnrLocalStorageHasKey(cnrKeyParam) {
 */
 export function cnrLocalStorageDeleteKey(cnrKeyParam) {
   if (typeof cnrKeyParam != 'string') {
-    cnrLocalStorageSetLastErrorMessage("cnrKeyParam is not a string");
+    cnrLocalStorageSetLastErrorMessage("ERROR: cnrKeyParam is not a string");
     return -1;
   };
   if (cnrKeyParam == null || cnrKeyParam == '') {
-    cnrLocalStorageSetLastErrorMessage("cnrKeyParam is null or empty");
+    cnrLocalStorageSetLastErrorMessage("ERROR: cnrKeyParam is null or empty");
     return -1;
   };
 
