@@ -9,10 +9,6 @@
   box-sizing: border-box;
 }
 
-html {
-	scroll-behavior: smooth;
-}
-
 body {
   margin: 30px;
   background: rgb(219, 219, 223);
@@ -29,13 +25,37 @@ body {
 }
 
 hr {
-  margin-top:20px;
+  margin-top:10px;
+}
+
+.cnrheadersections {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: left;
+  align-items: baseline;
+}
+.cnrhomelinks {
+  padding: 2px;
+  margin-right: 8px;
+  text-align: left;
+  font-size: 80%;
+  width: 100%;
+}
+.copyright {
+  padding: 2px;
+  margin: 0px;
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  width: 100%;
 }
 
 .cnrmainsections {
   width: 100%;
   height: auto;
-  /* background-color: rgb(122, 122, 242); */
   padding: 8px;
   margin: 0px;
   display: grid;
@@ -46,10 +66,8 @@ hr {
 .cnrmaindivs {
   width: 360px;
   height: 600px;
-  /* background-color: rgb(234, 234, 96); */
   padding: 0px;
   margin: 0px;
-  /* border: 1px solid rgba(18, 18, 18, 0.8); */
   position: relative;
 }
 
@@ -58,8 +76,6 @@ hr {
   height: 60px;
   padding: 8px;
   margin-bottom: 10px;
-  /* border: 1px solid rgba(77, 75, 75, 0.8); */
-  /* background-color: rgb(116, 172, 114); */
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
@@ -69,7 +85,7 @@ hr {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 2.8em;
+  font-size: 2.2em;
 }
 
 /*	JS CONTAINER */
@@ -98,7 +114,6 @@ hr {
   border-left: 1px solid rgba(99, 96, 96, 0.8);
   border-top: 1px solid rgba(99, 96, 96, 0.8);
   border-right: 1px solid rgba(99, 96, 96, 0.8);
-  /* background-color: rgb(223, 223, 38); */
   display: grid;
   grid-template-columns: 10% 80% 10%;
   justify-content: space-evenly;
@@ -126,7 +141,6 @@ hr {
   text-align: left;
   padding: 4px;
   margin: 1px;
-  /* border: 1px solid rgba(208, 205, 205, 0.8); */
   font-size: large;
 }
 .cnrjstaskdivscompleted{
@@ -219,7 +233,6 @@ hr {
 .cnradditemdivs {
   padding: 0px;
   margin: 0px;
-  /* background-color: rgb(153, 178, 214); */
   position: absolute;
   bottom: 0px;
   width: 100%;
@@ -245,10 +258,9 @@ hr {
 .cnradditembuttons{
   width: 90%;
   height: 40px;
-  font-size: xx-large;
+  font-size: 2rem;
   padding: 0px;
   margin: 0px;
-  /* justify-self: right; */
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
@@ -259,22 +271,4 @@ hr {
 }
 .cnradditembuttons:hover{
   background-color: rgb(133, 175, 234);
-}
-
-.cnrhomelinks {
-  padding-top: 10px;
-  margin: 0px;
-  text-align: left;
-  font-size: 0.8em;
-  position: absolute;
-  bottom: 30px;
-  width: auto;
-}
-
-footer {
-  color: rgb(152, 138, 138);
-  font-size:70%;
-  position: absolute;
-  bottom: 10px;
-  width: auto;
 }
