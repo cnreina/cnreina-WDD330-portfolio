@@ -1,7 +1,0 @@
-add button center text in mobile
-
-scrollable to main links.
-
-handle task title event > show details?
-
-item counter in menu.
