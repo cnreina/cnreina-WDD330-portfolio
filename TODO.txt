@@ -1,0 +1,6 @@
+
+cnrItemData
+
+vscode fullscreen hides panels icons.
+
+
