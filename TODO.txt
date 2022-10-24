@@ -1,25 +1,6 @@
 
+cnrItemData
 
+vscode fullscreen hides panels icons.
 
-TESTS
----------------------------------
-
-<script type="text/javascript">
-  window.onload = function() {
-    if (window.navigator.appName == "Microsoft Internet Explorer" || window.navigator.userAgent.indexOf("Trident") > 0) {
-      var searchElement = document.getElementById("search");
-      if (searchElement != null) searchElement.setAttribute("href", "");
-    }
-  };
-  function setHeight() {
-    var windowHeight = window.innerHeight - 140;
-    var navbar = document.getElementById("navbar");
-    if (navbar) {
-      navbar.style.maxHeight = windowHeight + "px";
-    }
-  }
-  window.addEventListener('resize', function(event) {
-    setHeight();
-  });
-</script>
 
