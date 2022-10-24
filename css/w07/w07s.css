@@ -20,7 +20,11 @@ html, body {
   margin: 0px;
   left: 0;
   top: 0;
+  display: grid;
+  grid-template-columns: auto;
   background: rgb(219, 219, 223);
+  justify-content: center;
+  align-content: flex-start;
 }
 
 .cnrheadersections {
