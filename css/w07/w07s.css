@@ -9,38 +9,60 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 30px;
+html, body {
+  width: 100%;
+  min-width: 400px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  left: 0;
+  top: 0;
   background: rgb(219, 219, 223);
-}
-
-.cnrmaintitles {
-  color:rgb(171, 9, 9);
-  margin: 0px;
-}
-
-.cnrmainsubtitles {
-  color:rgb(13, 18, 157);
-  margin: 0px;
-}
-
-hr {
-  margin-top:10px;
 }
 
 .cnrheadersections {
   width: 100%;
   height: auto;
-  padding: 0px;
+  padding: 20px;
   margin: 0px;
   display: grid;
   grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.cnrheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  /* display: grid;
+  grid-template-columns: auto;
   justify-content: left;
-  align-items: baseline;
+  align-items: baseline; */
+}
+.cnrsubheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  /* display: grid;
+  grid-template-columns: auto;
+  justify-content: left;
+  align-items: baseline; */
+}
+.cnrmaintitles {
+  color:rgb(171, 9, 9);
+  margin: 0px;
+  padding: 2px;
+}
+.cnrmainsubtitles {
+  color:rgb(13, 18, 157);
+  margin: 0px;
+  padding: 2px;
 }
 .cnrhomelinks {
   padding: 2px;
-  margin-right: 8px;
+  margin: 0px;
   text-align: left;
   font-size: 80%;
   width: 100%;
@@ -51,6 +73,11 @@ hr {
   color: rgb(152, 138, 138);
   font-size:70%;
   width: 100%;
+}
+
+hr {
+  padding: 0px;
+  margin: 0px;
 }
 
 .cnrmainsections {
