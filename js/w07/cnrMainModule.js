@@ -17,10 +17,16 @@ let cnrTODOList = new cnrDataModule.cnrDataListClass();
 // FLAGS
 let cnrViewModeFlag = 'all';
 
-// HANDLERS
+// INITIALIZE HANDLERS
 window.onload = function () {
   console.clear();
   
+  // TEST
+  // document.onresize = cnrTEST();
+  document.onslotchange = cnrTEST();
+
+
+  // click-touch handler
   let cnrClickOrTouchEventVar = '';
   if ("ontouchend" in document.documentElement) {
     console.log("Using touchend");
@@ -59,6 +65,13 @@ window.onload = function () {
 
 /* ************************************************************************* */
 // EVENT HANDLERS
+
+function cnrTEST() {
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  window.alert(window.innerHeight);
+  
+};
 
 /**	Gets data list from storage.
  * Extracts data items from list.
@@ -419,15 +432,16 @@ function cnrDataRenderItems(cnrContainerElementParam) {
         break;
     };
     
+    // render item
     cnrContainerElementParam.appendChild(cnrJSContentDivVar);
-
+    cnrJSContentDivVar.scrollIntoView({behavior: 'smooth'});
   };
 
 }; // cnrDataRenderItems
 
 /**	Removes all items from display element. */
 function cnrClearDisplay() {
-  console.clear();
+  // console.clear();
   // remove from display element
   const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
   while (cnrContainerElementVar.firstChild) {

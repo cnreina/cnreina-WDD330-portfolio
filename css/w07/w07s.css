@@ -8,20 +8,21 @@
 * {
   box-sizing: border-box;
 }
-
+ 
 html, body {
-  width: 100%;
-  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
   padding: 0px;
   margin: 0px;
+  background-color: rgb(242, 245, 248);
 }
 
-
-
+/*	HEADER */
 .cnrheadersections {
   width: 100%;
   height: auto;
-  padding: 20px;
+  padding: 6px;
   margin: 0px;
   display: grid;
   grid-template-columns: auto auto;
@@ -33,40 +34,32 @@ html, body {
   height: auto;
   padding: 0px;
   margin: 0px;
-  /* display: grid;
-  grid-template-columns: auto;
-  justify-content: left;
-  align-items: baseline; */
 }
 .cnrsubheaderdivs {
   width: 100%;
   height: auto;
   padding: 0px;
   margin: 0px;
-  /* display: grid;
-  grid-template-columns: auto;
-  justify-content: left;
-  align-items: baseline; */
 }
 .cnrmaintitles {
   color:rgb(171, 9, 9);
   margin: 0px;
-  padding: 2px;
+  padding: 0px;
 }
 .cnrmainsubtitles {
   color:rgb(13, 18, 157);
   margin: 0px;
-  padding: 2px;
+  padding: 0px;
 }
 .cnrhomelinks {
-  padding: 2px;
+  padding: 0px;
   margin: 0px;
   text-align: left;
-  font-size: 80%;
+  font-size: 100%;
   width: 100%;
 }
 .copyright {
-  padding: 2px;
+  padding: 0px;
   margin: 0px;
   color: rgb(152, 138, 138);
   font-size:70%;
@@ -78,19 +71,26 @@ hr {
   margin: 0px;
 }
 
+/*	MAIN */
 .cnrmainsections {
-  width: 100%;
-  height: auto;
-  padding: 8px;
+  width: 100vw;
+  height: 100%;
+  /* height: 90vh; */
+  /* bottom: 0; */
+  /* height: -webkit-calc(100vh - 65px);
+  height: -moz-calc(100vh - 65px); */
+  /* height: calc(100vh - 65px); */
+  padding: 0px;
   margin: 0px;
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
+  background-color: rgb(182, 191, 210);
 }
 
 .cnrmaindivs {
   width: 360px;
-  height: 600px;
+  height: 100%;
   padding: 0px;
   margin: 0px;
   position: relative;
@@ -104,13 +104,8 @@ hr {
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
-}
-
-.cnrmainheaderdivs p {
-  padding: 0px;
-  margin: 0px;
+  font-size: xx-large;
   text-align: center;
-  font-size: 2.2em;
 }
 
 /*	JS CONTAINER */
@@ -186,7 +181,7 @@ hr {
 
 /*	MENU */
 .cnrmenudivs{
-  padding: 2px;
+  padding: 0px;
   margin: 0px;
   background-color: rgb(172, 199, 236);
   color: rgb(80, 85, 93);
@@ -259,7 +254,7 @@ hr {
   padding: 0px;
   margin: 0px;
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   width: 100%;
   display: grid;
   grid-template-columns: 78% 20%;
