@@ -1,11 +1,10 @@
 /*	Carlos N Reina
   cnreina@gmail.com
-  cnreina.com
 */
 
 
-/* ************************************************************************* */
-// INITIALIZE
+/**************************************************************************
+INITIALIZE */
 
 // MODULES
 import * as cnrDataModule from './cnrDataModule.js';
@@ -19,13 +18,6 @@ let cnrViewModeFlag = 'all';
 
 // INITIALIZE HANDLERS
 window.onload = function () {
-  console.clear();
-  
-  // TEST
-  // document.onresize = cnrTEST();
-  document.onslotchange = cnrTEST();
-
-
   // click-touch handler
   let cnrClickOrTouchEventVar = '';
   if ("ontouchend" in document.documentElement) {
@@ -63,15 +55,8 @@ window.onload = function () {
 }; // window.onload
 
 
-/* ************************************************************************* */
-// EVENT HANDLERS
-
-function cnrTEST() {
-  console.log(window.innerWidth);
-  console.log(window.innerHeight);
-  window.alert(window.innerHeight);
-  
-};
+/**************************************************************************
+EVENT HANDLERS */
 
 /**	Gets data list from storage.
  * Extracts data items from list.
