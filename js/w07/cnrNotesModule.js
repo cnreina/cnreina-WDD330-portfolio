@@ -18,6 +18,7 @@ function cnrDataModuleGetCurrentTime() {
   return cnrDateTimeUTCVar;
 };
 
+
 /**************************************************************************
 PRIVATE CLASSES */
 
@@ -54,14 +55,15 @@ EXPORTED CLASSES */
 /**	Exported class. 
  * Interface for cnrNoteClass. 
  * Mantains an array of, and provides functions to 
- * access cnrNoteClass.
+ * access, cnrNoteClass objects.
 */
 export class cnrNotesClass {
-  // PRIVATE
+  /* PRIVATE */
   #cnrNotesName;
   #cnrNotesID;
   #cnrNotesArray;
 
+  /* PUBLIC */
   constructor(cnrNameParam) {
     this.#cnrNotesName = cnrNameParam;
     this.#cnrNotesID = self.crypto.randomUUID();
@@ -69,7 +71,7 @@ export class cnrNotesClass {
     this.#cnrNotesArray = new Array;
   };
 
-  // PUBLIC
+  /* PUBLIC GETTERS */
 
   /**	Returns name. */
   cnrNotesGetName() { return this.#cnrNotesName; };
@@ -90,7 +92,7 @@ export class cnrNotesClass {
    * Returns null if empty. 
    * Returns null on errors.
   */
-  cnrNotesGetForIndex(cnrIndexParam) {
+  cnrNotesGetNoteForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return null; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return null; };
 
@@ -101,7 +103,7 @@ export class cnrNotesClass {
    * Returns null if empty. 
    * Returns null on errors.
   */
-  cnrNotesGetForID(cnrIDParam) {
+  cnrNotesGetNoteForID(cnrIDParam) {
     if (this.#cnrNotesArray.length == 0) { return null; };
 
     let cnrCounterVar = 0;
@@ -115,61 +117,63 @@ export class cnrNotesClass {
     return null;
   };
 
-  /**	Returns id for index.
+  /**	Returns object id for index.
    * Returns empty string if empty. 
    * Returns empty string on errors.
   */
-   cnrNotesGetIDForIndex(cnrIndexParam) {
+   cnrNotesGetNoteIDForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return ''; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return ''; };
 
     return this.#cnrNotesArray[cnrIndexParam].cnrID;
   };
 
-  /**	Returns parent id for index.
+  /**	Returns object's parent id for index.
    * Returns empty string if empty. 
    * Returns empty string on errors.
   */
-   cnrNotesGetParentIDForIndex(cnrIndexParam) {
+   cnrNotesGetNoteParentIDForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return ''; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return ''; };
 
     return this.#cnrNotesArray[cnrIndexParam].cnrParentID;
   };
 
-  /**	Returns type for index.
+  /**	Returns object type for index.
    * Returns empty string if empty. 
    * Returns empty string on errors.
   */
-   cnrNotesGetTypeForIndex(cnrIndexParam) {
+   cnrNotesGetNoteTypeForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return ''; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return ''; };
 
     return this.#cnrNotesArray[cnrIndexParam].cnrType;
   };
 
-  /**	Returns title for index.
+  /**	Returns object title for index.
    * Returns empty string if empty. 
    * Returns empty string on errors.
   */
-   cnrNotesGetTitleForIndex(cnrIndexParam) {
+   cnrNotesGetNoteTitleForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return ''; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return ''; };
 
     return this.#cnrNotesArray[cnrIndexParam].cnrTitle;
   };
 
-  /**	Returns content for index.
+  /**	Returns object content for index.
    * Returns empty string if empty. 
    * Returns empty string on errors.
   */
-   cnrNotesGetContentForIndex(cnrIndexParam) {
+   cnrNotesGetNoteContentForIndex(cnrIndexParam) {
     if (this.#cnrNotesArray.length == 0) { return ''; };
     if (cnrIndexParam >= this.#cnrNotesArray.length) { return ''; };
 
     return this.#cnrNotesArray[cnrIndexParam].cnrContent;
   };
 
+  
+  /* PUBLIC SETTERS */
 
   /**	Creates and adds a new note to the array. 
    * Returns new object on success. 
@@ -181,18 +185,17 @@ export class cnrNotesClass {
     if (cnrTitleParam == null || cnrTitleParam == '') { return null; };
     if (cnrContentParam == null || cnrContentParam == '') { return null; };
     
-    // create new hike
+    // create new note
     const cnrNewIDVar = self.crypto.randomUUID();
+    const cnrDateVar = cnrDataModuleGetCurrentTime();
     const cnrIDVar = cnrNewIDVar;
     const cnrParentIDVar = cnrParentIDParam;
     const cnrTypeVar = cnrTypeParam;
     const cnrTitleVar = cnrTitleParam;
     const cnrContentVar = cnrContentParam;
-    const cnrDateVar = cnrDataModuleGetCurrentTime();
     const cnrCreatedDateVar = cnrDateVar;
     const cnrUpdatedDateVar = cnrDateVar;
-
-    const cnrNewNoteVar = new cnrNoteClass(cnrIDVar, cnrParentIDVar, cnrTypeVar, cnrTitleVar, cnrContentVar, cnrCreatedDateVar, cnrUpdatedDateVar); TODO
+    const cnrNewNoteVar = new cnrNoteClass(cnrIDVar, cnrParentIDVar, cnrTypeVar, cnrTitleVar, cnrContentVar, cnrCreatedDateVar, cnrUpdatedDateVar);
 
     // save
     this.#cnrNotesArray.push(cnrNewNoteVar);
@@ -205,29 +208,29 @@ export class cnrNotesClass {
   */
    cnrNotesImportNote(cnrIDParam, cnrParentIDParam, cnrTypeParam, cnrTitleParam, cnrContentParam, cnrCreatedParam, cnrUpdatedParam) {
     if (cnrIDParam == null || cnrIDParam == '') { return null; };
-    if (cnrNameParam == null || cnrNameParam == '') { return null; };
-    if (cnrLocationParam == null || cnrLocationParam == '') { return null; };
-    if (cnrRatingParam == null || cnrRatingParam == '') { return null; };
-    if (cnrDifficultyParam == null || cnrDifficultyParam == '') { return null; };
-    if (cnrDescriptionParam == null || cnrDescriptionParam == '') { return null; };
-    if (cnrDirectionsParam == null || cnrDirectionsParam == '') { return null; };
+    if (cnrParentIDParam == null || cnrParentIDParam == '') { return null; };
+    if (cnrTypeParam == null || cnrTypeParam == '') { return null; };
+    if (cnrTitleParam == null || cnrTitleParam == '') { return null; };
+    if (cnrContentParam == null || cnrContentParam == '') { return null; };
+    if (cnrCreatedParam == null || cnrCreatedParam == '') { return null; };
+    if (cnrUpdatedParam == null || cnrUpdatedParam == '') { return null; };
 
-    // create new hike
+    // create new note
     const cnrIDVar = cnrIDParam;
-    const cnrNameVar = cnrNameParam;
-    const cnrLocationVar = cnrLocationParam;
-    const cnrRatingVar = cnrRatingParam;
-    const cnrDifficultyVar = cnrDifficultyParam;
-    const cnrDescriptionVar = cnrDescriptionParam;
-    const cnrDirectionsVar = cnrDirectionsParam;
-    const cnrNewHikeVar = new cnrHikeClass(cnrIDVar, cnrNameVar, cnrLocationVar, cnrRatingVar, cnrDifficultyVar, cnrDescriptionVar, cnrDirectionsVar);
+    const cnrParentIDVar = cnrParentIDParam;
+    const cnrTypeVar = cnrTypeParam;
+    const cnrTitleVar = cnrTitleParam;
+    const cnrContentVar = cnrContentParam;
+    const cnrCreatedDateVar = cnrCreatedParam;
+    const cnrUpdatedDateVar = cnrUpdatedParam;
+    const cnrNewNoteVar = new cnrNoteClass(cnrIDVar, cnrParentIDVar, cnrTypeVar, cnrTitleVar, cnrContentVar, cnrCreatedDateVar, cnrUpdatedDateVar);
 
-    // save new hike
-    this.#cnrNotesArray.push(cnrNewHikeVar);
-    return cnrNewHikeVar;
+    // save new note
+    this.#cnrNotesArray.push(cnrNewNoteVar);
+    return cnrNewNoteVar;
   };
 
-  /**	Removes a note from the array.
+  /**	Removes an object from the array.
    * Returns the removed object on success. 
    * Returns null on errors.
    * */
@@ -235,7 +238,7 @@ export class cnrNotesClass {
     if (this.#cnrNotesArray.length == 0) { return null; };
     if (cnrIDParam == null || cnrIDParam == '') { return null; };
 
-    let cnrOldItemVar = this.cnrNotesGetForID(cnrIDParam);
+    let cnrOldItemVar = this.cnrNotesGetNoteForID(cnrIDParam);
     if (cnrOldItemVar == null || cnrOldItemVar == '') { return null; };
 
     let cnrCounterVar = 0;
@@ -251,4 +254,4 @@ export class cnrNotesClass {
     return null;
   };
 
-}; // cnrHikesClass
+}; // cnrNotesClass

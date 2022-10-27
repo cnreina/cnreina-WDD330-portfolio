@@ -195,7 +195,7 @@ hr {
   height: 50px;
   font-size: medium;
 }
-.cnrmenutaskcountdivs{
+.cnrmenuitemcountdivs{
   display: grid;
   grid-template-columns: 100%;
   align-content: center;
@@ -207,7 +207,7 @@ hr {
   text-shadow: 1px 1px 1px rgb(189, 186, 186);
   font-size: larger;
 }
-.cnrmenualltasksdivs{
+.cnrmenuallitemsdivs{
   display: grid;
   grid-template-columns: 100%;
   align-content: center;
@@ -217,7 +217,7 @@ hr {
   cursor: pointer;
   border-radius: 4px;
 }
-.cnrmenuactivetasksdivs{
+.cnrmenuactiveitemsdivs{
   display: grid;
   grid-template-columns: 100%;
   align-content: center;
@@ -227,7 +227,7 @@ hr {
   cursor: pointer;
   border-radius: 4px;
 }
-.cnrmenucompletedtasksdivs{
+.cnrmenucompleteditemsdivs{
   display: grid;
   grid-template-columns: 100%;
   align-content: center;

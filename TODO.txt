@@ -3,4 +3,7 @@ cnrItemData
 
 vscode fullscreen hides panels icons.
 
+refactor classes > cnrObjectsClass, cnrObjectClass (generic for reuse).
+
+UUID function to module.
 
