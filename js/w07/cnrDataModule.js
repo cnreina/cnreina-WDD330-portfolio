@@ -1,30 +1,15 @@
 /*	Carlos N Reina
   cnreina@gmail.com
-  cnreina.com
 */
 
-/*	cnrDataModule 
-    
-  cnrDataListClass (Exported Class)
-    cnrDataListID (UUID)
-    cnrDataListCreatedTimeUTC
-    cnrDataListUpdatedTimeUTC
-    cnrDataListType (Ex; string, json, Etc)
-    cnrDataItemArray (Array of cnrDataItemClass)
-    
-  cnrDataItemClass (Private Class)
-    cnrItemID
-    cnrItemCreatedTimeUTC
-    cnrItemUpdatedTimeUTC
-    cnrItemType
-    cnrItemStatus
-    cnrItemTag
-    cnrItemData
+/**	cnrDataModule 
+ * cnrDataListClass (Exported Class)
+ * cnrDataItemClass (Private Class)
 */
 
 
-/* ************************************************************************* */
-// PRIVATE MODULE FUNCTIONS
+/**************************************************************************
+PRIVATE MODULE FUNCTIONS */
 
 /**	Returns current UTC time. */
 function cnrDataModuleGetCurrentTime() {
@@ -33,12 +18,17 @@ function cnrDataModuleGetCurrentTime() {
   return cnrDateTimeUTCVar;
 };
 
-/* ************************************************************************* */
-// PRIVATE CLASSES
+/**************************************************************************
+PRIVATE CLASSES */
 
+/**	Private class. 
+ * Individual data item accessed through cnrDataListClass. 
+ * cnrDataListClass automatically sets cnrItemID (UUID). 
+ * Client provides data for cnrItemType, cnrItemStatus, 
+ * cnrItemTag and cnrItemData.
+*/
 class cnrDataItemClass {
   // PRIVATE
-
   #cnrItemID;
   #cnrItemCreatedTimeUTC;
   #cnrItemUpdatedTimeUTC;
@@ -140,9 +130,15 @@ class cnrDataItemClass {
 
 }; // cnrDataItemClass
 
-/* ************************************************************************* */
-// EXPORTED CLASSES
 
+/**************************************************************************
+EXPORTED CLASSES */
+
+/**	Exported class. 
+ * Interface for cnrDataItemClass. 
+ * Mantains an array of, and provides functions to 
+ * access cnrDataItemClass.
+*/
 export class cnrDataListClass {
   // PRIVATE
 

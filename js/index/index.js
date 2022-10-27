@@ -80,8 +80,8 @@ const links = [
     url: "html/w06/w0600.html"
   },
   {
-    label: "Week 7 (. . .)",
-    url: "html/w07/w0700.html"
+    label: "Week 7 (Hikes)",
+    url: "html/w07/w07hikes.html"
   }
 ];
 

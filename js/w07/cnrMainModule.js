@@ -1,26 +1,24 @@
 /*	Carlos N Reina
   cnreina@gmail.com
-  cnreina.com
 */
 
 
-/* ************************************************************************* */
-// INITIALIZE
+/**************************************************************************
+INITIALIZE MODULE */
 
-// MODULES
+// IMPORT MODULES
 import * as cnrDataModule from './cnrDataModule.js';
 import * as cnrStorageModule from './cnrStorageModule.js';
 
-// CLASSES
-let cnrTODOList = new cnrDataModule.cnrDataListClass();
-
-// FLAGS
+// MODULE FLAGS
 let cnrViewModeFlag = 'all';
 
-// HANDLERS
+// INSTANTIATE CLASSES
+let cnrDataList = new cnrDataModule.cnrDataListClass();
+
+// INITIALIZE HANDLERS
 window.onload = function () {
-  console.clear();
-  
+  // click or touch var
   let cnrClickOrTouchEventVar = '';
   if ("ontouchend" in document.documentElement) {
     console.log("Using touchend");
@@ -42,23 +40,23 @@ window.onload = function () {
   };
 
   // menu handlers
-  const cnrMenuCounterVar = document.getElementById('cnrmenutaskcountdiv');
+  const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
   cnrMenuCounterVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuCounterHandler);
-  const cnrMenuAllVar = document.getElementById('cnrmenualltasksdiv');
+  const cnrMenuAllVar = document.getElementById('cnrmenuallitemsdiv');
   cnrMenuAllVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuAllHandler);
-  const cnrMenuActiveVar = document.getElementById('cnrmenuactivetasksdiv');
+  const cnrMenuActiveVar = document.getElementById('cnrmenuactiveitemsdiv');
   cnrMenuActiveVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuActiveHandler);
-  const cnrMenuCompletedVar = document.getElementById('cnrmenucompletedtasksdiv');
+  const cnrMenuCompletedVar = document.getElementById('cnrmenucompleteditemsdiv');
   cnrMenuCompletedVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuCompletedHandler);
 
-  // handle window onload event
+  // process window onload event
   cnrWindowOnLoadHandler();
 
 }; // window.onload
 
 
-/* ************************************************************************* */
-// EVENT HANDLERS
+/**************************************************************************
+EVENT HANDLERS */
 
 /**	Gets data list from storage.
  * Extracts data items from list.
@@ -72,12 +70,12 @@ function cnrWindowOnLoadHandler() {
     console.log("ERROR: cnrWindowOnLoadHandler > cnrLocalStorageGetLastErrorMessage = " + cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
 
     // update task count element
-    const cnrMenuCounterVar = document.getElementById('cnrmenutaskcountdiv');
+    const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
     cnrMenuCounterVar.innerText = 'No tasks';    
     return;
   };
 
-  // create new cnrTODOList
+  // create new list
   const cnrNewTODOList = new cnrDataModule.cnrDataListClass();
   // get cnrDataList object from JSON
   const cnrDataJSONObject = JSON.parse(cnrDataListVar);
@@ -96,7 +94,7 @@ function cnrWindowOnLoadHandler() {
   };
 
   // save new loaded list to cnrTODOList
-  cnrTODOList = cnrNewTODOList;
+  cnrDataList = cnrNewTODOList;
 
   // refresh display
   cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
@@ -118,7 +116,7 @@ function cnrAddItemButtonHandler(cnrEventParam) {
   const cnrJSONData = JSON.stringify({ cnrTaskStatus: 'active', cnrTaskTitle: cnrToDoTitleVar });
   const cnrItemDataVar = cnrJSONData;
   // add task
-  const cnrNewItemVar = cnrTODOList.cnrDataListAddItem('json', 'cnrDataItem', cnrItemDataVar);
+  const cnrNewItemVar = cnrDataList.cnrDataListAddItem('json', 'cnrDataItem', cnrItemDataVar);
   if (cnrNewItemVar === null || cnrNewItemVar === '') {console.log("ERROR: cnrAddItemButtonHandler"); return; };
   
   // refresh display
@@ -197,7 +195,7 @@ function cnrRemoveItem(cnrItemIDParam) {
   };
 
   // remove from list
-  const cnrRemovedItemVar = cnrTODOList.cnrDataListRemoveItemForID(cnrItemIDParam);
+  const cnrRemovedItemVar = cnrDataList.cnrDataListRemoveItemForID(cnrItemIDParam);
   if (cnrRemovedItemVar == null || cnrRemovedItemVar == '') {
     console.log("ERROR: cnrRemovedItemVar == null || cnrRemovedItemVar == ''");
   };
@@ -217,7 +215,7 @@ function cnrUpdateStatus(cnrItemIDParam) {
   };
 
   // update status
-  const cnrStatusItemVar = cnrTODOList.cnrDataListUpdateItemStatusForID(cnrItemIDParam);
+  const cnrStatusItemVar = cnrDataList.cnrDataListUpdateItemStatusForID(cnrItemIDParam);
   if (cnrStatusItemVar == null || cnrStatusItemVar == '') {
     console.log("cnrStatusItemVar == null || cnrStatusItemVar == ''");
   };
@@ -259,9 +257,9 @@ function cnrChangeViewMode(cnrViewModeParam) {
 /**	Updates main menu view from mode flag (cnrViewModeFlag). */
 function cnrUpdateMenuView() {
   // get menu handlers
-  const cnrMenuAllVar = document.getElementById('cnrmenualltasksdiv');
-  const cnrMenuActiveVar = document.getElementById('cnrmenuactivetasksdiv');
-  const cnrMenuCompletedVar = document.getElementById('cnrmenucompletedtasksdiv');
+  const cnrMenuAllVar = document.getElementById('cnrmenuallitemsdiv');
+  const cnrMenuActiveVar = document.getElementById('cnrmenuactiveitemsdiv');
+  const cnrMenuCompletedVar = document.getElementById('cnrmenucompleteditemsdiv');
 
   // process view mode
   switch (cnrViewModeFlag) {
@@ -301,20 +299,20 @@ function cnrDataRenderItems(cnrContainerElementParam) {
 
   // clear display
   cnrClearDisplay();
-  if (cnrTODOList == null || cnrTODOList == '') {
-    console.log("ERROR: cnrTODOList = ", cnrTODOList);
+  if (cnrDataList == null || cnrDataList == '') {
+    console.log("ERROR: cnrTODOList = ", cnrDataList);
     return;
   };
   
   // prepare task counters
-  const cnrTotalItemCountVar = cnrTODOList.cnrDataListGetItemCount();
-  const cnrActiveItemCountVar = cnrTODOList.cnrDataListGetActiveItemCount();
+  const cnrTotalItemCountVar = cnrDataList.cnrDataListGetItemCount();
+  const cnrActiveItemCountVar = cnrDataList.cnrDataListGetActiveItemCount();
   let cnrCompletedCountVar = cnrTotalItemCountVar - cnrActiveItemCountVar;
   if (cnrCompletedCountVar <= 0) {cnrCompletedCountVar = 0;};
   // prepare task count elements
-  const cnrMenuCounterVar = document.getElementById('cnrmenutaskcountdiv');
+  const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
   // leave if list is empty
-  if (cnrTODOList.cnrDataListGetItemCount() <= 0) { cnrMenuCounterVar.innerText = 'No tasks'; return; };
+  if (cnrDataList.cnrDataListGetItemCount() <= 0) { cnrMenuCounterVar.innerText = 'No tasks'; return; };
   let cnrTotalCountLabelVar = '';
   let cnrActiveCountLabelVar = '';
   let cnrCompletedCountLabelVar = '';
@@ -330,24 +328,24 @@ function cnrDataRenderItems(cnrContainerElementParam) {
   
   // update display
   console.log("cnrViewModeFlag = ", cnrViewModeFlag);
-  console.table(cnrTODOList.cnrDataListGetItems());
+  console.table(cnrDataList.cnrDataListGetItems());
   
   // parse items
   const cnrLength = cnrTotalItemCountVar;
   let cnrCounter = 0;
   for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++) {
     // get status
-    const cnrStatusElementVar = cnrTODOList.cnrDataListGetItemStatusForIndex(cnrCounter);
+    const cnrStatusElementVar = cnrDataList.cnrDataListGetItemStatusForIndex(cnrCounter);
     // get id
-    const cnrDataItemIDVar = cnrTODOList.cnrDataListGetItemIDForIndex(cnrCounter);
+    const cnrDataItemIDVar = cnrDataList.cnrDataListGetItemIDForIndex(cnrCounter);
     // get data
-    const cnrItemData = cnrTODOList.cnrDataListGetItemDataForIndex(cnrCounter)
+    const cnrItemData = cnrDataList.cnrDataListGetItemDataForIndex(cnrCounter)
     const cnrDataObject = JSON.parse(cnrItemData);
     if (cnrDataObject == null || cnrDataObject == '') {
       console.log("ERROR: cnrDataItemObject = ", cnrDataObject);
       return;
     };
-    const cnrDataStatusVar = cnrTODOList.cnrDataListGetItemStatusForIndex(cnrCounter);
+    const cnrDataStatusVar = cnrDataList.cnrDataListGetItemStatusForIndex(cnrCounter);
     const cnrDataTitleVar = cnrDataObject.cnrTaskTitle;
 
     // render data
@@ -419,15 +417,16 @@ function cnrDataRenderItems(cnrContainerElementParam) {
         break;
     };
     
+    // render item
     cnrContainerElementParam.appendChild(cnrJSContentDivVar);
-
+    cnrJSContentDivVar.scrollIntoView({behavior: 'smooth'});
   };
 
 }; // cnrDataRenderItems
 
 /**	Removes all items from display element. */
 function cnrClearDisplay() {
-  console.clear();
+  // console.clear();
   // remove from display element
   const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
   while (cnrContainerElementVar.firstChild) {
@@ -441,10 +440,10 @@ function cnrClearDisplay() {
 /**	Updates localStorage from cnrDataListClass. */
 function cnrUpdateStorage() {
   if (cnrStorageModule.cnrLocalStorageHasKey('cnrDataList')) {
-    cnrStorageModule.cnrLocalStorageUpdate('cnrDataList', cnrTODOList.cnrDataListGetJSONString());
+    cnrStorageModule.cnrLocalStorageUpdate('cnrDataList', cnrDataList.cnrDataListGetJSONString());
   } else {
-    if (cnrTODOList.cnrDataListGetItemCount() > 0) {
-      cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrTODOList.cnrDataListGetJSONString());
+    if (cnrDataList.cnrDataListGetItemCount() > 0) {
+      cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrDataList.cnrDataListGetJSONString());
     };
   };
 }; // cnrUpdateStorage
