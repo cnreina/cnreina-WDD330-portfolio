@@ -34,15 +34,17 @@ class cnrHikeClass {
   cnrHikeDifficulty;
   cnrHikeDescription;
   cnrHikeDirections;
+  cnrHikeImageURL;
 
-  constructor(cnrHikeIDParam, cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam) {
-    this.#cnrHikeID = cnrHikeIDParam;
-    this.#cnrHikeName = cnrNameParam;
-    this.#cnrHikeLocation = cnrLocationParam;
-    this.#cnrHikeRating = cnrRatingParam;
-    this.#cnrHikeDifficulty = cnrDifficultyParam;
-    this.#cnrHikeDescription = cnrDescriptionParam;
-    this.#cnrHikeDirections = cnrDirectionsParam;
+  constructor(cnrHikeIDParam, cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam, cnrImageURLParam) {
+    this.cnrHikeID = cnrHikeIDParam;
+    this.cnrHikeName = cnrNameParam;
+    this.cnrHikeLocation = cnrLocationParam;
+    this.cnrHikeRating = cnrRatingParam;
+    this.cnrHikeDifficulty = cnrDifficultyParam;
+    this.cnrHikeDescription = cnrDescriptionParam;
+    this.cnrHikeDirections = cnrDirectionsParam;
+    this.cnrHikeImageURL = cnrImageURLParam;
   };
 
 }; // cnrHikeClass
@@ -151,6 +153,35 @@ export class cnrHikesClass {
     for(cnrCounterVar = 0; cnrCounterVar < cnrLengthVar; cnrCounterVar++) {
       if (this.#cnrHikesArray[cnrCounterVar].cnrHikeID.toString() == cnrIDParam.toString()) {
         return this.#cnrHikesArray[cnrCounterVar].cnrHikeName;
+      };
+    };
+
+    return null;
+  };
+
+  /**	Returns hike image url for index.
+   * Returns empty string if empty. 
+   * Returns empty string on errors.
+  */
+   cnrHikesGetImageURLForIndex(cnrIndexParam) {
+    if (this.#cnrHikesArray.length == 0) { return ''; };
+    if (cnrIndexParam >= this.#cnrHikesArray.length) { return ''; };
+
+     return this.#cnrHikesArray[cnrIndexParam].cnrHikeImageURL;
+  };
+
+  /**	Returns hike image url for UUID. 
+   * Returns empty string if empty. 
+   * Returns empty string on errors.
+  */
+   cnrHikesGetImageURLForID(cnrIDParam) {
+    if (this.#cnrHikesArray.length == 0) { return ''; };
+
+    let cnrCounterVar = 0;
+    const cnrLengthVar = this.#cnrHikesArray.length;
+    for(cnrCounterVar = 0; cnrCounterVar < cnrLengthVar; cnrCounterVar++) {
+      if (this.#cnrHikesArray[cnrCounterVar].cnrHikeID.toString() == cnrIDParam.toString()) {
+        return this.#cnrHikesArray[cnrCounterVar].cnrHikeImageURL;
       };
     };
 
@@ -302,17 +333,32 @@ export class cnrHikesClass {
     return '';
   };
 
+  /**	Returns data as a JSON string. 
+   * Returns an empty string if empty 
+   * Returns an empty string on errors 
+  */
+  cnrHikesGetJSONString() {
+  if (this.#cnrHikesArray.length <= 0) { return ''; };
+
+    const cnrJSONString = JSON.stringify(this.#cnrHikesArray);
+    //  const cnrHikesObject = {cnrHikes: cnrJSONString};
+    // return JSON.stringify(cnrHikesObject);
+    
+    return cnrJSONString;
+  };
+
   /**	Creates and adds a new hike to the array. 
    * Returns new object on success. 
    * Returns null on errors.
   */
-  cnrHikesAddHike(cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam) {
+  cnrHikesAddHike(cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam, cnrImageURLParam) {
     if (cnrNameParam == null || cnrNameParam == '') { return null; };
     if (cnrLocationParam == null || cnrLocationParam == '') { return null; };
     if (cnrRatingParam == null || cnrRatingParam == '') { return null; };
     if (cnrDifficultyParam == null || cnrDifficultyParam == '') { return null; };
     if (cnrDescriptionParam == null || cnrDescriptionParam == '') { return null; };
     if (cnrDirectionsParam == null || cnrDirectionsParam == '') { return null; };
+    if (cnrImageURLParam == null || cnrImageURLParam == '') { return null; };
 
     // create new hike
     const cnrNewIDVar = self.crypto.randomUUID();
@@ -323,7 +369,8 @@ export class cnrHikesClass {
     const cnrDifficultyVar = cnrDifficultyParam;
     const cnrDescriptionVar = cnrDescriptionParam;
     const cnrDirectionsVar = cnrDirectionsParam;
-    const cnrNewHikeVar = new cnrHikeClass(cnrIDVar, cnrNameVar, cnrLocationVar, cnrRatingVar, cnrDifficultyVar, cnrDescriptionVar, cnrDirectionsVar);
+    const cnrImageURLVar = cnrImageURLParam;
+    const cnrNewHikeVar = new cnrHikeClass(cnrIDVar, cnrNameVar, cnrLocationVar, cnrRatingVar, cnrDifficultyVar, cnrDescriptionVar, cnrDirectionsVar, cnrImageURLVar);
 
     // save new hike
     this.#cnrHikesArray.push(cnrNewHikeVar);
@@ -334,7 +381,7 @@ export class cnrHikesClass {
    * Returns new object on success. 
    * Returns null on errors.
   */
-   cnrHikesImportHike(cnrIDParam, cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam) {
+   cnrHikesImportHike(cnrIDParam, cnrNameParam, cnrLocationParam, cnrRatingParam, cnrDifficultyParam, cnrDescriptionParam, cnrDirectionsParam, cnrImageURLParam) {
     if (cnrIDParam == null || cnrIDParam == '') { return null; };
     if (cnrNameParam == null || cnrNameParam == '') { return null; };
     if (cnrLocationParam == null || cnrLocationParam == '') { return null; };
@@ -342,6 +389,7 @@ export class cnrHikesClass {
     if (cnrDifficultyParam == null || cnrDifficultyParam == '') { return null; };
     if (cnrDescriptionParam == null || cnrDescriptionParam == '') { return null; };
     if (cnrDirectionsParam == null || cnrDirectionsParam == '') { return null; };
+    if (cnrImageURLParam == null || cnrImageURLParam == '') { return null; };
 
     // create new hike
     const cnrIDVar = cnrIDParam;
@@ -351,7 +399,8 @@ export class cnrHikesClass {
     const cnrDifficultyVar = cnrDifficultyParam;
     const cnrDescriptionVar = cnrDescriptionParam;
     const cnrDirectionsVar = cnrDirectionsParam;
-    const cnrNewHikeVar = new cnrHikeClass(cnrIDVar, cnrNameVar, cnrLocationVar, cnrRatingVar, cnrDifficultyVar, cnrDescriptionVar, cnrDirectionsVar);
+    const cnrImageURLVar = cnrImageURLParam;
+    const cnrNewHikeVar = new cnrHikeClass(cnrIDVar, cnrNameVar, cnrLocationVar, cnrRatingVar, cnrDifficultyVar, cnrDescriptionVar, cnrDirectionsVar, cnrImageURLVar);
 
     // save new hike
     this.#cnrHikesArray.push(cnrNewHikeVar);

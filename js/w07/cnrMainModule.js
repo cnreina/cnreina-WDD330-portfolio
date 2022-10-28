@@ -7,14 +7,11 @@
 INITIALIZE MODULE */
 
 // IMPORT MODULES
-import * as cnrDataModule from './cnrDataModule.js';
 import * as cnrStorageModule from './cnrStorageModule.js';
-
-// MODULE FLAGS
-let cnrViewModeFlag = 'all';
+import * as cnrHikesModule from './cnrHikesModule.js';
 
 // INSTANTIATE CLASSES
-let cnrDataList = new cnrDataModule.cnrDataListClass();
+let cnrHikes = new cnrHikesModule.cnrHikesClass();
 
 // INITIALIZE HANDLERS
 window.onload = function () {
@@ -28,26 +25,12 @@ window.onload = function () {
     console.log("Using click");
     cnrClickOrTouchEventVar = 'click';
   };
-
-  // item handlers
-  const cnrAddItemHandlerVar = document.getElementById('cnradditembutton');
-  cnrAddItemHandlerVar.addEventListener(cnrClickOrTouchEventVar, cnrAddItemButtonHandler);
  
   // item content handlers
   const cnrItemsSelectedHandlerVar = document.querySelectorAll('.cnrjscontentdivs');
   for (const cnrItemSelectedVar of cnrItemsSelectedHandlerVar) {
     cnrItemSelectedVar.addEventListener(cnrClickOrTouchEventVar, cnrItemClickHandler);
   };
-
-  // menu handlers
-  const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
-  cnrMenuCounterVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuCounterHandler);
-  const cnrMenuAllVar = document.getElementById('cnrmenuallitemsdiv');
-  cnrMenuAllVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuAllHandler);
-  const cnrMenuActiveVar = document.getElementById('cnrmenuactiveitemsdiv');
-  cnrMenuActiveVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuActiveHandler);
-  const cnrMenuCompletedVar = document.getElementById('cnrmenucompleteditemsdiv');
-  cnrMenuCompletedVar.addEventListener(cnrClickOrTouchEventVar, cnrMenuCompletedHandler);
 
   // process window onload event
   cnrWindowOnLoadHandler();
@@ -58,72 +41,21 @@ window.onload = function () {
 /**************************************************************************
 EVENT HANDLERS */
 
-/**	Gets data list from storage.
- * Extracts data items from list.
- * Creates a new list and loads extracted items.
- * Requests the rendering of the items in a selected element.
- */
+/**	Initializes data. */
 function cnrWindowOnLoadHandler() {
-  // get cnrDataList string from storage
-  const cnrDataListVar = cnrStorageModule.cnrLocalStorageRetrieve('cnrDataList');
-  if (cnrDataListVar === null || cnrDataListVar === '') {
-    console.log("ERROR: cnrWindowOnLoadHandler > cnrLocalStorageGetLastErrorMessage = " + cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
+  // get data string
+  let cnrDataStringVar = cnrGetLocalData('cnrDataList');
+  if (cnrDataStringVar === null || cnrDataStringVar === '') {
+    cnrDataStringVar = cnrGetRemoteData('cnrDataList');
+  };
 
-    // update task count element
-    const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
-    cnrMenuCounterVar.innerText = 'No tasks';    
+  if (cnrDataStringVar === null || cnrDataStringVar === '') {
+    console.log("ERROR: cnrDataStringVar > " + cnrStorageModule.cnrLocalStorageGetLastErrorMessage());
     return;
   };
 
-  // create new list
-  const cnrNewTODOList = new cnrDataModule.cnrDataListClass();
-  // get cnrDataList object from JSON
-  const cnrDataJSONObject = JSON.parse(cnrDataListVar);
-  const cnrDataJSONKeys = Object.keys(cnrDataJSONObject);
-  // get cnrDataItem objects
-  const cnrLength = cnrDataJSONKeys.length;
-  let cnrCounter = 0;
-  for (cnrCounter = 0; cnrCounter < cnrLength; ++cnrCounter){
-    const cnrDataItemVar = cnrDataJSONObject[cnrDataJSONKeys[cnrCounter]];
-    if (cnrDataItemVar == null) { console.log("ERROR: cnrDataItemVar == null"); return; };
-    const cnrDataItemObject = JSON.parse(cnrDataItemVar);
-    if (cnrDataItemObject == null) { console.log("ERROR: cnrDataItemObject == null"); return; };
-
-    // load new cnrTODOList
-    cnrNewTODOList.cnrDataListImportItem(cnrDataItemObject.cnrItemID, cnrDataItemObject.cnrItemCreatedTimeUTC, cnrDataItemObject.cnrItemUpdatedTimeUTC, cnrDataItemObject.cnrItemType, cnrDataItemObject.cnrItemStatus, cnrDataItemObject.cnrItemTag, cnrDataItemObject.cnrItemData);    
-  };
-
-  // save new loaded list to cnrTODOList
-  cnrDataList = cnrNewTODOList;
-
-  // refresh display
-  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
-
+  cnrLoadData(cnrDataStringVar);
 }; // cnrWindowOnLoadHandler
-
-/**	Adds a new item to the list */
-function cnrAddItemButtonHandler(cnrEventParam) {
-  cnrEventParam.preventDefault();
-
-  // validate
-  const cnrIDVar = cnrEventParam.target.id;
-  if (cnrIDVar != "cnradditembutton") { return; };
-
-  // get task title
-  const cnrToDoTitleVar = document.getElementById('cnradditeminput').value;
-  if (cnrToDoTitleVar === null || cnrToDoTitleVar === '') { return; };
-  // prepare object
-  const cnrJSONData = JSON.stringify({ cnrTaskStatus: 'active', cnrTaskTitle: cnrToDoTitleVar });
-  const cnrItemDataVar = cnrJSONData;
-  // add task
-  const cnrNewItemVar = cnrDataList.cnrDataListAddItem('json', 'cnrDataItem', cnrItemDataVar);
-  if (cnrNewItemVar === null || cnrNewItemVar === '') {console.log("ERROR: cnrAddItemButtonHandler"); return; };
-  
-  // refresh display
-  cnrChangeViewMode('all');
-  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
-
-}; // cnrAddItemButtonHandler
 
 /**	Handles click event on each item. */
 function cnrItemClickHandler(cnrEventParam) {
@@ -140,310 +72,251 @@ function cnrItemClickHandler(cnrEventParam) {
     return;
   };
   
-  // DELETE EVENT
-  if (cnrEventParam.target.classList.contains("cnrjsdeleteitemdivs")) {
-    cnrRemoveItem(cnrIDVar);
-    return;
-  };
+  // HANDLE TARGETS
 
-  // STATUS EVENT
-  if (cnrEventParam.target.classList.contains("cnrjsstatusdivs")) {
-    cnrUpdateStatus(cnrIDVar);
-    return;
-  };
-
-  // TASK EVENT
-  if (cnrEventParam.target.classList.contains("cnrjstaskdivs")) {
-    console.log("Task Selected Event (" + cnrIDVar + ")");
+  // NAVIGATE EVENT
+  if (cnrEventParam.target.classList.contains("cnrjsnavigatedivs")) {
+    console.log("Navigate Event (" + cnrIDVar + ")");
     return;
   };
 
 }; // cnrItemClickHandler
 
-/**	Handles click event on Menu Counter */
-function cnrMenuCounterHandler() {
-  console.log("cnrMenuCounterHandler");
-};
-
-/**	Handles click event on Menu All */
-function cnrMenuAllHandler() {
-  cnrChangeViewMode('all');
-};
-
-/**	Handles click event on Menu Active */
-function cnrMenuActiveHandler() {
-  cnrChangeViewMode('active');
-};
-
-/**	Handles click event on Menu Completed */
-function cnrMenuCompletedHandler() {
-  cnrChangeViewMode('completed');
-};
-
 
 /* ************************************************************************* */
 // EVENT CONTROLLERS
 
-/**	Removes an item from the item list. 
- * Updates display element. 
- * Updates localStorage.
+/**	Gets data from local storage based on passed id. 
+ * Returns data as a string.
+ * Returns empty string on errors. 
 */
-function cnrRemoveItem(cnrItemIDParam) {
-  if (cnrItemIDParam == null || cnrItemIDParam == '') {
-    console.log("ERROR: cnrItemIDParam = ", cnrItemIDParam);
+function cnrGetLocalData(cnrDataIDParam) {
+  if (cnrDataIDParam === null || cnrDataIDParam === '') {
+    console.log("ERROR: cnrDataIDParam");
+    return '';
+  };
+
+  const cnrDataStringVar = cnrStorageModule.cnrLocalStorageRetrieve(cnrDataIDParam);
+  if (cnrDataStringVar === null || cnrDataStringVar === '') {
+    return '';
+  } else {
+    return cnrDataStringVar;
+  };
+}; // cnrGetLocalData
+
+/**	Gets data from remote location based on passed id. 
+ * Returns data as a string.
+ * Returns empty string on errors. 
+*/
+function cnrGetRemoteData(cnrDataIDParam) {
+  if (cnrDataIDParam === null || cnrDataIDParam === '') {
+    console.log("ERROR: cnrDataIDParam");
+    return '';
+  };
+
+  // STUB
+  console.log("WARNING: cnrGetRemoteData > Loading fake data");
+
+  const cnrHikeObject = {
+    cnrName: 'cnrName',
+    cnrImageURL: 'cnrImageURL',
+    cnrLocation: 'cnrLocation',
+    cnrRating: 'cnrRating',
+    cnrDifficulty: 'cnrDifficulty',
+    cnrDescription: 'cnrDescription',
+    cnrDirections: 'cnrDirections'
+  };
+  
+  const cnrJSONData = [cnrHikeObject];
+  const cnrFakeDataVar = JSON.stringify(cnrJSONData);
+  return cnrFakeDataVar;
+}; // cnrGetRemoteData
+
+/**	Loads data from passed string. */
+function cnrLoadData(cnrDataStringParam) {
+  // create new list
+  const cnrNewHikeList = new cnrHikesModule.cnrHikesClass();
+
+  // get cnrDataList object from JSON
+  const cnrDataJSONObject = JSON.parse(cnrDataStringParam);
+  const cnrDataJSONKeys = Object.keys(cnrDataJSONObject);
+  // get cnrDataItem objects
+  const cnrLength = cnrDataJSONKeys.length;
+  let cnrCounter = 0;
+  for (cnrCounter = 0; cnrCounter < cnrLength; ++cnrCounter){
+    const cnrDataItemVar = cnrDataJSONObject[cnrDataJSONKeys[cnrCounter]];    
+    if (cnrDataItemVar == null) { console.log("ERROR: cnrDataItemVar == null"); return; };
+    const cnrDataItemObject = Object.keys(cnrDataItemVar);
+    if (cnrDataItemObject == null) { console.log("ERROR: cnrDataItemObject == null"); return; };
+
+    // load new list
+    cnrNewHikeList.cnrHikesImportHike(cnrDataItemObject.cnrName, cnrDataItemObject.cnrImageURL, cnrDataItemObject.cnrLocation, cnrDataItemObject.cnrRating, cnrDataItemObject.cnrDifficulty, cnrDataItemObject.cnrDescription, cnrDataItemObject.cnrDirections);    
+  };
+
+  // save new loaded list
+  cnrHikes = cnrNewHikeList;
+
+  TODO needs imageurl parameter
+  console.log("TEST: " + cnrHikes);
+  console.table(cnrHikes);
+
+  // refresh display
+  cnrRenderData(document.getElementById("cnrjscontainerdiv1"));
+}; // cnrLoadData
+
+/**	Navigates based on passed id. */
+function cnrNavigate(cnrIDParam) {
+  if (cnrIDParam == null || cnrIDParam == '') {
+    console.log("ERROR: cnrIDParam = ", cnrIDParam);
     return;
   };
 
-  // remove from list
-  const cnrRemovedItemVar = cnrDataList.cnrDataListRemoveItemForID(cnrItemIDParam);
-  if (cnrRemovedItemVar == null || cnrRemovedItemVar == '') {
-    console.log("ERROR: cnrRemovedItemVar == null || cnrRemovedItemVar == ''");
-  };
+  // navigate
+  
   
   // refresh display
-  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
+  cnrRenderData(document.getElementById("cnrjscontainerdiv1"));
 
-}; // cnrRemoveItem
-
-/**	Updates an item status by UUID. 
- * Updates display element. 
-*/
-function cnrUpdateStatus(cnrItemIDParam) {
-  if (cnrItemIDParam == null || cnrItemIDParam == '') {
-    console.log("ERROR: cnrItemIDParam = ", cnrItemIDParam);
-    return;
-  };
-
-  // update status
-  const cnrStatusItemVar = cnrDataList.cnrDataListUpdateItemStatusForID(cnrItemIDParam);
-  if (cnrStatusItemVar == null || cnrStatusItemVar == '') {
-    console.log("cnrStatusItemVar == null || cnrStatusItemVar == ''");
-  };
-  
-  // refresh display
-  cnrChangeViewMode('all');
-  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
-
-}; // cnrUpdateStatus
+}; // cnrNavigate
 
 
 /* ************************************************************************* */
 // DISPLAY CONTROLLERS
 
-/**	Changes the view mode flag (cnrViewModeFlag). 
- * Updates display element. 
- * Modes: all, active, completed.
-*/
-function cnrChangeViewMode(cnrViewModeParam) {
-  if (cnrViewModeParam == null || cnrViewModeParam == '') {
-    console.log("ERROR: cnrViewModeParam = ", cnrViewModeParam);
-    return;
-  };
-  if (cnrViewModeParam != 'all' &&
-    cnrViewModeParam != 'active' &&
-    cnrViewModeParam != 'completed') {
-      console.log("ERROR: Unknown cnrViewModeParam (" + cnrViewModeParam + ")");
-      return;
-  };
-
-  // update view mode flag
-  cnrViewModeFlag = cnrViewModeParam;
-
-  // refresh display
-  cnrDataRenderItems(document.getElementById("cnrjscontainerdiv1"));
-
-}; // cnrChangeViewMode
-
-/**	Updates main menu view from mode flag (cnrViewModeFlag). */
-function cnrUpdateMenuView() {
-  // get menu handlers
-  const cnrMenuAllVar = document.getElementById('cnrmenuallitemsdiv');
-  const cnrMenuActiveVar = document.getElementById('cnrmenuactiveitemsdiv');
-  const cnrMenuCompletedVar = document.getElementById('cnrmenucompleteditemsdiv');
-
-  // process view mode
-  switch (cnrViewModeFlag) {
-    case 'all':
-      cnrMenuAllVar.classList.add('cnrmenuselected');
-      cnrMenuActiveVar.classList.remove('cnrmenuselected');
-      cnrMenuCompletedVar.classList.remove('cnrmenuselected');
-      break;
-    
-    case 'active':
-      cnrMenuAllVar.classList.remove('cnrmenuselected');
-      cnrMenuActiveVar.classList.add('cnrmenuselected');
-      cnrMenuCompletedVar.classList.remove('cnrmenuselected');
-      break;
-    
-    case 'completed':
-      cnrMenuAllVar.classList.remove('cnrmenuselected');
-      cnrMenuActiveVar.classList.remove('cnrmenuselected');
-      cnrMenuCompletedVar.classList.add('cnrmenuselected');
-      break;
-  
-    default:
-      cnrMenuAllVar.classList.remove('cnrmenuselected');
-      cnrMenuActiveVar.classList.remove('cnrmenuselected');
-      cnrMenuCompletedVar.classList.remove('cnrmenuselected');
-      break;
-  };
-
-}; // cnrUpdateMenuView
-
 /**	Finds entries for passed key in passed list of data items.
  * Requests the rendering of each entry in a selected element object. */
-function cnrDataRenderItems(cnrContainerElementParam) {
-
+function cnrRenderData(cnrContainerElementParam) {
   // update storage
-  cnrUpdateStorage();
+  // cnrUpdateStorage();
 
   // clear display
-  cnrClearDisplay();
-  if (cnrDataList == null || cnrDataList == '') {
-    console.log("ERROR: cnrTODOList = ", cnrDataList);
-    return;
-  };
+  cnrClearElement("cnrjscontainerdiv1");
   
-  // prepare task counters
-  const cnrTotalItemCountVar = cnrDataList.cnrDataListGetItemCount();
-  const cnrActiveItemCountVar = cnrDataList.cnrDataListGetActiveItemCount();
-  let cnrCompletedCountVar = cnrTotalItemCountVar - cnrActiveItemCountVar;
-  if (cnrCompletedCountVar <= 0) {cnrCompletedCountVar = 0;};
-  // prepare task count elements
-  const cnrMenuCounterVar = document.getElementById('cnrmenuitemcountdiv');
-  // leave if list is empty
-  if (cnrDataList.cnrDataListGetItemCount() <= 0) { cnrMenuCounterVar.innerText = 'No tasks'; return; };
-  let cnrTotalCountLabelVar = '';
-  let cnrActiveCountLabelVar = '';
-  let cnrCompletedCountLabelVar = '';
-  if (cnrTotalItemCountVar <= 0) {cnrTotalCountLabelVar = `No tasks`;};
-  if (cnrTotalItemCountVar > 1) {cnrTotalCountLabelVar = `${cnrTotalItemCountVar} tasks`;};
-  if (cnrTotalItemCountVar == 1) {cnrTotalCountLabelVar = `${cnrTotalItemCountVar} task`;};
-  if (cnrActiveItemCountVar <= 0) {cnrActiveCountLabelVar = `No tasks`;};
-  if (cnrActiveItemCountVar > 1) {cnrActiveCountLabelVar = `${cnrActiveItemCountVar} tasks`;};
-  if (cnrActiveItemCountVar == 1) {cnrActiveCountLabelVar = `${cnrActiveItemCountVar} task`;};
-  if (cnrCompletedCountVar <= 0) {cnrCompletedCountLabelVar = `No tasks`;};
-  if (cnrCompletedCountVar > 1) {cnrCompletedCountLabelVar = `${cnrCompletedCountVar} tasks`;};
-  if (cnrCompletedCountVar == 1) { cnrCompletedCountLabelVar = `${cnrCompletedCountVar} task`; };
+  // abort if list is empty
+  if (cnrHikes.cnrHikesGetCount() <= 0) { return; };
   
   // update display
-  console.log("cnrViewModeFlag = ", cnrViewModeFlag);
-  console.table(cnrDataList.cnrDataListGetItems());
+  console.table(cnrHikes.cnrHikesGetArray());
   
   // parse items
-  const cnrLength = cnrTotalItemCountVar;
+  const cnrLength = cnrHikes.cnrHikesGetCount();
   let cnrCounter = 0;
   for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++) {
-    // get status
-    const cnrStatusElementVar = cnrDataList.cnrDataListGetItemStatusForIndex(cnrCounter);
-    // get id
-    const cnrDataItemIDVar = cnrDataList.cnrDataListGetItemIDForIndex(cnrCounter);
-    // get data
-    const cnrItemData = cnrDataList.cnrDataListGetItemDataForIndex(cnrCounter)
-    const cnrDataObject = JSON.parse(cnrItemData);
-    if (cnrDataObject == null || cnrDataObject == '') {
-      console.log("ERROR: cnrDataItemObject = ", cnrDataObject);
-      return;
-    };
-    const cnrDataStatusVar = cnrDataList.cnrDataListGetItemStatusForIndex(cnrCounter);
-    const cnrDataTitleVar = cnrDataObject.cnrTaskTitle;
-
     // render data
     const cnrJSContentDivVar = document.createElement('div');
     cnrJSContentDivVar.classList.add('cnrjscontentdivs');
-    cnrJSContentDivVar.id = cnrDataItemIDVar;
+    cnrJSContentDivVar.id = cnrHikes.cnrHikesGetIDForIndex(cnrCounter);
     cnrJSContentDivVar.onclick = cnrItemClickHandler;
+    cnrJSContentDivVar.innerHTML = `
+      <div class="carddivs">
+        <div class="headerdivs">
+          <p class="headertitles">${cnrHikes.cnrHikesGetNameForIndex(cnrCounter)}</p>
+        </div>
+        <div class="gridcontainerdivs">
+          <div class="gridcelldivs">
+            <div class="imagedivs">
+                <img class="images" src=${cnrHikes.cnrHikesGet(cnrCounter)} alt="Image">
+            </div>
+          </div>
+          <div class="gridcelldivs">
+            <div class="hikeinfodivs">
+              <div class="hikebasicinfodivs">
+                <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
+                <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
+                <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
+                <a class="detailslinks" href="../../html/w07/w07hike.html?${cnrEncodedStringVar}">Details</a>
+              </div>
+              <div class="hikefullinfodivs">
+                <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
+                <p><b>cnrDirections:</b></p><p>Go north . . .</p>
+                <p><b>cnrDescription:</b></p><p>blah blah blah . . .</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
 
-    // process view mode
-    switch (cnrViewModeFlag) {
-      case 'all':
-        // update task count view
-        cnrMenuCounterVar.innerText = cnrTotalCountLabelVar;
-        // update menu view
-        cnrUpdateMenuView();
-        // create content elements
-        if (cnrStatusElementVar == 'X') {
-          cnrJSContentDivVar.innerHTML = `
-            <div class="cnrjsstatusdivs cnrjsstatusdivscompleted">${cnrDataStatusVar}</div>
-            <div class="cnrjstaskdivs cnrjstaskdivscompleted">${cnrDataTitleVar}</div>
-            <div class="cnrjsdeleteitemdivs">X</div>
-          `;
-        } else {
-          cnrJSContentDivVar.innerHTML = `
-            <div class="cnrjsstatusdivs">${cnrDataStatusVar}</div>
-            <div class="cnrjstaskdivs">${cnrDataTitleVar}</div>
-            <div class="cnrjsdeleteitemdivs">X</div>
-          `;
-        };
-        break;
-      
-      case 'active':
-        // update task count view
-        cnrMenuCounterVar.innerText = cnrActiveCountLabelVar;
-        // update menu view
-        cnrUpdateMenuView();
-        // create content elements
-        if (cnrStatusElementVar == 'X') {
-          continue;
-        } else {
-          cnrJSContentDivVar.innerHTML = `
-            <div class="cnrjsstatusdivs">${cnrDataStatusVar}</div>
-            <div class="cnrjstaskdivs">${cnrDataTitleVar}</div>
-            <div class="cnrjsdeleteitemdivs">X</div>
-          `;
-        };
-        break;
-      
-      case 'completed':
-        // update task count view
-        cnrMenuCounterVar.innerText = cnrCompletedCountLabelVar;
-        // update menu view
-        cnrUpdateMenuView();
-        // create content elements
-        if (cnrStatusElementVar == 'X') {
-          cnrJSContentDivVar.innerHTML = `
-            <div class="cnrjsstatusdivs cnrjsstatusdivscompleted">${cnrDataStatusVar}</div>
-            <div class="cnrjstaskdivs cnrjstaskdivscompleted">${cnrDataTitleVar}</div>
-            <div class="cnrjsdeleteitemdivs">X</div>
-          `;
-        } else {
-          continue;
-        };
-        break;
-    
-      default:
-        console.log("ERROR: cnrViewModeFlag = ", cnrViewModeFlag);
-        return;
-        break;
-    };
-    
     // render item
     cnrContainerElementParam.appendChild(cnrJSContentDivVar);
     cnrJSContentDivVar.scrollIntoView({behavior: 'smooth'});
   };
 
-}; // cnrDataRenderItems
+}; // cnrRenderData
+
+function cnrRenderHike(cnrHikeParam) {
+  const cnrHikeObject = {
+    cnrName: cnrHikeParam.cnrName,
+    cnrImageURL: cnrHikeParam.cnrImageURL,
+    cnrLocation: cnrHikeParam.cnrLocation,
+    cnrRating: cnrHikeParam.cnrRating,
+    cnrDifficulty: cnrHikeParam.cnrDifficulty,
+    cnrDescription: cnrHikeParam.cnrDescription,
+    cnrDirections: cnrHikeParam.cnrDirections
+  };
+  const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
+  
+  const cnrCardDivVar = document.createElement('div');
+  cnrCardDivVar.classList.add('carddivs');
+  cnrCardDivVar.innerHTML = `
+    <div class="carddivs">
+      <div class="headerdivs">
+        <p class="headertitles">${cnrHikeParam.cnrName}</p>
+      </div>
+      <div class="gridcontainerdivs">
+        <div class="gridcelldivs">
+          <div class="imagedivs">
+              <img class="images" src=${cnrHikeParam.cnrImageURL} alt="Image">
+          </div>
+        </div>
+        <div class="gridcelldivs">
+          <div class="hikeinfodivs">
+            <div class="hikebasicinfodivs">
+              <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
+              <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
+              <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
+              <a class="detailslinks" href="../../html/w07/w07hike.html?${cnrEncodedStringVar}">Details</a>
+            </div>
+            <div class="hikefullinfodivs">
+              <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
+              <p><b>cnrDirections:</b></p><p>Go north . . .</p>
+              <p><b>cnrDescription:</b></p><p>blah blah blah . . .</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`;
+
+  return cnrCardDivVar;
+}; // cnrRenderHike
 
 /**	Removes all items from display element. */
-function cnrClearDisplay() {
+function cnrClearElement(cnrElementIDParam) {
   // console.clear();
-  // remove from display element
-  const cnrContainerElementVar = document.getElementById("cnrjscontainerdiv1");
+  // remove from element
+  const cnrContainerElementVar = document.getElementById(cnrElementIDParam);
   while (cnrContainerElementVar.firstChild) {
     cnrContainerElementVar.removeChild(cnrContainerElementVar.firstChild);
   };
-}; // cnrClearDisplay
+}; // cnrClearElement
 
 /* ************************************************************************* */
 // STORAGE CONTROLLERS
 
-/**	Updates localStorage from cnrDataListClass. */
+/**	Updates localStorage. */
 function cnrUpdateStorage() {
+  const cnrDataJSONStringVar = cnrHikes.cnrHikesGetJSONString();
+  if (cnrDataJSONStringVar === null || cnrDataJSONStringVar === '') {
+    console.log("ERROR: cnrHikes.cnrHikesGetJSONString");
+    return;
+  };
+
   if (cnrStorageModule.cnrLocalStorageHasKey('cnrDataList')) {
-    cnrStorageModule.cnrLocalStorageUpdate('cnrDataList', cnrDataList.cnrDataListGetJSONString());
+    cnrStorageModule.cnrLocalStorageUpdate('cnrDataList', cnrDataJSONStringVar);
   } else {
     if (cnrDataList.cnrDataListGetItemCount() > 0) {
-      cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrDataList.cnrDataListGetJSONString());
+      cnrStorageModule.cnrLocalStorageCreate('cnrDataList', cnrDataJSONStringVar);
     };
   };
 }; // cnrUpdateStorage
