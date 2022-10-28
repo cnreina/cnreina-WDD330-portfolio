@@ -42,31 +42,27 @@ function cnrRenderOneHike(cnrHikeParam) {
   
   // prepare hike element
   const cnrCardDivVar = document.createElement('div');
-  cnrCardDivVar.classList.add('carddivs');
+  cnrCardDivVar.classList.add('cnrjscontentdivs');
   cnrCardDivVar.innerHTML = `
-    <div class="carddivs">
-      <div class="headerdivs">
-        <p class="headertitles">${cnrHikeParam.cnrName}</p>
-      </div>
-      <div class="gridcontainerdivs">
-        <div class="gridcelldivs">
-          <div class="imagedivs">
-              <img class="images" src=${cnrHikeParam.cnrImageURL} alt="Image">
-          </div>
+    <div class="cnrcardheaderdivs">
+      <p class="cnrcardheadertitles">${cnrHikeParam.cnrName}</p>
+    </div>
+    <div class="cnrcardcontentdivs">
+      <div class="cnrcardcelldivs">
+        <div class="cnrcardimagedivs">
+            <img class="cnrcardimages" src=${cnrHikeParam.cnrImageURL} alt="Image">
         </div>
-        <div class="gridcelldivs">
-          <div class="hikeinfodivs">
-            <div class="hikebasicinfodivs">
-              <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
-              <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
-              <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
-              <a class="detailslinks" href="${cnrHikeURL}?${cnrEncodedStringVar}">Details</a>
-            </div>
-            <div class="hikefullinfodivs">
-              <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
-              <p><b>cnrDirections:</b></p><p>Go north . . .</p>
-              <p><b>cnrDescription:</b></p><p>blah blah blah . . .</p>
-            </div>
+      </div>
+      <div class="cnrcardcelldivs">
+        <div class="cnrcardinfodivs">
+          <div class="cnrcardbasicinfodivs">
+            <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
+            <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
+            <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
+            <a class="cnrcarddetailslinks" href="${cnrHikeURL}?${cnrEncodedStringVar}">Details</a>
+          </div>
+          <div class="cnrcardfullinfodivs">
+            <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>
           </div>
         </div>
       </div>

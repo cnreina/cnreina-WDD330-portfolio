@@ -58,7 +58,7 @@ html, body {
   font-size: 100%;
   width: 100%;
 }
-.copyright {
+.cnrcopyright {
   padding: 0px;
   margin: 0px;
   color: rgb(152, 138, 138);
@@ -67,7 +67,7 @@ html, body {
 }
 hr {
   padding: 0px;
-  margin: 0px;
+  margin: 10px;
 }
 
 /*	MAIN */
@@ -101,24 +101,6 @@ hr {
   text-align: center;
 }
 
-/* .cnrinfodivs {
-  width: 100%;
-  height: 60px;
-  padding: 8px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(77, 75, 75, 0.8);
-  background-color: rgb(141, 141, 138);
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: center;
-}
-.cnrinfodivs p {
-  padding: 0px;
-  margin: 0px;
-  text-align: center;
-  font-size: 2.2em;
-} */
-
 /*	JS CONTAINER */
 .cnrjscontainerdivs {
   padding: 0px;
@@ -130,7 +112,7 @@ hr {
   grid-template-columns: 100%;
   justify-content: center;
 }
-.scrollable {
+.cnrjsscrollable {
   max-height: 70%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -146,45 +128,9 @@ hr {
   border-top: 1px solid rgba(99, 96, 96, 0.8);
   border-right: 1px solid rgba(99, 96, 96, 0.8);
 }
-.cnrjsstatusdivs{
-  display: grid;
-  grid-template-columns: 100%;
-  align-content: center;
-  text-align: center;
-  padding: 0px;
-  margin: 1px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  font-size: 0px;
-}
 
-
-/*	HIKES */
-
-.infodivs {
-  width: 100%;
-  height: 60px;
-  padding: 8px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(77, 75, 75, 0.8);
-  background-color: rgb(141, 141, 138);
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: center;
-}
-.infodivs p {
-  padding: 0px;
-  margin: 0px;
-  text-align: center;
-  font-size: 2.2em;
-}
-
-.carddivs {
-  width: 100%;
-  height: auto;
-  padding: 0px;
-  margin-bottom: 8px;
-}
-.headerdivs {
+/*	CARDS */
+.cnrcardheaderdivs {
   width: 100%;
   height: 32px;
   padding: 0px;
@@ -192,15 +138,14 @@ hr {
   border: 1px solid rgba(0, 0, 0, 0.8);
   background-color: rgb(220, 220, 216);
 }
-.headertitles {
+.cnrcardheadertitles {
   padding: 0px;
   margin: 0px;
   text-align: center;
   font-size: 1.6em;
   color:rgb(43, 39, 39);
 }
-
-.gridcontainerdivs {
+.cnrcardcontentdivs {
   width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -208,12 +153,11 @@ hr {
   padding: 0px;
   margin: 0px;
 }
-.gridcelldivs {
+.cnrcardcelldivs {
   padding: 0px;
   margin: 12px;
 }
-
-.imagedivs {
+.cnrcardimagedivs {
   display: grid;
   grid-template-columns: 80%;
   justify-content: center;
@@ -221,30 +165,29 @@ hr {
   padding: 0px;
   margin: 0px;
 }
-.images {
+.cnrcardimages {
   width: 100%;
   height: auto;
 }
-
-.hikeinfodivs {
+.cnrcardinfodivs {
   width: 100%;
   height: auto;
   padding: 0px;
   margin: 0px;
 }
-.hikebasicinfodivs {
+.cnrcardbasicinfodivs {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-.hikebasicinfodivs p {
+.cnrcardbasicinfodivs p {
   padding: 1px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
 }
-.hikefullinfodivs {
+.cnrcardfullinfodivs {
   display: none;
 }
