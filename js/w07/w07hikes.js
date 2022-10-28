@@ -5,6 +5,7 @@
 
 
 /* ************************************************************************* */
+// INITIALIZE
 
 const cnrHikeURL = "../../html/w07/w07hike.html";
 
@@ -36,7 +37,8 @@ function cnrRenderOneHike(cnrHikeParam) {
     cnrRating: cnrHikeParam.cnrRating,
     cnrDifficulty: cnrHikeParam.cnrDifficulty,
     cnrDescription: cnrHikeParam.cnrDescription,
-    cnrDirections: cnrHikeParam.cnrDirections
+    cnrDirections: cnrHikeParam.cnrDirections,
+    cnrComments: cnrHikeParam.cnrComments
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrHikeObject).toString();
   

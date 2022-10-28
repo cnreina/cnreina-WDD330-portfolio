@@ -79,7 +79,6 @@ hr {
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
-  background-color: rgb(182, 191, 210);
 }
 .cnrmaindivs {
   width: 360px;
@@ -99,6 +98,8 @@ hr {
   justify-content: center;
   font-size: xx-large;
   text-align: center;
+  background-color: rgb(247, 241, 241);
+  border: 1px solid rgba(225, 222, 222, 0.8);
 }
 
 /*	JS CONTAINER */
@@ -106,27 +107,23 @@ hr {
   padding: 0px;
   margin: 0px;
   width: 100%;
-  /* height: auto; */
   min-height: 42px;
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
 }
 .cnrjsscrollable {
-  max-height: 70%;
+  max-height: 80%;
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 /*	JS CONTENT */
 .cnrjscontentdivs {
   width: 100%;
   height: auto;
   padding: 4px;
   margin: 0px;
-  border-left: 1px solid rgba(99, 96, 96, 0.8);
-  border-top: 1px solid rgba(99, 96, 96, 0.8);
-  border-right: 1px solid rgba(99, 96, 96, 0.8);
+  background-color: rgb(247, 241, 241);
 }
 
 /*	CARDS */
@@ -135,8 +132,8 @@ hr {
   height: 32px;
   padding: 0px;
   margin: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  background-color: rgb(220, 220, 216);
+  border: 1px solid rgba(176, 174, 174, 0.8);
+  background-color: rgb(220, 216, 216);
 }
 .cnrcardheadertitles {
   padding: 0px;

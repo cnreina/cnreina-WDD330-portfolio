@@ -5,18 +5,17 @@
 
 
 /* ************************************************************************* */
-
 // INITIALIZE
 
 const cnrHikesURL = "../../html/w07/w07hikes.html";
 
 window.onload = function () {
   // init event listeners
-  const cnrDetailsLinksVar = document.querySelectorAll('.backlinks');
+  const cnrDetailsLinksVar = document.querySelectorAll('.cnrbacklinks');
   for (const cnrDetailsLinkVar of cnrDetailsLinksVar) {
     const gridContainer = document.getElementById('gridcontainer');
     if ("ontouchend" in document.documentElement) {
-      console.log("Using touchend");
+      console.log("Using touch");
       cnrDetailsLinkVar.addEventListener('touchend', cnrBackLinksClickHandler);
     }
     else {
@@ -30,13 +29,14 @@ window.onload = function () {
 
 // EVENT HANDLERS
 function cnrWindowOnLoadHandler() {
-  document.getElementById('headertitle').innerText = cnrGetQueryStringValue('cnrName');
-  document.getElementById('image').setAttribute('src', cnrGetQueryStringValue('cnrImageURL'));
-  document.getElementById('location').innerText = cnrGetQueryStringValue('cnrLocation');
-  document.getElementById('rating').innerText = cnrGetQueryStringValue('cnrRating');
-  document.getElementById('difficulty').innerText = cnrGetQueryStringValue('cnrDifficulty');
-  document.getElementById('directions').innerText = cnrGetQueryStringValue('cnrDirections');
-  document.getElementById('description').innerText = cnrGetQueryStringValue('cnrDescription');
+  document.getElementById('cnrcardheadertitle').innerText = cnrGetQueryStringValue('cnrName');
+  document.getElementById('cnrcardimage').setAttribute('src', cnrGetQueryStringValue('cnrImageURL'));
+  document.getElementById('cnrlocation').innerText = cnrGetQueryStringValue('cnrLocation');
+  document.getElementById('cnrrating').innerText = cnrGetQueryStringValue('cnrRating');
+  document.getElementById('cnrdifficulty').innerText = cnrGetQueryStringValue('cnrDifficulty');
+  document.getElementById('cnrdirections').innerText = cnrGetQueryStringValue('cnrDirections');
+  document.getElementById('cnrdescription').innerText = cnrGetQueryStringValue('cnrDescription');
+
 };
 
 function cnrBackLinksClickHandler(cnrEventParam) {
