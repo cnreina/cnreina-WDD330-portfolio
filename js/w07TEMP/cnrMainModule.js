@@ -157,6 +157,7 @@ function cnrLoadData(cnrDataStringParam) {
   cnrHikes = cnrNewHikeList;
 
   TODO needs imageurl parameter
+  
   console.log("TEST: " + cnrHikes);
   console.table(cnrHikes);
 
