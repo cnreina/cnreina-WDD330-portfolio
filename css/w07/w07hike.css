@@ -113,7 +113,7 @@ hr {
   justify-content: center;
 }
 .cnrjsscrollable {
-  max-height: 80%;
+  /* max-height: 80%; */
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -206,7 +206,7 @@ hr {
   width: 100%;
   padding: 0px;
   margin-bottom: 4px;
-  height: auto;
+  height: 200px;
 }
 .cnrcardcommentcontainerdivs p {
   padding: 1px;
@@ -246,7 +246,7 @@ hr {
   margin: 0px;
 }
 .cnrinputscrollable {
-  max-height: 80px;
+  /* max-height: 80px; */
   overflow-x: hidden;
   overflow-y: auto;
 }
