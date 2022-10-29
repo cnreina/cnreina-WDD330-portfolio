@@ -7,7 +7,7 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-export default class cnrCommentsClass {
+export class cnrCommentsClass {
   constructor() {};
 
   cnrGetAllComments() { return cnrCommentsList; };
@@ -18,7 +18,7 @@ export default class cnrCommentsClass {
 
     return cnrCommentsForIDVar;
   };
-  
+
 }; // cnrCommentsClass
 
 const cnrCommentsList = [

@@ -59,20 +59,34 @@
                               <p><b>Dificulty:</b></p><p id="cnrdifficulty"></p>
                            </div>
                            <div class="cnrcardfullinfodivs">
-                              <p><b>Description:</b></p><p id="cnrdescription"></p> <!-- javascript -->
+                              <p><b>Description:</b></p><p class="cnrtextscrollable" id="cnrdescription"></p> <!-- javascript -->
                            </div>
-                           <div class="cnrcardfullinfodivs">
-                              <p><b>Directions:</b></p><p class="cnrjsscrollable" id="cnrdirections"></p> <!-- javascript -->
+                           <div class="cnrcardfullinfodivs cnrjsscrollable">
+                              <p><b>Directions:</b></p><p class="cnrtextscrollable" id="cnrdirections"></p> <!-- javascript -->
                            </div>
 
                            <div class="cnrcardcommentcontainerdivs">
                               <p><b>Comments:</b></p>
-                              <div class="cnrjsscrollable" id="cnrcomments">Test</div>
-                              <!-- javascript -->
+                              <div class="cnrjsscrollable" id="cnrcomments">
+                                 <!-- javascript -->
+                              </div>
+                           </div>
+                           <!-- comment form -->
+                           <div id="cnrcommentformdiv">
+                              <form id='cnrcommentform'>
+                                 <div>
+                                    <textarea class="cnrinputscrollable" id="cnrcommentinput" name="cnrcommentinput" rows="6" cols="30" placeholder='Add a comment here . . .' maxlength=1024></textarea>
+                                 </div>
+                                 <div>
+                                    <button class="cnrcommentbuttons" id="cnrcommentsubmitbutton" type='submit' disabled>Submit</button>
+                                 </div>
+                              </form>
                            </div>
 
                         </div>
-                        <a class="cnrbacklinks" href="../../html/w07/w07hikes.html">Back to list</a>
+                        <div class="cnrbacklinkdivs" id="cnrbacklinkdiv">
+                           <a class="cnrbacklinks" href="../../html/w07/w07hikes.html">Back to list</a>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -80,6 +94,6 @@
          </section>
       </main>
 
-      <script src="../../js/w07/w07hike.js"></script>
+      <script src="../../js/w07/w07hike.js" type="module"></script>
    </body>
 </html>

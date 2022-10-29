@@ -6,12 +6,11 @@
 
 /* ************************************************************************* */
 
-import cnrHikesClass from '../w07/w07hikes.js';
-import cnrCommentsClass from '../w07/w07comments.js';
+import * as cnrHikes from './w07hikes.js';
+import * as cnrDisplay from './w07display.js';
 
 // INITIALIZE
 window.onload = function() {
-  const cnrHikes = new cnrHikesClass();
-  cnrHikes.cnrDisplayHikeList('cnrjscontainerdiv1');
-
+  const cnrHikesVar = new cnrHikes.cnrHikesClass();
+  cnrDisplay.cnrRenderItems('cnrjscontainerdiv1', cnrHikesVar.cnrGetAllHikes());
 };

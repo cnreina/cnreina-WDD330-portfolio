@@ -3,17 +3,44 @@
 */
 
 
-/* ************************************************************************* */
-// INITIALIZE
+/* ************************************************************************* 
+INITIALIZE */
 
-export function cnrRenderItems(cnrContainerElementParam, cnrItemListParam) {
-  cnrItemListParam.forEach(cnrItemVar => {
+const cnrHikeURL = "../../html/w07/w07hike.html";
+
+/* ************************************************************************* 
+ITEMS */
+
+export function cnrRenderItems(cnrContainerElementParam, cnrItemsParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderItems > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrItemsParam === null || cnrItemsParam === '') {
+    console.log("ERROR: cnrRenderItems > cnrItemsParam", cnrItemsParam);
+    return;
+  };
+
+  cnrItemsParam.forEach(cnrItemVar => {
     cnrRenderItem(cnrContainerElementParam, cnrItemVar);
   });
-};
+}; // cnrRenderItems
 
-function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
+export function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderItem > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrItemParam === null || cnrItemParam === '') {
+    console.log("ERROR: cnrRenderItem > cnrItemParam", cnrItemParam);
+    return;
+  };
+
   const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrRenderItem > cnrContainerElementVar", cnrContainerElementVar);
+    return;
+  };
 
   // prepare querystring data sent to hike detail page
   const cnrItemObject = {
@@ -59,3 +86,72 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   // render element
   cnrContainerElementVar.appendChild(cnrCardDivVar);
 }; // cnrRenderItem
+
+
+/* ************************************************************************* 
+COMMENTS */
+
+export function cnrRenderComments(cnrContainerElementParam, cnrCommentsParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrCommentsParam === null || cnrCommentsParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentsParam);
+    return;
+  };
+
+  cnrCommentsParam.forEach(cnrCommentVar => {
+    cnrRenderComment(cnrContainerElementParam, cnrCommentVar);
+  });
+}; // cnrRenderComments
+
+export function cnrRenderCommentsForID(cnrContainerElementParam, cnrCommentsParam, cnrIDParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrCommentsParam === null || cnrCommentsParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentsParam);
+    return;
+  };
+  if (cnrIDParam === null || cnrIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrIDParam", cnrIDParam);
+    return;
+  };
+
+  cnrCommentsParam.forEach(cnrCommentVar => {
+    if (cnrCommentVar.cnrID.toString() === cnrIDParam.toString()) {
+      cnrRenderComment(cnrContainerElementParam, cnrCommentVar);
+    };
+  });
+}; // cnrRenderCommentsForID
+
+export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderComment > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrCommentParam === null || cnrCommentParam === '') {
+    console.log("ERROR: cnrRenderComment > cnrCommentParam", cnrCommentParam);
+    return;
+  };
+
+  const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrRenderComment > cnrContainerElementVar", cnrContainerElementVar);
+    return;
+  };
+
+  // prepare element
+  const cnrCardDivVar = document.createElement('div');
+  cnrCardDivVar.classList.add('cnrcardcommentdivs');
+  cnrCardDivVar.innerHTML = `
+    <p>${cnrCommentParam.cnrID}</p>
+    <p>${cnrCommentParam.cnrDate}</p>
+    <p>${cnrCommentParam.cnrComment}</p>
+  `;
+  
+  // render element
+  cnrContainerElementVar.appendChild(cnrCardDivVar);
+}; // cnrRenderComment
