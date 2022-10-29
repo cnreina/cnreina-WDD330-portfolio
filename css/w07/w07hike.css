@@ -206,12 +206,28 @@ hr {
   width: 100%;
   padding: 0px;
   margin-bottom: 4px;
+  height: auto;
 }
 .cnrcardcommentcontainerdivs p {
   padding: 1px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
+}
+.cnrcardcommentdivs {
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100%;
+  padding: 2px;
+  margin-bottom: 8px;
+  background-color: rgb(224, 232, 233);
+}
+.cnrcardcommentdates {
+  color: rgba(2, 72, 72, 0.992);
+  text-decoration: underline;
+}
+.cnrcardcommenttexts {
+  color: rgba(32, 34, 35, 0.992);
 }
 #cnrcommentformdiv {
   display: grid;
@@ -265,4 +281,6 @@ hr {
   max-height: 50px;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: rgb(224, 232, 233);
+  padding: 2px;
 }

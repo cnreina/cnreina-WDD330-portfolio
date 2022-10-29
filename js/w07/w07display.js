@@ -106,23 +106,23 @@ export function cnrRenderComments(cnrContainerElementParam, cnrCommentsParam) {
   });
 }; // cnrRenderComments
 
-export function cnrRenderCommentsForID(cnrContainerElementParam, cnrCommentsParam, cnrIDParam) {
-  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerElementParam);
+export function cnrRenderCommentsForID(cnrContainerIDParam, cnrCommentTextParam, cnrCommentIDParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerIDParam);
     return;
   };
-  if (cnrCommentsParam === null || cnrCommentsParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentsParam);
+  if (cnrCommentTextParam === null || cnrCommentTextParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentTextParam);
     return;
   };
-  if (cnrIDParam === null || cnrIDParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrIDParam", cnrIDParam);
+  if (cnrCommentIDParam === null || cnrCommentIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrIDParam", cnrCommentIDParam);
     return;
   };
 
-  cnrCommentsParam.forEach(cnrCommentVar => {
-    if (cnrCommentVar.cnrID.toString() === cnrIDParam.toString()) {
-      cnrRenderComment(cnrContainerElementParam, cnrCommentVar);
+  cnrCommentTextParam.forEach(cnrCommentVar => {
+    if (cnrCommentVar.cnrID.toString() === cnrCommentIDParam.toString()) {
+      cnrRenderComment(cnrContainerIDParam, cnrCommentVar);
     };
   });
 }; // cnrRenderCommentsForID
@@ -146,10 +146,10 @@ export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
   // prepare element
   const cnrCardDivVar = document.createElement('div');
   cnrCardDivVar.classList.add('cnrcardcommentdivs');
+  // cnrCardDivVar.classList.add('cnrtextscrollable');
   cnrCardDivVar.innerHTML = `
-    <p>${cnrCommentParam.cnrID}</p>
-    <p>${cnrCommentParam.cnrDate}</p>
-    <p>${cnrCommentParam.cnrComment}</p>
+    <p class="cnrcardcommentdates">${cnrCommentParam.cnrDate}</p>
+    <p class="cnrcardcommenttexts">${cnrCommentParam.cnrComment}</p>
   `;
   
   // render element

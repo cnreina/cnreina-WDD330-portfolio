@@ -9,7 +9,9 @@
 
 import * as cnrDisplay from './w07display.js';
 import * as cnrComments from './w07comments.js';
+import * as cnrStorage from './w07storage.js';
 
+const cnrCommentsObject = new cnrComments.cnrCommentsClass();
 const cnrHikesURL = "../../html/w07/w07hikes.html";
 
 window.onload = function () {
@@ -37,7 +39,10 @@ window.onload = function () {
   cnrWindowOnLoadHandler();
 };
 
+
+/* ************************************************************************* */
 // EVENT HANDLERS
+
 function cnrWindowOnLoadHandler() {
   // get query string data
   const cnrNameVar = cnrGetQueryStringValue('cnrName');
@@ -78,27 +83,41 @@ function cnrInputKeyUpHandler(cnrEventParam) {
 
 function cnrSubmitClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  // get comment
-  const cnrInputVar = document.getElementById('cnrcommentinput').value;
+  // get input
+  const cnrInputVar = document.getElementById('cnrcommentinput');
   if (cnrInputVar === null) {
     console.log("ERROR: cnrSubmitClickHandler > cnrInputVar", cnrInputVar);
     return;
   };
-  if (cnrInputVar === '') {
+
+  // add comment
+  const cnrInputValueVar = cnrInputVar.value;
+  if (cnrInputValueVar === null || cnrInputValueVar === '') { return; };
+  const cnrInputIDVar = cnrGetQueryStringValue('cnrName');
+  const cnrNewCommentObject = cnrCommentsObject.cnrAddComment(cnrInputIDVar, cnrInputValueVar);
+  if (cnrNewCommentObject === null || cnrNewCommentObject === '') {
+    console.log("ERROR: w07hike.js > cnrSubmitClickHandler > cnrNewCommentObject", cnrNewCommentObject);
     return;
   };
-  // process comment
-  cnrAddComment(cnrInputVar);
+
+  // update display
+  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsObject.cnrGetAllComments(), cnrInputIDVar);
+
+  // save comment
+  if (cnrStorage.cnrLocalStorageHasKey('cnrComments') === true) {
+    cnrStorage.cnrLocalStorageUpdate('cnrComments', cnrCommentsObject.cnrGetAllCommentsAsJSONString());
+  } else {
+    cnrStorage.cnrLocalStorageCreate('cnrComments', cnrCommentsObject.cnrGetAllCommentsAsJSONString());
+  };
+  
 };
 
+/* ************************************************************************* */
 // CONTROLLERS
+
 function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrQueryStringVar = window.location.search;
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
   const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
   return cnrValueVar;
-};
-
-function cnrAddComment(cnrCommentParam) {
-  console.log('cnrAddComment > ', cnrCommentParam);
 };
