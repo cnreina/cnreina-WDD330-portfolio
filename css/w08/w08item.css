@@ -1,0 +1,286 @@
+/*	Carlos N Reina
+  cnreina@gmail.com
+*/
+
+/* ************************************************************************* */
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(242, 245, 248);
+}
+
+/*	HEADER */
+.cnrheadersections {
+  width: 100%;
+  height: auto;
+  padding: 6px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.cnrheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrsubheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrmaintitles {
+  color:rgb(171, 9, 9);
+  margin: 0px;
+  padding: 0px;
+}
+.cnrmainsubtitles {
+  color:rgb(13, 18, 157);
+  margin: 0px;
+  padding: 0px;
+}
+.cnrhomelinks {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  font-size: 100%;
+  width: 100%;
+}
+.cnrcopyright {
+  padding: 0px;
+  margin: 0px;
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  width: 100%;
+}
+hr {
+  padding: 0px;
+  margin: 10px;
+}
+
+/*	MAIN */
+.cnrmainsections {
+  width: 100vw;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+.cnrmaindivs {
+  width: 360px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+.cnrmainheaderdivs {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  font-size: xx-large;
+  text-align: center;
+  background-color: rgb(247, 241, 241);
+  border: 1px solid rgba(225, 222, 222, 0.8);
+}
+
+/*	JS CONTAINER */
+.cnrjscontainerdivs {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+}
+.cnrjsscrollable {
+  /* max-height: 80%; */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/*	JS CONTENT */
+.cnrjscontentdivs {
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  margin: 0px;
+  background-color: rgb(247, 241, 241);
+}
+
+/*	CARDS */
+.cnrcardheaderdivs {
+  width: 100%;
+  height: 32px;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid rgba(176, 174, 174, 0.8);
+  background-color: rgb(220, 216, 216);
+}
+.cnrcardheadertitles {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 1.6em;
+  color:rgb(43, 39, 39);
+}
+.cnrcardcontentdivs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardcelldivs {
+  padding: 0px;
+  margin: 12px;
+}
+.cnrcardimagedivs {
+  display: grid;
+  grid-template-columns: 80%;
+  justify-content: center;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardimages {
+  width: 100%;
+  height: auto;
+}
+.cnrcardinfodivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardbasicinfodivs {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 4px;
+}
+.cnrcardbasicinfodivs p {
+  padding: 1px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+.cnrcardfullinfodivs {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 8px;
+}
+.cnrcardfullinfodivs p {
+  padding: 1px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+/*	COMMENTS */
+.cnrcardcommentcontainerdivs {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 4px;
+  height: 200px;
+}
+.cnrcardcommentcontainerdivs p {
+  padding: 1px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+.cnrcardcommentdivs {
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100%;
+  padding: 2px;
+  margin-bottom: 8px;
+  background-color: rgb(224, 232, 233);
+}
+.cnrcardcommentdates {
+  color: rgba(2, 72, 72, 0.992);
+  text-decoration: underline;
+}
+.cnrcardcommenttexts {
+  color: rgba(32, 34, 35, 0.992);
+}
+#cnrcommentformdiv {
+  display: grid;
+  grid-template-columns: auto;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+#cnrcommentinput {
+  outline: none;
+  border: 1px solid rgba(250, 251, 251, 0.992);
+  width: 100%;
+  height: 80px;
+  resize: none;
+  padding-left: 4px;
+  margin: 0px;
+}
+.cnrinputscrollable {
+  /* max-height: 80px; */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cnrcommentbuttons{
+  width: 100%;
+  height: 30px;
+  font-size: 0.9em;
+  padding: 4px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(176, 174, 174, 0.8);
+  background-color: rgb(220, 216, 216);
+  border-radius: 4px;
+}
+.cnrcommentbuttons:hover{
+  background-color: rgb(193, 178, 178);
+}
+.cnrbacklinkdivs {
+  padding: 0px;
+  margin-top: 10px;
+}
+.cnrbacklinks {
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.cnrtextscrollable {
+  max-height: 50px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgb(224, 232, 233);
+  padding: 2px;
+}
