@@ -37,12 +37,35 @@ export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
   };
 
   cnrClearElement(cnrContainerIDParam);
+  cnrRenderItemsHeader(cnrContainerIDParam);
   cnrItemsParam.forEach(cnrItemVar => {
     cnrRenderItem(cnrContainerIDParam, cnrItemVar);
   });
 }; // cnrRenderItems
 
-export function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
+function cnrRenderItemsHeader(cnrContainerElementParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderItemsHeader > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  
+  const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrRenderItemsHeader > cnrContainerElementVar", cnrContainerElementVar);
+    return;
+  };
+
+  // prepare element
+  const cnrItemsHeaderDivVar = document.createElement('div');
+  cnrItemsHeaderDivVar.classList.add('cnrmainheaderdivs');
+  cnrItemsHeaderDivVar.title = 'cnrmainheaderdivs';
+  cnrItemsHeaderDivVar.innerHTML = `Items`;
+  // render element
+  cnrContainerElementVar.appendChild(cnrItemsHeaderDivVar);
+
+}; // cnrRenderItemsHeader
+
+function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
     console.log("ERROR: cnrRenderItem > cnrContainerElementParam", cnrContainerElementParam);
     return;

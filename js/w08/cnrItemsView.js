@@ -25,7 +25,7 @@ window.onload = function () {
 
   // load fake data if storage is empty
   if (cnrHikesVar.cnrGetClassItemsCount() <= 1) {
-    console.log('constructor > Loading fake data because storage is empty');
+    console.log('window.onload > Loading fake data because storage is empty');
 
     const cnrItem1 = {
       cnrName: 'Bechler Falls',

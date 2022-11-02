@@ -22,6 +22,36 @@ const cnrCommentSchema = {
 };
 const cnrComments = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
 
+// load fake comments if storage is empty
+if (cnrComments.cnrGetClassItemsCount() <= 1) {
+  console.log('window.onload > Loading fake comments because storage is empty');
+  const cnrDateTimeVar = cnrGetUTCDateTime();
+
+  const cnrItem1 = {
+    cnrID: 'Bechler Falls',
+    cnrDate: cnrDateTimeVar,
+    cnrComment: 'Bechler Falls comment 1'
+  };
+
+  const cnrItem2 = {
+    cnrID: 'Teton Canyon',
+    cnrDate: cnrDateTimeVar,
+    cnrComment: 'Teton Canyon comment 1'
+  };
+  
+  const cnrItem3 = {
+    cnrID: 'Denanda Falls',
+    cnrDate: cnrDateTimeVar,
+    cnrComment: 'Denanda Falls comment 1'
+  };
+
+  cnrComments.cnrAddItem('comment', true, cnrItem1);
+  cnrComments.cnrAddItem('comment', true, cnrItem2);
+  cnrComments.cnrAddItem('comment', true, cnrItem3);
+  // save fake comments
+  cnrComments.cnrSaveClassData();
+};
+
 
 window.onload = function () {
   // click or touch var
