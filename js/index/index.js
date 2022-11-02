@@ -85,7 +85,7 @@ const links = [
   },
   {
     label: "Week 8 (Fetch API)",
-    url: "html/w08/w08items.html"
+    url: "html/w08/cnrItemsView.html"
   }
 ];
 

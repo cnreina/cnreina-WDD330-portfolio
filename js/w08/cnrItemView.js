@@ -7,12 +7,14 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-import * as cnrDisplay from './w08display.js';
-import * as cnrItems from './w08items.js';
+import * as cnrDisplay from './cnrDisplay.js';
+import * as cnrItems from './cnrData.js';
 
-const cnrHikesURL = "../../html/w08/w08items.html";
+const cnrHikesURL = "../../html/w08/cnrItemsView.html";
 
-// create new comments object
+/*	create new comments object
+  Data is loaded from localstorage if data type parameter exists.
+*/
 const cnrCommentSchema = {
   cnrID: 'Comment ID. Use it to link comment with subject.',
   cnrDate: 'Comment date and time in UTC format.',

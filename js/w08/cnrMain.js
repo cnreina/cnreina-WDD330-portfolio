@@ -6,8 +6,8 @@
 
 /* ************************************************************************* */
 
-import * as cnrItems from './w08items.js';
-import * as cnrDisplay from './w08display.js';
+import * as cnrItems from './cnrData.js';
+import * as cnrDisplay from './cnrDisplay.js';
 
 // INITIALIZE
 window.onload = function () {
