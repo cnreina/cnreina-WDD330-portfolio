@@ -7,12 +7,21 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-import * as cnrDisplay from './w07display.js';
-import * as cnrComments from './w07comments.js';
-import * as cnrStorage from './w07storage.js';
+import * as cnrDisplay from './cnrDisplay.js';
+import * as cnrItems from './cnrData.js';
 
-const cnrCommentsObject = new cnrComments.cnrCommentsClass();
-const cnrHikesURL = "../../html/w07/w07hikes.html";
+const cnrHikesURL = "../../html/w08/cnrItemsView.html";
+
+/*	create new comments object
+  Data is loaded from localstorage if data type parameter exists.
+*/
+const cnrCommentSchema = {
+  cnrID: 'Comment ID. Use it to link comment with subject.',
+  cnrDate: 'Comment date and time in UTC format.',
+  cnrComment: 'Comment content.'
+};
+const cnrCommentsVar = new cnrItems.cnrItemsClass('cnrComments', cnrCommentSchema);
+
 
 window.onload = function () {
   // click or touch var
@@ -62,10 +71,8 @@ function cnrWindowOnLoadHandler() {
   document.getElementById('cnrdirections').innerText = cnrDirectionsVar;
   document.getElementById('cnrdescription').innerText = cnrDescriptionVar;
   // render comments
-  const cnrCommentsVar = new cnrComments.cnrCommentsClass();
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsVar.cnrGetAllComments(), cnrNameVar);
-
-};
+  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsVar.cnrGetItemsDataForName('comment'), cnrNameVar);
+}; // cnrWindowOnLoadHandler
 
 function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
@@ -94,23 +101,25 @@ function cnrSubmitClickHandler(cnrEventParam) {
   const cnrInputValueVar = cnrInputVar.value;
   if (cnrInputValueVar === null || cnrInputValueVar === '') { return; };
   const cnrInputIDVar = cnrGetQueryStringValue('cnrName');
-  const cnrNewCommentObject = cnrCommentsObject.cnrAddComment(cnrInputIDVar, cnrInputValueVar);
-  if (cnrNewCommentObject === null || cnrNewCommentObject === '') {
-    console.log("ERROR: w07hike.js > cnrSubmitClickHandler > cnrNewCommentObject", cnrNewCommentObject);
-    return;
+
+  const cnrNewComment = {
+    cnrID: cnrInputIDVar,
+    cnrDate: cnrGetUTCDateTime(),
+    cnrComment: cnrInputValueVar
   };
+  cnrCommentsVar.cnrAddItem('comment', true, cnrNewComment);
+  const cnrErrorsVar = cnrCommentsVar.cnrGetLastErrorMessage();
+  if (cnrErrorsVar != '') {
+    console.log(cnrErrorsVar.cnrGetLastErrorMessage());
+  };
+
+  // update storage
+  cnrCommentsVar.cnrSaveClassData();
 
   // update display
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsObject.cnrGetAllComments(), cnrInputIDVar);
+  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsVar.cnrGetItemsDataForName('comment'), cnrInputIDVar);
 
-  // save comment
-  if (cnrStorage.cnrLocalStorageHasKey('cnrComments') === true) {
-    cnrStorage.cnrLocalStorageUpdate('cnrComments', cnrCommentsObject.cnrGetAllCommentsAsJSONString());
-  } else {
-    cnrStorage.cnrLocalStorageCreate('cnrComments', cnrCommentsObject.cnrGetAllCommentsAsJSONString());
-  };
-  
-};
+}; // cnrSubmitClickHandler
 
 /* ************************************************************************* */
 // CONTROLLERS
@@ -120,4 +129,16 @@ function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
   const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
   return cnrValueVar;
+};
+
+/**	Returns current UTC date and time. */
+function cnrGetUTCDateTime() {
+  const cnrDateTimeVar = new Date();
+  const cnrDateTimeUTCVar = cnrDateTimeVar.toUTCString();
+  return cnrDateTimeUTCVar;
+};
+
+/**	Updates data storage. */
+function cnrUpdateStorage() {
+    cnrStorage.cnrLocalStorageUpdate('cnrComments', JSON.stringify(cnrCommentsVar.cnrGetItemsDataForName('comment')));
 };
