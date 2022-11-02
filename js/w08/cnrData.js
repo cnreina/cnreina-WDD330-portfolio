@@ -42,8 +42,49 @@ export class cnrItemsClass {
     this.#cnrItemsArray.push(cnrFirstItem);
 
     // import class data from storage
-    this.cnrImportClassData();
+    const cnrReturnVar = this.cnrImportClassData();
+    if (cnrReturnVar < 0) {
+      // load fake data
+      const cnrItem1 = {
+        cnrName: 'Bechler Falls',
+        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+        cnrLocation: 'Ashton, Texas',
+        cnrRating: '3.5',
+        cnrDifficulty: 'Easy',
+        cnrDescription:
+          'Beautiful short hike along the Bechler river to Bechler Falls',
+        cnrDirections:
+          'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+      };
 
+      const cnrItem2 = {
+        cnrName: 'Teton Canyon',
+        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+        cnrLocation: 'Driggs, Colorado',
+        cnrRating: '4.5',
+        cnrDifficulty: 'Easy',
+        cnrDescription: 'Beautiful short (or long) hike through Teton Canyon.',
+        cnrDirections:
+          'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short time onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
+      };
+      
+      const cnrItem3 = {
+        cnrName: 'Denanda Falls',
+        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+        cnrLocation: 'Somewhere, Utah',
+        cnrRating: '4.0',
+        cnrDifficulty: 'Moderate',
+        cnrDescription:
+          'Beautiful hike through Bechler meadows river to Denanda Falls',
+        cnrDirections:
+          'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+      };
+
+      this.cnrAddItem('hike', true, cnrItem1);
+      this.cnrAddItem('hike', true, cnrItem2);
+      this.cnrAddItem('hike', true, cnrItem3);
+    };
+    
   }; // constructor
 
   /* ******************************** */
@@ -70,35 +111,39 @@ export class cnrItemsClass {
 
   /**	Imports class data from storage. 
    * Uses cnrDataType as key.
+   * Returns 0 on success. 
+   * Returns negative number on errors.
   */
   cnrImportClassData() {
     // get data
     const cnrDataVar = localStorage.getItem(this.#cnrDataType);
     if (cnrDataVar === null || cnrDataVar === '') {
-      return;
+      return -1;
     };
     const cnrJSONVar = JSON.parse(cnrDataVar);
 
     if (cnrJSONVar.cnrLastErrorMessage === null) {
       this.#cnrLastErrorMessage = "cnrImportClassData > cnrLastErrorMessage";
-      return;
+      return -1;
     };
     if (cnrJSONVar.cnrDataType === null || cnrJSONVar.cnrDataType === '') {
       this.#cnrLastErrorMessage = "cnrImportClassData > cnrDataType";
-      return;
+      return -1;
     };
 
     const cnrDataJSONVar = JSON.parse(cnrJSONVar.cnrItemsArray);
     if (cnrDataJSONVar === null) {
       this.#cnrLastErrorMessage = "cnrImportClassData > cnrDataJSONVar";
-      return;
+      return -1;
     };
 
     // save class data
     this.#cnrLastErrorMessage = cnrJSONVar.cnrLastErrorMessage;
     this.#cnrDataType = cnrJSONVar.cnrDataType;
     this.#cnrItemsArray = cnrDataJSONVar;
-  };
+
+    return 0
+  }; // cnrImportClassData
 
   /**	Saves class data in storage. 
    * Uses cnrDataType as key.

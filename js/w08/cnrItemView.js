@@ -8,7 +8,7 @@
 // INITIALIZE
 
 import * as cnrDisplay from './cnrDisplay.js';
-import * as cnrItems from './cnrData.js';
+import * as cnrData from './cnrData.js';
 
 const cnrHikesURL = "../../html/w08/cnrItemsView.html";
 
@@ -20,7 +20,7 @@ const cnrCommentSchema = {
   cnrDate: 'Comment date and time in UTC format.',
   cnrComment: 'Comment content.'
 };
-const cnrCommentsVar = new cnrItems.cnrItemsClass('cnrComments', cnrCommentSchema);
+const cnrCommentsVar = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
 
 
 window.onload = function () {
