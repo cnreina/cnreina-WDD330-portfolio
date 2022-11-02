@@ -63,12 +63,27 @@ export class cnrItemsClass {
    * Data created date and time is set at class construction 
    * and stored in first item (Item[0]).
   */
-   cnrGetClassCreated() { return this.#cnrItemsArray[0].cnrCreated; };
-
+  cnrGetClassCreated() { return this.#cnrItemsArray[0].cnrCreated; };
+  
+  /**	Returns true if there is an error message, false otherwise. */
+  cnrGetClassHasErrors() {
+    if (this.#cnrLastErrorMessage === null) {
+      this.#cnrLastErrorMessage = '';
+      return false;
+    };
+    if (this.#cnrLastErrorMessage === '') { return false; };
+    
+    return true;
+  };
+  
   /**	Returns last error message. 
    * Resets last error message on retrieval.
   */
   cnrGetLastErrorMessage() {
+    if (this.#cnrLastErrorMessage === '') {
+      return '';
+    };
+
     const cnrErrorVar = this.#cnrLastErrorMessage;
     this.#cnrLastErrorMessage = '';
     return cnrErrorVar;

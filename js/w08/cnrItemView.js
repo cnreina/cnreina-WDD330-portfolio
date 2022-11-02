@@ -108,9 +108,8 @@ function cnrSubmitClickHandler(cnrEventParam) {
     cnrComment: cnrInputValueVar
   };
   cnrComments.cnrAddItem('comment', true, cnrNewComment);
-  const cnrErrorsVar = cnrComments.cnrGetLastErrorMessage();
-  if (cnrErrorsVar != '') {
-    console.log(cnrErrorsVar.cnrGetLastErrorMessage());
+  if (cnrComments.cnrGetClassHasErrors()) {
+    console.log("cnrGetClassHasErrors > ", cnrComments.cnrGetLastErrorMessage());
   };
 
   // update storage
