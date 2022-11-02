@@ -17,13 +17,9 @@ export class cnrItemsClass {
   #cnrDataType = '';
   #cnrItemsArray = [];
 
-  constructor(cnrDataTypeParam, cnrNameParam, cnrDataSchemaParam) {
+  constructor(cnrDataTypeParam, cnrDataSchemaParam) {
     if (cnrDataTypeParam === null || cnrDataTypeParam === '') {
       this.#cnrLastErrorMessage = 'constructor > cnrTypeParam';
-      return null;
-    };
-    if (cnrNameParam === null || cnrNameParam === '') {
-      this.#cnrLastErrorMessage = 'constructor > cnrNameParam';
       return null;
     };
     if (cnrDataSchemaParam === null || cnrDataSchemaParam === '') {
@@ -39,44 +35,29 @@ export class cnrItemsClass {
       cnrID: cnrGetNewUUID(),
       cnrCreated: cnrGetUTCDateTime(),
       cnrType: cnrDataTypeParam,
-      cnrName: cnrNameParam,
+      cnrName: 'schema',
       cnrEnabled: true,
       cnrData: [cnrDataSchemaParam]
     };
     this.#cnrItemsArray.push(cnrFirstItem);
 
+    // import class data from storage
+    this.cnrImportClassData();
+
   }; // constructor
 
-  /**	Returns array of cnrItem objects. 
-   * First item contains the schema and 
-   * basic documentation.
-  */
-  cnrGetAllItems() { return this.#cnrItemsArray; };
-
-  /**	Returns array of cnrItem objects. 
-   * First item contains the schema and 
-   * basic documentation.
-  */
-  cnrGetAllItemsDataForName(cnrNameParam) {
-    let cnrItemsVar = [];
-    const cnrLength = this.#cnrItemsArray.length;
-    let cnrCounter = 0;
-    for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
-      if (this.#cnrItemsArray[cnrCounter].cnrName === cnrNameParam) {
-        cnrItemsVar.push(this.#cnrItemsArray[cnrCounter].cnrData[0]);
-      };
-    };
-
-    console.log("TEST = ", cnrItemsVar);
-    
-
-    return cnrItemsVar;
-  };
+  /* ******************************** */
 
   /**	Returns class data type. 
    * Data type is set at class construction.
   */
-   cnrGetDataType() { return this.#cnrDataType; };
+  cnrGetClassDataType() { return this.#cnrDataType; };
+  
+  /**	Returns class created date and time. 
+   * Data created date and time is set at class construction 
+   * and stored in first item (Item[0]).
+  */
+   cnrGetClassCreated() { return this.#cnrItemsArray[0].cnrCreated; };
 
   /**	Returns last error message. 
    * Resets last error message on retrieval.
@@ -87,6 +68,129 @@ export class cnrItemsClass {
     return cnrErrorVar;
   };
 
+  /**	Imports class data from storage. 
+   * Uses cnrDataType as key.
+  */
+  cnrImportClassData() {
+    // get data
+    const cnrDataVar = localStorage.getItem(this.#cnrDataType);
+    if (cnrDataVar === null || cnrDataVar === '') {
+      return;
+    };
+    const cnrJSONVar = JSON.parse(cnrDataVar);
+
+    if (cnrJSONVar.cnrLastErrorMessage === null) {
+      this.#cnrLastErrorMessage = "cnrImportClassData > cnrLastErrorMessage";
+      return;
+    };
+    if (cnrJSONVar.cnrDataType === null || cnrJSONVar.cnrDataType === '') {
+      this.#cnrLastErrorMessage = "cnrImportClassData > cnrDataType";
+      return;
+    };
+
+    const cnrDataJSONVar = JSON.parse(cnrJSONVar.cnrItemsArray);
+    if (cnrDataJSONVar === null) {
+      this.#cnrLastErrorMessage = "cnrImportClassData > cnrDataJSONVar";
+      return;
+    };
+
+    // save class data
+    this.#cnrLastErrorMessage = cnrJSONVar.cnrLastErrorMessage;
+    this.#cnrDataType = cnrJSONVar.cnrDataType;
+    this.#cnrItemsArray = cnrDataJSONVar;
+  };
+
+  /**	Saves class data in storage. 
+   * Uses cnrDataType as key.
+  */
+   cnrSaveClassData() {
+    if (this.#cnrDataType === null || this.#cnrDataType === '') {
+      this.#cnrLastErrorMessage = 'cnrSaveData > cnrDataType';
+      return;
+    };
+    if (this.#cnrItemsArray === null || this.#cnrItemsArray.length <= 0) {
+      this.#cnrLastErrorMessage = 'cnrSaveData > cnrItemsArray';
+      return;
+    };
+    
+    // prepare data
+    const cnrDataJSONStringVar = JSON.stringify(this.#cnrItemsArray);
+    const cnrJSONObjectVar = {
+      cnrLastErrorMessage: this.#cnrLastErrorMessage,
+      cnrDataType: this.#cnrDataType,
+      cnrItemsArray: cnrDataJSONStringVar
+    };
+    const cnrJSONStringVar = JSON.stringify(cnrJSONObjectVar);
+
+    // save data
+    localStorage.setItem(this.#cnrDataType, cnrJSONStringVar);
+  };
+
+  /* ******************************** */
+
+  /**	Returns array of cnrItem objects. 
+   * First item contains the schema and 
+   * basic documentation.
+  */
+   cnrGetAllItems() { return this.#cnrItemsArray; };
+
+   /**	Returns array of cnrItem objects. 
+    * First item contains the schema and 
+    * basic documentation. 
+    * Returns null on errors or empty.
+   */
+   cnrGetItemsDataForName(cnrNameParam) {
+     let cnrItemsVar = [];
+     const cnrLength = this.#cnrItemsArray.length;
+     let cnrCounter = 0;
+     for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+       if (this.#cnrItemsArray[cnrCounter].cnrName === cnrNameParam) {
+         cnrItemsVar.push(this.#cnrItemsArray[cnrCounter].cnrData[0]);
+       };
+     };
+
+     if (cnrItemsVar.length <= 0) { return null; };
+     return cnrItemsVar;
+  };
+
+  /**	Returns item created date and time. 
+   * Data created date and time is set at item construction. 
+   * Returns empty string on errors.
+  */
+  cnrGetItemCreatedForIndex(cnrIndexParam) {
+    if (cnrIndexParam === nul || isNaN(cnrIndexParam)) {
+      this.#cnrLastErrorMessage = 'cnrGetItemCreatedForIndex > cnrIndexParam';
+      return '';
+    };
+    if (cnrIndexParam < 0 || cnrIndexParam >= this.#cnrItemsArray.length) {
+      this.#cnrLastErrorMessage = 'cnrGetItemCreatedForIndex > cnrIndexParam';
+      return '';
+    };
+
+    return this.#cnrItemsArray[cnrIndexParam].cnrCreated;
+  };
+
+  /**	Returns item created date and time. 
+   * Item created date and time is set at item construction. 
+   * Returns empty string on errors.
+  */
+   cnrGetItemCreatedForItemID(cnrIDParam) {
+    if (cnrIDParam === null || cnrIDParam === '') {
+      this.#cnrLastErrorMessage = 'cnrGetItemCreatedForItemID > cnrIDParam';
+      return '';
+    };
+    
+    const cnrLength = this.#cnrItemsArray.length;
+     let cnrCounter = 0;
+     for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+       if (this.#cnrItemsArray[cnrCounter].cnrID === cnrIDParam) {
+         return this.#cnrItemsArray[cnrCounter].cnrCreated;
+       };
+     };
+    
+     return '';
+  };
+  
   /**	Adds a new item */
   cnrAddItem(cnrNameParam, cnrEnabledParam, cnrDataParam) {
     if (cnrNameParam === null || cnrNameParam === '') {

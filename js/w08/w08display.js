@@ -8,12 +8,27 @@ INITIALIZE */
 
 const cnrHikeURL = "../../html/w08/w08item.html";
 
+
+/* ************************************************************************* 
+TOOLS */
+
+/**	Removes all items from display element. */
+function cnrClearElement(cnrElementIDParam) {
+  // console.clear();
+  // remove from element
+  const cnrContainerElementVar = document.getElementById(cnrElementIDParam);
+  while (cnrContainerElementVar.firstChild) {
+    cnrContainerElementVar.removeChild(cnrContainerElementVar.firstChild);
+  };
+}; // cnrClearElement
+
+
 /* ************************************************************************* 
 ITEMS */
 
-export function cnrRenderItems(cnrContainerElementParam, cnrItemsParam) {
-  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
-    console.log("ERROR: cnrRenderItems > cnrContainerElementParam", cnrContainerElementParam);
+export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderItems > cnrContainerIDParam", cnrContainerIDParam);
     return;
   };
   if (cnrItemsParam === null || cnrItemsParam === '') {
@@ -21,8 +36,9 @@ export function cnrRenderItems(cnrContainerElementParam, cnrItemsParam) {
     return;
   };
 
+  cnrClearElement(cnrContainerIDParam);
   cnrItemsParam.forEach(cnrItemVar => {
-    cnrRenderItem(cnrContainerElementParam, cnrItemVar);
+    cnrRenderItem(cnrContainerIDParam, cnrItemVar);
   });
 }; // cnrRenderItems
 
@@ -91,9 +107,9 @@ export function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
 /* ************************************************************************* 
 COMMENTS */
 
-export function cnrRenderComments(cnrContainerElementParam, cnrCommentsParam) {
-  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerElementParam);
+export function cnrRenderComments(cnrContainerIDParam, cnrCommentsParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerIDParam);
     return;
   };
   if (cnrCommentsParam === null || cnrCommentsParam === '') {
@@ -101,8 +117,9 @@ export function cnrRenderComments(cnrContainerElementParam, cnrCommentsParam) {
     return;
   };
 
+  cnrClearElement(cnrContainerIDParam);
   cnrCommentsParam.forEach(cnrCommentVar => {
-    cnrRenderComment(cnrContainerElementParam, cnrCommentVar);
+    cnrRenderComment(cnrContainerIDParam, cnrCommentVar);
   });
 }; // cnrRenderComments
 
@@ -120,6 +137,7 @@ export function cnrRenderCommentsForID(cnrContainerIDParam, cnrCommentTextParam,
     return;
   };
 
+  cnrClearElement(cnrContainerIDParam);
   cnrCommentTextParam.forEach(cnrCommentVar => {
     if (cnrCommentVar.cnrID.toString() === cnrCommentIDParam.toString()) {
       cnrRenderComment(cnrContainerIDParam, cnrCommentVar);
@@ -146,7 +164,6 @@ export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
   // prepare element
   const cnrCardDivVar = document.createElement('div');
   cnrCardDivVar.classList.add('cnrcardcommentdivs');
-  // cnrCardDivVar.classList.add('cnrtextscrollable');
   cnrCardDivVar.innerHTML = `
     <p class="cnrcardcommentdates">${cnrCommentParam.cnrDate}</p>
     <p class="cnrcardcommenttexts">${cnrCommentParam.cnrComment}</p>
@@ -154,4 +171,6 @@ export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
   
   // render element
   cnrContainerElementVar.appendChild(cnrCardDivVar);
+  cnrCardDivVar.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+
 }; // cnrRenderComment
