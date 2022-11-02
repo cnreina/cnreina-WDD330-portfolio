@@ -43,8 +43,10 @@ export class cnrItemsClass {
 
     // import class data from storage
     const cnrReturnVar = this.cnrImportClassData();
+
+    // load fake data if storage is empty
     if (cnrReturnVar < 0) {
-      // load fake data
+      console.log('constructor > Loading fake data because storage is empty');
       const cnrItem1 = {
         cnrName: 'Bechler Falls',
         cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
@@ -83,8 +85,10 @@ export class cnrItemsClass {
       this.cnrAddItem('hike', true, cnrItem1);
       this.cnrAddItem('hike', true, cnrItem2);
       this.cnrAddItem('hike', true, cnrItem3);
+      // save fake data
+      this.cnrSaveClassData();
     };
-    
+
   }; // constructor
 
   /* ******************************** */

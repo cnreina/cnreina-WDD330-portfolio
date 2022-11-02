@@ -11,7 +11,6 @@ import * as cnrDisplay from './cnrDisplay.js';
 
 // INITIALIZE
 window.onload = function () {
-  
   // create new hikes object
   const cnrDataSchema = {
     cnrName: 'Hike name or title.',
@@ -26,7 +25,5 @@ window.onload = function () {
 
   // display items
   cnrDisplay.cnrRenderItems('cnrjscontainerdiv1', cnrHikesVar.cnrGetItemsDataForName('hike'));
-
-  // cnrHikesVar.cnrSaveClassData();
 
 }; // window.onload
