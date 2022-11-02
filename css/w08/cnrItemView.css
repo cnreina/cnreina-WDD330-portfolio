@@ -86,20 +86,7 @@ hr {
   padding: 0px;
   margin: 0px;
   position: relative;
-}
-
-.cnrmainheaderdivs {
-  width: 100%;
-  height: 60px;
-  padding: 8px;
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: center;
-  font-size: xx-large;
-  text-align: center;
-  background-color: rgb(247, 241, 241);
-  border: 1px solid rgba(225, 222, 222, 0.8);
+  background-color: rgb(231, 237, 237);
 }
 
 /*	JS CONTAINER */
@@ -123,24 +110,29 @@ hr {
   height: auto;
   padding: 4px;
   margin: 0px;
-  background-color: rgb(247, 241, 241);
 }
 
 /*	CARDS */
 .cnrcardheaderdivs {
   width: 100%;
-  height: 32px;
-  padding: 0px;
+  height: 28px;
+  padding: 2px;
   margin: 0px;
-  border: 1px solid rgba(176, 174, 174, 0.8);
-  background-color: rgb(220, 216, 216);
+  background-color:black;
+  color:white;
+  border: 1px solid rgba(225, 222, 222, 0.8);
+  border-radius: 4px;
+  opacity: 0.8;
+  box-shadow: 5px 4px 4px #70788f;
+  position: sticky;
+  top: 1px;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 .cnrcardheadertitles {
   padding: 0px;
   margin: 0px;
   text-align: center;
-  font-size: 1.6em;
-  color:rgb(43, 39, 39);
+  font-size: 1.2em;
 }
 .cnrcardcontentdivs {
   width: 100%;
@@ -165,6 +157,7 @@ hr {
 .cnrcardimages {
   width: 100%;
   height: auto;
+  box-shadow: 4px 3px 3px #70788f;
 }
 .cnrcardinfodivs {
   width: 100%;
@@ -180,10 +173,13 @@ hr {
   margin-bottom: 4px;
 }
 .cnrcardbasicinfodivs p {
-  padding: 1px;
+  padding: 2px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
+}
+.cnrcardbasicinfovalues {
+  background-color: rgb(254, 254, 254);
 }
 .cnrcardfullinfodivs {
   display: grid;
@@ -193,10 +189,13 @@ hr {
   margin-bottom: 8px;
 }
 .cnrcardfullinfodivs p {
-  padding: 1px;
+  padding: 2px;
   margin: 0px;
   text-align: left;
   font-size: 0.8em;
+}
+.cnrcardfullinfovalues {
+  background-color: rgb(254, 254, 254);
 }
 
 /*	COMMENTS */
@@ -220,7 +219,9 @@ hr {
   width: 100%;
   padding: 2px;
   margin-bottom: 8px;
-  background-color: rgb(224, 232, 233);
+}
+.cnrcommentvalues {
+  background-color: rgb(254, 254, 254);
 }
 .cnrcardcommentdates {
   color: rgba(2, 72, 72, 0.992);
@@ -246,7 +247,6 @@ hr {
   margin: 0px;
 }
 .cnrinputscrollable {
-  /* max-height: 80px; */
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -262,11 +262,15 @@ hr {
   align-content: center;
   cursor: pointer;
   border: 1px solid rgba(176, 174, 174, 0.8);
-  background-color: rgb(220, 216, 216);
+  background-color: rgb(10, 54, 66);
+  color: rgb(206, 224, 229);
   border-radius: 4px;
 }
 .cnrcommentbuttons:hover{
-  background-color: rgb(193, 178, 178);
+  background-color: rgb(20, 88, 106);
+}
+.cnrcommentbuttons:disabled{
+  background-color: rgb(151, 163, 166);
 }
 .cnrbacklinkdivs {
   padding: 0px;
@@ -281,6 +285,16 @@ hr {
   max-height: 50px;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: rgb(224, 232, 233);
-  padding: 2px;
+}
+
+/*	ANIMATIONS */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #cce6ff, 0 0 10px #cce6ff, 0 0 20px #99ccff, 
+    0 0 30px #99ccff, 0 0 40px #99ccff, 0 0 50px #99ccff, 0 0 60px #99ccff;
+  }
+  to {
+    text-shadow: 0 0 10px #004d99, 0 0 20px #004d99, 0 0 30px #3399ff, 
+    0 0 40px #3399ff, 0 0 50px #3399ff, 0 0 60px #3399ff, 0 0 70px #3399ff;
+  }
 }
