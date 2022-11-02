@@ -20,7 +20,7 @@ const cnrCommentSchema = {
   cnrDate: 'Comment date and time in UTC format.',
   cnrComment: 'Comment content.'
 };
-const cnrCommentsVar = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
+const cnrComments = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
 
 
 window.onload = function () {
@@ -46,7 +46,7 @@ window.onload = function () {
   cnrInputTextVar.addEventListener('keyup', cnrInputKeyUpHandler);
   
   cnrWindowOnLoadHandler();
-};
+}; // window.onload
 
 
 /* ************************************************************************* */
@@ -71,7 +71,7 @@ function cnrWindowOnLoadHandler() {
   document.getElementById('cnrdirections').innerText = cnrDirectionsVar;
   document.getElementById('cnrdescription').innerText = cnrDescriptionVar;
   // render comments
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsVar.cnrGetItemsDataForName('comment'), cnrNameVar);
+  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrComments.cnrGetItemsDataForName('comment'), cnrNameVar);
 }; // cnrWindowOnLoadHandler
 
 function cnrBackLinksClickHandler(cnrEventParam) {
@@ -107,17 +107,16 @@ function cnrSubmitClickHandler(cnrEventParam) {
     cnrDate: cnrGetUTCDateTime(),
     cnrComment: cnrInputValueVar
   };
-  cnrCommentsVar.cnrAddItem('comment', true, cnrNewComment);
-  const cnrErrorsVar = cnrCommentsVar.cnrGetLastErrorMessage();
-  if (cnrErrorsVar != '') {
-    console.log(cnrErrorsVar.cnrGetLastErrorMessage());
+  cnrComments.cnrAddItem('comment', true, cnrNewComment);
+  if (cnrComments.cnrGetClassHasErrors()) {
+    console.log("cnrGetClassHasErrors > ", cnrComments.cnrGetLastErrorMessage());
   };
 
   // update storage
-  cnrCommentsVar.cnrSaveClassData();
+  cnrComments.cnrSaveClassData();
 
   // update display
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrCommentsVar.cnrGetItemsDataForName('comment'), cnrInputIDVar);
+  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrComments.cnrGetItemsDataForName('comment'), cnrInputIDVar);
 
 }; // cnrSubmitClickHandler
 
@@ -140,5 +139,5 @@ function cnrGetUTCDateTime() {
 
 /**	Updates data storage. */
 function cnrUpdateStorage() {
-    cnrStorage.cnrLocalStorageUpdate('cnrComments', JSON.stringify(cnrCommentsVar.cnrGetItemsDataForName('comment')));
+    cnrStorage.cnrLocalStorageUpdate('cnrComments', JSON.stringify(cnrComments.cnrGetItemsDataForName('comment')));
 };

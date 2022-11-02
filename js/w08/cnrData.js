@@ -8,9 +8,10 @@
 // INITIALIZE
 
 /**	Container and interface for cnrItem objects. 
- * Use cnrType to create instances for different type of items. 
- * The first item (index = 0) is created at construction time and contains 
+ * Use cnrDataType to create instances for different type of items. 
+ * The first item (index 0) is created at construction time and contains 
  * data to represent the item's schema and basic documentation.  
+ * Uses cnrDataType as key to save data.
 */
 export class cnrItemsClass {
   #cnrLastErrorMessage = '';
@@ -46,47 +47,7 @@ export class cnrItemsClass {
 
     // load fake data if storage is empty
     if (cnrReturnVar < 0) {
-      console.log('constructor > Loading fake data because storage is empty');
-      const cnrItem1 = {
-        cnrName: 'Bechler Falls',
-        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-        cnrLocation: 'Ashton, Texas',
-        cnrRating: '3.5',
-        cnrDifficulty: 'Easy',
-        cnrDescription:
-          'Beautiful short hike along the Bechler river to Bechler Falls',
-        cnrDirections:
-          'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
-      };
-
-      const cnrItem2 = {
-        cnrName: 'Teton Canyon',
-        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-        cnrLocation: 'Driggs, Colorado',
-        cnrRating: '4.5',
-        cnrDifficulty: 'Easy',
-        cnrDescription: 'Beautiful short (or long) hike through Teton Canyon.',
-        cnrDirections:
-          'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short time onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
-      };
-      
-      const cnrItem3 = {
-        cnrName: 'Denanda Falls',
-        cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
-        cnrLocation: 'Somewhere, Utah',
-        cnrRating: '4.0',
-        cnrDifficulty: 'Moderate',
-        cnrDescription:
-          'Beautiful hike through Bechler meadows river to Denanda Falls',
-        cnrDirections:
-          'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
-      };
-
-      this.cnrAddItem('hike', true, cnrItem1);
-      this.cnrAddItem('hike', true, cnrItem2);
-      this.cnrAddItem('hike', true, cnrItem3);
-      // save fake data
-      this.cnrSaveClassData();
+      this.#cnrLastErrorMessage = "constructor > cnrImportClassData";
     };
 
   }; // constructor
@@ -102,17 +63,35 @@ export class cnrItemsClass {
    * Data created date and time is set at class construction 
    * and stored in first item (Item[0]).
   */
-   cnrGetClassCreated() { return this.#cnrItemsArray[0].cnrCreated; };
-
+  cnrGetClassCreated() { return this.#cnrItemsArray[0].cnrCreated; };
+  
+  /**	Returns true if there is an error message, false otherwise. */
+  cnrGetClassHasErrors() {
+    if (this.#cnrLastErrorMessage === null) {
+      this.#cnrLastErrorMessage = '';
+      return false;
+    };
+    if (this.#cnrLastErrorMessage === '') { return false; };
+    
+    return true;
+  };
+  
   /**	Returns last error message. 
    * Resets last error message on retrieval.
   */
   cnrGetLastErrorMessage() {
+    if (this.#cnrLastErrorMessage === '') {
+      return '';
+    };
+
     const cnrErrorVar = this.#cnrLastErrorMessage;
     this.#cnrLastErrorMessage = '';
     return cnrErrorVar;
   };
 
+  /**	Returns count of class data items. */
+  cnrGetClassItemsCount() { return this.#cnrItemsArray.length; };
+  
   /**	Imports class data from storage. 
    * Uses cnrDataType as key.
    * Returns 0 on success. 
@@ -181,7 +160,24 @@ export class cnrItemsClass {
    * First item contains the schema and 
    * basic documentation.
   */
-   cnrGetAllItems() { return this.#cnrItemsArray; };
+  cnrGetAllItems() { return this.#cnrItemsArray; };
+  
+  /**	Returns item created date and time. 
+   * Data created date and time is set at item construction. 
+   * Returns empty string on errors.
+  */
+   cnrGetItemForIndex(cnrIndexParam) {
+    if (cnrIndexParam === null || isNaN(cnrIndexParam)) {
+      this.#cnrLastErrorMessage = 'cnrGetItemCreatedForIndex > cnrIndexParam';
+      return '';
+    };
+    if (cnrIndexParam < 0 || cnrIndexParam >= this.#cnrItemsArray.length) {
+      this.#cnrLastErrorMessage = 'cnrGetItemCreatedForIndex > cnrIndexParam';
+      return '';
+    };
+
+    return this.#cnrItemsArray[cnrIndexParam];
+  };
 
    /**	Returns array of cnrItem objects. 
     * First item contains the schema and 
