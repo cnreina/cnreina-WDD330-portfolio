@@ -27,7 +27,7 @@ window.onload = function () {
   // click or touch var
   let cnrClickOrTouchEventVar = '';
   if ("ontouchend" in document.documentElement) {
-    console.log("Using touchend");
+    console.log("Using touch");
     cnrClickOrTouchEventVar = 'touchend';
   }
   else {

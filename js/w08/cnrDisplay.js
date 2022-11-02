@@ -113,7 +113,6 @@ export function cnrRenderComments(cnrContainerIDParam, cnrCommentsParam) {
     return;
   };
   if (cnrCommentsParam === null || cnrCommentsParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentsParam);
     return;
   };
 
@@ -129,7 +128,6 @@ export function cnrRenderCommentsForID(cnrContainerIDParam, cnrCommentTextParam,
     return;
   };
   if (cnrCommentTextParam === null || cnrCommentTextParam === '') {
-    console.log("ERROR: cnrRenderComments > cnrCommentsParam", cnrCommentTextParam);
     return;
   };
   if (cnrCommentIDParam === null || cnrCommentIDParam === '') {
@@ -151,7 +149,6 @@ export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
     return;
   };
   if (cnrCommentParam === null || cnrCommentParam === '') {
-    console.log("ERROR: cnrRenderComment > cnrCommentParam", cnrCommentParam);
     return;
   };
 
