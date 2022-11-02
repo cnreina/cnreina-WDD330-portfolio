@@ -1,4 +1,8 @@
 
+load by page > hike or comment
+
+auto load item view
+
 cnrItemData
 
 vscode fullscreen hides panels icons.
