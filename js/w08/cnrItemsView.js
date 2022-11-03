@@ -38,6 +38,7 @@ window.onload = function () {
       cnrDirections:
         'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
     };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem1);
 
     const cnrItem2 = {
       cnrName: 'Teton Canyon',
@@ -49,6 +50,7 @@ window.onload = function () {
       cnrDirections:
         'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short time onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
     };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem2);
     
     const cnrItem3 = {
       cnrName: 'Denanda Falls',
@@ -61,10 +63,60 @@ window.onload = function () {
       cnrDirections:
         'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
     };
-
-    cnrHikesVar.cnrAddItem('hike', true, cnrItem1);
-    cnrHikesVar.cnrAddItem('hike', true, cnrItem2);
     cnrHikesVar.cnrAddItem('hike', true, cnrItem3);
+
+    const cnrItem4 = {
+      cnrName: 'Item 4',
+      cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+      cnrLocation: 'Somewhere, Utah',
+      cnrRating: '4.0',
+      cnrDifficulty: 'Moderate',
+      cnrDescription:
+        'Beautiful hike through Bechler meadows river to Denanda Falls',
+      cnrDirections:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+    };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem4);
+
+    const cnrItem5 = {
+      cnrName: 'Item 5',
+      cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+      cnrLocation: 'Somewhere, Utah',
+      cnrRating: '4.0',
+      cnrDifficulty: 'Moderate',
+      cnrDescription:
+        'Beautiful hike through Bechler meadows river to Denanda Falls',
+      cnrDirections:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+    };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem5);
+
+    const cnrItem6 = {
+      cnrName: 'Item 6',
+      cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+      cnrLocation: 'Somewhere, Utah',
+      cnrRating: '4.0',
+      cnrDifficulty: 'Moderate',
+      cnrDescription:
+        'Beautiful hike through Bechler meadows river to Denanda Falls',
+      cnrDirections:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+    };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem6);
+
+    const cnrItem7 = {
+      cnrName: 'Item 7',
+      cnrImageURL: 'http://byui-cit.github.io/cit261/examples/falls.jpg',
+      cnrLocation: 'Somewhere, Utah',
+      cnrRating: '4.0',
+      cnrDifficulty: 'Moderate',
+      cnrDescription:
+        'Beautiful hike through Bechler meadows river to Denanda Falls',
+      cnrDirections:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+    };
+    cnrHikesVar.cnrAddItem('hike', true, cnrItem7);
+
     // save fake data
     cnrHikesVar.cnrSaveClassData();
   };
