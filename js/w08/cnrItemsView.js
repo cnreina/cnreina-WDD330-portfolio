@@ -23,7 +23,7 @@ window.onload = function () {
   };
   const cnrHikesVar = new cnrData.cnrItemsClass('cnrHikes', cnrDataSchema);
 
-  // load fake data if storage is empty
+  // load fake hikes if storage is empty
   if (cnrHikesVar.cnrGetClassItemsCount() <= 1) {
     console.log('window.onload > Loading fake data because storage is empty');
 
