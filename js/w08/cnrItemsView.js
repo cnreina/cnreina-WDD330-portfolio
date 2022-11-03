@@ -124,4 +124,25 @@ window.onload = function () {
   // display items
   cnrDisplay.cnrRenderItems('cnrjscontainerdiv1', cnrHikesVar.cnrGetItemsDataForName('hike'));
 
+  // process sticky card headers
+  //////////////
+  // const el = document.querySelector(".cnrcardheaderdivs")
+  // const observer = new IntersectionObserver(([e]) => e.target.classList.toggle("cnrcardheaderexits", e.intersectionRatio < 100), { threshold: [100] });
+  // const observer = new IntersectionObserver(([e]) => console.log(e.target), { threshold: [1] });
+  // observer.observe(el);
+
+  //////////////
+  let cnrOptions = {
+    root: document.querySelector('cnrmainheaderdivs'),
+    rootMargin: '0px',
+    threshold: 1.0
+  }
+  const cnrElement = document.querySelector(".cnrcardheaderdivs");
+  let cnrIntersectionObserver = new IntersectionObserver(cnrIntersectionObserverCallBack, cnrOptions);
+  cnrIntersectionObserver.observe(cnrElement);
+
 }; // window.onload
+
+function cnrIntersectionObserverCallBack() {
+  console.log(this);
+};
