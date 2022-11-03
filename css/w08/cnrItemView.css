@@ -81,7 +81,7 @@ hr {
   justify-content: center;
 }
 .cnrmaindivs {
-  width: 100%;
+  width: 360px;
   height: 100%;
   padding: 0px;
   margin: 0px;
@@ -237,8 +237,9 @@ hr {
   justify-self: center;
   align-self: center;
   width: 98%;
+  max-width: 98%;
   height: auto;
-  padding: 4px;
+  padding: 8px;
   margin-left: 1%;
   margin-right: 1%;
   background-color:rgb(55, 54, 54);
