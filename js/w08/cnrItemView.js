@@ -5,55 +5,53 @@
 
 
 /* ************************************************************************* */
-// INITIALIZE
 
-import * as cnrDisplay from './cnrDisplay.js';
 import * as cnrData from './cnrData.js';
+import * as cnrDisplay from './cnrDisplay.js';
 
 const cnrHikesURL = "../../html/w08/cnrItemsView.html";
+let cnrComments = null;
 
-/*	create new comments object
-  Data is loaded from localstorage if data type parameter exists.
-*/
-const cnrCommentSchema = {
-  cnrID: 'Comment ID. Use it to link comment with subject.',
-  cnrDate: 'Comment date and time in UTC format.',
-  cnrComment: 'Comment content.'
-};
-const cnrComments = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
-
-// load fake comments if storage is empty
-if (cnrComments.cnrGetClassItemsCount() <= 1) {
-  console.log('window.onload > Loading fake comments because storage is empty');
-  const cnrDateTimeVar = cnrGetUTCDateTime();
-
-  const cnrItem1 = {
-    cnrID: 'Bechler Falls',
-    cnrDate: cnrDateTimeVar,
-    cnrComment: 'Bechler Falls comment 1'
+// INITIALIZE
+window.onload = function () {
+  // create new comments object
+  const cnrCommentSchema = {
+    cnrID: 'Comment ID. Use it to link comment with subject.',
+    cnrDate: 'Comment date and time in UTC format.',
+    cnrComment: 'Comment content.'
   };
+  cnrComments = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
 
-  const cnrItem2 = {
-    cnrID: 'Teton Canyon',
-    cnrDate: cnrDateTimeVar,
-    cnrComment: 'Teton Canyon comment 1'
+  // load fake comments if storage is empty
+  if (cnrComments.cnrGetClassItemsCount() <= 1) {
+    console.log('window.onload > Loading fake comments because storage is empty');
+    const cnrDateTimeVar = cnrGetUTCDateTime();
+
+    const cnrItem1 = {
+      cnrID: 'Bechler Falls',
+      cnrDate: cnrDateTimeVar,
+      cnrComment: 'Bechler Falls comment 1'
+    };
+    cnrComments.cnrAddItem('comment', true, cnrItem1);
+
+    const cnrItem2 = {
+      cnrID: 'Teton Canyon',
+      cnrDate: cnrDateTimeVar,
+      cnrComment: 'Teton Canyon comment 1'
+    };
+    cnrComments.cnrAddItem('comment', true, cnrItem2);
+    
+    const cnrItem3 = {
+      cnrID: 'Denanda Falls',
+      cnrDate: cnrDateTimeVar,
+      cnrComment: 'Denanda Falls comment 1'
+    };
+    cnrComments.cnrAddItem('comment', true, cnrItem3);
+
+    // save fake comments
+    cnrComments.cnrSaveClassData();
   };
   
-  const cnrItem3 = {
-    cnrID: 'Denanda Falls',
-    cnrDate: cnrDateTimeVar,
-    cnrComment: 'Denanda Falls comment 1'
-  };
-
-  cnrComments.cnrAddItem('comment', true, cnrItem1);
-  cnrComments.cnrAddItem('comment', true, cnrItem2);
-  cnrComments.cnrAddItem('comment', true, cnrItem3);
-  // save fake comments
-  cnrComments.cnrSaveClassData();
-};
-
-
-window.onload = function () {
   // click or touch var
   let cnrClickOrTouchEventVar = '';
   if ("ontouchend" in document.documentElement) {
