@@ -44,7 +44,7 @@
                   <div class="cnrcardheaderdivs">
                      <p class="cnrcardheadertitles" id="cnrcardheadertitle"></p>
                   </div>
-                  <div class="cnrcardcontentdivs">
+                  <div class="cnrcardcontentdivs cnrjsscrollable">
                      <div class="cnrcardcelldivs">
                         <div class="cnrcardimagedivs">
                            <img class="cnrcardimages" id="cnrcardimage" src="../../res/imageplaceholder.png" alt="Image">
@@ -54,39 +54,41 @@
                      <div class="cnrcardcelldivs">
                         <div class="cnrcardinfodivs">
                            <div class="cnrcardbasicinfodivs">
-                              <p><b>Location:</b></p><p id="cnrlocation"></p>
-                              <p><b>Rating:</b></p><p id="cnrrating"></p>
-                              <p><b>Dificulty:</b></p><p id="cnrdifficulty"></p>
+                              <p><b>Location:</b></p><p class="cnrcardbasicinfovalues" id="cnrlocation"></p>
+                              <p><b>Rating:</b></p><p class="cnrcardbasicinfovalues" id="cnrrating"></p>
+                              <p><b>Dificulty:</b></p><p class="cnrcardbasicinfovalues" id="cnrdifficulty"></p>
                            </div>
                            <div class="cnrcardfullinfodivs">
-                              <p><b>Description:</b></p><p class="cnrtextscrollable" id="cnrdescription"></p> <!-- javascript -->
+                              <p><b>Description:</b></p><p class="cnrcardfullinfovalues cnrtextscrollable" id="cnrdescription"></p> <!-- javascript -->
                            </div>
                            <div class="cnrcardfullinfodivs cnrjsscrollable">
-                              <p><b>Directions:</b></p><p class="cnrtextscrollable" id="cnrdirections"></p> <!-- javascript -->
+                              <p><b>Directions:</b></p><p class="cnrcardfullinfovalues cnrtextscrollable" id="cnrdirections"></p> <!-- javascript -->
                            </div>
 
                            <div class="cnrcardcommentcontainerdivs">
                               <p><b>Comments:</b></p>
-                              <div class="cnrjsscrollable" id="cnrcomments">
+                              <div class="cnrcommentvalues cnrjsscrollable" id="cnrcomments">
                                  <!-- javascript -->
                               </div>
                            </div>
-                           <!-- comment form -->
-                           <div id="cnrcommentformdiv">
-                              <form id='cnrcommentform'>
-                                 <div>
-                                    <textarea class="cnrinputscrollable" id="cnrcommentinput" name="cnrcommentinput" rows="6" cols="30" placeholder='Add a comment here . . .' maxlength=1024></textarea>
-                                 </div>
-                                 <div>
-                                    <button class="cnrcommentbuttons" id="cnrcommentsubmitbutton" type='submit' disabled>Submit</button>
-                                 </div>
-                              </form>
-                           </div>
 
                         </div>
-                        <div class="cnrbacklinkdivs" id="cnrbacklinkdiv">
-                           <a class="cnrbacklinks" href="../../html/w08/cnrItemsView.html">Back to list</a>
+
+                        <!-- comment form -->
+                        <div class="cnrcommentformdivs">
+                           <form id='cnrcommentform'>
+                              <div>
+                                 <textarea class="cnrinputscrollable" id="cnrcommentinput" name="cnrcommentinput" rows="6" cols="30" placeholder='Add a comment . . .' maxlength=1024></textarea>
+                              </div>
+                              <div class="cnrcommentnavs">
+                                 <div class="cnrbacklinkdivs" id="cnrbacklinkdiv">
+                                    <a class="cnrbacklinks" href="../../html/w08/cnrItemsView.html">Back to list</a>
+                                 </div>
+                                 <button class="cnrcommentbuttons" id="cnrcommentsubmitbutton" type='submit' disabled>Submit</button>
+                              </div>
+                           </form>
                         </div>
+                        
                      </div>
                   </div>
                </div>
