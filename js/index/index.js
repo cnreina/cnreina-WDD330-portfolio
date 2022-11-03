@@ -113,6 +113,9 @@ function loadMainLinks() {
     h3Element.appendChild(document.createTextNode(links[linksCounter].label));
     // add item to list
     linksElement.appendChild(liElement);
-  }
+  };
+
+  // reset storage
+  localStorage.clear();
 
 };
