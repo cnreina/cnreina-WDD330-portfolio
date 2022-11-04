@@ -9,7 +9,7 @@
 import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 
-const cnrHikesURL = "../../html/w08fetch/cnrItemsView.html";
+const cnrItemsURL = "../../html/w08fetch/cnrItemsView.html";
 let cnrComments = null;
 
 // INITIALIZE
@@ -67,12 +67,6 @@ window.onload = function () {
   const cnrBackToListLinkVar = document.getElementById('cnrbacklinkdiv');
   cnrBackToListLinkVar.addEventListener(cnrClickOrTouchEventVar, cnrBackLinksClickHandler);
 
-  const cnrSubmitButtonVar = document.getElementById('cnrcommentsubmitbutton');
-  cnrSubmitButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrSubmitClickHandler);
-
-  const cnrInputTextVar = document.getElementById('cnrcommentinput');
-  cnrInputTextVar.addEventListener('keyup', cnrInputKeyUpHandler);
-  
   cnrWindowOnLoadHandler();
 }; // window.onload
 
@@ -83,28 +77,26 @@ window.onload = function () {
 function cnrWindowOnLoadHandler() {
   // get query string data
   const cnrNameVar = cnrGetQueryStringValue('cnrName');
-  const cnrImageURLVar = cnrGetQueryStringValue('cnrImageURL');
-  const cnrLocationVar = cnrGetQueryStringValue('cnrLocation');
-  const cnrRatingVar = cnrGetQueryStringValue('cnrRating');
-  const cnrDifficultyVar = cnrGetQueryStringValue('cnrDifficulty');
-  const cnrDirectionsVar = cnrGetQueryStringValue('cnrDirections');
-  const cnrDescriptionVar = cnrGetQueryStringValue('cnrDescription');
+  const cnrGenderVar = cnrGetQueryStringValue('cnrGender');
+  const cnrBirthYearVar = cnrGetQueryStringValue('cnrBirthYear');
+  const cnrHeightVar = cnrGetQueryStringValue('cnrHeight');
+  const cnrSpeciesVar = cnrGetQueryStringValue('cnrSpecies');
+  const cnrHomeWorldURLVar = cnrGetQueryStringValue('cnrHomeWorldURL');
 
   // render data
   document.getElementById('cnrcardheadertitle').innerText = cnrNameVar;
-  document.getElementById('cnrcardimage').setAttribute('src', cnrImageURLVar);
-  document.getElementById('cnrlocation').innerText = cnrLocationVar;
-  document.getElementById('cnrrating').innerText = cnrRatingVar;
-  document.getElementById('cnrdifficulty').innerText = cnrDifficultyVar;
-  document.getElementById('cnrdirections').innerText = cnrDirectionsVar;
-  document.getElementById('cnrdescription').innerText = cnrDescriptionVar;
-  // render comments
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrComments.cnrGetItemsDataForName('cnrPerson'), cnrNameVar);
+  document.getElementById('cnrname').innerText = cnrNameVar;
+  document.getElementById('cnrgender').innerText = cnrGenderVar;
+  document.getElementById('cnrbirthyear').innerText = cnrBirthYearVar;
+  document.getElementById('cnrheight').innerText = cnrHeightVar;
+  document.getElementById('cnrspecies').innerText = cnrSpeciesVar;
+  document.getElementById('cnrhomeworld').innerText = cnrHomeWorldURLVar;
+  
 }; // cnrWindowOnLoadHandler
 
 function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  window.location.href = cnrHikesURL;
+  window.location.href = cnrItemsURL;
 };
 
 function cnrInputKeyUpHandler(cnrEventParam) {

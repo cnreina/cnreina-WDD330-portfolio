@@ -85,7 +85,10 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   const cnrItemObject = {
     cnrName: cnrItemParam.cnrName,
     cnrHeight: cnrItemParam.cnrHeight,
-    cnrMass: cnrItemParam.cnrMass
+    cnrBirthYear: cnrItemParam.cnrBirthYear,
+    cnrGender: cnrItemParam.cnrGender,
+    cnrSpecies: cnrItemParam.cnrSpecies,
+    cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
   
@@ -168,3 +171,71 @@ export function cnrRenderPagination(cnrContainerIDParam, cnrCurrentPageParam, cn
   };
 
 }; // cnrRenderPagination
+
+/* ************************************************************************* 
+COMMENTS */
+
+export function cnrRenderComments(cnrContainerIDParam, cnrCommentsParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerIDParam);
+    return;
+  };
+  if (cnrCommentsParam === null || cnrCommentsParam === '') {
+    return;
+  };
+
+  cnrClearElement(cnrContainerIDParam);
+  cnrCommentsParam.forEach(cnrCommentVar => {
+    cnrRenderComment(cnrContainerIDParam, cnrCommentVar);
+  });
+}; // cnrRenderComments
+
+export function cnrRenderCommentsForID(cnrContainerIDParam, cnrCommentTextParam, cnrCommentIDParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrContainerElementParam", cnrContainerIDParam);
+    return;
+  };
+  if (cnrCommentTextParam === null || cnrCommentTextParam === '') {
+    return;
+  };
+  if (cnrCommentIDParam === null || cnrCommentIDParam === '') {
+    console.log("ERROR: cnrRenderComments > cnrIDParam", cnrCommentIDParam);
+    return;
+  };
+
+  cnrClearElement(cnrContainerIDParam);
+  cnrCommentTextParam.forEach(cnrCommentVar => {
+    if (cnrCommentVar.cnrID.toString() === cnrCommentIDParam.toString()) {
+      cnrRenderComment(cnrContainerIDParam, cnrCommentVar);
+    };
+  });
+}; // cnrRenderCommentsForID
+
+export function cnrRenderComment(cnrContainerElementParam, cnrCommentParam) {
+  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
+    console.log("ERROR: cnrRenderComment > cnrContainerElementParam", cnrContainerElementParam);
+    return;
+  };
+  if (cnrCommentParam === null || cnrCommentParam === '') {
+    return;
+  };
+
+  const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrRenderComment > cnrContainerElementVar", cnrContainerElementVar);
+    return;
+  };
+
+  // prepare element
+  const cnrCardDivVar = document.createElement('div');
+  cnrCardDivVar.classList.add('cnrcardcommentdivs');
+  cnrCardDivVar.innerHTML = `
+    <p class="cnrcardcommentdates">${cnrCommentParam.cnrDate}</p>
+    <p class="cnrcardcommenttexts">${cnrCommentParam.cnrComment}</p>
+  `;
+  
+  // render element
+  cnrContainerElementVar.appendChild(cnrCardDivVar);
+  cnrCardDivVar.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+
+}; // cnrRenderComment
