@@ -16,9 +16,9 @@
       <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
 
       <style>
-         @import "../../css/w08/cnrItemsView.css" screen and (max-width:640px);
-         @import "../../css/w08/cnrItemsView.css" screen and (min-width:640px);
-         @import "../../css/w08/cnrItemsView.css" screen and (min-width:1024px);
+         @import "../../css/w08fetch/cnrItemsView.css" screen and (max-width:640px);
+         @import "../../css/w08fetch/cnrItemsView.css" screen and (min-width:640px);
+         @import "../../css/w08fetch/cnrItemsView.css" screen and (min-width:1024px);
       </style>
    </head>
 
@@ -28,7 +28,7 @@
          <section class="cnrheadersections">
             <div class="cnrheaderdivs">
                <h1 class="cnrmaintitles" title="cnrmaintitles">Week 8</h1>
-               <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">Hikes</h5>
+               <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">Fetch API</h5>
             </div>
             <div class="cnrsubheaderdivs">
                <a href="../../index.html" class="cnrhomelinks">Home Page</a>
@@ -43,9 +43,22 @@
                   <!-- javascript -->
                </div>
             </div>
+
+            <!-- pagination -->
+            <div class="cnrpaginationcontainerdivs">
+               <div class="cnrpaginationbuttonsdivs">
+                  <button class="cnrpaginationbuttons" id="cnrpreviousbutton" data-url="" type='submit'>Previous</button>
+                  <div></div>
+                  <button class="cnrpaginationbuttons" id="cnrnextbutton" data-url="" type='submit'>Next</button>
+               </div>
+               
+               <div class="cnrpaginationlinkscontainerdivs" id="cnrpaginationlinkscontainerdiv">
+                  <!-- javascript -->
+               </div>
+            </div>
          </section>
       </main>
 
-      <script src="../../js/w08/cnrItemsView.js" type="module"></script>
+      <script src="../../js/w08fetch/cnrItemsView.js" type="module"></script>
    </body>
 </html>
