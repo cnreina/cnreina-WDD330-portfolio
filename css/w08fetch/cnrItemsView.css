@@ -156,15 +156,23 @@ hr {
   position: sticky;
   top: 42px;
 }
-.cnrcardheaderexits {
-  opacity: 0.5;
-  color: red;
-}
 .cnrcardheadertitles {
   padding: 0px;
   margin: 0px;
   text-align: center;
   font-size: 1em;
+}
+.cnrcardheadertitles a:link {
+  color:white;
+  text-decoration: none;
+}
+.cnrcardheadertitles a:visited {
+  color:white;
+  text-decoration: none;
+}
+.cnrcardheadertitles a:active {
+  color:white;
+  text-decoration: none;
 }
 .cnrcardcontentdivs {
   width: 100%;

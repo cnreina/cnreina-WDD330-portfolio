@@ -94,21 +94,24 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   cnrCardDivVar.classList.add('cnrjscontentdivs');
   cnrCardDivVar.innerHTML = `
     <div class="cnrcardheaderdivs">
-      <p class="cnrcardheadertitles">${cnrItemParam.cnrName}</p>
+      <p class="cnrcardheadertitles"><a href="${cnrPersonURL}?${cnrEncodedStringVar}">${cnrItemParam.cnrName}</a></p>
     </div>
     <div class="cnrcardcontentdivs">
-      <div class="cnrcardcelldivs">
-        <div class="cnrcardimagedivs">
-            <img class="cnrcardimages" src=${cnrItemParam.cnrImageURL} alt="Image">
-        </div>
+    <div class="cnrcardcelldivs">
+    <div class="cnrcardinfodivs">
+      <div class="cnrcardbasicinfodivs">
+        <p><b>Name:</b></p><p>${cnrItemParam.cnrName}</p>
+        <p><b>Gender:</b></p><p>${cnrItemParam.cnrGender}</p>
+        <p><b>Birth:</b></p><p>${cnrItemParam.cnrBirthYear}</p>
       </div>
+    </div>
+  </div>
       <div class="cnrcardcelldivs">
         <div class="cnrcardinfodivs">
           <div class="cnrcardbasicinfodivs">
-            <p><b>Name:</b></p><p>${cnrItemParam.cnrName}</p>
             <p><b>Height:</b></p><p>${cnrItemParam.cnrHeight}</p>
-            <p><b>Mass:</b></p><p>${cnrItemParam.cnrMass}</p>
-            <a class="cnrcarddetailslinks" href="${cnrPersonURL}?${cnrEncodedStringVar}">Details</a>
+            <p><b>Species:</b></p><p>${cnrItemParam.cnrSpecies}</p>
+            <p><b>Home:</b></p><p>${cnrItemParam.cnrHomeWorldURL}</p>
           </div>
         </div>
       </div>
@@ -118,6 +121,8 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   // render element
   cnrContainerElementVar.appendChild(cnrCardDivVar);
 }; // cnrRenderItem
+
+//             <a class="cnrcarddetailslinks" href="${cnrPersonURL}?${cnrEncodedStringVar}">Details</a>
 
 
 /* ************************************************************************* 

@@ -23,7 +23,10 @@ window.onload = function () {
   const cnrDataSchema = {
     cnrName: 'Person name.',
     cnrHeight: 'Person height.',
-    cnrMass: 'Person mass.'
+    cnrBirthYear: 'Person birth year.',
+    cnrGender: 'Person gender.',
+    cnrSpecies: 'Person species.',
+    cnrHomeWorldURL: 'Person home world URL.'
   };
   cnrPeople = new cnrData.cnrItemsClass('cnrPeople', cnrDataSchema);
 
@@ -107,7 +110,10 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     const cnrItem = {
       cnrName: cnrPersonVar.name,
       cnrHeight: cnrPersonVar.height,
-      cnrMass: cnrPersonVar.mass
+      cnrBirthYear: cnrPersonVar.birth_year,
+      cnrGender: cnrPersonVar.gender,
+      cnrSpecies: cnrPersonVar.species,
+      cnrHomeWorldURL: cnrPersonVar.homeworld
     };
     // add item to data
     cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
