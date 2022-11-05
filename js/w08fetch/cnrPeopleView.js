@@ -10,6 +10,7 @@ import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 
 const cnrFetchBaseURL = 'https://swapi.dev/api/';
+const cnrFetchPeoplePath = 'people/';
 
 let cnrPeople = null;
 let cnrPagesCount = 0;
@@ -42,17 +43,27 @@ window.onload = function () {
   };
 
   // init event listeners
+  // pagination
   const cnrPreviousButtonVar = document.getElementById('cnrpreviousbutton');
-  cnrPreviousButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrPreviousButtonClickHandler);
-
   const cnrNextButtonVar = document.getElementById('cnrnextbutton');
-  cnrNextButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrNextButtonClickHandler);
-
   const cnrPaginationLinksVar = document.getElementById('cnrpaginationlinkscontainerdiv');
+  cnrPreviousButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrPreviousButtonClickHandler);
+  cnrNextButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrNextButtonClickHandler);
   cnrPaginationLinksVar.addEventListener(cnrClickOrTouchEventVar, cnrPaginationLinksClickHandler);
 
-  // load data
-  cnrFetchJSON(cnrFetchBaseURL + 'people');
+  // load page data
+  let cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath;
+  // get pagination from query string
+  const cnrNameVar = cnrGetQueryStringValue('cnrPaginationURL');
+  if(cnrNameVar != null && cnrNameVar != ''){
+    cnrFetchURLVar = cnrNameVar;
+  };
+
+  // ******************** TEST
+    // console.clear();
+    console.log(cnrNameVar);
+
+  // cnrFetchJSON(cnrNameVar);
 
 }; // window.onload
 
@@ -65,8 +76,8 @@ function cnrFetchJSON(cnrURLParam) {
   const cnrRequest = new Request(cnrURLParam, {
     method: 'GET',
     headers: cnrHeaders,
-    mode: 'cors',
-    cache: 'default'
+    // mode: 'cors',
+    // cache: 'default'
   });
 
   fetch(cnrRequest).then((response) => response.json())
@@ -88,7 +99,6 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
 
   // reset data
   cnrPeople.cnrRemoveItems();
-  console.log(cnrPeople.cnrGetClassItemsCount().toString());
 
   // process JSON
   const cnrTotalItemCountVar = cnrResponseJSONParam.count;
@@ -101,23 +111,6 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     return null;
   };
   const cnrCurrentItemCountVar = cnrResultArray.length;
-
-  // get items
-  const cnrLength = cnrCurrentItemCountVar;
-  let cnrCounter = 0;
-  for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
-    const cnrPersonVar = cnrResultArray[cnrCounter];
-    const cnrItem = {
-      cnrName: cnrPersonVar.name,
-      cnrHeight: cnrPersonVar.height,
-      cnrBirthYear: cnrPersonVar.birth_year,
-      cnrGender: cnrPersonVar.gender,
-      cnrSpecies: cnrPersonVar.species,
-      cnrHomeWorldURL: cnrPersonVar.homeworld
-    };
-    // add item to data
-    cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
-  };
 
   // update pagination
   if (cnrPagesCount <= 0) {
@@ -136,22 +129,37 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   if (cnrNextPageURLVar === null || cnrNextPageURLVar === '') {
     cnrNextButtonVar.dataset.url = '';
     cnrNextButtonVar.disabled = true;
-
     const cnrURLVar = new URL(cnrPreviousPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
     cnrCurrentPageNumber = Number(cnrValueVar) + 1;
-    console.log('cnrCurrentPageNumber = ', cnrCurrentPageNumber);
 
   } else {
     cnrNextButtonVar.dataset.url = cnrNextPageURLVar;
     cnrNextButtonVar.disabled = false;
-
     const cnrURLVar = new URL(cnrNextPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
     cnrCurrentPageNumber = Number(cnrValueVar) - 1;
-    console.log('cnrCurrentPageNumber = ', cnrCurrentPageNumber);
+  };
+
+  // update local data
+  const cnrPaginationURLVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrCurrentPageNumber;
+  const cnrLength = cnrCurrentItemCountVar;
+  let cnrCounter = 0;
+  for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+    const cnrPersonVar = cnrResultArray[cnrCounter];
+    const cnrItem = {
+      cnrName: cnrPersonVar.name,
+      cnrHeight: cnrPersonVar.height,
+      cnrBirthYear: cnrPersonVar.birth_year,
+      cnrGender: cnrPersonVar.gender,
+      cnrSpecies: cnrPersonVar.species,
+      cnrHomeWorldURL: cnrPersonVar.homeworld,
+      cnrPaginationURL: cnrPaginationURLVar
+    };
+    // add item to local data
+    cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
   };
 
   // display items
@@ -194,6 +202,27 @@ function cnrPaginationLinksClickHandler(cnrParam) {
   };
 
   // get page
-  cnrFetchJSON(cnrFetchBaseURL + 'people/?page=' + cnrLinkNumberVar.toString());
+  cnrFetchJSON(cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrLinkNumberVar.toString());
 
+};
+
+/**	cnrGetQueryStringValue. 
+ * Returns query string value for passed key. 
+ * Returns empty string on empty or errors. 
+*/
+function cnrGetQueryStringValue(cnrKeyParam) {
+  if(cnrKeyParam === null || cnrKeyParam === ''){
+    console.log('ERROR: cnrGetQueryStringValue > cnrKeyParam');
+    return '';
+  };
+
+  const cnrQueryStringVar = window.location.search;
+  const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
+  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam);
+  if(cnrValueVar === null || cnrValueVar === ''){
+    console.log('ERROR: cnrGetQueryStringValue > cnrValueVar');
+    return '';
+  };
+
+  return cnrValueVar;
 };

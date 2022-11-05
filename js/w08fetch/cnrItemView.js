@@ -9,7 +9,7 @@
 import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 
-const cnrItemsURL = "../../html/w08fetch/cnrItemsView.html";
+const cnrPeopleViewURL = "../../html/w08fetch/cnrPeopleView.html";
 let cnrComments = null;
 
 // INITIALIZE
@@ -21,36 +21,6 @@ window.onload = function () {
     cnrComment: 'Comment content.'
   };
   cnrComments = new cnrData.cnrItemsClass('cnrComments', cnrCommentSchema);
-
-  // load fake comments if storage is empty
-  if (cnrComments.cnrGetClassItemsCount() <= 1) {
-    console.log('window.onload > Loading fake comments because storage is empty');
-    const cnrDateTimeVar = cnrGetUTCDateTime();
-
-    const cnrItem1 = {
-      cnrID: 'Bechler Falls',
-      cnrDate: cnrDateTimeVar,
-      cnrComment: 'Bechler Falls comment 1'
-    };
-    cnrComments.cnrAddItem('comment', true, cnrItem1);
-
-    const cnrItem2 = {
-      cnrID: 'Teton Canyon',
-      cnrDate: cnrDateTimeVar,
-      cnrComment: 'Teton Canyon comment 1'
-    };
-    cnrComments.cnrAddItem('comment', true, cnrItem2);
-    
-    const cnrItem3 = {
-      cnrID: 'Denanda Falls',
-      cnrDate: cnrDateTimeVar,
-      cnrComment: 'Denanda Falls comment 1'
-    };
-    cnrComments.cnrAddItem('comment', true, cnrItem3);
-
-    // save fake comments
-    cnrComments.cnrSaveClassData();
-  };
   
   // click or touch var
   let cnrClickOrTouchEventVar = '';
@@ -91,58 +61,28 @@ function cnrWindowOnLoadHandler() {
   document.getElementById('cnrheight').innerText = cnrHeightVar;
   document.getElementById('cnrspecies').innerText = cnrSpeciesVar;
   document.getElementById('cnrhomeworld').innerText = cnrHomeWorldURLVar;
-  
+
 }; // cnrWindowOnLoadHandler
 
 function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  window.location.href = cnrItemsURL;
+
+  // prepare querystring data sent to people page
+  const cnrPaginationURLVar = cnrGetQueryStringValue('cnrPaginationURL');
+  const cnrItemObject = { cnrPaginationURL: cnrPaginationURLVar };
+  const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
+  const cnrPeopleURLVar = `${cnrPeopleViewURL}?${cnrEncodedStringVar}`; 
+
+  window.location.href = cnrPeopleURLVar;
 };
-
-function cnrInputKeyUpHandler(cnrEventParam) {
-  cnrEventParam.preventDefault();
-  if (this.value === null || this.value === '') {
-    document.getElementById('cnrcommentsubmitbutton').disabled = true;
-  } else {
-    document.getElementById('cnrcommentsubmitbutton').disabled = false;
-  };
-};
-
-function cnrSubmitClickHandler(cnrEventParam) {
-  cnrEventParam.preventDefault();
-  // get input
-  const cnrInputVar = document.getElementById('cnrcommentinput');
-  if (cnrInputVar === null) {
-    console.log("ERROR: cnrSubmitClickHandler > cnrInputVar", cnrInputVar);
-    return;
-  };
-
-  // add comment
-  const cnrInputValueVar = cnrInputVar.value;
-  if (cnrInputValueVar === null || cnrInputValueVar === '') { return; };
-  const cnrInputIDVar = cnrGetQueryStringValue('cnrName');
-
-  const cnrNewComment = {
-    cnrID: cnrInputIDVar,
-    cnrDate: cnrGetUTCDateTime(),
-    cnrComment: cnrInputValueVar
-  };
-  cnrComments.cnrAddItem('comment', true, cnrNewComment);
-  if (cnrComments.cnrGetClassHasErrors()) {
-    console.log("cnrGetClassHasErrors > ", cnrComments.cnrGetLastErrorMessage());
-  };
-
-  // update storage
-  cnrComments.cnrSaveClassData();
-
-  // update display
-  cnrDisplay.cnrRenderCommentsForID('cnrcomments', cnrComments.cnrGetItemsDataForName('comment'), cnrInputIDVar);
-
-}; // cnrSubmitClickHandler
 
 /* ************************************************************************* */
 // CONTROLLERS
 
+/**	cnrGetQueryStringValue. 
+ * Returns query string value for passed key. 
+ * Returns empty string on empty or errors. 
+*/
 function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrQueryStringVar = window.location.search;
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);

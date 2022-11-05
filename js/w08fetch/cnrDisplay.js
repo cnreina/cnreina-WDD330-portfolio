@@ -24,16 +24,21 @@ function cnrClearElement(cnrElementIDParam) {
 
 
 /* ************************************************************************* 
-ITEMS */
+PEOPLE */
 
+/**	cnrRenderItems. 
+ * Renders passed items in passed element. 
+ * Returns null on errors. 
+ * 
+*/
 export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
   if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
     console.log("ERROR: cnrRenderItems > cnrContainerIDParam", cnrContainerIDParam);
-    return;
+    return null;
   };
   if (cnrItemsParam === null || cnrItemsParam === '') {
     console.log("ERROR: cnrRenderItems > cnrItemsParam", cnrItemsParam);
-    return;
+    return null;
   };
 
   cnrClearElement(cnrContainerIDParam);
@@ -41,6 +46,10 @@ export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
   cnrItemsParam.forEach(cnrItemVar => {
     cnrRenderItem(cnrContainerIDParam, cnrItemVar);
   });
+
+  // const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
+  // cnrContainerElementVar.scrollIntoView();
+
 }; // cnrRenderItems
 
 function cnrRenderItemsHeader(cnrContainerElementParam) {
@@ -62,6 +71,7 @@ function cnrRenderItemsHeader(cnrContainerElementParam) {
   cnrItemsHeaderDivVar.innerHTML = `People`;
   // render element
   cnrContainerElementVar.appendChild(cnrItemsHeaderDivVar);
+  cnrContainerElementVar.scrollIntoView();
 
 }; // cnrRenderItemsHeader
 
@@ -88,7 +98,8 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
     cnrBirthYear: cnrItemParam.cnrBirthYear,
     cnrGender: cnrItemParam.cnrGender,
     cnrSpecies: cnrItemParam.cnrSpecies,
-    cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL
+    cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL,
+    cnrPaginationURL: cnrItemParam.cnrPaginationURL
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
   
