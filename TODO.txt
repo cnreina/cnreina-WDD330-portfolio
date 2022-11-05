@@ -1,3 +1,4 @@
+bug > fetch/page loads twice.
 
 load by page > hike or comment
 
@@ -56,3 +57,7 @@ function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
   return cnrValueVar;
 };
+
+try css dvh
+
+launch simulator from cmd.

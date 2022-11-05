@@ -13,12 +13,12 @@ const cnrFetchBaseURL = 'https://swapi.dev/api/';
 const cnrFetchPeoplePath = 'people/';
 
 let cnrPeople = null;
-let cnrPagesCount = 0;
-let cnrCurrentPageNumber = 0;
-  
+let cnrPaginationCount = 0;
+let cnrCurrentPaginationNumber = 0;
+
 // INITIALIZE
 window.onload = function () {
-  cnrPagesCount = 0;
+  cnrPaginationCount = 0;
 
   // create new data object
   const cnrDataSchema = {
@@ -27,7 +27,8 @@ window.onload = function () {
     cnrBirthYear: 'Person birth year.',
     cnrGender: 'Person gender.',
     cnrSpecies: 'Person species.',
-    cnrHomeWorldURL: 'Person home world URL.'
+    cnrHomeWorldURL: 'Person home world URL.',
+    cnrPaginationNumber: 'Pagination number where data originates.'
   };
   cnrPeople = new cnrData.cnrItemsClass('cnrPeople', cnrDataSchema);
 
@@ -43,7 +44,7 @@ window.onload = function () {
   };
 
   // init event listeners
-  // pagination
+  // pagination buttons
   const cnrPreviousButtonVar = document.getElementById('cnrpreviousbutton');
   const cnrNextButtonVar = document.getElementById('cnrnextbutton');
   const cnrPaginationLinksVar = document.getElementById('cnrpaginationlinkscontainerdiv');
@@ -54,9 +55,9 @@ window.onload = function () {
   // load page data
   let cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath;
   // get pagination from query string
-  const cnrPaginationVar = cnrGetQueryStringValue('cnrPageNumber');
-  if(cnrPaginationVar != null && cnrPaginationVar != ''){
-    cnrFetchURLVar = cnrPaginationVar;
+  const cnrPaginationNumberVar = cnrGetQueryStringValue('cnrPaginationNumber');
+  if(cnrPaginationNumberVar != null && cnrPaginationNumberVar != ''){
+    cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrPaginationNumberVar.toString();
   };
   cnrFetchJSON(cnrFetchURLVar);
 
@@ -107,10 +108,12 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   };
   const cnrCurrentItemCountVar = cnrResultArray.length;
 
-  // update pagination
-  if (cnrPagesCount <= 0) {
-    cnrPagesCount = (cnrTotalItemCountVar / cnrCurrentItemCountVar) + 1;
+  // update pagination count
+  if (cnrPaginationCount <= 0) {
+    cnrPaginationCount = (cnrTotalItemCountVar / cnrCurrentItemCountVar) + 1;
   };
+
+  // update pagination buttons
   const cnrPreviousButtonVar = document.getElementById('cnrpreviousbutton');
   if (cnrPreviousPageURLVar === null || cnrPreviousPageURLVar === '') {
     cnrPreviousButtonVar.dataset.url = '';
@@ -127,7 +130,8 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     const cnrURLVar = new URL(cnrPreviousPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
-    cnrCurrentPageNumber = Number(cnrValueVar) + 1;
+    // update current pagination number
+    cnrCurrentPaginationNumber = Number(cnrValueVar) + 1;
 
   } else {
     cnrNextButtonVar.dataset.url = cnrNextPageURLVar;
@@ -135,12 +139,11 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     const cnrURLVar = new URL(cnrNextPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
-    cnrCurrentPageNumber = Number(cnrValueVar) - 1;
+    // update current pagination number
+    cnrCurrentPaginationNumber = Number(cnrValueVar) - 1;
   };
 
   // update local data
-  const cnrPageNumberVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrCurrentPageNumber;
-
   const cnrLength = cnrCurrentItemCountVar;
   let cnrCounter = 0;
   for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
@@ -152,7 +155,7 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
       cnrGender: cnrPersonVar.gender,
       cnrSpecies: cnrPersonVar.species,
       cnrHomeWorldURL: cnrPersonVar.homeworld,
-      cnrPageNumber: cnrPageNumberVar
+      cnrPaginationNumber: cnrCurrentPaginationNumber.toString()
     };
     // add item to local data
     cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
@@ -162,7 +165,7 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   cnrDisplay.cnrRenderItems('cnrjscontainerdiv1', cnrPeople.cnrGetItemsDataForName('cnrPerson'));
 
   // display pagination
-  cnrDisplay.cnrRenderPagination('cnrpaginationlinkscontainerdiv', cnrCurrentPageNumber, cnrPagesCount);
+  cnrDisplay.cnrRenderPagination('cnrpaginationlinkscontainerdiv', cnrCurrentPaginationNumber, cnrPaginationCount);
   
 }; // cnrProcessResponse
 

@@ -10,6 +10,7 @@ import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 
 const cnrPeopleViewURL = "../../html/w08fetch/cnrPeopleView.html";
+let cnrCurrentPaginationNumber = 0;
 let cnrComments = null;
 
 // INITIALIZE
@@ -52,7 +53,6 @@ function cnrWindowOnLoadHandler() {
   const cnrHeightVar = cnrGetQueryStringValue('cnrHeight');
   const cnrSpeciesVar = cnrGetQueryStringValue('cnrSpecies');
   const cnrHomeWorldURLVar = cnrGetQueryStringValue('cnrHomeWorldURL');
-  const cnrPageNumberVar = cnrGetQueryStringValue('cnrPageNumber');
 
   // render data
   document.getElementById('cnrcardheadertitle').innerText = cnrNameVar;
@@ -63,17 +63,18 @@ function cnrWindowOnLoadHandler() {
   document.getElementById('cnrspecies').innerText = cnrSpeciesVar;
   document.getElementById('cnrhomeworld').innerText = cnrHomeWorldURLVar;
 
+  // save pagination number from querystring
+  const cnrPaginationNumberVar = cnrGetQueryStringValue('cnrPaginationNumber');
+  cnrCurrentPaginationNumber = cnrPaginationNumberVar;
 }; // cnrWindowOnLoadHandler
 
 function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
 
-  // prepare querystring data sent to people page
-  const cnrPageNumberVar = cnrGetQueryStringValue('cnrPageNumber');
-  const cnrItemObject = { cnrPageNumber: cnrPageNumberVar };
+  // pass paging number
+  const cnrItemObject = { cnrPaginationNumber: cnrCurrentPaginationNumber };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
   const cnrPeopleURLVar = `${cnrPeopleViewURL}?${cnrEncodedStringVar}`;
-
   window.location.href = cnrPeopleURLVar;
 };
 
@@ -85,8 +86,17 @@ function cnrBackLinksClickHandler(cnrEventParam) {
  * Returns empty string on empty or errors. 
 */
 function cnrGetQueryStringValue(cnrKeyParam) {
+  if(cnrKeyParam === null || cnrKeyParam === ''){
+    console.log('ERROR: cnrGetQueryStringValue > cnrKeyParam');
+    return '';
+  };
+
   const cnrQueryStringVar = window.location.search;
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
-  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
+  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam);
+  if(cnrValueVar === null || cnrValueVar === ''){
+    return '';
+  };
+
   return cnrValueVar;
 };
