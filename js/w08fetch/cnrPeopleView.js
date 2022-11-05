@@ -10,14 +10,15 @@ import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 
 const cnrFetchBaseURL = 'https://swapi.dev/api/';
+const cnrFetchPeoplePath = 'people/';
 
 let cnrPeople = null;
-let cnrPagesCount = 0;
-let cnrCurrentPageNumber = 0;
+let cnrPaginationCount = 0;
+let cnrCurrentPaginationNumber = 0;
 
 // INITIALIZE
 window.onload = function () {
-  cnrPagesCount = 0;
+  cnrPaginationCount = 0;
 
   // create new data object
   const cnrDataSchema = {
@@ -26,7 +27,8 @@ window.onload = function () {
     cnrBirthYear: 'Person birth year.',
     cnrGender: 'Person gender.',
     cnrSpecies: 'Person species.',
-    cnrHomeWorldURL: 'Person home world URL.'
+    cnrHomeWorldURL: 'Person home world URL.',
+    cnrPaginationNumber: 'Pagination number where data originates.'
   };
   cnrPeople = new cnrData.cnrItemsClass('cnrPeople', cnrDataSchema);
 
@@ -42,17 +44,22 @@ window.onload = function () {
   };
 
   // init event listeners
+  // pagination buttons
   const cnrPreviousButtonVar = document.getElementById('cnrpreviousbutton');
-  cnrPreviousButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrPreviousButtonClickHandler);
-
   const cnrNextButtonVar = document.getElementById('cnrnextbutton');
-  cnrNextButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrNextButtonClickHandler);
-
   const cnrPaginationLinksVar = document.getElementById('cnrpaginationlinkscontainerdiv');
+  cnrPreviousButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrPreviousButtonClickHandler);
+  cnrNextButtonVar.addEventListener(cnrClickOrTouchEventVar, cnrNextButtonClickHandler);
   cnrPaginationLinksVar.addEventListener(cnrClickOrTouchEventVar, cnrPaginationLinksClickHandler);
 
-  // load data
-  cnrFetchJSON(cnrFetchBaseURL + 'people');
+  // load page data
+  let cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath;
+  // get pagination from query string
+  const cnrPaginationNumberVar = cnrGetQueryStringValue('cnrPaginationNumber');
+  if(cnrPaginationNumberVar != null && cnrPaginationNumberVar != ''){
+    cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrPaginationNumberVar.toString();
+  };
+  cnrFetchJSON(cnrFetchURLVar);
 
 }; // window.onload
 
@@ -88,7 +95,6 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
 
   // reset data
   cnrPeople.cnrRemoveItems();
-  console.log(cnrPeople.cnrGetClassItemsCount().toString());
 
   // process JSON
   const cnrTotalItemCountVar = cnrResponseJSONParam.count;
@@ -102,27 +108,12 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   };
   const cnrCurrentItemCountVar = cnrResultArray.length;
 
-  // get items
-  const cnrLength = cnrCurrentItemCountVar;
-  let cnrCounter = 0;
-  for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
-    const cnrPersonVar = cnrResultArray[cnrCounter];
-    const cnrItem = {
-      cnrName: cnrPersonVar.name,
-      cnrHeight: cnrPersonVar.height,
-      cnrBirthYear: cnrPersonVar.birth_year,
-      cnrGender: cnrPersonVar.gender,
-      cnrSpecies: cnrPersonVar.species,
-      cnrHomeWorldURL: cnrPersonVar.homeworld
-    };
-    // add item to data
-    cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
+  // update pagination count
+  if (cnrPaginationCount <= 0) {
+    cnrPaginationCount = (cnrTotalItemCountVar / cnrCurrentItemCountVar) + 1;
   };
 
-  // update pagination
-  if (cnrPagesCount <= 0) {
-    cnrPagesCount = (cnrTotalItemCountVar / cnrCurrentItemCountVar) + 1;
-  };
+  // update pagination buttons
   const cnrPreviousButtonVar = document.getElementById('cnrpreviousbutton');
   if (cnrPreviousPageURLVar === null || cnrPreviousPageURLVar === '') {
     cnrPreviousButtonVar.dataset.url = '';
@@ -136,29 +127,45 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   if (cnrNextPageURLVar === null || cnrNextPageURLVar === '') {
     cnrNextButtonVar.dataset.url = '';
     cnrNextButtonVar.disabled = true;
-
     const cnrURLVar = new URL(cnrPreviousPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
-    cnrCurrentPageNumber = Number(cnrValueVar) + 1;
-    console.log('cnrCurrentPageNumber = ', cnrCurrentPageNumber);
+    // update current pagination number
+    cnrCurrentPaginationNumber = Number(cnrValueVar) + 1;
 
   } else {
     cnrNextButtonVar.dataset.url = cnrNextPageURLVar;
     cnrNextButtonVar.disabled = false;
-
     const cnrURLVar = new URL(cnrNextPageURLVar);
     const cnrURLParamsVar = new URLSearchParams(cnrURLVar.search);
     const cnrValueVar = cnrURLParamsVar.get('page');
-    cnrCurrentPageNumber = Number(cnrValueVar) - 1;
-    console.log('cnrCurrentPageNumber = ', cnrCurrentPageNumber);
+    // update current pagination number
+    cnrCurrentPaginationNumber = Number(cnrValueVar) - 1;
+  };
+
+  // update local data
+  const cnrLength = cnrCurrentItemCountVar;
+  let cnrCounter = 0;
+  for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+    const cnrPersonVar = cnrResultArray[cnrCounter];
+    const cnrItem = {
+      cnrName: cnrPersonVar.name,
+      cnrHeight: cnrPersonVar.height,
+      cnrBirthYear: cnrPersonVar.birth_year,
+      cnrGender: cnrPersonVar.gender,
+      cnrSpecies: cnrPersonVar.species,
+      cnrHomeWorldURL: cnrPersonVar.homeworld,
+      cnrPaginationNumber: cnrCurrentPaginationNumber.toString()
+    };
+    // add item to local data
+    cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
   };
 
   // display items
   cnrDisplay.cnrRenderItems('cnrjscontainerdiv1', cnrPeople.cnrGetItemsDataForName('cnrPerson'));
 
   // display pagination
-  cnrDisplay.cnrRenderPagination('cnrpaginationlinkscontainerdiv', cnrCurrentPageNumber, cnrPagesCount);
+  cnrDisplay.cnrRenderPagination('cnrpaginationlinkscontainerdiv', cnrCurrentPaginationNumber, cnrPaginationCount);
   
 }; // cnrProcessResponse
 
@@ -193,7 +200,27 @@ function cnrPaginationLinksClickHandler(cnrParam) {
     return null;
   };
 
-  // get page
-  cnrFetchJSON(cnrFetchBaseURL + 'people/?page=' + cnrLinkNumberVar.toString());
+  // request page
+  cnrFetchJSON(cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrLinkNumberVar.toString());
 
+};
+
+/**	cnrGetQueryStringValue. 
+ * Returns query string value for passed key. 
+ * Returns empty string on empty or errors. 
+*/
+function cnrGetQueryStringValue(cnrKeyParam) {
+  if(cnrKeyParam === null || cnrKeyParam === ''){
+    console.log('ERROR: cnrGetQueryStringValue > cnrKeyParam');
+    return '';
+  };
+
+  const cnrQueryStringVar = window.location.search;
+  const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
+  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam);
+  if(cnrValueVar === null || cnrValueVar === ''){
+    return '';
+  };
+
+  return cnrValueVar;
 };
