@@ -143,7 +143,7 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     cnrCurrentPaginationNumber = Number(cnrValueVar) - 1;
   };
 
-  // update local data
+  // save local data
   const cnrLength = cnrCurrentItemCountVar;
   let cnrCounter = 0;
   for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){

@@ -7,7 +7,6 @@
 /* ************************************************************************* */
 
 import * as cnrData from './cnrData.js';
-import * as cnrDisplay from './cnrDisplay.js';
 
 const cnrPeopleViewURL = "../../html/w08fetch/cnrPeopleView.html";
 let cnrCurrentPaginationNumber = 0;
