@@ -15,7 +15,7 @@ const cnrFetchPeoplePath = 'people/';
 let cnrPeople = null;
 let cnrPagesCount = 0;
 let cnrCurrentPageNumber = 0;
-
+  
 // INITIALIZE
 window.onload = function () {
   cnrPagesCount = 0;
@@ -54,16 +54,11 @@ window.onload = function () {
   // load page data
   let cnrFetchURLVar = cnrFetchBaseURL + cnrFetchPeoplePath;
   // get pagination from query string
-  const cnrNameVar = cnrGetQueryStringValue('cnrPaginationURL');
-  if(cnrNameVar != null && cnrNameVar != ''){
-    cnrFetchURLVar = cnrNameVar;
+  const cnrPaginationVar = cnrGetQueryStringValue('cnrPageNumber');
+  if(cnrPaginationVar != null && cnrPaginationVar != ''){
+    cnrFetchURLVar = cnrPaginationVar;
   };
-
-  // ******************** TEST
-    // console.clear();
-    console.log(cnrNameVar);
-
-  // cnrFetchJSON(cnrNameVar);
+  cnrFetchJSON(cnrFetchURLVar);
 
 }; // window.onload
 
@@ -76,8 +71,8 @@ function cnrFetchJSON(cnrURLParam) {
   const cnrRequest = new Request(cnrURLParam, {
     method: 'GET',
     headers: cnrHeaders,
-    // mode: 'cors',
-    // cache: 'default'
+    mode: 'cors',
+    cache: 'default'
   });
 
   fetch(cnrRequest).then((response) => response.json())
@@ -144,7 +139,8 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   };
 
   // update local data
-  const cnrPaginationURLVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrCurrentPageNumber;
+  const cnrPageNumberVar = cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrCurrentPageNumber;
+
   const cnrLength = cnrCurrentItemCountVar;
   let cnrCounter = 0;
   for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
@@ -156,7 +152,7 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
       cnrGender: cnrPersonVar.gender,
       cnrSpecies: cnrPersonVar.species,
       cnrHomeWorldURL: cnrPersonVar.homeworld,
-      cnrPaginationURL: cnrPaginationURLVar
+      cnrPageNumber: cnrPageNumberVar
     };
     // add item to local data
     cnrPeople.cnrAddItem('cnrPerson', true, cnrItem);
@@ -201,7 +197,7 @@ function cnrPaginationLinksClickHandler(cnrParam) {
     return null;
   };
 
-  // get page
+  // request page
   cnrFetchJSON(cnrFetchBaseURL + cnrFetchPeoplePath + '?page=' + cnrLinkNumberVar.toString());
 
 };
@@ -220,7 +216,6 @@ function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
   const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam);
   if(cnrValueVar === null || cnrValueVar === ''){
-    console.log('ERROR: cnrGetQueryStringValue > cnrValueVar');
     return '';
   };
 

@@ -91,7 +91,7 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
     return;
   };
 
-  // prepare querystring data sent to hike detail page
+  // prepare querystring data sent to person page
   const cnrItemObject = {
     cnrName: cnrItemParam.cnrName,
     cnrHeight: cnrItemParam.cnrHeight,
@@ -99,9 +99,14 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
     cnrGender: cnrItemParam.cnrGender,
     cnrSpecies: cnrItemParam.cnrSpecies,
     cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL,
-    cnrPaginationURL: cnrItemParam.cnrPaginationURL
+    cnrPageNumber: cnrItemParam.cnrPageNumber
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
+
+  TODO 
+  // ******************** TEST
+  console.clear();
+  console.log('TEST: ', cnrItemObject);
   
   // prepare element
   const cnrCardDivVar = document.createElement('div');

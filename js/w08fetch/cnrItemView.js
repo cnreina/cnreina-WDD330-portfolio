@@ -52,6 +52,7 @@ function cnrWindowOnLoadHandler() {
   const cnrHeightVar = cnrGetQueryStringValue('cnrHeight');
   const cnrSpeciesVar = cnrGetQueryStringValue('cnrSpecies');
   const cnrHomeWorldURLVar = cnrGetQueryStringValue('cnrHomeWorldURL');
+  const cnrPageNumberVar = cnrGetQueryStringValue('cnrPageNumber');
 
   // render data
   document.getElementById('cnrcardheadertitle').innerText = cnrNameVar;
@@ -68,10 +69,10 @@ function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
 
   // prepare querystring data sent to people page
-  const cnrPaginationURLVar = cnrGetQueryStringValue('cnrPaginationURL');
-  const cnrItemObject = { cnrPaginationURL: cnrPaginationURLVar };
+  const cnrPageNumberVar = cnrGetQueryStringValue('cnrPageNumber');
+  const cnrItemObject = { cnrPageNumber: cnrPageNumberVar };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
-  const cnrPeopleURLVar = `${cnrPeopleViewURL}?${cnrEncodedStringVar}`; 
+  const cnrPeopleURLVar = `${cnrPeopleViewURL}?${cnrEncodedStringVar}`;
 
   window.location.href = cnrPeopleURLVar;
 };
@@ -88,11 +89,4 @@ function cnrGetQueryStringValue(cnrKeyParam) {
   const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
   const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
   return cnrValueVar;
-};
-
-/**	Returns current UTC date and time. */
-function cnrGetUTCDateTime() {
-  const cnrDateTimeVar = new Date();
-  const cnrDateTimeUTCVar = cnrDateTimeVar.toUTCString();
-  return cnrDateTimeUTCVar;
 };
