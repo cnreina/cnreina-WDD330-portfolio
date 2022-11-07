@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<!--
+   Carlos N Reina
+   BYU Idaho 2022
+   WDD 330 Web Frontend Development II
+-->
+
+<html lang="en">
+   <head>
+      <link href="../../res/favicon.ico" rel="icon" type="image/x-icon"/>
+      <title>WDD-330</title>
+	   <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+
+      <style>
+         @import "../../css/w07/w07hike.css" screen and (max-width:640px);
+         @import "../../css/w07/w07hike.css" screen and (min-width:640px);
+         @import "../../css/w07/w07hike.css" screen and (min-width:1024px);
+      </style>
+   </head>
+
+   <body>
+      <main>
+          <!-- Header Section -->
+          <section class="cnrheadersections">
+            <div class="cnrheaderdivs">
+               <h1 class="cnrmaintitles" title="cnrmaintitles">Week 7</h1>
+               <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">Hikes With Comments</h5>
+            </div>
+            <div class="cnrsubheaderdivs">
+               <a href="../../index.html" class="cnrhomelinks">Home Page</a>
+               <p class="cnrcopyright">Carlos N Reina 2022</p>
+            </div>
+         </section>
+         <hr>
+         <!-- Main Section -->
+         <section class="cnrmainsections">
+            <div class="cnrmaindivs">
+               <!-- CARD -->
+               <div class="cnrjscontentdivs">
+                  <div class="cnrcardheaderdivs">
+                     <p class="cnrcardheadertitles" id="cnrcardheadertitle"></p>
+                  </div>
+                  <div class="cnrcardcontentdivs">
+                     <div class="cnrcardcelldivs">
+                        <div class="cnrcardimagedivs">
+                           <img class="cnrcardimages" id="cnrcardimage" src="../../res/imageplaceholder.png" alt="Image">
+                        </div>
+                     </div>
+   
+                     <div class="cnrcardcelldivs">
+                        <div class="cnrcardinfodivs">
+                           <div class="cnrcardbasicinfodivs">
+                              <p><b>Location:</b></p><p id="cnrlocation"></p>
+                              <p><b>Rating:</b></p><p id="cnrrating"></p>
+                              <p><b>Dificulty:</b></p><p id="cnrdifficulty"></p>
+                           </div>
+                           <div class="cnrcardfullinfodivs">
+                              <p><b>Description:</b></p><p class="cnrtextscrollable" id="cnrdescription"></p> <!-- javascript -->
+                           </div>
+                           <div class="cnrcardfullinfodivs cnrjsscrollable">
+                              <p><b>Directions:</b></p><p class="cnrtextscrollable" id="cnrdirections"></p> <!-- javascript -->
+                           </div>
+
+                           <div class="cnrcardcommentcontainerdivs">
+                              <p><b>Comments:</b></p>
+                              <div class="cnrjsscrollable" id="cnrcomments">
+                                 <!-- javascript -->
+                              </div>
+                           </div>
+                           <!-- comment form -->
+                           <div id="cnrcommentformdiv">
+                              <form id='cnrcommentform'>
+                                 <div>
+                                    <textarea class="cnrinputscrollable" id="cnrcommentinput" name="cnrcommentinput" rows="6" cols="30" placeholder='Add a comment here . . .' maxlength=1024></textarea>
+                                 </div>
+                                 <div>
+                                    <button class="cnrcommentbuttons" id="cnrcommentsubmitbutton" type='submit' disabled>Submit</button>
+                                 </div>
+                              </form>
+                           </div>
+
+                        </div>
+                        <div class="cnrbacklinkdivs" id="cnrbacklinkdiv">
+                           <a class="cnrbacklinks" href="../../html/w07/w07hikes.html">Back to list</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+
+      <script src="../../js/w07/w07hike.js" type="module"></script>
+   </body>
+</html>
