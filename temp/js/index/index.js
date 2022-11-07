@@ -90,6 +90,10 @@ const links = [
   {
     label: "Week 8 (Fetch API)",
     url: "html/w08fetch/cnrPeopleView.html"
+  },
+  {
+    label: "Week 9 (Folder structure refactoring)",
+    url: "cnrCode/w09/html/cnrPeopleView.html"
   }
 ];
 

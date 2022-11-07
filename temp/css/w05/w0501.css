@@ -1,0 +1,152 @@
+/*	Carlos N Reina
+  cnreina@gmail.com
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 30px;
+  background: rgb(219, 219, 223);
+}
+
+.maintitles {
+  color:rgb(171, 9, 9);
+  margin: 0px;
+}
+.mainsubtitles {
+  color:rgb(13, 18, 157);
+  margin: 0px;
+}
+
+hr {
+  margin-top:20px;
+}
+
+.mainsections {
+  width: 100%;
+  height: auto;
+  /* background-color: rgb(210, 210, 213); */
+  padding: 8px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+
+.maindivs {
+  width: 360px;
+  height: 600px;
+  background-color: rgb(245, 245, 242);
+  padding: 0px;
+  margin: 0px;
+  border: 6px solid rgba(181, 178, 178, 0.8);
+}
+
+.infodivs {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(77, 75, 75, 0.8);
+  background-color: rgb(141, 141, 138);
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+.infodivs p {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 2.2em;
+}
+
+.carddivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin-bottom: 8px;
+}
+.headerdivs {
+  width: 100%;
+  height: 32px;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid rgba(146, 144, 144, 0.8);
+  background-color: rgb(220, 220, 216);
+}
+.headertitles {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 1.6em;
+  color:rgb(43, 39, 39);
+}
+
+.gridcontainerdivs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+.gridcelldivs {
+  padding: 0px;
+  margin: 8px;
+}
+
+.imagedivs {
+  width: 80%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.images {
+  width: 100%;
+  height: auto;
+}
+
+.hikeinfodivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.hikebasicinfodivs {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.hikebasicinfodivs p {
+  padding: 0.5px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+.hikefullinfodivs {
+  display: none;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.detailslinks {
+  padding-top: 10px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+footer {
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: 2.5rem;
+}

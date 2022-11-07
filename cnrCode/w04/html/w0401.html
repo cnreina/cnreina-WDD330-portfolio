@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<!--
+   Carlos N Reina
+   BYU Idaho 2022
+   WDD 330 Web Frontend Development II
+-->
+
+<html lang="en">
+   <head>
+      <link href="../../res/favicon.ico" rel="icon" type="image/x-icon"/>
+      <title>WDD-330</title>
+	   <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+
+      <style>
+         @import "../css/w0401.css" screen and (max-width:640px);
+         @import "../css/w0401.css" screen and (min-width:640px);
+         @import "../css/w0401.css" screen and (min-width:1024px);
+      </style>
+   </head>
+
+   <body>
+      <h1 class="maintitles" title="WDD-330">Week 4</h1>
+      <h5 class="mainsubtitles">Assignment 1 - Tic Tac Toe</h5>
+      <hr>
+      <br>
+      <!-- Main Section -->
+      <section class="mainsections">
+         <div class="maindivs">
+            <!-- TIC-TAC-TOE -->
+            <div class="infodivs" id="gameinfo">
+               <h1 class="maintitles">Tic Tac Toe</h1>
+               <div id="playerinfocontainer">
+                  <p id="playerinfolabel">Current Player: </p>
+                  <p id="playerinfo"></p>
+               </div>
+            </div>
+            
+            <div class="infodivs" id="gridcontainer">
+               <div class="gridcells" id="gridcell01"></div>
+               <div class="gridcells" id="gridcell02"></div>
+               <div class="gridcells" id="gridcell03"></div>
+               <div class="gridcells" id="gridcell04"></div>
+               <div class="gridcells" id="gridcell05"></div>
+               <div class="gridcells" id="gridcell06"></div>
+               <div class="gridcells" id="gridcell07"></div>
+               <div class="gridcells" id="gridcell08"></div>
+               <div class="gridcells" id="gridcell09"></div>
+            </div>
+
+            <div class="infodivs">
+               <button class="mainbuttons" id='resetbutton'>Reset</button>
+            </div>
+
+         </div>
+      </section>
+      <br>
+      <br>
+
+      <a href="../../../index.html">Home Page</a>
+      <footer>Carlos N Reina 2022</footer>
+      <script src="../js/w0401.js"></script>
+   </body>
+</html>
