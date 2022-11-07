@@ -57,7 +57,7 @@ function cnrRenderOneHike(cnrHikeParam) {
               <p><b>Name:</b></p><p>${cnrHikeParam.cnrName}</p>
               <p><b>Location:</b></p><p>${cnrHikeParam.cnrLocation}</p>
               <p><b>Rating:</b></p><p>${cnrHikeParam.cnrRating}</p>
-              <a class="detailslinks" href="../../html/w05/w0501B.html?${cnrEncodedStringVar}">Details</a>
+              <a class="detailslinks" href="../html/w0501B.html?${cnrEncodedStringVar}">Details</a>
             </div>
             <div class="hikefullinfodivs">
               <p><b>Dificulty:</b></p><p>${cnrHikeParam.cnrDifficulty}</p>

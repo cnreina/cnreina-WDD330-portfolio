@@ -6,17 +6,23 @@
 /* ************************************************************************* 
 INITIALIZE */
 
-const cnrHikeURL = "../../html/w08/cnrItemView.html";
+const cnrPersonURL = "../html/cnrPersonView.html";
 
 
 /* ************************************************************************* 
 TOOLS */
 
-/**	Removes all items from display element. */
+/**	Removes all items from display element. 
+ * Returns null on errors. 
+*/
 function cnrClearElement(cnrElementIDParam) {
   // console.clear();
   // remove from element
   const cnrContainerElementVar = document.getElementById(cnrElementIDParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrClearElement > cnrContainerElementVar", cnrContainerElementVar);
+    return null;
+  };
   while (cnrContainerElementVar.firstChild) {
     cnrContainerElementVar.removeChild(cnrContainerElementVar.firstChild);
   };
@@ -24,20 +30,27 @@ function cnrClearElement(cnrElementIDParam) {
 
 
 /* ************************************************************************* 
-ITEMS */
+PEOPLE */
 
+/**	cnrRenderItems. 
+ * Renders passed items in passed element. 
+ * Returns null on errors. 
+ * 
+*/
 export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
   if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
     console.log("ERROR: cnrRenderItems > cnrContainerIDParam", cnrContainerIDParam);
-    return;
+    return null;
   };
   if (cnrItemsParam === null || cnrItemsParam === '') {
     console.log("ERROR: cnrRenderItems > cnrItemsParam", cnrItemsParam);
-    return;
+    return null;
   };
 
   cnrClearElement(cnrContainerIDParam);
+  // render header
   cnrRenderItemsHeader(cnrContainerIDParam);
+  // render items
   cnrItemsParam.forEach(cnrItemVar => {
     cnrRenderItem(cnrContainerIDParam, cnrItemVar);
   });
@@ -59,9 +72,10 @@ function cnrRenderItemsHeader(cnrContainerElementParam) {
   const cnrItemsHeaderDivVar = document.createElement('div');
   cnrItemsHeaderDivVar.classList.add('cnrmainheaderdivs');
   cnrItemsHeaderDivVar.title = 'cnrmainheaderdivs';
-  cnrItemsHeaderDivVar.innerHTML = `Items`;
+  cnrItemsHeaderDivVar.innerHTML = `People`;
   // render element
   cnrContainerElementVar.appendChild(cnrItemsHeaderDivVar);
+  cnrContainerElementVar.scrollIntoView();
 
 }; // cnrRenderItemsHeader
 
@@ -75,47 +89,52 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
     return;
   };
 
+  // prepare container
   const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
   if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
     console.log("ERROR: cnrRenderItem > cnrContainerElementVar", cnrContainerElementVar);
     return;
   };
 
-  // prepare querystring data sent to hike detail page
+  // prepare querystring data sent to person page
+  const cnrCurrentPaginationNumberVar = cnrItemParam.cnrPaginationNumber;
   const cnrItemObject = {
     cnrName: cnrItemParam.cnrName,
-    cnrImageURL: cnrItemParam.cnrImageURL,
-    cnrLocation: cnrItemParam.cnrLocation,
-    cnrRating: cnrItemParam.cnrRating,
-    cnrDifficulty: cnrItemParam.cnrDifficulty,
-    cnrDescription: cnrItemParam.cnrDescription,
-    cnrDirections: cnrItemParam.cnrDirections
+    cnrHeight: cnrItemParam.cnrHeight,
+    cnrBirthYear: cnrItemParam.cnrBirthYear,
+    cnrGender: cnrItemParam.cnrGender,
+    cnrSpecies: cnrItemParam.cnrSpecies,
+    cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL,
+    cnrPaginationNumber: cnrCurrentPaginationNumberVar
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
-  
+
+  // prepare person link url
+  const cnrPersonLinkURLVar = `${cnrPersonURL}?${cnrEncodedStringVar}`;
+
   // prepare element
   const cnrCardDivVar = document.createElement('div');
   cnrCardDivVar.classList.add('cnrjscontentdivs');
   cnrCardDivVar.innerHTML = `
     <div class="cnrcardheaderdivs">
-      <p class="cnrcardheadertitles">${cnrItemParam.cnrName}</p>
+      <p class="cnrcardheadertitles"><a href="${cnrPersonLinkURLVar}">${cnrItemParam.cnrName}</a></p>
     </div>
     <div class="cnrcardcontentdivs">
-      <div class="cnrcardcelldivs">
-        <div class="cnrcardimagedivs">
-            <img class="cnrcardimages" src=${cnrItemParam.cnrImageURL} alt="Image">
-        </div>
+    <div class="cnrcardcelldivs">
+    <div class="cnrcardinfodivs">
+      <div class="cnrcardbasicinfodivs">
+        <p><b>Name:</b></p><p>${cnrItemParam.cnrName}</p>
+        <p><b>Gender:</b></p><p>${cnrItemParam.cnrGender}</p>
+        <p><b>Birth:</b></p><p>${cnrItemParam.cnrBirthYear}</p>
       </div>
+    </div>
+  </div>
       <div class="cnrcardcelldivs">
         <div class="cnrcardinfodivs">
           <div class="cnrcardbasicinfodivs">
-            <p><b>Name:</b></p><p>${cnrItemParam.cnrName}</p>
-            <p><b>Location:</b></p><p>${cnrItemParam.cnrLocation}</p>
-            <p><b>Rating:</b></p><p>${cnrItemParam.cnrRating}</p>
-            <a class="cnrcarddetailslinks" href="${cnrHikeURL}?${cnrEncodedStringVar}">Details</a>
-          </div>
-          <div class="cnrcardfullinfodivs">
-            <p><b>Dificulty:</b></p><p>${cnrItemParam.cnrDifficulty}</p>
+            <p><b>Height:</b></p><p>${cnrItemParam.cnrHeight}</p>
+            <p><b>Species:</b></p><p>${cnrItemParam.cnrSpecies}</p>
+            <p><b>Home:</b></p><p>${cnrItemParam.cnrHomeWorldURL}</p>
           </div>
         </div>
       </div>
@@ -126,6 +145,52 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   cnrContainerElementVar.appendChild(cnrCardDivVar);
 }; // cnrRenderItem
 
+//             <a class="cnrcarddetailslinks" href="${cnrPersonURL}?${cnrEncodedStringVar}">Details</a>
+
+
+/* ************************************************************************* 
+PAGINATION */
+
+export function cnrRenderPagination(cnrContainerIDParam, cnrCurrentPageParam, cnrPagesCountParam) {
+  if (cnrContainerIDParam === null || cnrContainerIDParam === '') {
+    console.log("ERROR: cnrRenderPagination > cnrContainerIDParam", cnrContainerIDParam);
+    return;
+  };
+  if (cnrCurrentPageParam === null || cnrCurrentPageParam === '') {
+    console.log("ERROR: cnrRenderPagination > cnrCurrentPageParam", cnrCurrentPageParam);
+    return;
+  };
+  if (cnrPagesCountParam === null || cnrPagesCountParam === '') {
+    console.log("ERROR: cnrRenderPagination > cnrPagesCountParam", cnrPagesCountParam);
+    return;
+  };
+
+  const cnrContainerElementVar = document.getElementById(cnrContainerIDParam);
+  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
+    console.log("ERROR: cnrRenderPagination > cnrContainerElementVar", cnrContainerElementVar);
+    return;
+  };
+
+  cnrClearElement(cnrContainerIDParam);
+  
+  const cnrLength = cnrPagesCountParam;
+  let cnrCounter = 1;
+  for (cnrCounter = 1; cnrCounter < cnrLength; cnrCounter++){
+    // prepare element
+    const cnrPaginationDivVar = document.createElement('div');
+    cnrPaginationDivVar.classList.add('cnrpaginationlinksdivs');
+    cnrPaginationDivVar.id = 'cnrpaginationlink' + cnrCounter.toString();
+    cnrPaginationDivVar.dataset.cnrvalue = cnrCounter.toString();
+    cnrPaginationDivVar.innerHTML = cnrCounter.toString();
+    if (cnrCounter.toString() === cnrCurrentPageParam.toString()) {
+      cnrPaginationDivVar.classList.add('cnrpaginationlinkactive');
+    };
+    // render element
+    cnrContainerElementVar.appendChild(cnrPaginationDivVar);
+    cnrPaginationDivVar.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+  };
+
+}; // cnrRenderPagination
 
 /* ************************************************************************* 
 COMMENTS */

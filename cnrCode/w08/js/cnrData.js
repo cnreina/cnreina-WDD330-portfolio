@@ -215,6 +215,27 @@ export class cnrItemsClass {
     return this.#cnrItemsArray[cnrIndexParam].cnrCreated;
   };
 
+  /**	Returns item for item id. 
+   * Item id is set at item construction. 
+   * Returns null on errors.
+  */
+   cnrGetItemForItemID(cnrIDParam) {
+    if (cnrIDParam === null || cnrIDParam === '') {
+      this.#cnrLastErrorMessage = 'cnrGetItemForItemID > cnrIDParam';
+      return null;
+    };
+    
+    const cnrLength = this.#cnrItemsArray.length;
+     let cnrCounter = 0;
+     for (cnrCounter = 0; cnrCounter < cnrLength; cnrCounter++){
+       if (this.#cnrItemsArray[cnrCounter].cnrID === cnrIDParam) {
+         return this.#cnrItemsArray[cnrCounter];
+       };
+     };
+    
+     return null;
+  };
+
   /**	Returns item created date and time. 
    * Item created date and time is set at item construction. 
    * Returns empty string on errors.
@@ -263,10 +284,50 @@ export class cnrItemsClass {
     // save item
     this.#cnrItemsArray.push(cnrNewItem);
     
+  }; // cnrAddItem
+
+  /**	Removes all items 
+   * Retains item 0 (schema).
+   */
+  cnrRemoveItems() {
+    if (this.#cnrItemsArray.length <= 1) {
+      return;
+    };
+    
+    let cnrCounterVar = 1;
+    let cnrLengthVar = this.#cnrItemsArray.length;
+    for(cnrCounterVar = 1; cnrCounterVar < cnrLengthVar; cnrCounterVar++){
+      this.#cnrItemsArray.splice(cnrCounterVar, 1);
+    };
+  };
+
+  /**	Removes an item from the array. 
+   * UUID is required. 
+   * Returns null on errors. 
+   * It does not remove item 0 (schema).
+   * */
+   cnrRemoveItemForID(cnrItemIDParam) {
+    if (this.#cnrItemsArray.length == 0) { return null; };
+     if (cnrItemIDParam === null || cnrItemIDParam === '') { return null; };
+     if (cnrItemIDParam === 0) { return null; };
+
+    let cnrCounterVar = 1;
+    let cnrLengthVar = this.#cnrItemsArray.length;
+    for(cnrCounterVar = 1; cnrCounterVar < cnrLengthVar; cnrCounterVar++){ 
+      if (this.#cnrItemsArray[cnrCounterVar].cnrID === cnrItemIDParam) {
+        // remove item
+        this.#cnrItemsArray.splice(cnrCounterVar, 1);
+        return;
+      };
+    };
+
+    return null;
   };
 
 }; // cnrItemsClass
 
+/* ************************************************************************* */
+// TOOLS
 
 /**	Returns current UTC date and time. */
 function cnrGetUTCDateTime() {

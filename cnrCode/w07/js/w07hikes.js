@@ -7,7 +7,7 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-const cnrHikeURL = "../../html/w07/w07hike.html";
+const cnrHikeURL = "../html/w07hike.html";
 
 export class cnrHikesClass {
   constructor() {};

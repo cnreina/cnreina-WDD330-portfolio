@@ -21,6 +21,6 @@ function cnrDetailsLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
   const cnrIDVar = cnrEventParam.target.id;
 
-  window.location.href = "../../html/w05/w0501B.html?id=" + cnrIDVar;
+  window.location.href = "../html/w0501B.html?id=" + cnrIDVar;
 
 };

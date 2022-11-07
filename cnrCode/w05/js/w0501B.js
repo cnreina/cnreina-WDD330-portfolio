@@ -38,7 +38,7 @@ function cnrWindowOnLoadHandler() {
 
 function cnrBackLinksClickHandler(cnrEventParam) {
   cnrEventParam.preventDefault();
-  window.location.href = "../../html/w05/w0501.html";
+  window.location.href = "../html/w0501.html";
 };
 
 function cnrGetQueryStringValue(cnrKeyParam) {

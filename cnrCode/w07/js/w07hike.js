@@ -12,7 +12,7 @@ import * as cnrComments from './w07comments.js';
 import * as cnrStorage from './w07storage.js';
 
 const cnrCommentsObject = new cnrComments.cnrCommentsClass();
-const cnrHikesURL = "../../html/w07/w07hikes.html";
+const cnrHikesURL = "../html/w07hikes.html";
 
 window.onload = function () {
   // click or touch var
