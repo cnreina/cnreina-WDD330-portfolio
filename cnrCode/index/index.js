@@ -88,7 +88,7 @@ const links = [
   },
   {
     label: "Week 9 (Folder structure refactoring)",
-    url: "cnrCode/w09/html/cnrPeopleView.html"
+    url: "cnrCode/w09/html/cnrDrumKeysView.html"
   }
 ];
 
