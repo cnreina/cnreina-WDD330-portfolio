@@ -11,6 +11,8 @@ import * as cnrDisplay from './cnrDisplay.js';
 
 // INITIALIZE
 window.onload = function () {
+  localStorage.clear();
+  
   // create new hikes object
   const cnrDataSchema = {
     cnrName: 'Hike name or title.',
