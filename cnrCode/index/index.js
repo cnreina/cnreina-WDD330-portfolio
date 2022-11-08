@@ -80,7 +80,7 @@ const links = [
   },
   {
     label: "Week 7 (Hikes)",
-    url: "cnrCode/w07/html/w07hikes.html"
+    url: "cnrCode/w07/html/cnrItemsView.html"
   },
   {
     label: "Week 8 (Fetch API)",
