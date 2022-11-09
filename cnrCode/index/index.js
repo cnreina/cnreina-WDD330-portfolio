@@ -87,8 +87,12 @@ const links = [
     url: "cnrCode/w08/html/cnrPeopleView.html"
   },
   {
-    label: "Week 9 (Folder structure refactoring)",
+    label: "Week 9 (Javascript Drum Kit)",
     url: "cnrCode/w09/html/cnrDrumKeysView.html"
+  },
+  {
+    label: "Week 10 (...)",
+    url: "cnrCode/w10/html/cnrMainView.html"
   }
 ];
 
