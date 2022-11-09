@@ -5,18 +5,38 @@
 
 
 /* ************************************************************************* */
-
 // INITIALIZE
+
+const cnrTOP_OFFSET = 4;
+const cnrLEFT_OFFSET = 4;
+
 window.onload = function () {
   // init event listeners
-  // sound buttons click
-  cnrAddEventListenerToClass(cnrGetClickOrTouchEventName(), 'key', cnrElementClickHandler);
-
+  
   // sound buttons keyup
   window.addEventListener('keyup', cnrWindowKeyUpHandler);
 
+  // sound buttons
+  const cnrClickOrTouchVar = cnrGetClickOrTouchEventName();
+  const cnrElementsFromClass = document.querySelectorAll('.key');
+  for (const cnrElementVar of cnrElementsFromClass) {
+    // click or touch
+    cnrElementVar.addEventListener(cnrClickOrTouchVar, cnrElementClickHandler);
+    // top position
+    cnrElementVar.dataset.cnroffsetcount = `0`;
+  };
+
+  // sound events
+  const cnrAudioElements = document.querySelectorAll('audio');
+  for (const cnrElementVar of cnrAudioElements) {
+    cnrElementVar.onended = cnrAudioEndedHandler;
+  };
+
 }; // window.onload
 
+
+/* ************************************************************************* */
+// EVENT HANDLERS
 
 function cnrElementClickHandler() {
   const cnrKeyData = this.dataset.key;
@@ -24,6 +44,10 @@ function cnrElementClickHandler() {
     console.log("EROR: cnrElementClickHandler > cnrKeyData ", cnrKeyData);
     return null;
   };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
   cnrPlaySound(cnrKeyData);
 };
 
@@ -38,9 +62,43 @@ function cnrWindowKeyUpHandler(cnrParam) {
     console.log("EROR: cnrWindowKeyUpHandler > cnrKeyData ", cnrKeyData);
     return null;
   };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
   cnrPlaySound(cnrKeyData);
 };
 
+function cnrAudioEndedHandler(cnrParam) {
+  if (cnrParam === null || cnrParam === '') {
+    console.log("EROR: cnrAudioEndedHandler > cnrParam ", cnrParam);
+    return null;
+  };
+
+  const cnrIDVar = cnrParam.target.dataset.key;
+  if (!cnrIsValidKey(cnrIDVar)) {
+    return;
+  };
+
+  // update container view
+  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDVar}"]`);
+  const cnrAudioContainerElement = cnrContainerElement[0];
+  cnrAudioContainerElement.classList.remove('playing');
+  cnrAudioContainerElement.style.transform = `translate(0px, 0px)`;
+  // reset offset count
+  if (Number(cnrAudioContainerElement.dataset.cnroffsetcount) >= 10) {
+    cnrAudioContainerElement.dataset.cnroffsetcount = `0`;
+  };
+};
+
+
+/* ************************************************************************* */
+// CONTROLLERS
+
+/** cnrPlaySound. 
+ * Plays the sound matching the passed id. 
+ * Returns null on errors. 
+*/
 function cnrPlaySound(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrPlaySound > cnrIDParam ", cnrIDParam);
@@ -55,7 +113,17 @@ function cnrPlaySound(cnrIDParam) {
   };
   cnrAudioElement[1].currentTime = 0;
   cnrAudioElement[1].play();
+
+  // update container view
+  const cnrAudioContainerElement = cnrAudioElement[0];
+  cnrAudioContainerElement.classList.add('playing');
+  cnrAudioContainerElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTOP_OFFSET}px)`;
+  cnrAudioContainerElement.dataset.cnroffsetcount = `${Number(cnrAudioContainerElement.dataset.cnroffsetcount) + 1}`;
 };
+
+
+/* ************************************************************************* */
+// TOOLS
 
 /** cnrGetClickOrTouchEventName. 
  * Returns 'touchend' if present. 
@@ -75,31 +143,28 @@ function cnrGetClickOrTouchEventName() {
     return null;
 };
 
-/** cnrAddEventListenerToClass. 
- * Adds the passed event listener to each element for
- * the passed class. 
- * Returns null on errors. 
+/** cnrIsValidKey. 
+ * Returns 'true' if passed key code is in the
+ * list of valid keys. 
 */
-function cnrAddEventListenerToClass(cnrEventParam, cnrClassParam, cnrHandlerParam) {
-  if (cnrEventParam === null || cnrEventParam === '') {
-    console.log('ERROR: cnrAddEventListenerToClass > cnrEventParam ', cnrEventParam);
-    return null;
-  };
-  if (cnrClassParam === null || cnrClassParam === '') {
-    console.log('ERROR: cnrAddEventListenerToClass > cnrClassParam ', cnrClassParam);
-    return null;
-  };
-  if (cnrHandlerParam === null || cnrHandlerParam === '') {
-    console.log('ERROR: cnrAddEventListenerToClass > cnrHandlerParam ', cnrHandlerParam);
-    return null;
+function cnrIsValidKey(cnrIDParam) {
+  if (cnrIDParam === null || cnrIDParam === '') {
+    console.log("EROR: cnrIsValidKey > cnrIDParam ", cnrIDParam);
+    return false;
   };
 
-  let cnrClassVar = cnrClassParam;
-  if (cnrClassParam[0] != '.') {
-    cnrClassVar = '.' + cnrClassParam;
-  };
-  const cnrElementsFromClass = document.querySelectorAll(cnrClassVar);
-  for (const cnrElementVar of cnrElementsFromClass) {
-    cnrElementVar.addEventListener(cnrEventParam, cnrHandlerParam);
-  };
+  const cnrIDVAr = Number(cnrIDParam);
+  if (
+    cnrIDVAr === 65 ||
+    cnrIDVAr === 83 ||
+    cnrIDVAr === 68 ||
+    cnrIDVAr === 70 ||
+    cnrIDVAr === 71 ||
+    cnrIDVAr === 72 ||
+    cnrIDVAr === 74 ||
+    cnrIDVAr === 75 ||
+    cnrIDVAr === 76
+  ) { return true; };
+
+  return false;
 };
