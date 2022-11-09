@@ -7,8 +7,8 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-const cnrTOP_OFFSET = 4;
-const cnrLEFT_OFFSET = 4;
+const cnrTOP_OFFSET = 10;
+const cnrLEFT_OFFSET = 0;
 
 window.onload = function () {
   // init event listeners
@@ -84,10 +84,11 @@ function cnrAudioEndedHandler(cnrParam) {
   const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDVar}"]`);
   const cnrAudioContainerElement = cnrContainerElement[0];
   cnrAudioContainerElement.classList.remove('playing');
-  cnrAudioContainerElement.style.transform = `translate(0px, 0px)`;
+  
   // reset offset count
   if (Number(cnrAudioContainerElement.dataset.cnroffsetcount) >= 10) {
     cnrAudioContainerElement.dataset.cnroffsetcount = `0`;
+    cnrAudioContainerElement.style.transform = `translate(0px, 0px)`;
   };
 };
 
@@ -117,8 +118,11 @@ function cnrPlaySound(cnrIDParam) {
   // update container view
   const cnrAudioContainerElement = cnrAudioElement[0];
   cnrAudioContainerElement.classList.add('playing');
-  cnrAudioContainerElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTOP_OFFSET}px)`;
+  
   cnrAudioContainerElement.dataset.cnroffsetcount = `${Number(cnrAudioContainerElement.dataset.cnroffsetcount) + 1}`;
+  const cnrTopOffsetVar = cnrTOP_OFFSET * Number(cnrAudioContainerElement.dataset.cnroffsetcount)
+  cnrAudioContainerElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTopOffsetVar}px)`;
+
 };
 
 
