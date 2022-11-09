@@ -1,14 +1,4 @@
-bug > fetch/page loads twice.
 
-load by page > hike or comment
-
-auto load item view
-
-cnrItemData
-
-vscode fullscreen hides panels icons.
-
-refactor classes > cnrObjectsClass, cnrObjectClass (generic for reuse).
 
 UUID function to module.
 
@@ -26,38 +16,3 @@ drop-down pagination?
     </label>
   </form>
 */
-
-:focus-within > prevent ios resizing on input?
-
-personview > referer url to back link.
-
-add click-touch handler var to vscode snippets
-
-// click or touch var
-  let cnrClickOrTouchEventVar = '';
-  if ("ontouchend" in document.documentElement) {
-    console.log("Using touch");
-    cnrClickOrTouchEventVar = 'touchend';
-  }
-  else {
-    console.log("Using click");
-    cnrClickOrTouchEventVar = 'click';
-  };
-
-
-add function to snippets >
-
-/**	cnrGetQueryStringValue. 
- * Returns query string value for passed key. 
- * Returns empty string on empty or errors. 
-*/
-function cnrGetQueryStringValue(cnrKeyParam) {
-  const cnrQueryStringVar = window.location.search;
-  const cnrURLParamsVar = new URLSearchParams(cnrQueryStringVar);
-  const cnrValueVar = cnrURLParamsVar.get(cnrKeyParam)
-  return cnrValueVar;
-};
-
-try css dvh
-
-launch simulator from cmd.
