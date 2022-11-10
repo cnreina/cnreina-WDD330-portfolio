@@ -21,7 +21,7 @@ window.onload = function () {
   const cnrElementsFromClass = document.querySelectorAll('.key');
   for (const cnrElementVar of cnrElementsFromClass) {
     // click or touch
-    cnrElementVar.addEventListener(cnrClickOrTouchVar, cnrElementClickHandler);
+    cnrElementVar.addEventListener(cnrClickOrTouchVar, cnrElementPointerDownHandler);
     // top position
     cnrElementVar.dataset.cnroffsetcount = `0`;
   };
@@ -38,7 +38,7 @@ window.onload = function () {
 /* ************************************************************************* */
 // EVENT HANDLERS
 
-function cnrElementClickHandler() {
+function cnrElementPointerDownHandler() {
   const cnrKeyData = this.dataset.key;
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrElementClickHandler > cnrKeyData ", cnrKeyData);
@@ -48,7 +48,7 @@ function cnrElementClickHandler() {
     return;
   };
 
-  cnrPlaySound(cnrKeyData);
+  cnrProcessDownEvent(cnrKeyData);
 };
 
 function cnrWindowKeyUpHandler(cnrParam) {
@@ -66,7 +66,7 @@ function cnrWindowKeyUpHandler(cnrParam) {
     return;
   };
 
-  cnrPlaySound(cnrKeyData);
+  cnrProcessDownEvent(cnrKeyData);
 };
 
 function cnrAudioEndedHandler(cnrParam) {
@@ -100,7 +100,7 @@ function cnrAudioEndedHandler(cnrParam) {
  * Plays the sound matching the passed id. 
  * Returns null on errors. 
 */
-function cnrPlaySound(cnrIDParam) {
+function cnrProcessDownEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrPlaySound > cnrIDParam ", cnrIDParam);
     return null;
