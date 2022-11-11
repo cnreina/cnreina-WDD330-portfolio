@@ -7,31 +7,26 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-const cnrTOP_OFFSET = 10;
-const cnrLEFT_OFFSET = 0;
+const cnrTOP_OFFSET = 6;
+const cnrLEFT_OFFSET = 4;
 
 window.onload = function () {
   // init event listeners
-  
-  // sound buttons keyup
+  // buttons keyboard
+  window.addEventListener('keydown', cnrWindowKeyDownHandler);
   window.addEventListener('keyup', cnrWindowKeyUpHandler);
 
-  // sound buttons
-  const cnrClickOrTouchVar = cnrGetClickOrTouchEventName();
+  // buttons pointer
   const cnrElementsFromClass = document.querySelectorAll('.key');
   for (const cnrElementVar of cnrElementsFromClass) {
-    // click or touch
-    cnrElementVar.addEventListener(cnrClickOrTouchVar, cnrElementPointerDownHandler);
-    // top position
-    cnrElementVar.dataset.cnroffsetcount = `0`;
+    if (cnrIsTouchDevice()) {
+      cnrElementVar.addEventListener('touchstart', cnrElementPointerDownHandler);
+      cnrElementVar.addEventListener('touchend', cnrElementPointerUpHandler);
+    } else {
+      cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
+      cnrElementVar.addEventListener('mouseup', cnrElementPointerUpHandler);
+    };
   };
-
-  // sound events
-  const cnrAudioElements = document.querySelectorAll('audio');
-  for (const cnrElementVar of cnrAudioElements) {
-    cnrElementVar.onended = cnrAudioEndedHandler;
-  };
-
 }; // window.onload
 
 
@@ -42,6 +37,37 @@ function cnrElementPointerDownHandler() {
   const cnrKeyData = this.dataset.key;
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrElementClickHandler > cnrKeyData ", cnrKeyData);
+    return null;
+  };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
+  cnrProcessDownEvent(cnrKeyData);
+};
+
+function cnrElementPointerUpHandler() {
+  const cnrKeyData = this.dataset.key;
+  if (cnrKeyData === null || cnrKeyData === '') {
+    console.log("EROR: cnrElementPointerUpHandler > cnrKeyData ", cnrKeyData);
+    return null;
+  };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
+  cnrProcessUpEvent(cnrKeyData);
+};
+
+function cnrWindowKeyDownHandler(cnrParam) {
+  if (cnrParam === null || cnrParam === '') {
+    console.log("EROR: cnrWindowKeyDownHandler > cnrParam ", cnrParam);
+    return null;
+  };
+
+  const cnrKeyData = cnrParam.which;
+  if (cnrKeyData === null || cnrKeyData === '') {
+    console.log("EROR: cnrWindowKeyDownHandler > cnrKeyData ", cnrKeyData);
     return null;
   };
   if (!cnrIsValidKey(cnrKeyData)) {
@@ -66,38 +92,14 @@ function cnrWindowKeyUpHandler(cnrParam) {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
-};
-
-function cnrAudioEndedHandler(cnrParam) {
-  if (cnrParam === null || cnrParam === '') {
-    console.log("EROR: cnrAudioEndedHandler > cnrParam ", cnrParam);
-    return null;
-  };
-
-  const cnrIDVar = cnrParam.target.dataset.key;
-  if (!cnrIsValidKey(cnrIDVar)) {
-    return;
-  };
-
-  // update container view
-  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDVar}"]`);
-  const cnrAudioContainerElement = cnrContainerElement[0];
-  cnrAudioContainerElement.classList.remove('playing');
-  
-  // reset offset count
-  if (Number(cnrAudioContainerElement.dataset.cnroffsetcount) >= 10) {
-    cnrAudioContainerElement.dataset.cnroffsetcount = `0`;
-    cnrAudioContainerElement.style.transform = `translate(0px, 0px)`;
-  };
+  cnrProcessUpEvent(cnrKeyData);
 };
 
 
 /* ************************************************************************* */
 // CONTROLLERS
 
-/** cnrPlaySound. 
- * Plays the sound matching the passed id. 
+/** cnrProcessDownEvent. 
  * Returns null on errors. 
 */
 function cnrProcessDownEvent(cnrIDParam) {
@@ -106,45 +108,39 @@ function cnrProcessDownEvent(cnrIDParam) {
     return null;
   };
 
-  // play sound
-  const cnrAudioElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
-  if (cnrAudioElement === null || cnrAudioElement === '') {
-    console.log("EROR: cnrElementClickHandler > cnrAudioElement ", cnrAudioElement);
+  // update container view
+  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
+  const cnrElement = cnrContainerElement[0];
+  cnrElement.classList.add('playing');
+  cnrElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTOP_OFFSET}px)`;
+};
+
+/** cnrProcessUpEvent. 
+ * Returns null on errors. 
+*/
+function cnrProcessUpEvent(cnrIDParam) {
+  if (cnrIDParam === null || cnrIDParam === '') {
+    console.log("EROR: cnrProcessUpEvent > cnrIDParam ", cnrIDParam);
     return null;
   };
-  cnrAudioElement[1].currentTime = 0;
-  cnrAudioElement[1].play();
 
   // update container view
-  const cnrAudioContainerElement = cnrAudioElement[0];
-  cnrAudioContainerElement.classList.add('playing');
-  
-  cnrAudioContainerElement.dataset.cnroffsetcount = `${Number(cnrAudioContainerElement.dataset.cnroffsetcount) + 1}`;
-  const cnrTopOffsetVar = cnrTOP_OFFSET * Number(cnrAudioContainerElement.dataset.cnroffsetcount)
-  cnrAudioContainerElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTopOffsetVar}px)`;
-
+  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
+  const cnrElement = cnrContainerElement[0];
+  cnrElement.classList.remove('playing');
+  cnrElement.style.transform = `translate(0px, 0px)`;
 };
 
 
 /* ************************************************************************* */
 // TOOLS
 
-/** cnrGetClickOrTouchEventName. 
- * Returns 'touchend' if present. 
- * Returns 'click' if present and 'touchend'
- * is not present. 
+/** cnrIsTouchDevice. 
  * Returns null on errors. 
 */
-function cnrGetClickOrTouchEventName() {
-  if ('ontouchend' in document.documentElement) {
-    return 'touchend';
-  };
-
-  if ('click' in document.documentElement) {
-    return 'click';
-  };
-
-    return null;
+function cnrIsTouchDevice() {
+  if ('ontouchend' in document.documentElement) { return true; };
+  return false;
 };
 
 /** cnrIsValidKey. 
