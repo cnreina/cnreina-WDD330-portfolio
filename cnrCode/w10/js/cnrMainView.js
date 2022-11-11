@@ -19,13 +19,20 @@ window.onload = function () {
   // buttons pointer
   const cnrElementsFromClass = document.querySelectorAll('.key');
   for (const cnrElementVar of cnrElementsFromClass) {
-    if (cnrIsTouchDevice()) {
-      cnrElementVar.addEventListener('touchstart', cnrElementPointerDownHandler);
-      cnrElementVar.addEventListener('touchend', cnrElementPointerUpHandler);
-    } else {
-      cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
-      cnrElementVar.addEventListener('mouseup', cnrElementPointerUpHandler);
-    };
+    /* 
+      pointer event handlers are designed to never delay scrolling.
+
+    */
+    cnrElementVar.addEventListener('pointerdown', cnrElementPointerDownHandler);
+    cnrElementVar.addEventListener('pointerup', cnrElementPointerUpHandler);
+    
+    // if (cnrIsTouchDevice()) {
+    //   cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
+    //   cnrElementVar.addEventListener('touchend', cnrElementPointerUpHandler);
+    // } else {
+    //   cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
+    //   cnrElementVar.addEventListener('mouseup', cnrElementPointerUpHandler);
+    // };
   };
 }; // window.onload
 
@@ -157,13 +164,7 @@ function cnrIsValidKey(cnrIDParam) {
   if (
     cnrIDVAr === 65 ||
     cnrIDVAr === 83 ||
-    cnrIDVAr === 68 ||
-    cnrIDVAr === 70 ||
-    cnrIDVAr === 71 ||
-    cnrIDVAr === 72 ||
-    cnrIDVAr === 74 ||
-    cnrIDVAr === 75 ||
-    cnrIDVAr === 76
+    cnrIDVAr === 68
   ) { return true; };
 
   return false;
