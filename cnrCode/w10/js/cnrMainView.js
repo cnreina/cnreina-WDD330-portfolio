@@ -9,6 +9,7 @@
 
 const cnrTOP_OFFSET = 6;
 const cnrLEFT_OFFSET = 4;
+const cnrMapViewURL = "../html/cnrMapView.html";
 
 window.onload = function () {
   // init event listeners
@@ -17,22 +18,11 @@ window.onload = function () {
   window.addEventListener('keyup', cnrWindowKeyUpHandler);
 
   // buttons pointer
-  const cnrElementsFromClass = document.querySelectorAll('.key');
+  const cnrElementsFromClass = document.querySelectorAll('.cnrbuttons');
   for (const cnrElementVar of cnrElementsFromClass) {
-    /* 
-      pointer event handlers are designed to never delay scrolling.
-
-    */
+    /* pointer event handlers are designed to never delay scrolling. */
     cnrElementVar.addEventListener('pointerdown', cnrElementPointerDownHandler);
     cnrElementVar.addEventListener('pointerup', cnrElementPointerUpHandler);
-    
-    // if (cnrIsTouchDevice()) {
-    //   cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
-    //   cnrElementVar.addEventListener('touchend', cnrElementPointerUpHandler);
-    // } else {
-    //   cnrElementVar.addEventListener('mousedown', cnrElementPointerDownHandler);
-    //   cnrElementVar.addEventListener('mouseup', cnrElementPointerUpHandler);
-    // };
   };
 }; // window.onload
 
@@ -50,7 +40,7 @@ function cnrElementPointerDownHandler() {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
+  cnrProcessPointerDownEvent(cnrKeyData);
 };
 
 function cnrElementPointerUpHandler() {
@@ -63,7 +53,7 @@ function cnrElementPointerUpHandler() {
     return;
   };
 
-  cnrProcessUpEvent(cnrKeyData);
+  cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 function cnrWindowKeyDownHandler(cnrParam) {
@@ -81,7 +71,7 @@ function cnrWindowKeyDownHandler(cnrParam) {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
+  cnrProcessPointerDownEvent(cnrKeyData);
 };
 
 function cnrWindowKeyUpHandler(cnrParam) {
@@ -99,7 +89,7 @@ function cnrWindowKeyUpHandler(cnrParam) {
     return;
   };
 
-  cnrProcessUpEvent(cnrKeyData);
+  cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 
@@ -109,7 +99,7 @@ function cnrWindowKeyUpHandler(cnrParam) {
 /** cnrProcessDownEvent. 
  * Returns null on errors. 
 */
-function cnrProcessDownEvent(cnrIDParam) {
+function cnrProcessPointerDownEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrPlaySound > cnrIDParam ", cnrIDParam);
     return null;
@@ -123,9 +113,10 @@ function cnrProcessDownEvent(cnrIDParam) {
 };
 
 /** cnrProcessUpEvent. 
+ * Processes passed event. 
  * Returns null on errors. 
 */
-function cnrProcessUpEvent(cnrIDParam) {
+function cnrProcessPointerUpEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrProcessUpEvent > cnrIDParam ", cnrIDParam);
     return null;
@@ -136,6 +127,16 @@ function cnrProcessUpEvent(cnrIDParam) {
   const cnrElement = cnrContainerElement[0];
   cnrElement.classList.remove('playing');
   cnrElement.style.transform = `translate(0px, 0px)`;
+
+  // process event
+  switch (cnrIDParam) {
+    case '65':
+      window.location.href = `${cnrMapViewURL}`;
+      break;
+  
+    default:
+      break;
+  }
 };
 
 

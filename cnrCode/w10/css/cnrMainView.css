@@ -103,14 +103,15 @@ hr {
 }
 
 /*	BUTTONS */
-.keys {
+.cnrbuttoncontainers {
   display: flex;
   flex-wrap: wrap;
   flex: 1;
   align-items: flex-start;
   justify-content: center;
+  cursor: pointer;
 }
-.key {
+.cnrbuttons {
   border: .4rem solid black;
   border-radius: .5rem;
   margin: 1rem;
