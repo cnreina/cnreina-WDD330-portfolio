@@ -6,7 +6,6 @@
 /**	Google Maps API
  * https://console.cloud.google.com/iam-admin/settings?project=lucid-tiger-368223
  * https://developers.google.com/maps/documentation/javascript/overview#maps_map_simple-javascript
- * 
 */
 
 /* ************************************************************************* */
