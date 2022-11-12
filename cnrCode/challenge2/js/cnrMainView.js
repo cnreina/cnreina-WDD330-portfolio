@@ -43,7 +43,7 @@ function cnrElementPointerDownHandler() {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
+  cnrProcessPointerDownEvent(cnrKeyData);
 };
 
 function cnrElementPointerUpHandler() {
@@ -56,7 +56,7 @@ function cnrElementPointerUpHandler() {
     return;
   };
 
-  cnrProcessUpEvent(cnrKeyData);
+  cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 function cnrWindowKeyDownHandler(cnrParam) {
@@ -74,7 +74,7 @@ function cnrWindowKeyDownHandler(cnrParam) {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
+  cnrProcessPointerDownEvent(cnrKeyData);
 };
 
 function cnrWindowKeyUpHandler(cnrParam) {
@@ -92,7 +92,7 @@ function cnrWindowKeyUpHandler(cnrParam) {
     return;
   };
 
-  cnrProcessUpEvent(cnrKeyData);
+  cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 
@@ -102,7 +102,7 @@ function cnrWindowKeyUpHandler(cnrParam) {
 /** cnrProcessDownEvent. 
  * Returns null on errors. 
 */
-function cnrProcessDownEvent(cnrIDParam) {
+function cnrProcessPointerDownEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrPlaySound > cnrIDParam ", cnrIDParam);
     return null;
@@ -118,7 +118,7 @@ function cnrProcessDownEvent(cnrIDParam) {
 /** cnrProcessUpEvent. 
  * Returns null on errors. 
 */
-function cnrProcessUpEvent(cnrIDParam) {
+function cnrProcessPointerUpEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrProcessUpEvent > cnrIDParam ", cnrIDParam);
     return null;

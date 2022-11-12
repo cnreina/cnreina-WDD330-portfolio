@@ -1,13 +1,46 @@
-<html>
+<html lang="en">
   <head>
-    <title>Simple Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
-    <link rel="stylesheet" type="text/css" href="../css/cnrMapView.css" />
-    <script type="module" src="../js/cnrMapView.js"></script>
+    <meta charset="utf-8"/>
+      <link href="../../res/favicon.ico" rel="icon" type="image/x-icon"/>
+      <title>WDD-330</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+    <style>
+      @import "../css/cnrMapView.css" screen and (max-width:640px);
+      @import "../css/cnrMapView.css" screen and (min-width:640px);
+      @import "../css/cnrMapView.css" screen and (min-width:1024px);
+   </style>
   </head>
   <body>
-    <div id="map"></div>
+    <main>
+      <!-- Header Section -->
+      <section class="cnrheadersections">
+         <div class="cnrheaderdivs">
+            <h1 class="cnrmaintitles" title="cnrmaintitles">Week 10</h1>
+            <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">Google Map</h5>
+         </div>
+         <div class="cnrsubheaderdivs">
+            <a href="../../../index.html" class="cnrhomelinks">Home Page</a>
+            <p class="cnrcopyright">Carlos N Reina 2022</p>
+         </div>
+      </section>
+      <hr>
+      <!-- Main Section -->
+      <div class="cnrmainsections">
+        <div class="cnrmapheaderdivs cnrnouserselection">MAP</div>
+        <div class="cnrmapdivs">
+          <div id="map"><!-- javascript --></div>
+        </div>
+      </div>
+      <div class="cnrnavigationdivs">
+        <div class="cnrcommentnavs">
+           <div class="cnrbacklinkdivs cnrnouserselection" id="cnrbacklinkdiv">
+              <a class="cnrbacklinks" id="cnrbacklink" href="../html/cnrMainView.html">Back to Main</a>
+           </div>
+        </div>
+     </div>
+   </main>
 
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML
@@ -15,9 +48,11 @@
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
+
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+    <script src="../js/cnrMapView.js" type="module"></script>
    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzxh-nw2DhH8U8qFunODSK1kAlG1TdAPY&callback=initMap&v=weekly"
-      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzxh-nw2DhH8U8qFunODSK1kAlG1TdAPY&callback=cnrInitMap" defer
    ></script>
   </body>
 </html>

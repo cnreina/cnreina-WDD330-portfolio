@@ -7,31 +7,23 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-const cnrTOP_OFFSET = 10;
-const cnrLEFT_OFFSET = 0;
+const cnrTOP_OFFSET = 6;
+const cnrLEFT_OFFSET = 4;
+const cnrMapViewURL = "../html/cnrMapView.html";
 
 window.onload = function () {
   // init event listeners
-  
-  // sound buttons keyup
+  // buttons keyboard
+  window.addEventListener('keydown', cnrWindowKeyDownHandler);
   window.addEventListener('keyup', cnrWindowKeyUpHandler);
 
-  // sound buttons
-  const cnrClickOrTouchVar = cnrGetClickOrTouchEventName();
-  const cnrElementsFromClass = document.querySelectorAll('.key');
+  // buttons pointer
+  const cnrElementsFromClass = document.querySelectorAll('.cnrbuttons');
   for (const cnrElementVar of cnrElementsFromClass) {
-    // click or touch
-    cnrElementVar.addEventListener(cnrClickOrTouchVar, cnrElementPointerDownHandler);
-    // top position
-    cnrElementVar.dataset.cnroffsetcount = `0`;
+    /* pointer event handlers are designed to never delay scrolling. */
+    cnrElementVar.addEventListener('pointerdown', cnrElementPointerDownHandler);
+    cnrElementVar.addEventListener('pointerup', cnrElementPointerUpHandler);
   };
-
-  // sound events
-  const cnrAudioElements = document.querySelectorAll('audio');
-  for (const cnrElementVar of cnrAudioElements) {
-    cnrElementVar.onended = cnrAudioEndedHandler;
-  };
-
 }; // window.onload
 
 
@@ -48,7 +40,38 @@ function cnrElementPointerDownHandler() {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
+  cnrProcessPointerDownEvent(cnrKeyData);
+};
+
+function cnrElementPointerUpHandler() {
+  const cnrKeyData = this.dataset.key;
+  if (cnrKeyData === null || cnrKeyData === '') {
+    console.log("EROR: cnrElementPointerUpHandler > cnrKeyData ", cnrKeyData);
+    return null;
+  };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
+  cnrProcessPointerUpEvent(cnrKeyData);
+};
+
+function cnrWindowKeyDownHandler(cnrParam) {
+  if (cnrParam === null || cnrParam === '') {
+    console.log("EROR: cnrWindowKeyDownHandler > cnrParam ", cnrParam);
+    return null;
+  };
+
+  const cnrKeyData = cnrParam.which;
+  if (cnrKeyData === null || cnrKeyData === '') {
+    console.log("EROR: cnrWindowKeyDownHandler > cnrKeyData ", cnrKeyData);
+    return null;
+  };
+  if (!cnrIsValidKey(cnrKeyData)) {
+    return;
+  };
+
+  cnrProcessPointerDownEvent(cnrKeyData);
 };
 
 function cnrWindowKeyUpHandler(cnrParam) {
@@ -66,85 +89,64 @@ function cnrWindowKeyUpHandler(cnrParam) {
     return;
   };
 
-  cnrProcessDownEvent(cnrKeyData);
-};
-
-function cnrAudioEndedHandler(cnrParam) {
-  if (cnrParam === null || cnrParam === '') {
-    console.log("EROR: cnrAudioEndedHandler > cnrParam ", cnrParam);
-    return null;
-  };
-
-  const cnrIDVar = cnrParam.target.dataset.key;
-  if (!cnrIsValidKey(cnrIDVar)) {
-    return;
-  };
-
-  // update container view
-  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDVar}"]`);
-  const cnrAudioContainerElement = cnrContainerElement[0];
-  cnrAudioContainerElement.classList.remove('playing');
-  
-  // reset offset count
-  if (Number(cnrAudioContainerElement.dataset.cnroffsetcount) >= 10) {
-    cnrAudioContainerElement.dataset.cnroffsetcount = `0`;
-    cnrAudioContainerElement.style.transform = `translate(0px, 0px)`;
-  };
+  cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 
 /* ************************************************************************* */
 // CONTROLLERS
 
-/** cnrPlaySound. 
- * Plays the sound matching the passed id. 
+/** cnrProcessDownEvent. 
  * Returns null on errors. 
 */
-function cnrProcessDownEvent(cnrIDParam) {
+function cnrProcessPointerDownEvent(cnrIDParam) {
   if (cnrIDParam === null || cnrIDParam === '') {
     console.log("EROR: cnrPlaySound > cnrIDParam ", cnrIDParam);
     return null;
   };
 
-  // play sound
-  const cnrAudioElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
-  if (cnrAudioElement === null || cnrAudioElement === '') {
-    console.log("EROR: cnrElementClickHandler > cnrAudioElement ", cnrAudioElement);
+  // update container view
+  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
+  const cnrElement = cnrContainerElement[0];
+  cnrElement.classList.add('cnrpointerdown');
+};
+
+/** cnrProcessUpEvent. 
+ * Processes passed event. 
+ * Returns null on errors. 
+*/
+function cnrProcessPointerUpEvent(cnrIDParam) {
+  if (cnrIDParam === null || cnrIDParam === '') {
+    console.log("EROR: cnrProcessUpEvent > cnrIDParam ", cnrIDParam);
     return null;
   };
-  cnrAudioElement[1].currentTime = 0;
-  cnrAudioElement[1].play();
 
   // update container view
-  const cnrAudioContainerElement = cnrAudioElement[0];
-  cnrAudioContainerElement.classList.add('playing');
-  
-  cnrAudioContainerElement.dataset.cnroffsetcount = `${Number(cnrAudioContainerElement.dataset.cnroffsetcount) + 1}`;
-  const cnrTopOffsetVar = cnrTOP_OFFSET * Number(cnrAudioContainerElement.dataset.cnroffsetcount)
-  cnrAudioContainerElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTopOffsetVar}px)`;
+  const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
+  const cnrElement = cnrContainerElement[0];
+  cnrElement.classList.remove('cnrpointerdown');
 
+  // process event
+  switch (cnrIDParam) {
+    case '65':
+      window.location.href = `${cnrMapViewURL}`;
+      break;
+  
+    default:
+      break;
+  }
 };
 
 
 /* ************************************************************************* */
 // TOOLS
 
-/** cnrGetClickOrTouchEventName. 
- * Returns 'touchend' if present. 
- * Returns 'click' if present and 'touchend'
- * is not present. 
+/** cnrIsTouchDevice. 
  * Returns null on errors. 
 */
-function cnrGetClickOrTouchEventName() {
-  if ('ontouchend' in document.documentElement) {
-    return 'touchend';
-  };
-
-  if ('click' in document.documentElement) {
-    return 'click';
-  };
-
-    return null;
+function cnrIsTouchDevice() {
+  if ('ontouchend' in document.documentElement) { return true; };
+  return false;
 };
 
 /** cnrIsValidKey. 
@@ -161,13 +163,7 @@ function cnrIsValidKey(cnrIDParam) {
   if (
     cnrIDVAr === 65 ||
     cnrIDVAr === 83 ||
-    cnrIDVAr === 68 ||
-    cnrIDVAr === 70 ||
-    cnrIDVAr === 71 ||
-    cnrIDVAr === 72 ||
-    cnrIDVAr === 74 ||
-    cnrIDVAr === 75 ||
-    cnrIDVAr === 76
+    cnrIDVAr === 68
   ) { return true; };
 
   return false;
