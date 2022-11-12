@@ -15,7 +15,7 @@
 import * as cnrSecrets from '../../../cnrSecret/cnrSecrets.js';
 
 let cnrMap;
-const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP;
+const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP || "${{CNRMAP_API_KEY}}";
 const cnrMAP_API_VERSION = `weekly`;
 const cnrMAP_API_SRC = `https://maps.googleapis.com/maps/api/js?key=${cnrMAP_API_KEY}&callback=cnrInitMap&v=${cnrMAP_API_VERSION}`;
 
