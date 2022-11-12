@@ -53,8 +53,6 @@ function cnrElementPointerUpHandler() {
     return;
   };
 
-  console.log('TEST: ', cnrKeyData);
-
   cnrProcessPointerUpEvent(cnrKeyData);
 };
 
@@ -85,8 +83,6 @@ function cnrWindowKeyUpHandler(cnrParam) {
   };
 
   const cnrKeyData = Number(cnrParam.which);
-  console.log('TEST: ', cnrKeyData);
-
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrWindowKeyUpHandler > cnrKeyData ", cnrKeyData);
     return null;
