@@ -31,7 +31,7 @@ window.onload = function () {
 // EVENT HANDLERS
 
 function cnrElementPointerDownHandler() {
-  const cnrKeyData = this.dataset.key;
+  const cnrKeyData = Number(this.dataset.key);
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrElementClickHandler > cnrKeyData ", cnrKeyData);
     return null;
@@ -44,7 +44,7 @@ function cnrElementPointerDownHandler() {
 };
 
 function cnrElementPointerUpHandler() {
-  const cnrKeyData = this.dataset.key;
+  const cnrKeyData = Number(this.dataset.key);
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrElementPointerUpHandler > cnrKeyData ", cnrKeyData);
     return null;
@@ -53,16 +53,19 @@ function cnrElementPointerUpHandler() {
     return;
   };
 
+  console.log('TEST: ', cnrKeyData);
+
   cnrProcessPointerUpEvent(cnrKeyData);
 };
 
 function cnrWindowKeyDownHandler(cnrParam) {
+  cnrParam.preventDefault();
   if (cnrParam === null || cnrParam === '') {
     console.log("EROR: cnrWindowKeyDownHandler > cnrParam ", cnrParam);
     return null;
   };
 
-  const cnrKeyData = cnrParam.which;
+  const cnrKeyData = Number(cnrParam.which);
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrWindowKeyDownHandler > cnrKeyData ", cnrKeyData);
     return null;
@@ -75,12 +78,15 @@ function cnrWindowKeyDownHandler(cnrParam) {
 };
 
 function cnrWindowKeyUpHandler(cnrParam) {
+  cnrParam.preventDefault();
   if (cnrParam === null || cnrParam === '') {
     console.log("EROR: cnrWindowKeyUpHandler > cnrParam ", cnrParam);
     return null;
   };
 
-  const cnrKeyData = cnrParam.which;
+  const cnrKeyData = Number(cnrParam.which);
+  console.log('TEST: ', cnrKeyData);
+
   if (cnrKeyData === null || cnrKeyData === '') {
     console.log("EROR: cnrWindowKeyUpHandler > cnrKeyData ", cnrKeyData);
     return null;
@@ -127,8 +133,8 @@ function cnrProcessPointerUpEvent(cnrIDParam) {
   cnrElement.classList.remove('cnrpointerdown');
 
   // process event
-  switch (cnrIDParam) {
-    case '65':
+  switch (Number(cnrIDParam)) {
+    case 65:
       window.location.href = `${cnrMapViewURL}`;
       break;
   
