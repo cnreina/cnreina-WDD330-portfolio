@@ -108,8 +108,7 @@ function cnrProcessPointerDownEvent(cnrIDParam) {
   // update container view
   const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
   const cnrElement = cnrContainerElement[0];
-  cnrElement.classList.add('playing');
-  cnrElement.style.transform = `translate(${cnrLEFT_OFFSET}px, ${cnrTOP_OFFSET}px)`;
+  cnrElement.classList.add('cnrpointerdown');
 };
 
 /** cnrProcessUpEvent. 
@@ -125,8 +124,7 @@ function cnrProcessPointerUpEvent(cnrIDParam) {
   // update container view
   const cnrContainerElement = document.querySelectorAll(`[data-key="${cnrIDParam}"]`);
   const cnrElement = cnrContainerElement[0];
-  cnrElement.classList.remove('playing');
-  cnrElement.style.transform = `translate(0px, 0px)`;
+  cnrElement.classList.remove('cnrpointerdown');
 
   // process event
   switch (cnrIDParam) {

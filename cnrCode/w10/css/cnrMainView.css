@@ -128,10 +128,10 @@ hr {
   position: relative;
 }
 
-.playing {
-  transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+.cnrpointerdown {
+  transform: translate(4px,6px);
+  border-color: #1f1f1d;
+  box-shadow: 0 0 1rem #535251bb;
 }
 
 kbd {
