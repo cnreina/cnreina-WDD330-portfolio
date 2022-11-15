@@ -91,8 +91,8 @@ const links = [
     url: "cnrCode/w09/html/cnrDrumKeysView.html"
   },
   {
-    label: "Week 10 (...)",
-    url: "cnrCode/w10/html/cnrMainView.html"
+    label: "Week 10 (Quakes Near Me)",
+    url: "cnrCode/w10quakes/html/cnrMainView.html"
   },
   {
     label: "Challenge 2 (...)",
