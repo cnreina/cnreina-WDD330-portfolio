@@ -1,0 +1,158 @@
+/*	Carlos N Reina
+  cnreina@gmail.com
+*/
+
+/* ************************************************************************* */
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(242, 245, 248);
+}
+
+/*	HEADER */
+.cnrheadersections {
+  width: 100%;
+  height: auto;
+  padding: 6px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.cnrheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrsubheaderdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrmaintitles {
+  color:rgb(171, 9, 9);
+  margin: 0px;
+  padding: 0px;
+}
+.cnrmainsubtitles {
+  color:rgb(13, 18, 157);
+  margin: 0px;
+  padding: 0px;
+}
+.cnrhomelinks {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  font-size: 100%;
+  width: 100%;
+}
+.cnrcopyright {
+  padding: 0px;
+  margin: 0px;
+  color: rgb(152, 138, 138);
+  font-size:70%;
+  width: 100%;
+}
+hr {
+  padding: 0px;
+  margin: 10px;
+}
+
+/*	MAIN */
+.cnrmainsections {
+  width: 100vw;
+  height: 100vh;
+  padding: 4px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-content: flex-start;
+}
+.cnrcardheaderdivs {
+  width: 100%;
+  height: 40px;
+  padding: 2px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.6em;
+  text-align: center;
+  text-shadow: 1px 1px rgb(246, 244, 244);
+  background-color:black;
+  color:white;
+  border: 1px solid rgba(225, 222, 222, 0.8);
+  border-radius: 4px;
+  opacity: 0.8;
+  box-shadow: 6px 5px 5px #70788f;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/*	BUTTONS */
+.cnrbuttoncontainers {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+}
+.cnrbuttons {
+  border: .4rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 10px;
+  padding: 1rem .5rem;
+  transition: all .01s 0s ease-out;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+  box-shadow: 6px 5px 5px #70788f;
+  position: relative;
+}
+
+.cnrpointerdown {
+  transform: translate(4px,6px);
+  border-color: #1f1f1d;
+  box-shadow: 0 0 1rem #535251bb;
+}
+
+kbd {
+  display: block;
+  font-size: 20px;
+}
+
+.cnrnouserselection{
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+/*	ANIMATIONS */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #cce6ff, 0 0 20px #cce6ff, 0 0 30px #99ccff, 
+    0 0 40px #99ccff, 0 0 50px #99ccff, 0 0 60px #99ccff, 0 0 70px #99ccff;
+  }
+  to {
+    text-shadow: 0 0 20px #004d99, 0 0 30px #004d99, 0 0 40px #3399ff, 
+    0 0 50px #3399ff, 0 0 60px #3399ff, 0 0 70px #3399ff, 0 0 80px #3399ff;
+  }
+}
