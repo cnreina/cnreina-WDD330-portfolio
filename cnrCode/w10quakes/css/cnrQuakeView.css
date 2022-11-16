@@ -78,15 +78,109 @@ hr {
 
 /*	MAIN */
 .cnrmainsections {
-  width: 100vw;
+  width: 96vw;
   padding: 4px;
   margin: 0px;
-  /* background-color: rgb(33, 189, 24); */
-  /* border: 3px solid rgb(241, 7, 7); */
   display: block;
 }
 
-.cnrmapheaderdivs {
+/*	JS CONTAINER */
+.cnrjscontainerdivs {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-content: flex-start;
+}
+.cnrjsscrollable {
+  max-height: 90vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*	JS CONTENT */
+.cnrjscontentdivs {
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  margin-bottom: 4px;
+  box-shadow: 1px 1px 4px #202121;
+  border: 1px solid rgba(153, 150, 150, 0.8);
+  border-radius: 4px;
+}
+
+/*	CARDS */
+.cnrcardheaderdivs {
+  width: 100%;
+  height: 26px;
+  padding: 0px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-content: center;
+  background-color:black;
+  color:white;
+  border: 1px solid rgba(225, 222, 222, 0.8);
+  border-radius: 4px;
+  opacity: 0.8;
+  box-shadow: 1px 1px 4px #202121;
+}
+.cnrcardheadertitles {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 0.8em;
+}
+.cnrcardheadertitles a:link {
+  color:white;
+  text-decoration: none;
+}
+.cnrcardheadertitles a:visited {
+  color:white;
+  text-decoration: none;
+}
+.cnrcardheadertitles a:active {
+  color:white;
+  text-decoration: none;
+}
+.cnrcardcontentdivs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardcelldivs {
+  padding: 8px;
+  margin: 0px;
+}
+.cnrcardinfodivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardbasicinfodivs {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.cnrcardbasicinfodivs p {
+  padding: 1px;
+  margin: 0px;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.cnrquakesheaderdivs {
   width: 100%;
   height: 40px;
   padding: 2px;
@@ -105,7 +199,25 @@ hr {
   opacity: 0.8;
   box-shadow: 6px 5px 5px #70788f;
   animation: glow 2s ease-in-out infinite alternate;
+  position: sticky;
+  top: 42px;
 }
+.cnrquakesdivs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+#cnrquake {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*	MAP */
 .cnrmapdivs {
   width: 100%;
   padding: 4px;
@@ -115,8 +227,10 @@ hr {
 /* map height defines size of container div element. */
 #map {
   width: 100%;
-  height: 40%;
-  box-shadow: 6px 5px 5px #70788f;
+  height: 30%;
+  box-shadow: 1px 1px 4px #202121;
+  border-radius: 4px;
+  border: 2px solid rgba(225, 222, 222, 0.8);
 }
 
 /*	NAVIGATION */

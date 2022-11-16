@@ -6,7 +6,9 @@
 /* ************************************************************************* 
 INITIALIZE */
 
-const cnrPersonURL = "../html/cnrPersonView.html";
+import * as cnrData from './cnrData.js';
+
+const cnrQuakeURL = "../html/cnrQuakeView.html";
 
 
 /* ************************************************************************* 
@@ -48,36 +50,14 @@ export function cnrRenderItems(cnrContainerIDParam, cnrItemsParam) {
   };
 
   cnrClearElement(cnrContainerIDParam);
-  // render header
-  cnrRenderItemsHeader(cnrContainerIDParam);
+
   // render items
-  cnrItemsParam.forEach(cnrItemVar => {
+  const cnrItemsVar = cnrItemsParam.cnrGetItemsDataForName('cnrQuake');
+  cnrItemsVar.forEach(cnrItemVar => {
     cnrRenderItem(cnrContainerIDParam, cnrItemVar);
   });
 }; // cnrRenderItems
 
-function cnrRenderItemsHeader(cnrContainerElementParam) {
-  if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
-    console.log("ERROR: cnrRenderItemsHeader > cnrContainerElementParam", cnrContainerElementParam);
-    return;
-  };
-  
-  const cnrContainerElementVar = document.getElementById(cnrContainerElementParam);
-  if (cnrContainerElementVar === null || cnrContainerElementVar === '') {
-    console.log("ERROR: cnrRenderItemsHeader > cnrContainerElementVar", cnrContainerElementVar);
-    return;
-  };
-
-  // prepare element
-  const cnrItemsHeaderDivVar = document.createElement('div');
-  cnrItemsHeaderDivVar.classList.add('cnrmainheaderdivs');
-  cnrItemsHeaderDivVar.title = 'cnrmainheaderdivs';
-  cnrItemsHeaderDivVar.innerHTML = `People`;
-  // render element
-  cnrContainerElementVar.appendChild(cnrItemsHeaderDivVar);
-  cnrContainerElementVar.scrollIntoView();
-
-}; // cnrRenderItemsHeader
 
 function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
   if (cnrContainerElementParam === null || cnrContainerElementParam === '') {
@@ -96,56 +76,32 @@ function cnrRenderItem(cnrContainerElementParam, cnrItemParam) {
     return;
   };
 
-  // prepare querystring data sent to person page
-  const cnrCurrentPaginationNumberVar = cnrItemParam.cnrPaginationNumber;
+  // prepare querystring data to send to quake detail page
   const cnrItemObject = {
-    cnrName: cnrItemParam.cnrName,
-    cnrHeight: cnrItemParam.cnrHeight,
-    cnrBirthYear: cnrItemParam.cnrBirthYear,
-    cnrGender: cnrItemParam.cnrGender,
-    cnrSpecies: cnrItemParam.cnrSpecies,
-    cnrHomeWorldURL: cnrItemParam.cnrHomeWorldURL,
-    cnrPaginationNumber: cnrCurrentPaginationNumberVar
+    cnrTime: cnrItemParam.cnrTime,
+    cnrLocation: cnrItemParam.cnrLocation,
+    cnrMagnitude: cnrItemParam.cnrMagnitude,
+    cnrDetails: cnrItemParam.cnrDetails
   };
   const cnrEncodedStringVar = new URLSearchParams(cnrItemObject).toString();
 
-  // prepare person link url
-  const cnrPersonLinkURLVar = `${cnrPersonURL}?${cnrEncodedStringVar}`;
+  // prepare quake detail url
+  const cnrQuakeURLVar = `${cnrQuakeURL}?${cnrEncodedStringVar}`;
 
-  // prepare element
+  // prepare display element
   const cnrCardDivVar = document.createElement('div');
   cnrCardDivVar.classList.add('cnrjscontentdivs');
   cnrCardDivVar.innerHTML = `
     <div class="cnrcardheaderdivs">
-      <p class="cnrcardheadertitles"><a href="${cnrPersonLinkURLVar}">${cnrItemParam.cnrName}</a></p>
+      <p class="cnrcardheadertitles"><a href="${cnrQuakeURLVar}">${cnrItemParam.cnrLocation} (${cnrItemParam.cnrMagnitude})</a></p>
     </div>
-    <div class="cnrcardcontentdivs">
-    <div class="cnrcardcelldivs">
-    <div class="cnrcardinfodivs">
-      <div class="cnrcardbasicinfodivs">
-        <p><b>Name:</b></p><p>${cnrItemParam.cnrName}</p>
-        <p><b>Gender:</b></p><p>${cnrItemParam.cnrGender}</p>
-        <p><b>Birth:</b></p><p>${cnrItemParam.cnrBirthYear}</p>
-      </div>
-    </div>
-  </div>
-      <div class="cnrcardcelldivs">
-        <div class="cnrcardinfodivs">
-          <div class="cnrcardbasicinfodivs">
-            <p><b>Height:</b></p><p>${cnrItemParam.cnrHeight}</p>
-            <p><b>Species:</b></p><p>${cnrItemParam.cnrSpecies}</p>
-            <p><b>Home:</b></p><p>${cnrItemParam.cnrHomeWorldURL}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-`;
-  
+  `;
+
   // render element
   cnrContainerElementVar.appendChild(cnrCardDivVar);
+  cnrCardDivVar.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  
 }; // cnrRenderItem
-
-//             <a class="cnrcarddetailslinks" href="${cnrPersonURL}?${cnrEncodedStringVar}">Details</a>
 
 
 /* ************************************************************************* 

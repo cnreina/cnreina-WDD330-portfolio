@@ -12,20 +12,13 @@
 // INITIALIZE
 
 // MODULES
-import * as cnrSecrets from './cnrSecrets.js';
 import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
-// import * as cnrFetch from './cnrFetchAPI.js';
 import * as cnrGeoLocation from './cnrGeoLocationAPI.js';
 
-// MAP
-let cnrMap;
-const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP;
-const cnrMAP_API_VERSION = `weekly`;
-const cnrMAP_API_SRC = `https://maps.googleapis.com/maps/api/js?key=${cnrMAP_API_KEY}&callback=cnrInitMap&v=${cnrMAP_API_VERSION}`;
 
 // QUAKES
-let cnrQuakes = null;
+let cnrQuakes;
 const cnrQuakes_API_SRC = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
 const cnrQuakes_API_RESPONSE_TYPE = 'geojson';
 const cnrQuakes_API_START_TIME = '2019-01-01';
@@ -34,13 +27,6 @@ const cnrQuakes_API_MAX_RADIUS_KM = '100';
 
 
 window.onload = function () {
-  // init map
-  const cnrBodyElement = document.getElementsByTagName('body');
-  const cnrMapScriptTag = document.createElement('script');
-  cnrMapScriptTag.src = cnrMAP_API_SRC;
-  cnrBodyElement[0].appendChild(cnrMapScriptTag);
-  window.cnrInitMap = cnrInitMap;
-
   // create new quake data object
   const cnrDataSchema = {
     cnrTime: 'Quake time.',
@@ -54,16 +40,13 @@ window.onload = function () {
 
 }; // window.onload
 
+
 /* ************************************************************************* */
 // CONTROL
 
-function cnrInitMap() {
-  cnrMap = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 35.000, lng: -99.000 },
-    zoom: 4
-  });
-};
-
+/**	cnrGetQuakes. 
+ * Gets quakes data from API. 
+*/
 function cnrGetQuakes() {
   const cnrQuakeLatitudVar = '43.814540699999995';
   const cnrQuakeLongitudVar = '-111.78491029999999';
@@ -83,7 +66,7 @@ function cnrGetQuakes() {
 }; // cnrGetQuakes
 
 /**	cnrProcesResponseJSON. 
- * Process response json from fetch request. 
+ * Processes response json from fetch request. 
  * Updates data. 
 */
 function cnrProcesResponseJSON(cnrResponseJSONParam) {
@@ -96,7 +79,6 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   cnrQuakes.cnrRemoveItems();
 
   // process JSON
-  console.clear();
   const cnrLength = cnrResponseJSONParam.features.length;
   if (cnrLength <= 0) {
     console.log("ERROR: cnrProcesResponseJSON > cnrLength ", cnrLength);
@@ -108,12 +90,14 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     const cnrDataVar = {
       cnrTime: cnrResponseJSONParam.features[cnrCounter].properties.time,
       cnrLocation: cnrResponseJSONParam.features[cnrCounter].properties.title,
-      cnrMagnitude: cnrResponseJSONParam.features[cnrCounter].properties.rms,
+      cnrMagnitude: cnrResponseJSONParam.features[cnrCounter].properties.mag,
       cnrDetails: cnrResponseJSONParam.features[cnrCounter].properties.detail
     };
+    // save quake data object
     cnrQuakes.cnrAddItem("cnrQuake", true, cnrDataVar);
   };
 
-  cnrDisplay.cnrRenderItems();
+  // display quake data
+  cnrDisplay.cnrRenderItems('cnrjscontainerdiv', cnrQuakes);
   
 }; // cnrProcesResponseJSON
