@@ -16,7 +16,7 @@
 export class cnrItemsClass {
   #cnrLastErrorMessage = '';
   #cnrDataType = '';
-  #cnrItemsArray = [];
+  #cnrItemsArray = new Array;
 
   constructor(cnrDataTypeParam, cnrDataSchemaParam) {
     if (cnrDataTypeParam === null || cnrDataTypeParam === '') {
