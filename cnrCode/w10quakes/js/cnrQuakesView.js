@@ -16,14 +16,7 @@ import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
 import * as cnrGeoLocation from './cnrGeoLocationAPI.js';
 
-
-// QUAKES
 let cnrQuakes;
-const cnrQuakes_API_SRC = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
-const cnrQuakes_API_RESPONSE_TYPE = 'geojson';
-const cnrQuakes_API_START_TIME = '2019-01-01';
-const cnrQuakes_API_END_TIME = '2019-02-02';
-const cnrQuakes_API_MAX_RADIUS_KM = '100';
 
 
 window.onload = function () {
@@ -45,14 +38,23 @@ window.onload = function () {
 // CONTROL
 
 /**	cnrGetQuakes. 
- * Gets quakes data from API. 
+ * Gets device current location. 
+ * Fetches quakes data from USGS API. 
 */
-function cnrGetQuakes() {
-  const cnrQuakeLatitudVar = '43.814540699999995';
-  const cnrQuakeLongitudVar = '-111.78491029999999';
+async function cnrGetQuakes() {
+  // get device location
+  const cnrCurrentLocation = await cnrGetCurrentLocation();
+  
+  // prepare url
+  const cnrQuakes_API_SRC = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
+  const cnrQuakes_API_RESPONSE_TYPE = 'geojson';
+  const cnrQuakes_API_START_TIME = '2019-01-01';
+  const cnrQuakes_API_END_TIME = '2019-02-02';
+  const cnrQuakes_API_MAX_RADIUS_KM = '100';
+  const cnrQuakeLatitudVar = cnrCurrentLocation.coords.latitude;
+  const cnrQuakeLongitudVar = cnrCurrentLocation.coords.longitude;
   const cnrQuakesRequestUrlVar = `${cnrQuakes_API_SRC}?format=${cnrQuakes_API_RESPONSE_TYPE}&starttime=${cnrQuakes_API_START_TIME}&endtime=${cnrQuakes_API_END_TIME}&latitude=${cnrQuakeLatitudVar}&longitude=${cnrQuakeLongitudVar}&maxradiuskm=${cnrQuakes_API_MAX_RADIUS_KM}`;
   
-  // fetch quakes
   const cnrHeaders = new Headers();
   const cnrRequest = new Request(cnrQuakesRequestUrlVar, {
     method: 'GET',
@@ -61,6 +63,7 @@ function cnrGetQuakes() {
     cache: 'default'
   });
 
+  // fetch quakes
   fetch(cnrRequest).then((response) => response.json())
     .then((cnrJSONData) => cnrProcesResponseJSON(cnrJSONData));
 }; // cnrGetQuakes
@@ -101,3 +104,9 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   cnrDisplay.cnrRenderItems('cnrjscontainerdiv', cnrQuakes);
   
 }; // cnrProcesResponseJSON
+
+const cnrGetCurrentLocation = function (options) {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  });
+};
