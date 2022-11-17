@@ -22,6 +22,7 @@ main {
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
+  max-width: 100vh;
 }
 
 /*	HEADER */
