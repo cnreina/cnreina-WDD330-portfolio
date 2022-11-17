@@ -21,7 +21,7 @@ main {
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
-  max-width: 100vh;
+  max-width: 100%;
 }
 
 /*	HEADER */
@@ -88,6 +88,7 @@ hr {
   /*	MAIN */
   .cnrmainsections {
     width: 100%;
+    max-width: 100%;
     padding: 4px;
     margin: 0px;
     display: block;
