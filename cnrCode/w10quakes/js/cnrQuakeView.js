@@ -10,12 +10,6 @@
 import * as cnrSecrets from './cnrSecrets.js';
 
 const cnrQuakesViewURL = "../html/cnrQuakesView.html";
-
-// MAP
-let cnrMap;
-const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP;
-const cnrMAP_API_VERSION = `weekly`;
-const cnrMAP_API_SRC = `https://maps.googleapis.com/maps/api/js?key=${cnrMAP_API_KEY}&callback=cnrInitMap&v=${cnrMAP_API_VERSION}`;
 let cnrMAP_API_POSITION = null;
 let cnrMAP_API_ZOOM = null;
 
@@ -36,13 +30,6 @@ window.onload = function () {
   const cnrBackToListLinkVar = document.getElementById('cnrbacklinkdiv');
   cnrBackToListLinkVar.addEventListener(cnrClickOrTouchEventVar, cnrBackLinksClickHandler);
 
-  // init map script
-  const cnrBodyElement = document.getElementsByTagName('body');
-  const cnrMapScriptTag = document.createElement('script');
-  cnrMapScriptTag.onload = cnrMAPScriptOnLoadHandler;
-  cnrMapScriptTag.src = cnrMAP_API_SRC;
-  cnrBodyElement[0].appendChild(cnrMapScriptTag);
-  
   // get query string data
   const cnrTimeVar = cnrGetQueryStringValue('cnrTime');
   const cnrLocationVar = cnrGetQueryStringValue('cnrLocation');
@@ -69,13 +56,6 @@ function cnrBackLinksClickHandler(cnrEventParam) {
   window.location.href = cnrQuakesViewURL;
 };
 
-/**	cnrMAPScriptOnLoadHandler. 
- * Fires when the map script is loaded. 
-*/
-function cnrMAPScriptOnLoadHandler() {
-  
-  
-};
 
 /* ************************************************************************* */
 // CONTROLLERS
@@ -133,18 +113,27 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
   document.getElementById('cnrlongitud').innerText = cnrResponseJSONParam.geometry.coordinates[0];
   document.getElementById('cnrlatitude').innerText = cnrResponseJSONParam.geometry.coordinates[1];
 
-  // init map
+  // prepare map location
   cnrMAP_API_POSITION = {
     lat: cnrResponseJSONParam.geometry.coordinates[1],
     lng: cnrResponseJSONParam.geometry.coordinates[0]
   };
-  cnrMAP_API_ZOOM = 6;
+  cnrMAP_API_ZOOM = 7;
+  // init map script
+  const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP;
+  const cnrMAP_API_VERSION = `weekly`;
+  const cnrMAP_API_SRC = `https://maps.googleapis.com/maps/api/js?key=${cnrMAP_API_KEY}&callback=cnrInitMap&v=${cnrMAP_API_VERSION}`;
+  const cnrBodyElement = document.getElementsByTagName('body');
+  const cnrMapScriptTag = document.createElement('script');
+  cnrMapScriptTag.src = cnrMAP_API_SRC;
+  cnrBodyElement[0].appendChild(cnrMapScriptTag);
   window.cnrInitMap = cnrInitMap;
 
 }; // cnrProcesResponseJSON
 
 function cnrInitMap() {
-  cnrMap = new google.maps.Map(document.getElementById("map"), {
+  // get map
+  const cnrMap = new google.maps.Map(document.getElementById("map"), {
     center: cnrMAP_API_POSITION,
     zoom: cnrMAP_API_ZOOM,
     // scaleControl: false,
@@ -152,7 +141,7 @@ function cnrInitMap() {
     // fullscreenControl: false,
     disableDefaultUI: true
   });
-
+  // add marker
   const cnrMapMarkerVar = new google.maps.Marker({
     position: cnrMAP_API_POSITION,
     map: cnrMap,
