@@ -161,7 +161,7 @@ hr {
     display: grid;
     grid-template-columns: 100%;
     justify-content: center;
-    align-content: flex-start;
+    align-content: center;
     padding: 0px;
     margin: 0px;
   }
@@ -193,12 +193,13 @@ hr {
   .cnrmapdivs {
     width: 100%;
     height: calc((100vh/2) - 40px);
-    padding: 4px;
+    padding: 0px;
     margin: 0px;
   }
   /* map height defines size of container div element. */
   #map {
     width: 100%;
+    max-width: 100vw;
     height: 100%;
     box-shadow: 1px 1px 4px #202121;
     border-radius: 4px;
