@@ -273,6 +273,7 @@ hr {
     animation: glow 2s ease-in-out infinite alternate;
     position: sticky;
     top: 42px;
+    z-index: 1;
   }
   
   /*	CARDS */
@@ -291,7 +292,6 @@ hr {
     border-radius: 4px;
     opacity: 0.8;
     box-shadow: 1px 1px 4px #202121;
-    z-index: 1;
   }
   .cnrcardheadertitles {
     padding: 0px;
