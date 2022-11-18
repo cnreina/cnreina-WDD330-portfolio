@@ -218,13 +218,12 @@ hr {
 
   /*	MAIN */
   .cnrmainsections {
-    /* width: 100%; */
-    max-width: 800px;
-    padding: 2px;
+    padding: 0px;
     margin: 0px;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     justify-content: center;
+    max-width: 500px;
   }
   
   /*	JS CONTAINER */
