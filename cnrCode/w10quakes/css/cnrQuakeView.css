@@ -19,9 +19,10 @@ html, body {
 
 main {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   justify-content: center;
   max-width: 100%;
+  padding: 4px;
 }
 
 /*	HEADER */
@@ -84,11 +85,11 @@ hr {
 
 /* ************************************************************************* */
 /*	MOBILE */
-@media screen and (max-width:640px){
+@media screen and (max-width:400px){
   /*	MAIN */
   .cnrmainsections {
     width: 100%;
-    max-width: 100%;
+    /* max-width: 100%; */
     padding: 4px;
     margin: 0px;
     display: block;
@@ -114,7 +115,7 @@ hr {
   .cnrjscontentdivs {
     width: 100%;
     height: auto;
-    padding: 8px;
+    padding: 4px;
     margin-bottom: 4px;
     box-shadow: 1px 1px 4px #202121;
     border: 1px solid rgba(153, 150, 150, 0.8);
@@ -126,7 +127,7 @@ hr {
     width: 100%;
     height: 34px;
     padding: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     display: grid;
     grid-template-columns: auto;
     justify-content: center;
@@ -142,19 +143,7 @@ hr {
     padding: 0px;
     margin: 0px;
     text-align: center;
-    font-size: 1em;
-  }
-  .cnrcardheadertitles a:link {
-    color:white;
-    text-decoration: none;
-  }
-  .cnrcardheadertitles a:visited {
-    color:white;
-    text-decoration: none;
-  }
-  .cnrcardheadertitles a:active {
-    color:white;
-    text-decoration: none;
+    font-size: 0.8em;
   }
   .cnrcardcontentdivs {
     width: 100%;
@@ -166,7 +155,7 @@ hr {
     margin: 0px;
   }
   .cnrcardcelldivs {
-    padding: 8px;
+    padding: 2px;
     margin: 0px;
   }
   .cnrcardinfodivs {
@@ -177,7 +166,7 @@ hr {
   }
   .cnrcardbasicinfodivs {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 30% 70%;
     width: 100%;
     padding: 0px;
     margin: 0px;
@@ -186,7 +175,7 @@ hr {
     padding: 1px;
     margin: 0px;
     text-align: left;
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 
   /*	MAP */
@@ -199,7 +188,7 @@ hr {
   /* map height defines size of container div element. */
   #map {
     width: 100%;
-    max-width: 100vw;
+    max-width: 98vw;
     height: 100%;
     box-shadow: 1px 1px 4px #202121;
     border-radius: 4px;
@@ -242,7 +231,7 @@ hr {
 
 /* ************************************************************************* */
 /*	DESKTOP */
-@media screen and (min-width:640px){
+@media screen and (min-width:401px){
   /*	MAIN */
   .cnrmainsections {
     width: 96vw;
