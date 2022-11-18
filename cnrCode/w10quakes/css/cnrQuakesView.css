@@ -10,10 +10,10 @@
 }
 
 html, body {
-  position: absolute;
+  /* position: absolute; */
   width: 100vw;
   height: 100%;
-  padding: 0px;
+  padding: 10px;
   margin: 0px;
   background-color: rgb(242, 245, 248);
   display: grid;
@@ -23,12 +23,13 @@ html, body {
 }
 
 main {
-  align-self: center;
+  /* align-self: center; */
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: calc(100% - 10px);
   justify-content: center;
-  max-width: 100%;
-  padding: 4px;
+  min-width: 100%;
+  padding: 0px;
+  margin: 0px;
 }
 
 /*	HEADER */
@@ -217,11 +218,13 @@ hr {
 
   /*	MAIN */
   .cnrmainsections {
-    width: 100%;
-    max-width: 600px;
-    padding: 4px;
+    /* width: 100%; */
+    max-width: 800px;
+    padding: 2px;
     margin: 0px;
-    display: block;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
   }
   
   /*	JS CONTAINER */
