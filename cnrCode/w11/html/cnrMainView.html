@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+      <link href="../../res/favicon.ico" rel="icon" type="image/x-icon"/>
+      <title>WDD-330</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+      <meta name=	"Feature-Policy" content="geolocation 'self' http://127.0.0.1:3000"/>
+    <style>
+      @import "../css/cnrMainView.css" screen;
+   </style>
+  </head>
+  <body>
+    <main>
+      <!-- Header Section -->
+      <section class="cnrheadersections">
+         <div class="cnrheaderdivs">
+            <h1 class="cnrmaintitles" title="cnrmaintitles">Week 11</h1>
+            <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">JWT</h5>
+         </div>
+         <div class="cnrsubheaderdivs">
+            <a href="../../../index.html" class="cnrhomelinks">Home Page</a>
+            <p class="cnrcopyright">Carlos N Reina 2022</p>
+         </div>
+      </section>
+      <hr>
+      <!-- Main Section -->
+      <div class="cnrmainsections">
+        <!-- Quakes -->
+        <div class="cnrquakesheaderdivs cnrnouserselection">JWT Login</div>
+        <div class="cnrjscontainerdivs cnrjsscrollable" id="cnrjscontainerdiv">
+          <!-- FORM -->
+          <form class="cnrforms" id='cnrlogin'>
+            <div class="cnrdisplaydivs">
+               <div>
+                  <label for='cnrusername' id="cnrusernamelabel">eMail:
+                     <input class="cnrinputs" type='text' id='cnrusername' name='cnrusername' autofocus placeholder='Your email here . . .' maxlength=64>
+                  </label>
+               </div>
+               <div>
+                  <label for='cnrpassword' id="cnrpasswordlabel">Password:
+                     <input class="cnrinputs" type='password' name='cnrpassword' id='cnrpassword' placeholder='Your password here . . .' maxlength=64>
+                  </label>
+               </div>
+            </div>
+            <div class="cnrdisplaydivs">
+               <button class="cnrbuttons" id="cnrsubmitbutton" type='submit'>Submit</button>
+               &nbsp;
+               <button class="cnrbuttons" type='reset'>Reset</button>
+            </div>
+         </form>
+        </div>
+      </div>
+   </main>
+    <script src="../js/cnrMainView.js" type="module"></script>
+  </body>
+</html>
