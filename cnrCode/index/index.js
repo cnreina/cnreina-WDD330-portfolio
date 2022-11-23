@@ -95,6 +95,10 @@ const links = [
     url: "cnrCode/w10quakes/html/cnrQuakesView.html"
   },
   {
+    label: "Week 11 (JWT)",
+    url: "cnrCode/w11/html/cnrMainView.html"
+  },
+  {
     label: "Challenge 2 (...)",
     url: "cnrCode/challenge2/html/cnrMainView.html"
   }
