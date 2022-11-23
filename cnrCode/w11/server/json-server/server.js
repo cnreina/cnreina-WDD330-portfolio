@@ -47,7 +47,8 @@ server.post('/login', (req, res) => {
 
   if (isAuthenticated({ email, password }) === false) {
     const status = 401;
-    const message = 'Incorrect username or password';
+    // const message = 'Incorrect username or password (' + email + ', ' + password + ')';
+    const message = 'Incorrect username or password (' + req.body + ')';
     res.status(status).json({ status, message });
     return;
   }

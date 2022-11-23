@@ -7,10 +7,9 @@
 /* ************************************************************************* */
 // MODULES
 
-import * as cnrAuth from './cnrAuth.js';
+import * as cnrAuthModule from './cnrAuth.js';
 
-const cnrAuthVar = new cnrAuth.Auth();
-
+let cnrAuth = null;
 
 /* ************************************************************************* */
 // INITIALIZE
@@ -19,33 +18,45 @@ window.onload = function () {
   const cnrSubmitButton = document.getElementById('cnrsubmitbutton');
   cnrSubmitButton.addEventListener('pointerup', cnrSubmitButtonPointerUpHandler);
 
+  // TEST DATA
+  const cnrUsernameVar = document.getElementById('email');
+  cnrUsernameVar.value = 'user1@email.com';
+  const cnrPasswordVar = document.getElementById('password');
+  cnrPasswordVar.value = 'user1';
+
+  // instantiate auth class
+  cnrAuth = new cnrAuthModule.Auth();
+
 }; // window.onload
 
 /** cnrSubmitButtonPointerUpHandler */
 function cnrSubmitButtonPointerUpHandler(cnrParam) {
   cnrParam.preventDefault();
 
-  const cnrUsernameVar = document.getElementById('cnrusername');
-  if(cnrUsernameVar.value === null || cnrUsernameVar.value === ''){
-    console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrUsernameVar\n', cnrUsernameVar);
+  if(cnrAuth === null){
+    console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrAuth\n', cnrAuth);
     return;
   };
 
-  const cnrPasswordVar = document.getElementById('cnrpassword');
-  if(cnrPasswordVar.value === null || cnrPasswordVar.value === ''){
+  // get input elements
+  const cnrEmailVar = document.getElementById('email');
+  if(cnrEmailVar === null || cnrEmailVar === ''){
+    console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrEmailVar\n', cnrEmailVar);
+    return;
+  };
+  const cnrPasswordVar = document.getElementById('password');
+  if(cnrPasswordVar === null || cnrPasswordVar === ''){
     console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrPasswordVar\n', cnrPasswordVar);
     return;
   };
 
   // login
-  cnrAuthVar.login(cnrUsernameVar.value, cnrPasswordVar.value, cnrLoginCallback);
-
-  cnrPasswordVar.value = '';
+  cnrAuth.login(cnrEmailVar, cnrPasswordVar, cnrLoginCallback);
 
 }; // cnrSubmitButtonPointerUpHandler
 
 /** cnrLoginCallback */
-function cnrLoginCallback(cnrParam){
-  console.log('TEST: cnrLoginCallback\n', cnrParam);
+function cnrLoginCallback() {
+  return 'Response from cnrMainView.js > cnrLoginCallback\n';
 
 }; // cnrLoginCallback

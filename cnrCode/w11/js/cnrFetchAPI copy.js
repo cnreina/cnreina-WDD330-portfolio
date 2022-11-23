@@ -39,13 +39,16 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
     return;
   };
 
-  // request options
-  let cnrRequestOptions = {
+  // prepare headers
+  const cnrHeadersVar = new Headers({ 'Content-Type': 'application/json' });
+  if (cnrTokenParam) {cnrHeadersVar.headers.Authorization = `Bearer ${cnrTokenParam}`;};
+  
+  // prepare request
+  const cnrRequestUrlVar = `${cnrFetch_BASE_URL}${cnrPartialURLParam}`;
+  const cnrRequestVar = new Request(cnrRequestUrlVar, {
     method: cnrMethodParam,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+    headers: cnrHeadersVar
+  });
 
   // prepare body
   if (cnrMethodParam === cnrFetch_METHOD_POST || cnrMethodParam === cnrFetch_METHOD_PUT) {
@@ -53,18 +56,12 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
       console.log('ERROR: cnrFetchRequest > cnrBodyParam\n', cnrBodyParam);
       return;
     };
-    cnrRequestOptions.body = JSON.stringify(cnrBodyParam);
+    cnrRequestVar.body = JSON.stringify(cnrBodyParam);
   };
-  
-  // prepare token
-  if (cnrTokenParam) {cnrRequestOptions.headers.Authorization = `Bearer ${cnrTokenParam}`;};
-  
-  // prepare url
-  const cnrRequestUrlVar = `${cnrFetch_BASE_URL}${cnrPartialURLParam}`;
-  
+
   // fetch data
   try {
-    const cnrFetchResponseVar = await fetch(cnrRequestUrlVar, cnrRequestOptions);
+    const cnrFetchResponseVar = await fetch(cnrRequestVar);
     const cnrJSONVar = await cnrFetchResponseVar.json();
     if(cnrJSONVar === null || cnrJSONVar === ''){
       console.log('ERROR: cnrFetchRequestJSON > cnrJSONVar ', cnrJSONVar);
