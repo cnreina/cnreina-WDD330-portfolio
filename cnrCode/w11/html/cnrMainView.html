@@ -27,19 +27,19 @@
       <hr>
       <!-- Main Section -->
       <div class="cnrmainsections">
-        <!-- Quakes -->
-        <div class="cnrquakesheaderdivs cnrnouserselection">JWT Login</div>
+        <!-- CARD -->
+        <div class="cnrcardheaderdivs cnrnouserselection">JWT Login</div>
         <div class="cnrjscontainerdivs cnrjsscrollable" id="cnrjscontainerdiv">
-          <!-- FORM -->
-          <form class="cnrforms" id='cnrlogin'>
+          <!-- LOGIN FORM -->
+          <form class="cnrforms cnrnouserselection" id='cnrlogin'>
             <div class="cnrdisplaydivs">
                <div>
-                  <label for='email' id="cnremaillabel">eMail:
-                     <input class="cnrinputs" type='text' id='email' name='email' autofocus placeholder='Your email here . . .' maxlength=64>
+                  <label class="cnrinputlabels cnrnouserselection" for='email' id="cnremaillabel">eMail:
+                     <input class="cnrinputs" type='text' id='email' name='email' placeholder='Your email here . . .' maxlength=64>
                   </label>
                </div>
                <div>
-                  <label for='password' id="cnrpasswordlabel">Password:
+                  <label class="cnrinputlabels cnrnouserselection" for='password' id="cnrpasswordlabel">Password:
                      <input class="cnrinputs" type='password' id='password' name='password' placeholder='Your password here . . .' maxlength=64>
                   </label>
                </div>
@@ -50,6 +50,36 @@
                <button class="cnrbuttons" type='reset'>Reset</button>
             </div>
          </form>
+         <!-- USER DATA -->
+         <div class="cnrdatadivs cnrnouserselection cnrhidden" id='cnruserdata'>
+            <div class="cnrdisplaydivs">
+               <div>
+                  <label class="cnrinputlabels" for='cnrid' id="cnridlabel">ID:
+                     <p class="cnrinputs" id='cnrid'><!-- javascript --></p>
+                  </label>
+               </div>
+               <div>
+                  <label class="cnrinputlabels" for='cnrfirstname' id="cnrfirstnamelabel">First Name:
+                     <p class="cnrinputs" id='cnrfirstname'><!-- javascript --></p>
+                  </label>
+               </div>
+               <div>
+                  <label class="cnrinputlabels" for='cnrlastname' id="cnrlastnamelabel">Last Name:
+                     <p class="cnrinputs" id='cnrlastname'><!-- javascript --></p>
+                  </label>
+               </div>
+               <div>
+                  <label class="cnrinputlabels" for='cnrage' id="cnragelabel">Age:
+                     <p class="cnrinputs" id='cnrage'><!-- javascript --></p>
+                  </label>
+               </div>
+               <div>
+                  <label class="cnrinputlabels" for='cnruseremail' id="cnruseremaillabel">eMail:
+                     <p class="cnrinputs" id='cnruseremail'><!-- javascript --></p>
+                  </label>
+               </div>
+            </div>
+         </div>
         </div>
       </div>
    </main>

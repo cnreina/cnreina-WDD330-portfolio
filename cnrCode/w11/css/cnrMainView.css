@@ -147,7 +147,7 @@ hr {
     border-radius: 4px;
   }
   
-  .cnrquakesheaderdivs {
+  .cnrcardheaderdivs {
     width: 100%;
     height: 40px;
     padding: 2px;
@@ -156,7 +156,7 @@ hr {
     grid-template-columns: 100%;
     justify-content: center;
     align-content: center;
-    font-size: 1.6em;
+    font-size: 1em;
     text-align: center;
     text-shadow: 1px 1px rgb(246, 244, 244);
     background-color:black;
@@ -171,49 +171,70 @@ hr {
     z-index: 1;
   }
 
-  /*	CARDS */
-  .cnrcardheaderdivs {
-    width: 100%;
-    height: 26px;
-    padding: 0px;
-    margin: 0px;
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-    align-content: center;
-    background-color:black;
-    color:white;
-    border: 1px solid rgba(225, 222, 222, 0.8);
+  .cnrdisplaydivs {
+    width: 99%;
+    height: auto;
+    background-color: rgb(29, 29, 25);
+    color: rgb(224, 214, 214);
+    padding: 10px;
+    margin: 6px 3px;
     border-radius: 4px;
-    opacity: 0.8;
-    box-shadow: 1px 1px 4px #202121;
+    -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+    box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
   }
-  .cnrcardheadertitles {
-    padding: 0px;
+  
+  .cnrforms {
+    width: 98%;
+    height: auto;
+    background-color: rgb(235, 235, 222);
+    padding: 10px;
+    margin:5px;
+  }
+  .cnrinputlabels {
+    padding: 8px;
     margin: 0px;
-    text-align: center;
-    font-size: 0.8em;
+    font-size: 16px;
   }
-  .cnrcardheadertitles a:link {
-    color:white;
-    text-decoration: none;
-  }
-  .cnrcardheadertitles a:visited {
-    color:white;
-    text-decoration: none;
-  }
-  .cnrcardheadertitles a:active {
-    color:white;
-    text-decoration: none;
-  }
-  .cnrcardcontentdivs {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    justify-content: center;
-    padding: 0px;
+  .cnrinputs {
+    color: #120101;
+    background-color: #f5f6f1;
+    border-color: #130269;
+    border-radius: 4px;
+    padding: 6px;
     margin: 0px;
+    margin-left: 2%;
+    font-size: 14px;
+    width: 96%;
   }
+  .cnrbuttons {
+    color: #ffffff;
+    background-color: #7a7e6e;
+    border-color: #130269;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 0.2em 0;
+    font-size: 14px;
+    min-width: 30%;
+    cursor: pointer;
+  }
+  .cnrerror{
+    background: rgb(215, 4, 4);
+    border: #900 1px solid;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 0.2em 0;
+    font-size: 14px;
+    display: none;
+  }
+
+  .cnrdatadivs {
+    width: 98%;
+    height: auto;
+    background-color: rgb(235, 235, 222);
+    padding: 10px;
+    margin:5px;
+  }
+
 }
 
 /* ************************************************************************* */

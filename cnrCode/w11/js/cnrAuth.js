@@ -5,9 +5,6 @@
 
 
 /* ************************************************************************* */
-// MODULES
-
-//Auth class which provides basic JWT based authentication for our app.
 
 import * as cnrFetch from './cnrFetchAPI.js';
 
@@ -16,110 +13,144 @@ const cnrRequest_URL_PATH_USERS = 'users';
 const cnrRequest_METHOD_POST = 'POST';
 const cnrRequest_METHOD_GET = 'GET';
 
-
-export class Auth {
+/**	cnrAuthClass 
+ * Basic JWT authentication class. 
+ * Functions: 
+ * cnrLogIn, 
+ * cnrGetCurrentUserDataByEmail, 
+ * cnrLastError. 
+*/
+export class cnrAuthClass {
   constructor() {
     this.jwtToken = null;
     this.user = {};
+    this.cnrLastErrorData = null;
   };
   
-  async login(cnrEmailContainerParam, cnrPasswordContainerParam, cnrCallbackParam = null) {
-    if(cnrEmailContainerParam === null || cnrEmailContainerParam === ''){
-      console.log('ERROR: cnrAuth.js > login > cnrEmailContainerParam\n', cnrEmailContainerParam);
+  /**	cnrLogIn 
+    * Sends a request to login the user for 
+    * passed email and password. 
+    * Invokes callback function, if passed. 
+    * Returns null on errors. 
+    * Call cnrLastError() to get last error data and 
+    * clear error buffer. 
+  */
+  async cnrLogIn(cnrEmailParam, cnrPasswordParam, cnrCallbackParam = null) {
+    if (this.cnrLastErrorData != null) { return null; };
+    if(cnrEmailParam === null || cnrEmailParam === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn > cnrEmailContainerParam\n' + cnrEmailParam;
       return null;
     };
-    if(cnrPasswordContainerParam === null || cnrPasswordContainerParam === ''){
-      console.log('ERROR: cnrAuth.js > login > cnrPasswordContainerParam\n', cnrPasswordContainerParam);
+    if(cnrPasswordParam === null || cnrPasswordParam === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn > cnrPasswordContainerParam\n' + cnrPasswordParam;
       return null;
     };
 
     const cnrBodyDataVar = {
-      email: cnrEmailContainerParam.value,
-      password: cnrPasswordContainerParam.value
+      email: cnrEmailParam,
+      password: cnrPasswordParam
     };
     
     try {
       // send credentials
       const cnrResponseVar = await cnrFetch.cnrFetchRequestJSON(cnrRequest_URL_PATH_LOGIN, cnrRequest_METHOD_POST, cnrBodyDataVar, this.jwtToken);
       if(cnrResponseVar === null || cnrResponseVar === ''){
-        console.log('ERROR: cnrAuth.js > login > cnrResponseVar\n', cnrResponseVar);
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn > cnrResponseVar\n' + cnrResponseVar;
         return null;
       };
 
       // store token
       if(cnrResponseVar.accessToken === null || cnrResponseVar.accessToken === ''){
-        console.log('ERROR: cnrAuth.js > login > cnrResponseVar.accessToken\n', cnrResponseVar);
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn > cnrResponseVar.accessToken\n' + cnrResponseVar;
         return null;
       };
       this.jwtToken = cnrResponseVar.accessToken;
       
       // get user data
-      const cnrUserVar = await this.getCurrentUser(cnrEmailContainerParam.value);
+      const cnrUserVar = await this.cnrGetCurrentUserDataByEmail(cnrEmailParam);
       if(cnrUserVar === null || cnrUserVar === ''){
-        console.log('ERROR: cnrAuth.js > login > cnrUserVar\n', cnrUserVar);
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn > cnrUserVar\n' + cnrUserVar;
         return null;
       };
       this.user = cnrUserVar;
 
-      // clear password field
-      cnrPasswordContainerParam.value = '';
-
-      // hide login
-      document.getElementById('cnrlogin').classList.add('cnrhidden');
-
-      // test callback
-      if (cnrCallbackParam) {
-        const cnrCallbackResponseVar = cnrCallbackParam();
-        if(cnrCallbackResponseVar === null || cnrCallbackResponseVar === ''){
-          console.log('ERROR: cnrAuth.js > login > cnrCallbackResponseVar\n', cnrCallbackResponseVar);
-          return null;
-        };
-
-        // ******************** TEST
-        // console.clear();
-        console.log('TEST: cnrCallbackResponseVar\n', cnrCallbackResponseVar);
-      };
+      // invoke callback
+      if (cnrCallbackParam) { cnrCallbackParam(this.cnrLastErrorData != null); };
       
-      } catch (error) {
-        // if there were any errors display them
-        console.log('ERROR: cnrAuth.js > login\n', error);
+    } catch (error) {
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrLogIn\n' + error;
+    };
+
+  }; // cnrLogIn
+
+  /**	cnrGetCurrentUserDataByEmail 
+    * Sends a request for user data by passed 
+    * current user email. 
+    * Returns null on errors. 
+    * Call cnrLastError() to get last error 
+    * data and clear error buffer. 
+  */
+  async cnrGetCurrentUserDataByEmail(cnrEmailParam) {
+    if (this.cnrLastErrorData != null) { return null; };
+    if(this.jwtToken === null || this.jwtToken === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserDataByEmail > this.jwtToken\n' + this.jwtToken;
+      return null;
+    };
+    if(cnrEmailParam === null || cnrEmailParam === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserDataByEmail > cnrEmailParam\n' + cnrEmailParam;
+      return null;
     };
     
-  }; // login
-
-  // uses the email of the currently logged in user to pull up the full user deta
-  async getCurrentUser(cnrEmailParam) {
-    if(cnrEmailParam === null || cnrEmailParam === ''){
-      console.log('ERROR: cnrAuth.js > getCurrentUser > cnrEmailParam\n', cnrEmailParam);
-      return null;
-    };
-    if(this.jwtToken === null || this.jwtToken === ''){
-      console.log('ERROR: cnrAuth.js > getCurrentUser > this.jwtToken\n', this.jwtToken);
-      return null;
-    };
-
     // send request
     try {
       const cnrURLVar = cnrRequest_URL_PATH_USERS + '?email=' + cnrEmailParam;
       const cnrResponseVar = await cnrFetch.cnrFetchRequestJSON(cnrURLVar, cnrRequest_METHOD_GET, null, this.jwtToken);
       if(cnrResponseVar === null || cnrResponseVar === ''){
-        console.log('ERROR: cnrAuth.js > getCurrentUser > cnrResponseVar\n', cnrResponseVar);
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserDataByEmail > cnrResponseVar\n' + cnrResponseVar;
         return null;
       };
-      // return user
-      return cnrResponseVar[0];
+      // get user data
+      const cnrUserDataVar = cnrResponseVar[0];
+      if(cnrUserDataVar === null || cnrUserDataVar === ''){
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserDataByEmail > cnrUserDataVar\n' + cnrUserDataVar;
+        return null;
+      };
+
+      // return user data
+      return cnrUserDataVar;
 
     } catch (error) {
-      console.log('ERROR: cnrAuth.js > getCurrentUser\n', error);
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserDataByEmail\n' + error;
+      return null;
     };
-  }; // getCurrentUser
+  }; // cnrGetCurrentUserDataByEmail
   
+
   set token(value) {
-    // we need this for the getter to work...but we don't want to allow setting
+    // needed for getter to work
   };
 
   get token() {
     return this.jwtToken;
   };
 
-}; // end auth class
+  set cnrUser(value) {
+    // needed for getter to work
+  };
+
+  get cnrUser() {
+    return this.user;
+  };
+
+  /** cnrLastError 
+   * Returns Class's last error. 
+   * Returns null if no errors exist. 
+   * Resets last error data (null). 
+  */
+  cnrLastError() {
+    const cnrLastErrorVar = this.cnrLastErrorData;
+    this.cnrLastErrorData = null;
+    return cnrLastErrorVar;
+  }; // cnrLastError
+
+}; // cnrAuthClass
