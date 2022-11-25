@@ -74,45 +74,45 @@ function makeHero(event) {
   hero.city = heroForm.city.value;
 
   if (hero.name == null || hero.name == "") {
-    handleError(true, "ERROR: Name is required", "heronameerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Name is required", "heronameerrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "heronameerrordiv");
+    cnrFormErrorHandler(false, "", "heronameerrordiv");
   };
 
   if (hero.realName == null || hero.realName == "") {
-    handleError(true, "ERROR: Real Name is required", "realnameerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Real Name is required", "realnameerrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "realnameerrordiv");
+    cnrFormErrorHandler(false, "", "realnameerrordiv");
   };
 
   if (hero.age == null || hero.age == "") {
-    handleError(true, "ERROR: Age is required", "ageerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Age is required", "ageerrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "ageerrordiv");
+    cnrFormErrorHandler(false, "", "ageerrordiv");
   };
 
   if (hero.category == null || hero.category == "") {
-    handleError(true, "ERROR: Category is required", "categoryerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Category is required", "categoryerrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "categoryerrordiv");
+    cnrFormErrorHandler(false, "", "categoryerrordiv");
   };
 
   if (hero.powers == null || hero.powers.length == 0) {
-    handleError(true, "ERROR: Powers is required", "powerserrordiv");
+    cnrFormErrorHandler(true, "ERROR: Powers is required", "powerserrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "powerserrordiv");
+    cnrFormErrorHandler(false, "", "powerserrordiv");
   };
 
   if (hero.city == null || hero.city == "") {
-    handleError(true, "ERROR: City is required", "cityerrordiv");
+    cnrFormErrorHandler(true, "ERROR: City is required", "cityerrordiv");
     errorCounter++;
   } else {
-    handleError(false, "", "cityerrordiv");
+    cnrFormErrorHandler(false, "", "cityerrordiv");
   };
   
   if (errorCounter == 0) {
@@ -128,10 +128,10 @@ function makeHero(event) {
 function validateName() {
   const heroName = this.value.toUpperCase();
   if (heroName.startsWith('X')) {
-    handleError(true, "ERROR: Name must not start with X", "heronameerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Name must not start with X", "heronameerrordiv");
     return false;
   } else {
-    handleError(false, "", "heronameerrordiv");
+    cnrFormErrorHandler(false, "", "heronameerrordiv");
     return true;
   };
 };
@@ -139,32 +139,32 @@ function validateName() {
 function validateRealName() {
   const realName = this.value.toUpperCase();
   if (realName.startsWith('X')) {
-    handleError(true, "ERROR: Real Name must not start with X", "realnameerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Real Name must not start with X", "realnameerrordiv");
   } else {
-    handleError(false, "", "realnameerrordiv");
+    cnrFormErrorHandler(false, "", "realnameerrordiv");
   };
 };
 
 function validateAge() {
   const age = this;
   if (age.value < 18) {
-    handleError(true, "ERROR: Age must be 18 or older", "ageerrordiv");
+    cnrFormErrorHandler(true, "ERROR: Age must be 18 or older", "ageerrordiv");
   } else {
-    handleError(false, "", "ageerrordiv");
+    cnrFormErrorHandler(false, "", "ageerrordiv");
   };
 };
 
 // RESET
 function resetCategoryError() {
-  handleError(false, "", "categoryerrordiv");
+  cnrFormErrorHandler(false, "", "categoryerrordiv");
 };
 
 function resetPowersError() {
-  handleError(false, "", "powerserrordiv");
+  cnrFormErrorHandler(false, "", "powerserrordiv");
 };
 
 function resetCityError() {
-  handleError(false, "", "cityerrordiv");
+  cnrFormErrorHandler(false, "", "cityerrordiv");
 };
 
 function clearContent(parent) {
@@ -175,12 +175,12 @@ function clearContent(parent) {
 
 function resetForm() {
   // called by form reset event
-  handleError(false, "", "heronameerrordiv");
-  handleError(false, "", "realnameerrordiv");
-  handleError(false, "", "ageerrordiv");
-  handleError(false, "", "categoryerrordiv");
-  handleError(false, "", "powerserrordiv");
-  handleError(false, "", "cityerrordiv");
+  cnrFormErrorHandler(false, "", "heronameerrordiv");
+  cnrFormErrorHandler(false, "", "realnameerrordiv");
+  cnrFormErrorHandler(false, "", "ageerrordiv");
+  cnrFormErrorHandler(false, "", "categoryerrordiv");
+  cnrFormErrorHandler(false, "", "powerserrordiv");
+  cnrFormErrorHandler(false, "", "cityerrordiv");
 };
 
 // DISPLAY
@@ -197,7 +197,7 @@ function displayResult(resultParam) {
   displayElement.style.display = 'block';
 };
 
-function handleError(displayErrorParam, errorMessageParam, elementIdParam) {
+function cnrFormErrorHandler(displayErrorParam, errorMessageParam, elementIdParam) {
   Event.preventDefault;
 
   const error = document.getElementById(elementIdParam);
