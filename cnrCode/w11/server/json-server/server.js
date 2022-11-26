@@ -95,5 +95,5 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 server.use(router);
 
 server.listen(cnrSERVER_PORT, () => {
-  console.log('Run Auth API Server');
+  console.log(`Run Auth API Server (${cnrSERVER_PORT})`);
 });

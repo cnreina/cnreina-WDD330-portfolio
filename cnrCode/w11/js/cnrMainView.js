@@ -18,6 +18,8 @@ import * as cnrAuthModule from './cnrAuth.js';
 */
 const cnrAuth = new cnrAuthModule.cnrAuthClass();
 
+const cnrHomeURL = '../html/cnrMainView.html'
+
 /**	window.onload. */
 window.onload = function () {
   // init login form
@@ -46,6 +48,10 @@ window.onload = function () {
   // init posts button
   const cnrPostsButton = document.getElementById('cnrpostsbutton');
   cnrPostsButton.addEventListener('pointerup', cnrPostsButtonPointerUpHandler);
+
+  // init home button
+  const cnrHomeButton = document.getElementById('cnrhomebutton');
+  cnrHomeButton.addEventListener('pointerup', cnrHomeButtonPointerUpHandler);
 
   // TEST DATA
   const cnrUsernameVar = document.getElementById('email');
@@ -116,6 +122,19 @@ function cnrPostsButtonPointerUpHandler(cnrParam) {
 
 }; // cnrPostsButtonPointerUpHandler
 
+/** cnrHomeButtonPointerUpHandler */
+function cnrHomeButtonPointerUpHandler(cnrParam) {
+  cnrParam.preventDefault();
+
+  if (cnrParam === null || cnrParam === '') {
+    console.log('ERROR: cnrHomeButtonPointerUpHandler > cnrParam\n', cnrParam);
+    return;
+  };
+
+  window.location = cnrHomeURL;
+
+}; // cnrHomeButtonPointerUpHandler
+
 
 // FORM VALIDATORS
 
@@ -166,7 +185,7 @@ function cnrFormErrorHandler(cnrDisplayErrorParam, cnrErrorMessageParam, cnrElem
  * Handles login errors. 
  * Displays user data. 
 */
-function cnrLoginCallback(cnrErrorsParam = false) {
+function cnrLoginCallback(cnrErrorsParam = false) {  
   if(cnrErrorsParam){
     console.log('ERROR: cnrLoginCallback > cnrAuth.cnrLastError()\n', cnrAuth.cnrLastError());
     return null;
@@ -254,13 +273,5 @@ function cnrPostsCallback(cnrErrorsParam = false, cnrPosts) {
     cnrPostsDiv.append(cnrPostContainerVar);
 
   });
-
-  /*	comment 
-    id
-    userId
-    title
-    content
-    createdAt
-  */
 
 }; // cnrPostsCallback

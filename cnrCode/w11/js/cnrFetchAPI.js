@@ -24,11 +24,11 @@ const cnrFetch_ERROR_NAME = 'cnr_ERROR';
 export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = cnrFetch_METHOD_GET, cnrBodyParam = null, cnrTokenParam = null) {
   if(cnrPartialURLParam === null || cnrPartialURLParam === ''){
     console.log('ERROR: cnrFetchRequest > cnrPartialURLParam\n', cnrPartialURLParam);
-    return;
+    return null;
   };
   if(cnrMethodParam === null || cnrMethodParam === ''){
     console.log('ERROR: cnrFetchRequest > cnrMethodParam\n', cnrMethodParam);
-    return;
+    return null;
   };
   if (
     cnrMethodParam != cnrFetch_METHOD_GET &&
@@ -36,12 +36,13 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
     cnrMethodParam != cnrFetch_METHOD_PUT
   ) {
     console.log('ERROR: cnrFetchRequest > cnrMethodParam\n', cnrMethodParam);
-    return;
+    return null;
   };
 
   // request options
   let cnrRequestOptions = {
     method: cnrMethodParam,
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     }
@@ -51,7 +52,7 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
   if (cnrMethodParam === cnrFetch_METHOD_POST || cnrMethodParam === cnrFetch_METHOD_PUT) {
     if(cnrBodyParam === null || cnrBodyParam === ''){
       console.log('ERROR: cnrFetchRequest > cnrBodyParam\n', cnrBodyParam);
-      return;
+      return null;
     };
     cnrRequestOptions.body = JSON.stringify(cnrBodyParam);
   };
