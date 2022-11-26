@@ -159,8 +159,16 @@ export class cnrAuthClass {
         return null;
       };
 
+      // filter user posts
+      let cnrPostsVar = [];
+      cnrUserDataVar.forEach(cnrPostVar => {
+        if(cnrPostVar.userId === cnrEmailParam){
+          cnrPostsVar.push(cnrPostVar);
+        };
+      });
+
       // invoke callback
-      if (cnrCallbackParam) { cnrCallbackParam(this.cnrLastErrorData != null, cnrUserDataVar); };
+      if (cnrCallbackParam) { cnrCallbackParam(this.cnrLastErrorData != null, cnrPostsVar); };
 
       // return user posts
       return cnrUserDataVar;
