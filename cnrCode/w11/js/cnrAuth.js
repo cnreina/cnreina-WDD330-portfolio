@@ -10,6 +10,7 @@ import * as cnrFetch from './cnrFetchAPI.js';
 
 const cnrRequest_URL_PATH_LOGIN = 'login';
 const cnrRequest_URL_PATH_USERS = 'users';
+const cnrRequest_URL_PATH_POSTS = 'posts';
 const cnrRequest_METHOD_POST = 'POST';
 const cnrRequest_METHOD_GET = 'GET';
 
@@ -124,7 +125,51 @@ export class cnrAuthClass {
       return null;
     };
   }; // cnrGetCurrentUserDataByEmail
-  
+
+  /**	cnrGetCurrentUserPostsByEmail 
+    * Sends a request for user data by passed 
+    * current user email. 
+    * Returns null on errors. 
+    * Call cnrLastError() to get last error 
+    * data and clear error buffer. 
+  */
+   async cnrGetCurrentUserPostsByEmail(cnrEmailParam, cnrCallbackParam = null) {
+    if (this.cnrLastErrorData != null) { return null; };
+    if(this.jwtToken === null || this.jwtToken === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserPostsByEmail > this.jwtToken\n' + this.jwtToken;
+      return null;
+    };
+    if(cnrEmailParam === null || cnrEmailParam === ''){
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserPostsByEmail > cnrEmailParam\n' + cnrEmailParam;
+      return null;
+    };
+    
+    // send request
+    try {
+      const cnrURLVar = cnrRequest_URL_PATH_POSTS + '?email=' + cnrEmailParam;
+      const cnrResponseVar = await cnrFetch.cnrFetchRequestJSON(cnrURLVar, cnrRequest_METHOD_GET, null, this.jwtToken);
+      if(cnrResponseVar === null || cnrResponseVar === ''){
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserPostsByEmail > cnrResponseVar\n' + cnrResponseVar;
+        return null;
+      };
+      // get user data
+      const cnrUserDataVar = cnrResponseVar;
+      if(cnrUserDataVar === null || cnrUserDataVar === ''){
+        this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserPostsByEmail > cnrUserDataVar\n' + cnrUserDataVar;
+        return null;
+      };
+
+      // invoke callback
+      if (cnrCallbackParam) { cnrCallbackParam(this.cnrLastErrorData != null, cnrUserDataVar); };
+
+      // return user posts
+      return cnrUserDataVar;
+
+    } catch (error) {
+      this.cnrLastErrorData = 'ERROR: cnrAuth.js > cnrGetCurrentUserPostsByEmail\n' + error;
+      return null;
+    };
+  }; // cnrGetCurrentUserPostsByEmail
 
   set token(value) {
     // needed for getter to work

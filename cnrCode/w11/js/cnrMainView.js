@@ -25,22 +25,27 @@ window.onload = function () {
   cnrLoginForm.addEventListener('reset', cnrResetFormHandler, false);
   cnrLoginForm.email.addEventListener('keyup', cnrValidateEmailHandler);
   cnrLoginForm.password.addEventListener('keyup', cnrValidatePasswordHandler);
+  // init submit button
   const cnrSubmitButton = document.getElementById('cnrsubmitbutton');
   cnrSubmitButton.addEventListener('pointerup', cnrSubmitButtonPointerUpHandler);
 
-  // init error elements
+  // init email errors
   const cnrEmailLabel = document.getElementById("cnremaillabel");
   const cnrEmailError = document.createElement('div');
   cnrEmailError.classList.add('cnrerror');
   cnrEmailError.id = 'cnremailerrordiv';
   cnrEmailLabel.append(cnrEmailError);
 
+  // init password errors
   const cnrPasswordLabel = document.getElementById("cnrpasswordlabel");
   const cnrPasswordError = document.createElement('div');
   cnrPasswordError.classList.add('cnrerror');
   cnrPasswordError.id = 'cnrpassworderrordiv';
   cnrPasswordLabel.append(cnrPasswordError);
 
+  // init posts button
+  const cnrPostsButton = document.getElementById('cnrpostsbutton');
+  cnrPostsButton.addEventListener('pointerup', cnrPostsButtonPointerUpHandler);
 
   // TEST DATA
   const cnrUsernameVar = document.getElementById('email');
@@ -93,6 +98,24 @@ function cnrSubmitButtonPointerUpHandler(cnrParam) {
 
 }; // cnrSubmitButtonPointerUpHandler
 
+/** cnrPostsButtonPointerUpHandler */
+function cnrPostsButtonPointerUpHandler(cnrParam) {
+  cnrParam.preventDefault();
+
+  if(cnrAuth === null){
+    console.log('ERROR: cnrPostsButtonPointerUpHandler > cnrAuth\n', cnrAuth);
+    return;
+  };
+
+  if (cnrParam === null || cnrParam === '') {
+    console.log('ERROR: cnrPostsButtonPointerUpHandler > cnrParam\n', cnrParam);
+    return;
+  };
+
+  cnrAuth.cnrGetCurrentUserPostsByEmail(cnrAuth.user.email, cnrPostsCallback);
+
+}; // cnrPostsButtonPointerUpHandler
+
 
 // FORM VALIDATORS
 
@@ -137,7 +160,7 @@ function cnrFormErrorHandler(cnrDisplayErrorParam, cnrErrorMessageParam, cnrElem
 
 
 /* ************************************************************************* */
-// CALLBACK
+// CALLBACKS
 
 /** cnrLoginCallback. 
  * Handles login errors. 
@@ -164,3 +187,80 @@ function cnrLoginCallback(cnrErrorsParam = false) {
   document.getElementById('cnruserdata').classList.remove('cnrhidden');
 
 }; // cnrLoginCallback
+
+/** cnrPostsCallback. 
+ * Displays user posts. 
+*/
+function cnrPostsCallback(cnrErrorsParam = false, cnrPosts) {
+  if(cnrErrorsParam){
+    console.log('ERROR: cnrPostsCallback > cnrAuth.cnrLastError()\n', cnrAuth.cnrLastError());
+    return null;
+  };
+  if (cnrPosts === null || cnrPosts === '') {
+    console.log('ERROR: cnrPostsCallback > cnrPosts\n', cnrPosts);
+    return null;
+  };
+
+  // hide user data view
+  document.getElementById('cnruserdata').classList.add('cnrhidden');
+
+  // show user posts view
+  document.getElementById('cnruserposts').classList.remove('cnrhidden');
+
+  // display posts
+  const cnrPostsDiv = document.getElementById("cnrpostscontainerdiv");
+  cnrPosts.forEach(cnrPost => {
+    // create post container
+    const cnrPostContainerVar = document.createElement('div');
+    cnrPostContainerVar.classList.add('cnrpostdivs');
+    cnrPostContainerVar.id = `cnrpostdiv${cnrPost.id}`;
+
+    // create id text
+    const cnrPostIdVar = document.createElement('p');
+    cnrPostIdVar.classList.add('cnrposttext');
+    cnrPostIdVar.id = `cnrpostid${cnrPost.id}`;
+    cnrPostIdVar.textContent = `ID: ${cnrPost.id}`;
+    cnrPostContainerVar.append(cnrPostIdVar);
+
+    // create user id text
+    const cnrPostUserIdVar = document.createElement('p');
+    cnrPostUserIdVar.classList.add('cnrposttext');
+    cnrPostUserIdVar.id = `cnrpostuserid${cnrPost.id}`;
+    cnrPostUserIdVar.textContent = `User ID: ${cnrPost.userId}`;
+    cnrPostContainerVar.append(cnrPostUserIdVar);
+
+    // create title text
+    const cnrPostTitleVar = document.createElement('p');
+    cnrPostTitleVar.classList.add('cnrposttext');
+    cnrPostTitleVar.id = `cnrposttitle${cnrPost.id}`;
+    cnrPostTitleVar.textContent = `Title: ${cnrPost.title}`;
+    cnrPostContainerVar.append(cnrPostTitleVar);
+
+    // create created text
+    const cnrPostCreatedVar = document.createElement('p');
+    cnrPostCreatedVar.classList.add('cnrposttext');
+    cnrPostCreatedVar.id = `cnrpostcreated${cnrPost.id}`;
+    cnrPostCreatedVar.textContent = `Created: ${cnrPost.createdAt}`;
+    cnrPostContainerVar.append(cnrPostCreatedVar);
+
+    // create created text
+    const cnrPostContentVar = document.createElement('p');
+    cnrPostContentVar.classList.add('cnrposttext');
+    cnrPostContentVar.id = `cnrpostcontent${cnrPost.id}`;
+    cnrPostContentVar.textContent = `Content: ${cnrPost.content}`;
+    cnrPostContainerVar.append(cnrPostContentVar);
+
+    // save post container
+    cnrPostsDiv.append(cnrPostContainerVar);
+
+  });
+
+  /*	comment 
+    id
+    userId
+    title
+    content
+    createdAt
+  */
+
+}; // cnrPostsCallback
