@@ -1,97 +1,1236 @@
-DEBUG|001.495|BreakpointsManager: Setting 1 breakpoints for /Users/cnreina/Developer/BYUI-Code/WDD330/cnreina-WDD330-portfolio/cnrCode/w10/js/cnrMainView.js
-DEBUG|001.504|DataBreakpointsManager: Setting 0 data breakpoints
-DEBUG|001.514|FirefoxDebugAdapter: Setting exception filters: ["uncaught"]
-DEBUG|001.517|FirefoxDebugAdapter: 0 threads
-DEBUG|001.586|DebugConnection: Received response/event {"from":"root","applicationType":"browser","testConnectionPrefix":"server1.conn0.","traits":{"networkMonitor":true,"resources":{"extensions-backgroundscript-status":true},"workerConsoleApiMessagesDispatchedToMainThread":true}}
-DEBUG|001.587|RootActorProxy: Fetching root
-DEBUG|001.587|DebugConnection: Sending request {"to":"root","type":"getRoot"}
-DEBUG|001.749|DebugConnection: Received response/event {"preferenceActor":"server1.conn0.preferenceActor1","addonsActor":"server1.conn0.addonsActor2","deviceActor":"server1.conn0.deviceActor3","heapSnapshotFileActor":"server1.conn0.heapSnapshotFileActor4","perfActor":"server1.conn0.perfActor5","parentAccessibilityActor":"server1.conn0.parentAccessibilityActor6","screenshotActor":"server1.conn0.screenshotActor7","from":"root"}
-DEBUG|001.750|RootActorProxy: Received root response
-DEBUG|001.750|RootActorProxy: Fetching tabs
-DEBUG|001.750|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|001.801|DebugConnection: Received response/event {"tabs":[],"from":"root"}
-INFO |001.801|RootActorProxy: Received 0 tabs - will retry in 100ms
-DEBUG|001.901|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|001.926|DebugConnection: Received response/event {"tabs":[],"from":"root"}
-INFO |001.926|RootActorProxy: Received 0 tabs - will retry in 100ms
-DEBUG|002.026|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|002.224|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"New Tab","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"about:blank"}],"from":"root"}
-DEBUG|002.224|RootActorProxy: Received 1 tabs
-DEBUG|002.224|RootActorProxy: Tab server1.conn0.tabDescriptor8 opened
-DEBUG|002.224|TabDescriptorActorProxy: Connecting to tab
-DEBUG|002.224|DebugConnection: Sending request {"to":"server1.conn0.tabDescriptor8","type":"getTarget"}
-DEBUG|002.783|DebugConnection: Received response/event {"frame":{"actor":"server1.conn0.child10/windowGlobalTarget2","browsingContextID":10,"processID":4891,"innerWindowId":4294967297,"topInnerWindowId":4294967297,"isTopLevelTarget":true,"isPopup":false,"isPrivate":false,"traits":{"isBrowsingContext":true,"supportsTopLevelTargetFlag":true,"frames":true,"logInPage":true,"watchpoints":true,"navigation":true},"title":"","url":"about:blank","outerWindowID":21,"consoleActor":"server1.conn0.child10/consoleActor3","inspectorActor":"server1.conn0.child10/inspectorActor4","styleSheetsActor":"server1.conn0.child10/styleSheetsActor5","storageActor":"server1.conn0.child10/storageActor6","memoryActor":"server1.conn0.child10/memoryActor7","reflowActor":"server1.conn0.child10/reflowActor8","cssPropertiesActor":"server1.conn0.child10/cssPropertiesActor9","animationsActor":"server1.conn0.child10/animationsActor10","responsiveActor":"server1.conn0.child10/responsiveActor11","webExtensionInspectedWindowActor":"server1.conn0.child10/webExtensionInspectedWindowActor12","accessibilityActor":"server1.conn0.child10/accessibilityActor13","changesActor":"server1.conn0.child10/changesActor14","webSocketActor":"server1.conn0.child10/webSocketActor15","eventSourceActor":"server1.conn0.child10/eventSourceActor16","manifestActor":"server1.conn0.child10/manifestActor17","networkContentActor":"server1.conn0.child10/networkContentActor18","screenshotContentActor":"server1.conn0.child10/screenshotContentActor19","threadActor":"server1.conn0.child10/thread1"},"from":"server1.conn0.tabDescriptor8"}
-DEBUG|002.783|TabDescriptorActorProxy: Received getTarget response
-INFO |002.784|FirefoxDebugSession: Tab opened with url about:blank
-DEBUG|002.784|TabActorProxy: Attaching to tab server1.conn0.child10/windowGlobalTarget2
-DEBUG|002.784|ThreadActorProxy: Created thread server1.conn0.child10/thread1
-DEBUG|002.784|FirefoxDebugSession: Attached to tab server1.conn0.child10/windowGlobalTarget2
-DEBUG|002.785|TabActorProxy: Fetching workers
-DEBUG|002.785|DebugConnection: Sending request {"to":"server1.conn0.child10/windowGlobalTarget2","type":"listWorkers"}
-DEBUG|002.785|ThreadActorProxy: Attaching thread server1.conn0.child10/thread1
-DEBUG|002.786|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"attach","options":{"ignoreFrameEnvironment":true,"pauseOnExceptions":true,"ignoreCaughtExceptions":true}}
-DEBUG|002.843|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|002.844|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|002.961|DebugConnection: Received response/event {"workers":[],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|002.962|TabActorProxy: Received 0 workers
-DEBUG|002.962|DebugConnection: Received response/event {"from":"server1.conn0.child10/thread1"}
-DEBUG|002.962|ThreadActorProxy: Received setBreakpoint or removeBreakpoint or pauseOnExceptions response
-DEBUG|002.962|ThreadActorProxy: Fetching sources from thread server1.conn0.child10/thread1
-DEBUG|002.962|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"sources"}
-DEBUG|002.962|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|002.993|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
-DEBUG|002.993|RootActorProxy: Received tabListChanged event
-DEBUG|002.993|RootActorProxy: Fetching tabs
-DEBUG|002.993|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|002.994|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|003.015|FirefoxDebugAdapter: 1 threads
-DEBUG|003.026|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","title":"","state":"stop","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|003.026|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 did navigate to http://localhost/index.html
-DEBUG|003.065|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"localhost/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost/index.html"}],"from":"root"}
-DEBUG|003.065|RootActorProxy: Received 1 tabs
-DEBUG|003.068|DebugConnection: Received response/event {"sources":[],"from":"server1.conn0.child10/thread1"}
-DEBUG|003.069|ThreadActorProxy: Received 0 sources from thread server1.conn0.child10/thread1
-DEBUG|003.069|ConsoleActorProxy: Starting console listeners
-DEBUG|003.069|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"startListeners","listeners":["PageError","ConsoleAPI"]}
-DEBUG|003.069|ConsoleActorProxy: Getting cached messages
-DEBUG|003.069|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"getCachedMessages","messageTypes":["PageError","ConsoleAPI"]}
-DEBUG|003.139|FirefoxDebugAdapter: 1 threads
-DEBUG|003.145|DebugConnection: Received response/event {"startedListeners":["PageError","ConsoleAPI"],"from":"server1.conn0.child10/consoleActor3"}
-DEBUG|003.145|ConsoleActorProxy: Listeners started
-DEBUG|003.146|DebugConnection: Received response/event {"messages":[{"pageError":{"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1668389703415.908,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false},"type":"pageError"}],"from":"server1.conn0.child10/consoleActor3"}
-DEBUG|003.146|ConsoleActorProxy: Received cached messages
-DEBUG|003.146|ConsoleActor: Page Error: {"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1668389703415.908,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false}
-DEBUG|028.369|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","state":"start","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|028.369|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 will navigate to http://localhost/index.html
-DEBUG|028.380|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|028.413|DebugConnection: Received response/event {"type":"pageError","pageError":{"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967299,"timeStamp":1668389728884.294,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false},"from":"server1.conn0.child10/consoleActor3"}
-DEBUG|028.413|ConsoleActor: Page Error: {"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967299,"timeStamp":1668389728884.294,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false}
-DEBUG|028.413|ConsoleActorProxy: Received PageError message
-DEBUG|028.413|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
-DEBUG|028.413|RootActorProxy: Fetching tabs
-DEBUG|028.413|RootActorProxy: Received tabListChanged event
-DEBUG|028.413|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|028.414|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|028.414|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","title":"","state":"stop","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|028.414|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 did navigate to http://localhost/index.html
-DEBUG|028.418|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"localhost/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost/index.html"}],"from":"root"}
-DEBUG|028.418|RootActorProxy: Received 1 tabs
-DEBUG|028.521|FirefoxDebugAdapter: 1 threads
-DEBUG|043.306|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost:3000/","state":"start","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
-DEBUG|043.306|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 will navigate to http://localhost:3000/
-DEBUG|043.390|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
-DEBUG|043.390|RootActorProxy: Fetching tabs
-DEBUG|043.390|RootActorProxy: Received tabListChanged event
-DEBUG|043.390|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|043.392|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":13,"isZombieTab":false,"outerWindowID":27,"selected":true,"title":"localhost:3000/","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost:3000/"}],"from":"root"}
-DEBUG|043.392|RootActorProxy: Received 1 tabs
-DEBUG|057.983|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
-DEBUG|057.983|RootActorProxy: Fetching tabs
-DEBUG|057.983|RootActorProxy: Received tabListChanged event
-DEBUG|057.983|DebugConnection: Sending request {"to":"root","type":"listTabs"}
-DEBUG|057.985|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":14,"isZombieTab":false,"outerWindowID":29,"selected":true,"title":"localhost:3000/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost:3000/index.html"}],"from":"root"}
-DEBUG|057.985|RootActorProxy: Received 1 tabs
-DEBUG|093.216|BreakpointsManager: Setting 0 breakpoints for /Users/cnreina/Developer/BYUI-Code/WDD330/cnreina-WDD330-portfolio/cnrCode/w10/js/cnrMainView.js
-DEBUG|095.439|BreakpointsManager: Setting 1 breakpoints for /Users/cnreina/Developer/BYUI-Code/WDD330/cnreina-WDD330-portfolio/cnrCode/w10/js/cnrMainView.js
-DEBUG|099.577|BreakpointsManager: Setting 0 breakpoints for /Users/cnreina/Developer/BYUI-Code/WDD330/cnreina-WDD330-portfolio/cnrCode/w10/js/cnrMainView.js
-INFO |119.129|FirefoxDebugSession: Connection to Firefox closed - terminating debug session
+DEBUG|001.068|DataBreakpointsManager: Setting 0 data breakpoints
+DEBUG|001.076|FirefoxDebugAdapter: Setting exception filters: ["uncaught"]
+DEBUG|001.080|FirefoxDebugAdapter: 0 threads
+DEBUG|001.500|DebugConnection: Received response/event {"from":"root","applicationType":"browser","testConnectionPrefix":"server1.conn0.","traits":{"networkMonitor":true,"resources":{"extensions-backgroundscript-status":true},"workerConsoleApiMessagesDispatchedToMainThread":true}}
+DEBUG|001.501|RootActorProxy: Fetching root
+DEBUG|001.501|DebugConnection: Sending request {"to":"root","type":"getRoot"}
+DEBUG|001.537|DebugConnection: Received response/event {"preferenceActor":"server1.conn0.preferenceActor1","addonsActor":"server1.conn0.addonsActor2","deviceActor":"server1.conn0.deviceActor3","heapSnapshotFileActor":"server1.conn0.heapSnapshotFileActor4","perfActor":"server1.conn0.perfActor5","parentAccessibilityActor":"server1.conn0.parentAccessibilityActor6","screenshotActor":"server1.conn0.screenshotActor7","from":"root"}
+DEBUG|001.537|RootActorProxy: Received root response
+DEBUG|001.537|RootActorProxy: Fetching tabs
+DEBUG|001.537|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|001.674|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |001.674|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|001.775|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|001.819|DebugConnection: Received response/event {"tabs":[],"from":"root"}
+INFO |001.819|RootActorProxy: Received 0 tabs - will retry in 100ms
+DEBUG|001.918|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|002.097|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"New Tab","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"about:blank"}],"from":"root"}
+DEBUG|002.097|RootActorProxy: Received 1 tabs
+DEBUG|002.097|RootActorProxy: Tab server1.conn0.tabDescriptor8 opened
+DEBUG|002.097|TabDescriptorActorProxy: Connecting to tab
+DEBUG|002.097|DebugConnection: Sending request {"to":"server1.conn0.tabDescriptor8","type":"getTarget"}
+DEBUG|002.481|DebugConnection: Received response/event {"frame":{"actor":"server1.conn0.child10/windowGlobalTarget2","browsingContextID":10,"processID":16549,"innerWindowId":4294967297,"topInnerWindowId":4294967297,"isTopLevelTarget":true,"isPopup":false,"isPrivate":false,"traits":{"isBrowsingContext":true,"supportsTopLevelTargetFlag":true,"frames":true,"logInPage":true,"watchpoints":true,"navigation":true},"title":"","url":"about:blank","outerWindowID":21,"consoleActor":"server1.conn0.child10/consoleActor3","inspectorActor":"server1.conn0.child10/inspectorActor4","styleSheetsActor":"server1.conn0.child10/styleSheetsActor5","storageActor":"server1.conn0.child10/storageActor6","memoryActor":"server1.conn0.child10/memoryActor7","reflowActor":"server1.conn0.child10/reflowActor8","cssPropertiesActor":"server1.conn0.child10/cssPropertiesActor9","animationsActor":"server1.conn0.child10/animationsActor10","responsiveActor":"server1.conn0.child10/responsiveActor11","webExtensionInspectedWindowActor":"server1.conn0.child10/webExtensionInspectedWindowActor12","accessibilityActor":"server1.conn0.child10/accessibilityActor13","changesActor":"server1.conn0.child10/changesActor14","webSocketActor":"server1.conn0.child10/webSocketActor15","eventSourceActor":"server1.conn0.child10/eventSourceActor16","manifestActor":"server1.conn0.child10/manifestActor17","networkContentActor":"server1.conn0.child10/networkContentActor18","screenshotContentActor":"server1.conn0.child10/screenshotContentActor19","threadActor":"server1.conn0.child10/thread1"},"from":"server1.conn0.tabDescriptor8"}
+DEBUG|002.481|TabDescriptorActorProxy: Received getTarget response
+INFO |002.481|FirefoxDebugSession: Tab opened with url about:blank
+DEBUG|002.481|TabActorProxy: Attaching to tab server1.conn0.child10/windowGlobalTarget2
+DEBUG|002.481|ThreadActorProxy: Created thread server1.conn0.child10/thread1
+DEBUG|002.482|FirefoxDebugSession: Attached to tab server1.conn0.child10/windowGlobalTarget2
+DEBUG|002.483|TabActorProxy: Fetching workers
+DEBUG|002.483|DebugConnection: Sending request {"to":"server1.conn0.child10/windowGlobalTarget2","type":"listWorkers"}
+DEBUG|002.483|ThreadActorProxy: Attaching thread server1.conn0.child10/thread1
+DEBUG|002.483|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"attach","options":{"ignoreFrameEnvironment":true,"pauseOnExceptions":true,"ignoreCaughtExceptions":true}}
+DEBUG|002.485|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.485|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"about:blank","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.625|DebugConnection: Received response/event {"workers":[],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.625|TabActorProxy: Received 0 workers
+DEBUG|002.625|DebugConnection: Received response/event {"from":"server1.conn0.child10/thread1"}
+DEBUG|002.625|ThreadActorProxy: Received setBreakpoint or removeBreakpoint or pauseOnExceptions response
+DEBUG|002.625|ThreadActorProxy: Fetching sources from thread server1.conn0.child10/thread1
+DEBUG|002.626|DebugConnection: Sending request {"to":"server1.conn0.child10/thread1","type":"sources"}
+DEBUG|002.670|FirefoxDebugAdapter: 1 threads
+DEBUG|002.709|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.730|RootActorProxy: Received tabListChanged event
+DEBUG|002.729|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|002.730|RootActorProxy: Fetching tabs
+DEBUG|002.730|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|002.730|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.730|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","title":"","state":"stop","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|002.730|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 did navigate to http://localhost/index.html
+DEBUG|002.734|DebugConnection: Received response/event {"sources":[],"from":"server1.conn0.child10/thread1"}
+DEBUG|002.734|ThreadActorProxy: Received 0 sources from thread server1.conn0.child10/thread1
+DEBUG|002.735|ConsoleActorProxy: Starting console listeners
+DEBUG|002.735|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"startListeners","listeners":["PageError","ConsoleAPI"]}
+DEBUG|002.735|ConsoleActorProxy: Getting cached messages
+DEBUG|002.735|DebugConnection: Sending request {"to":"server1.conn0.child10/consoleActor3","type":"getCachedMessages","messageTypes":["PageError","ConsoleAPI"]}
+DEBUG|002.764|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"localhost/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost/index.html"}],"from":"root"}
+DEBUG|002.764|RootActorProxy: Received 1 tabs
+DEBUG|002.780|DebugConnection: Received response/event {"startedListeners":["PageError","ConsoleAPI"],"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|002.780|ConsoleActorProxy: Listeners started
+DEBUG|002.782|DebugConnection: Received response/event {"messages":[{"pageError":{"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1669765171574.707,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false},"type":"pageError"}],"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|002.783|ConsoleActorProxy: Received cached messages
+DEBUG|002.783|ConsoleActor: Page Error: {"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967298,"timeStamp":1669765171574.707,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false}
+DEBUG|002.849|FirefoxDebugAdapter: 1 threads
+DEBUG|042.265|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","state":"start","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|042.265|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 will navigate to http://localhost/index.html
+DEBUG|042.283|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|042.288|DebugConnection: Received response/event {"type":"pageError","pageError":{"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967299,"timeStamp":1669765211207.429,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false},"from":"server1.conn0.child10/consoleActor3"}
+DEBUG|042.288|ConsoleActorProxy: Received PageError message
+DEBUG|042.288|ConsoleActor: Page Error: {"errorMessage":"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.","errorMessageName":"","exceptionDocURL":"https://developer.mozilla.org/docs/Web/HTML/Quirks_Mode_and_Standards_Mode?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default","sourceName":"http://localhost/index.html","sourceId":null,"lineText":"","lineNumber":0,"columnNumber":0,"category":"HTML_PARSER__DOCTYPE","innerWindowID":4294967299,"timeStamp":1669765211207.429,"warning":true,"error":false,"info":false,"private":false,"stacktrace":null,"notes":null,"chromeContext":false,"isPromiseRejection":false,"isForwardedFromContentProcess":false}
+DEBUG|042.289|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|042.289|RootActorProxy: Received tabListChanged event
+DEBUG|042.289|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|042.289|RootActorProxy: Fetching tabs
+DEBUG|042.289|DebugConnection: Received response/event {"type":"frameUpdate","frames":[{"id":21,"isTopLevel":true,"url":"http://localhost/index.html","title":""}],"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|042.289|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://localhost/index.html","title":"","state":"stop","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|042.289|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 did navigate to http://localhost/index.html
+DEBUG|042.291|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":10,"isZombieTab":false,"outerWindowID":21,"selected":true,"title":"localhost/index.html","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://localhost/index.html"}],"from":"root"}
+DEBUG|042.291|RootActorProxy: Received 1 tabs
+DEBUG|042.425|FirefoxDebugAdapter: 1 threads
+DEBUG|132.527|DebugConnection: Received response/event {"type":"tabNavigated","url":"http://127.0.0.1:3000/","state":"start","isFrameSwitching":false,"from":"server1.conn0.child10/windowGlobalTarget2"}
+DEBUG|132.527|TabActorProxy: Tab server1.conn0.child10/windowGlobalTarget2 will navigate to http://127.0.0.1:3000/
+DEBUG|132.606|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|132.606|RootActorProxy: Received tabListChanged event
+DEBUG|132.606|RootActorProxy: Fetching tabs
+DEBUG|132.606|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|132.612|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"Problem loading page","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"about:neterror?e=connectionFailure&u=http%3A//127.0.0.1%3A3000/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20127.0.0.1%3A3000."}],"from":"root"}
+DEBUG|132.612|RootActorProxy: Received 1 tabs
+DEBUG|209.354|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|209.354|RootActorProxy: Received tabListChanged event
+DEBUG|209.354|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|209.354|RootActorProxy: Fetching tabs
+DEBUG|209.365|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|209.365|RootActorProxy: Received 1 tabs
+DEBUG|209.569|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|209.569|RootActorProxy: Received tabListChanged event
+DEBUG|209.569|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|209.569|RootActorProxy: Fetching tabs
+DEBUG|209.582|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|209.582|RootActorProxy: Received 1 tabs
+DEBUG|209.773|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|209.773|RootActorProxy: Received tabListChanged event
+DEBUG|209.773|RootActorProxy: Fetching tabs
+DEBUG|209.773|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|209.791|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|209.791|RootActorProxy: Received 1 tabs
+DEBUG|209.982|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|209.982|RootActorProxy: Received tabListChanged event
+DEBUG|209.982|RootActorProxy: Fetching tabs
+DEBUG|209.982|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|209.997|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|209.997|RootActorProxy: Received 1 tabs
+DEBUG|210.211|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|210.211|RootActorProxy: Received tabListChanged event
+DEBUG|210.211|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|210.211|RootActorProxy: Fetching tabs
+DEBUG|210.234|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|210.234|RootActorProxy: Received 1 tabs
+DEBUG|210.430|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|210.430|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|210.430|RootActorProxy: Received tabListChanged event
+DEBUG|210.430|RootActorProxy: Fetching tabs
+DEBUG|210.444|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|210.444|RootActorProxy: Received 1 tabs
+DEBUG|210.647|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|210.647|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|210.647|RootActorProxy: Received tabListChanged event
+DEBUG|210.647|RootActorProxy: Fetching tabs
+DEBUG|210.664|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|210.664|RootActorProxy: Received 1 tabs
+DEBUG|210.877|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|210.877|RootActorProxy: Fetching tabs
+DEBUG|210.877|RootActorProxy: Received tabListChanged event
+DEBUG|210.877|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|210.894|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|210.894|RootActorProxy: Received 1 tabs
+DEBUG|211.109|RootActorProxy: Received tabListChanged event
+DEBUG|211.109|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|211.109|RootActorProxy: Fetching tabs
+DEBUG|211.109|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|211.111|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|211.111|RootActorProxy: Received 1 tabs
+DEBUG|211.345|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|211.345|RootActorProxy: Received tabListChanged event
+DEBUG|211.345|RootActorProxy: Fetching tabs
+DEBUG|211.345|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|211.358|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|211.358|RootActorProxy: Received 1 tabs
+DEBUG|211.576|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|211.576|RootActorProxy: Received tabListChanged event
+DEBUG|211.576|RootActorProxy: Fetching tabs
+DEBUG|211.576|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|211.579|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|211.579|RootActorProxy: Received 1 tabs
+DEBUG|211.838|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|211.838|RootActorProxy: Received tabListChanged event
+DEBUG|211.838|RootActorProxy: Fetching tabs
+DEBUG|211.838|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|211.859|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|211.859|RootActorProxy: Received 1 tabs
+DEBUG|212.095|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|212.095|RootActorProxy: Received tabListChanged event
+DEBUG|212.095|RootActorProxy: Fetching tabs
+DEBUG|212.095|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|212.111|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|212.111|RootActorProxy: Received 1 tabs
+DEBUG|212.334|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|212.335|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|212.334|RootActorProxy: Received tabListChanged event
+DEBUG|212.335|RootActorProxy: Fetching tabs
+DEBUG|212.339|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|212.339|RootActorProxy: Received 1 tabs
+DEBUG|212.586|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|212.586|RootActorProxy: Fetching tabs
+DEBUG|212.586|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|212.586|RootActorProxy: Received tabListChanged event
+DEBUG|212.590|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|212.590|RootActorProxy: Received 1 tabs
+DEBUG|212.820|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|212.820|RootActorProxy: Received tabListChanged event
+DEBUG|212.820|RootActorProxy: Fetching tabs
+DEBUG|212.820|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|212.842|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|212.842|RootActorProxy: Received 1 tabs
+DEBUG|213.071|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|213.071|RootActorProxy: Received tabListChanged event
+DEBUG|213.071|RootActorProxy: Fetching tabs
+DEBUG|213.071|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|213.093|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|213.093|RootActorProxy: Received 1 tabs
+DEBUG|213.315|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|213.315|RootActorProxy: Received tabListChanged event
+DEBUG|213.315|RootActorProxy: Fetching tabs
+DEBUG|213.315|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|213.337|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|213.337|RootActorProxy: Received 1 tabs
+DEBUG|213.597|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|213.597|RootActorProxy: Received tabListChanged event
+DEBUG|213.597|RootActorProxy: Fetching tabs
+DEBUG|213.597|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|213.605|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|213.605|RootActorProxy: Received 1 tabs
+DEBUG|213.853|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|213.853|RootActorProxy: Received tabListChanged event
+DEBUG|213.853|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|213.853|RootActorProxy: Fetching tabs
+DEBUG|213.870|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|213.870|RootActorProxy: Received 1 tabs
+DEBUG|223.215|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|223.215|RootActorProxy: Received tabListChanged event
+DEBUG|223.215|RootActorProxy: Fetching tabs
+DEBUG|223.215|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|223.230|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|223.230|RootActorProxy: Received 1 tabs
+DEBUG|223.403|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|223.403|RootActorProxy: Fetching tabs
+DEBUG|223.404|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|223.403|RootActorProxy: Received tabListChanged event
+DEBUG|223.405|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|223.405|RootActorProxy: Received 1 tabs
+DEBUG|223.590|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|223.590|RootActorProxy: Received tabListChanged event
+DEBUG|223.590|RootActorProxy: Fetching tabs
+DEBUG|223.590|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|223.592|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|223.592|RootActorProxy: Received 1 tabs
+DEBUG|223.792|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|223.792|RootActorProxy: Received tabListChanged event
+DEBUG|223.792|RootActorProxy: Fetching tabs
+DEBUG|223.792|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|223.794|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|223.794|RootActorProxy: Received 1 tabs
+DEBUG|224.000|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.000|RootActorProxy: Received tabListChanged event
+DEBUG|224.000|RootActorProxy: Fetching tabs
+DEBUG|224.000|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.001|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.001|RootActorProxy: Received 1 tabs
+DEBUG|224.183|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.183|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.183|RootActorProxy: Fetching tabs
+DEBUG|224.183|RootActorProxy: Received tabListChanged event
+DEBUG|224.184|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.184|RootActorProxy: Received 1 tabs
+DEBUG|224.361|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.361|RootActorProxy: Received tabListChanged event
+DEBUG|224.361|RootActorProxy: Fetching tabs
+DEBUG|224.361|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.362|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.362|RootActorProxy: Received 1 tabs
+DEBUG|224.537|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.537|RootActorProxy: Fetching tabs
+DEBUG|224.537|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.537|RootActorProxy: Received tabListChanged event
+DEBUG|224.546|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.546|RootActorProxy: Received 1 tabs
+DEBUG|224.732|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.732|RootActorProxy: Received tabListChanged event
+DEBUG|224.732|RootActorProxy: Fetching tabs
+DEBUG|224.732|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.733|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.733|RootActorProxy: Received 1 tabs
+DEBUG|224.963|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|224.963|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|224.963|RootActorProxy: Received tabListChanged event
+DEBUG|224.963|RootActorProxy: Fetching tabs
+DEBUG|224.965|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|224.965|RootActorProxy: Received 1 tabs
+DEBUG|225.169|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|225.169|RootActorProxy: Received tabListChanged event
+DEBUG|225.169|RootActorProxy: Fetching tabs
+DEBUG|225.169|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|225.172|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|225.172|RootActorProxy: Received 1 tabs
+DEBUG|225.395|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|225.395|RootActorProxy: Fetching tabs
+DEBUG|225.395|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|225.395|RootActorProxy: Received tabListChanged event
+DEBUG|225.397|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|225.397|RootActorProxy: Received 1 tabs
+DEBUG|225.597|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|225.597|RootActorProxy: Received tabListChanged event
+DEBUG|225.597|RootActorProxy: Fetching tabs
+DEBUG|225.597|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|225.598|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|225.598|RootActorProxy: Received 1 tabs
+DEBUG|225.811|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|225.811|RootActorProxy: Fetching tabs
+DEBUG|225.811|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|225.811|RootActorProxy: Received tabListChanged event
+DEBUG|225.813|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|225.813|RootActorProxy: Received 1 tabs
+DEBUG|226.039|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|226.039|RootActorProxy: Fetching tabs
+DEBUG|226.039|RootActorProxy: Received tabListChanged event
+DEBUG|226.039|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|226.042|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|226.042|RootActorProxy: Received 1 tabs
+DEBUG|226.242|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|226.242|RootActorProxy: Fetching tabs
+DEBUG|226.242|RootActorProxy: Received tabListChanged event
+DEBUG|226.242|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|226.255|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|226.255|RootActorProxy: Received 1 tabs
+DEBUG|226.452|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|226.452|RootActorProxy: Fetching tabs
+DEBUG|226.452|RootActorProxy: Received tabListChanged event
+DEBUG|226.452|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|226.463|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|226.464|RootActorProxy: Received 1 tabs
+DEBUG|226.679|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|226.679|RootActorProxy: Received tabListChanged event
+DEBUG|226.679|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|226.679|RootActorProxy: Fetching tabs
+DEBUG|226.683|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|226.683|RootActorProxy: Received 1 tabs
+DEBUG|226.916|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|226.916|RootActorProxy: Received tabListChanged event
+DEBUG|226.916|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|226.916|RootActorProxy: Fetching tabs
+DEBUG|226.919|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|226.919|RootActorProxy: Received 1 tabs
+DEBUG|227.149|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|227.149|RootActorProxy: Received tabListChanged event
+DEBUG|227.149|RootActorProxy: Fetching tabs
+DEBUG|227.149|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|227.164|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/"}],"from":"root"}
+DEBUG|227.164|RootActorProxy: Received 1 tabs
+DEBUG|233.493|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|233.493|RootActorProxy: Received tabListChanged event
+DEBUG|233.493|RootActorProxy: Fetching tabs
+DEBUG|233.493|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|233.495|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|233.495|RootActorProxy: Received 1 tabs
+DEBUG|233.762|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|233.762|RootActorProxy: Received tabListChanged event
+DEBUG|233.762|RootActorProxy: Fetching tabs
+DEBUG|233.762|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|233.766|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|233.766|RootActorProxy: Received 1 tabs
+DEBUG|233.982|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|233.982|RootActorProxy: Received tabListChanged event
+DEBUG|233.982|RootActorProxy: Fetching tabs
+DEBUG|233.982|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|233.984|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|233.984|RootActorProxy: Received 1 tabs
+DEBUG|234.228|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|234.228|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|234.228|RootActorProxy: Received tabListChanged event
+DEBUG|234.228|RootActorProxy: Fetching tabs
+DEBUG|234.231|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|234.231|RootActorProxy: Received 1 tabs
+DEBUG|234.468|RootActorProxy: Received tabListChanged event
+DEBUG|234.468|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|234.468|RootActorProxy: Fetching tabs
+DEBUG|234.468|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|234.471|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|234.471|RootActorProxy: Received 1 tabs
+DEBUG|234.682|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|234.682|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|234.682|RootActorProxy: Fetching tabs
+DEBUG|234.682|RootActorProxy: Received tabListChanged event
+DEBUG|234.683|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|234.683|RootActorProxy: Received 1 tabs
+DEBUG|234.918|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|234.918|RootActorProxy: Fetching tabs
+DEBUG|234.918|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|234.918|RootActorProxy: Received tabListChanged event
+DEBUG|234.921|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|234.921|RootActorProxy: Received 1 tabs
+DEBUG|235.148|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|235.148|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|235.148|RootActorProxy: Received tabListChanged event
+DEBUG|235.148|RootActorProxy: Fetching tabs
+DEBUG|235.151|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|235.151|RootActorProxy: Received 1 tabs
+DEBUG|235.388|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|235.388|RootActorProxy: Received tabListChanged event
+DEBUG|235.388|RootActorProxy: Fetching tabs
+DEBUG|235.388|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|235.392|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|235.392|RootActorProxy: Received 1 tabs
+DEBUG|235.635|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|235.635|RootActorProxy: Received tabListChanged event
+DEBUG|235.635|RootActorProxy: Fetching tabs
+DEBUG|235.635|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|235.636|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|235.636|RootActorProxy: Received 1 tabs
+DEBUG|235.898|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|235.898|RootActorProxy: Received tabListChanged event
+DEBUG|235.898|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|235.898|RootActorProxy: Fetching tabs
+DEBUG|235.901|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|235.901|RootActorProxy: Received 1 tabs
+DEBUG|236.153|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|236.153|RootActorProxy: Received tabListChanged event
+DEBUG|236.153|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|236.153|RootActorProxy: Fetching tabs
+DEBUG|236.155|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|236.155|RootActorProxy: Received 1 tabs
+DEBUG|236.434|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|236.434|RootActorProxy: Fetching tabs
+DEBUG|236.434|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|236.434|RootActorProxy: Received tabListChanged event
+DEBUG|236.436|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html"}],"from":"root"}
+DEBUG|236.436|RootActorProxy: Received 1 tabs
+DEBUG|239.686|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|239.686|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|239.686|RootActorProxy: Fetching tabs
+DEBUG|239.686|RootActorProxy: Received tabListChanged event
+DEBUG|239.688|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|239.688|RootActorProxy: Received 1 tabs
+DEBUG|243.878|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|243.878|RootActorProxy: Fetching tabs
+DEBUG|243.878|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|243.878|RootActorProxy: Received tabListChanged event
+DEBUG|243.880|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|243.880|RootActorProxy: Received 1 tabs
+DEBUG|244.095|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|244.095|RootActorProxy: Received tabListChanged event
+DEBUG|244.095|RootActorProxy: Fetching tabs
+DEBUG|244.095|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|244.096|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|244.096|RootActorProxy: Received 1 tabs
+DEBUG|244.324|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|244.324|RootActorProxy: Received tabListChanged event
+DEBUG|244.324|RootActorProxy: Fetching tabs
+DEBUG|244.324|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|244.325|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|244.325|RootActorProxy: Received 1 tabs
+DEBUG|244.584|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|244.584|RootActorProxy: Received tabListChanged event
+DEBUG|244.584|RootActorProxy: Fetching tabs
+DEBUG|244.584|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|244.585|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|244.585|RootActorProxy: Received 1 tabs
+DEBUG|244.819|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|244.819|RootActorProxy: Received tabListChanged event
+DEBUG|244.819|RootActorProxy: Fetching tabs
+DEBUG|244.819|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|244.824|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|244.824|RootActorProxy: Received 1 tabs
+DEBUG|245.046|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|245.046|RootActorProxy: Received tabListChanged event
+DEBUG|245.046|RootActorProxy: Fetching tabs
+DEBUG|245.046|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|245.047|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|245.047|RootActorProxy: Received 1 tabs
+DEBUG|245.370|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|245.370|RootActorProxy: Received tabListChanged event
+DEBUG|245.370|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|245.370|RootActorProxy: Fetching tabs
+DEBUG|245.374|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|245.374|RootActorProxy: Received 1 tabs
+DEBUG|245.667|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|245.667|RootActorProxy: Received tabListChanged event
+DEBUG|245.667|RootActorProxy: Fetching tabs
+DEBUG|245.667|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|245.671|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|245.671|RootActorProxy: Received 1 tabs
+DEBUG|245.960|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|245.960|RootActorProxy: Received tabListChanged event
+DEBUG|245.960|RootActorProxy: Fetching tabs
+DEBUG|245.960|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|245.964|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|245.964|RootActorProxy: Received 1 tabs
+DEBUG|246.277|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|246.277|RootActorProxy: Received tabListChanged event
+DEBUG|246.277|RootActorProxy: Fetching tabs
+DEBUG|246.277|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|246.278|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|246.278|RootActorProxy: Received 1 tabs
+DEBUG|246.560|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|246.560|RootActorProxy: Received tabListChanged event
+DEBUG|246.560|RootActorProxy: Fetching tabs
+DEBUG|246.560|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|246.564|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|246.564|RootActorProxy: Received 1 tabs
+DEBUG|246.827|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|246.827|RootActorProxy: Received tabListChanged event
+DEBUG|246.827|RootActorProxy: Fetching tabs
+DEBUG|246.827|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|246.829|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|246.829|RootActorProxy: Received 1 tabs
+DEBUG|247.126|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|247.126|RootActorProxy: Received tabListChanged event
+DEBUG|247.126|RootActorProxy: Fetching tabs
+DEBUG|247.126|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|247.127|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|247.127|RootActorProxy: Received 1 tabs
+DEBUG|254.995|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|254.995|RootActorProxy: Received tabListChanged event
+DEBUG|254.995|RootActorProxy: Fetching tabs
+DEBUG|254.995|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|254.999|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|254.999|RootActorProxy: Received 1 tabs
+DEBUG|255.231|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|255.231|RootActorProxy: Received tabListChanged event
+DEBUG|255.231|RootActorProxy: Fetching tabs
+DEBUG|255.231|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|255.235|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|255.235|RootActorProxy: Received 1 tabs
+DEBUG|255.499|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|255.499|RootActorProxy: Received tabListChanged event
+DEBUG|255.499|RootActorProxy: Fetching tabs
+DEBUG|255.499|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|255.505|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|255.505|RootActorProxy: Received 1 tabs
+DEBUG|255.759|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|255.759|RootActorProxy: Received tabListChanged event
+DEBUG|255.759|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|255.759|RootActorProxy: Fetching tabs
+DEBUG|255.760|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|255.760|RootActorProxy: Received 1 tabs
+DEBUG|255.972|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|255.972|RootActorProxy: Received tabListChanged event
+DEBUG|255.972|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|255.972|RootActorProxy: Fetching tabs
+DEBUG|255.974|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|255.974|RootActorProxy: Received 1 tabs
+DEBUG|256.200|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|256.200|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|256.200|RootActorProxy: Fetching tabs
+DEBUG|256.200|RootActorProxy: Received tabListChanged event
+DEBUG|256.201|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|256.201|RootActorProxy: Received 1 tabs
+DEBUG|256.439|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|256.439|RootActorProxy: Received tabListChanged event
+DEBUG|256.439|RootActorProxy: Fetching tabs
+DEBUG|256.439|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|256.443|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|256.443|RootActorProxy: Received 1 tabs
+DEBUG|256.670|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|256.671|RootActorProxy: Received tabListChanged event
+DEBUG|256.671|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|256.671|RootActorProxy: Fetching tabs
+DEBUG|256.673|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|256.673|RootActorProxy: Received 1 tabs
+DEBUG|256.917|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|256.917|RootActorProxy: Received tabListChanged event
+DEBUG|256.917|RootActorProxy: Fetching tabs
+DEBUG|256.917|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|256.918|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|256.918|RootActorProxy: Received 1 tabs
+DEBUG|257.160|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|257.160|RootActorProxy: Received tabListChanged event
+DEBUG|257.160|RootActorProxy: Fetching tabs
+DEBUG|257.160|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|257.166|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|257.166|RootActorProxy: Received 1 tabs
+DEBUG|257.431|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|257.431|RootActorProxy: Received tabListChanged event
+DEBUG|257.432|RootActorProxy: Fetching tabs
+DEBUG|257.432|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|257.435|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|257.435|RootActorProxy: Received 1 tabs
+DEBUG|257.700|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|257.700|RootActorProxy: Received tabListChanged event
+DEBUG|257.700|RootActorProxy: Fetching tabs
+DEBUG|257.700|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|257.705|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|257.705|RootActorProxy: Received 1 tabs
+DEBUG|257.951|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|257.951|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|257.951|RootActorProxy: Received tabListChanged event
+DEBUG|257.951|RootActorProxy: Fetching tabs
+DEBUG|257.955|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|257.955|RootActorProxy: Received 1 tabs
+DEBUG|265.055|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|265.055|RootActorProxy: Received tabListChanged event
+DEBUG|265.055|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|265.055|RootActorProxy: Fetching tabs
+DEBUG|265.058|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|265.058|RootActorProxy: Received 1 tabs
+DEBUG|265.277|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|265.277|RootActorProxy: Received tabListChanged event
+DEBUG|265.277|RootActorProxy: Fetching tabs
+DEBUG|265.277|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|265.281|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|265.281|RootActorProxy: Received 1 tabs
+DEBUG|265.506|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|265.506|RootActorProxy: Received tabListChanged event
+DEBUG|265.506|RootActorProxy: Fetching tabs
+DEBUG|265.506|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|265.512|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|265.512|RootActorProxy: Received 1 tabs
+DEBUG|265.779|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|265.779|RootActorProxy: Fetching tabs
+DEBUG|265.779|RootActorProxy: Received tabListChanged event
+DEBUG|265.779|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|265.781|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|265.781|RootActorProxy: Received 1 tabs
+DEBUG|266.011|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|266.011|RootActorProxy: Received tabListChanged event
+DEBUG|266.011|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|266.011|RootActorProxy: Fetching tabs
+DEBUG|266.014|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|266.014|RootActorProxy: Received 1 tabs
+DEBUG|266.236|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|266.236|RootActorProxy: Received tabListChanged event
+DEBUG|266.236|RootActorProxy: Fetching tabs
+DEBUG|266.236|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|266.240|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|266.240|RootActorProxy: Received 1 tabs
+DEBUG|266.465|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|266.466|RootActorProxy: Received tabListChanged event
+DEBUG|266.466|RootActorProxy: Fetching tabs
+DEBUG|266.466|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|266.467|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|266.467|RootActorProxy: Received 1 tabs
+DEBUG|266.694|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|266.694|RootActorProxy: Received tabListChanged event
+DEBUG|266.694|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|266.694|RootActorProxy: Fetching tabs
+DEBUG|266.695|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|266.695|RootActorProxy: Received 1 tabs
+DEBUG|266.940|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|266.940|RootActorProxy: Received tabListChanged event
+DEBUG|266.940|RootActorProxy: Fetching tabs
+DEBUG|266.940|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|266.942|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|266.942|RootActorProxy: Received 1 tabs
+DEBUG|267.188|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|267.188|RootActorProxy: Fetching tabs
+DEBUG|267.188|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|267.188|RootActorProxy: Received tabListChanged event
+DEBUG|267.193|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|267.193|RootActorProxy: Received 1 tabs
+DEBUG|267.451|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|267.451|RootActorProxy: Received tabListChanged event
+DEBUG|267.451|RootActorProxy: Fetching tabs
+DEBUG|267.451|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|267.456|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|267.457|RootActorProxy: Received 1 tabs
+DEBUG|267.740|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|267.740|RootActorProxy: Fetching tabs
+DEBUG|267.740|RootActorProxy: Received tabListChanged event
+DEBUG|267.740|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|267.744|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|267.744|RootActorProxy: Received 1 tabs
+DEBUG|268.012|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|268.012|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|268.012|RootActorProxy: Fetching tabs
+DEBUG|268.012|RootActorProxy: Received tabListChanged event
+DEBUG|268.019|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|268.019|RootActorProxy: Received 1 tabs
+DEBUG|275.215|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|275.215|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|275.215|RootActorProxy: Fetching tabs
+DEBUG|275.215|RootActorProxy: Received tabListChanged event
+DEBUG|275.220|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|275.220|RootActorProxy: Received 1 tabs
+DEBUG|275.459|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|275.459|RootActorProxy: Received tabListChanged event
+DEBUG|275.459|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|275.459|RootActorProxy: Fetching tabs
+DEBUG|275.461|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|275.461|RootActorProxy: Received 1 tabs
+DEBUG|275.737|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|275.737|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|275.737|RootActorProxy: Fetching tabs
+DEBUG|275.737|RootActorProxy: Received tabListChanged event
+DEBUG|275.741|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|275.741|RootActorProxy: Received 1 tabs
+DEBUG|276.000|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|276.000|RootActorProxy: Received tabListChanged event
+DEBUG|276.000|RootActorProxy: Fetching tabs
+DEBUG|276.000|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|276.001|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|276.001|RootActorProxy: Received 1 tabs
+DEBUG|276.220|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|276.220|RootActorProxy: Fetching tabs
+DEBUG|276.220|RootActorProxy: Received tabListChanged event
+DEBUG|276.220|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|276.224|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|276.225|RootActorProxy: Received 1 tabs
+DEBUG|276.458|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|276.459|RootActorProxy: Received tabListChanged event
+DEBUG|276.459|RootActorProxy: Fetching tabs
+DEBUG|276.459|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|276.460|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|276.460|RootActorProxy: Received 1 tabs
+DEBUG|276.696|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|276.696|RootActorProxy: Received tabListChanged event
+DEBUG|276.696|RootActorProxy: Fetching tabs
+DEBUG|276.696|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|276.698|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|276.698|RootActorProxy: Received 1 tabs
+DEBUG|276.913|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|276.913|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|276.913|RootActorProxy: Fetching tabs
+DEBUG|276.913|RootActorProxy: Received tabListChanged event
+DEBUG|276.915|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|276.915|RootActorProxy: Received 1 tabs
+DEBUG|277.176|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|277.176|RootActorProxy: Received tabListChanged event
+DEBUG|277.176|RootActorProxy: Fetching tabs
+DEBUG|277.176|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|277.177|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|277.177|RootActorProxy: Received 1 tabs
+DEBUG|277.441|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|277.441|RootActorProxy: Received tabListChanged event
+DEBUG|277.441|RootActorProxy: Fetching tabs
+DEBUG|277.441|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|277.448|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|277.448|RootActorProxy: Received 1 tabs
+DEBUG|277.717|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|277.717|RootActorProxy: Fetching tabs
+DEBUG|277.717|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|277.717|RootActorProxy: Received tabListChanged event
+DEBUG|277.721|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|277.721|RootActorProxy: Received 1 tabs
+DEBUG|277.980|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|277.980|RootActorProxy: Received tabListChanged event
+DEBUG|277.980|RootActorProxy: Fetching tabs
+DEBUG|277.980|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|277.981|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|277.981|RootActorProxy: Received 1 tabs
+DEBUG|278.237|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|278.237|RootActorProxy: Received tabListChanged event
+DEBUG|278.237|RootActorProxy: Fetching tabs
+DEBUG|278.237|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|278.242|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|278.242|RootActorProxy: Received 1 tabs
+DEBUG|278.516|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|278.516|RootActorProxy: Received tabListChanged event
+DEBUG|278.516|RootActorProxy: Fetching tabs
+DEBUG|278.516|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|278.517|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|278.517|RootActorProxy: Received 1 tabs
+DEBUG|278.779|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|278.779|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|278.779|RootActorProxy: Fetching tabs
+DEBUG|278.779|RootActorProxy: Received tabListChanged event
+DEBUG|278.781|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|278.781|RootActorProxy: Received 1 tabs
+DEBUG|279.067|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|279.067|RootActorProxy: Fetching tabs
+DEBUG|279.067|RootActorProxy: Received tabListChanged event
+DEBUG|279.067|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|279.069|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/cnrCode/w11/html/cnrMainView.html?email=user1%40email.com&password=user1"}],"from":"root"}
+DEBUG|279.069|RootActorProxy: Received 1 tabs
+DEBUG|279.947|DebugConnection: Received response/event {"from":"root","type":"forwardingCancelled","prefix":"server1.conn0.child10"}
+DEBUG|279.947|RootActorProxy: Received forwardingCancelled event from root (ignoring)
+DEBUG|279.963|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|279.963|RootActorProxy: Received tabListChanged event
+DEBUG|279.963|RootActorProxy: Fetching tabs
+DEBUG|279.963|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|279.989|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|279.989|RootActorProxy: Received 1 tabs
+DEBUG|285.241|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|285.241|RootActorProxy: Fetching tabs
+DEBUG|285.241|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|285.241|RootActorProxy: Received tabListChanged event
+DEBUG|285.251|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|285.251|RootActorProxy: Received 1 tabs
+DEBUG|285.431|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|285.431|RootActorProxy: Received tabListChanged event
+DEBUG|285.431|RootActorProxy: Fetching tabs
+DEBUG|285.431|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|285.446|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|285.446|RootActorProxy: Received 1 tabs
+DEBUG|285.643|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|285.643|RootActorProxy: Received tabListChanged event
+DEBUG|285.643|RootActorProxy: Fetching tabs
+DEBUG|285.643|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|285.664|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|285.664|RootActorProxy: Received 1 tabs
+DEBUG|285.871|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|285.871|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|285.871|RootActorProxy: Fetching tabs
+DEBUG|285.871|RootActorProxy: Received tabListChanged event
+DEBUG|285.895|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|285.895|RootActorProxy: Received 1 tabs
+DEBUG|286.094|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|286.094|RootActorProxy: Received tabListChanged event
+DEBUG|286.094|RootActorProxy: Fetching tabs
+DEBUG|286.094|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|286.102|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|286.102|RootActorProxy: Received 1 tabs
+DEBUG|286.305|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|286.305|RootActorProxy: Received tabListChanged event
+DEBUG|286.305|RootActorProxy: Fetching tabs
+DEBUG|286.305|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|286.309|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|286.309|RootActorProxy: Received 1 tabs
+DEBUG|286.520|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|286.520|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|286.520|RootActorProxy: Fetching tabs
+DEBUG|286.520|RootActorProxy: Received tabListChanged event
+DEBUG|286.531|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|286.531|RootActorProxy: Received 1 tabs
+DEBUG|286.729|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|286.729|RootActorProxy: Received tabListChanged event
+DEBUG|286.729|RootActorProxy: Fetching tabs
+DEBUG|286.729|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|286.730|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|286.731|RootActorProxy: Received 1 tabs
+DEBUG|286.938|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|286.938|RootActorProxy: Fetching tabs
+DEBUG|286.938|RootActorProxy: Received tabListChanged event
+DEBUG|286.938|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|286.940|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|286.940|RootActorProxy: Received 1 tabs
+DEBUG|287.171|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|287.171|RootActorProxy: Received tabListChanged event
+DEBUG|287.171|RootActorProxy: Fetching tabs
+DEBUG|287.171|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|287.172|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|287.172|RootActorProxy: Received 1 tabs
+DEBUG|287.401|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|287.401|RootActorProxy: Received tabListChanged event
+DEBUG|287.401|RootActorProxy: Fetching tabs
+DEBUG|287.401|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|287.420|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|287.420|RootActorProxy: Received 1 tabs
+DEBUG|287.640|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|287.640|RootActorProxy: Received tabListChanged event
+DEBUG|287.640|RootActorProxy: Fetching tabs
+DEBUG|287.640|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|287.650|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|287.650|RootActorProxy: Received 1 tabs
+DEBUG|287.852|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|287.853|RootActorProxy: Received tabListChanged event
+DEBUG|287.853|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|287.853|RootActorProxy: Fetching tabs
+DEBUG|287.864|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|287.864|RootActorProxy: Received 1 tabs
+DEBUG|288.069|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|288.070|RootActorProxy: Received tabListChanged event
+DEBUG|288.070|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|288.070|RootActorProxy: Fetching tabs
+DEBUG|288.082|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|288.082|RootActorProxy: Received 1 tabs
+DEBUG|288.311|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|288.311|RootActorProxy: Received tabListChanged event
+DEBUG|288.311|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|288.311|RootActorProxy: Fetching tabs
+DEBUG|288.313|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|288.313|RootActorProxy: Received 1 tabs
+DEBUG|288.541|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|288.541|RootActorProxy: Fetching tabs
+DEBUG|288.541|RootActorProxy: Received tabListChanged event
+DEBUG|288.541|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|288.552|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|288.552|RootActorProxy: Received 1 tabs
+DEBUG|288.792|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|288.792|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|288.792|RootActorProxy: Fetching tabs
+DEBUG|288.792|RootActorProxy: Received tabListChanged event
+DEBUG|288.811|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|288.811|RootActorProxy: Received 1 tabs
+DEBUG|289.043|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|289.043|RootActorProxy: Fetching tabs
+DEBUG|289.043|RootActorProxy: Received tabListChanged event
+DEBUG|289.043|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|289.060|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|289.060|RootActorProxy: Received 1 tabs
+DEBUG|289.291|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|289.291|RootActorProxy: Received tabListChanged event
+DEBUG|289.291|RootActorProxy: Fetching tabs
+DEBUG|289.291|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|289.292|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|289.292|RootActorProxy: Received 1 tabs
+DEBUG|289.571|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|289.571|RootActorProxy: Received tabListChanged event
+DEBUG|289.571|RootActorProxy: Fetching tabs
+DEBUG|289.571|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|289.587|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|289.587|RootActorProxy: Received 1 tabs
+DEBUG|295.246|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|295.246|RootActorProxy: Received tabListChanged event
+DEBUG|295.246|RootActorProxy: Fetching tabs
+DEBUG|295.246|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|295.260|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|295.260|RootActorProxy: Received 1 tabs
+DEBUG|295.444|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|295.444|RootActorProxy: Fetching tabs
+DEBUG|295.444|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|295.444|RootActorProxy: Received tabListChanged event
+DEBUG|295.462|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|295.463|RootActorProxy: Received 1 tabs
+DEBUG|295.660|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|295.660|RootActorProxy: Received tabListChanged event
+DEBUG|295.660|RootActorProxy: Fetching tabs
+DEBUG|295.660|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|295.662|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|295.662|RootActorProxy: Received 1 tabs
+DEBUG|295.881|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|295.881|RootActorProxy: Received tabListChanged event
+DEBUG|295.881|RootActorProxy: Fetching tabs
+DEBUG|295.881|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|295.908|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|295.908|RootActorProxy: Received 1 tabs
+DEBUG|296.092|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|296.092|RootActorProxy: Received tabListChanged event
+DEBUG|296.092|RootActorProxy: Fetching tabs
+DEBUG|296.092|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|296.093|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|296.093|RootActorProxy: Received 1 tabs
+DEBUG|296.293|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|296.293|RootActorProxy: Fetching tabs
+DEBUG|296.293|RootActorProxy: Received tabListChanged event
+DEBUG|296.293|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|296.299|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|296.299|RootActorProxy: Received 1 tabs
+DEBUG|296.481|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|296.481|RootActorProxy: Received tabListChanged event
+DEBUG|296.481|RootActorProxy: Fetching tabs
+DEBUG|296.481|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|296.486|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|296.486|RootActorProxy: Received 1 tabs
+DEBUG|296.681|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|296.681|RootActorProxy: Received tabListChanged event
+DEBUG|296.681|RootActorProxy: Fetching tabs
+DEBUG|296.681|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|296.691|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|296.691|RootActorProxy: Received 1 tabs
+DEBUG|296.894|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|296.894|RootActorProxy: Received tabListChanged event
+DEBUG|296.894|RootActorProxy: Fetching tabs
+DEBUG|296.894|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|296.903|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|296.903|RootActorProxy: Received 1 tabs
+DEBUG|297.102|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|297.102|RootActorProxy: Received tabListChanged event
+DEBUG|297.102|RootActorProxy: Fetching tabs
+DEBUG|297.102|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|297.120|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|297.120|RootActorProxy: Received 1 tabs
+DEBUG|297.369|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|297.369|RootActorProxy: Received tabListChanged event
+DEBUG|297.369|RootActorProxy: Fetching tabs
+DEBUG|297.369|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|297.373|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|297.373|RootActorProxy: Received 1 tabs
+DEBUG|297.581|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|297.581|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|297.581|RootActorProxy: Fetching tabs
+DEBUG|297.581|RootActorProxy: Received tabListChanged event
+DEBUG|297.592|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|297.592|RootActorProxy: Received 1 tabs
+DEBUG|297.815|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|297.815|RootActorProxy: Received tabListChanged event
+DEBUG|297.815|RootActorProxy: Fetching tabs
+DEBUG|297.815|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|297.823|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|297.823|RootActorProxy: Received 1 tabs
+DEBUG|298.020|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|298.020|RootActorProxy: Fetching tabs
+DEBUG|298.020|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|298.020|RootActorProxy: Received tabListChanged event
+DEBUG|298.021|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|298.021|RootActorProxy: Received 1 tabs
+DEBUG|298.243|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|298.243|RootActorProxy: Received tabListChanged event
+DEBUG|298.243|RootActorProxy: Fetching tabs
+DEBUG|298.243|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|298.244|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|298.244|RootActorProxy: Received 1 tabs
+DEBUG|298.454|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|298.454|RootActorProxy: Received tabListChanged event
+DEBUG|298.454|RootActorProxy: Fetching tabs
+DEBUG|298.454|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|298.456|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|298.456|RootActorProxy: Received 1 tabs
+DEBUG|298.676|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|298.676|RootActorProxy: Received tabListChanged event
+DEBUG|298.676|RootActorProxy: Fetching tabs
+DEBUG|298.676|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|298.690|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|298.690|RootActorProxy: Received 1 tabs
+DEBUG|298.922|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|298.922|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|298.922|RootActorProxy: Fetching tabs
+DEBUG|298.922|RootActorProxy: Received tabListChanged event
+DEBUG|298.927|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|298.927|RootActorProxy: Received 1 tabs
+DEBUG|299.180|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|299.180|RootActorProxy: Fetching tabs
+DEBUG|299.181|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|299.180|RootActorProxy: Received tabListChanged event
+DEBUG|299.182|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|299.182|RootActorProxy: Received 1 tabs
+DEBUG|299.440|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|299.440|RootActorProxy: Fetching tabs
+DEBUG|299.440|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|299.440|RootActorProxy: Received tabListChanged event
+DEBUG|299.490|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|299.490|RootActorProxy: Received 1 tabs
+DEBUG|305.295|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|305.295|RootActorProxy: Received tabListChanged event
+DEBUG|305.295|RootActorProxy: Fetching tabs
+DEBUG|305.295|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|305.308|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|305.308|RootActorProxy: Received 1 tabs
+DEBUG|305.491|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|305.491|RootActorProxy: Received tabListChanged event
+DEBUG|305.491|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|305.491|RootActorProxy: Fetching tabs
+DEBUG|305.509|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|305.509|RootActorProxy: Received 1 tabs
+DEBUG|305.699|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|305.699|RootActorProxy: Received tabListChanged event
+DEBUG|305.699|RootActorProxy: Fetching tabs
+DEBUG|305.699|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|305.700|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|305.700|RootActorProxy: Received 1 tabs
+DEBUG|305.920|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|305.920|RootActorProxy: Received tabListChanged event
+DEBUG|305.920|RootActorProxy: Fetching tabs
+DEBUG|305.920|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|305.922|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|305.922|RootActorProxy: Received 1 tabs
+DEBUG|306.123|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|306.123|RootActorProxy: Fetching tabs
+DEBUG|306.123|RootActorProxy: Received tabListChanged event
+DEBUG|306.124|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|306.134|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|306.134|RootActorProxy: Received 1 tabs
+DEBUG|306.337|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|306.337|RootActorProxy: Received tabListChanged event
+DEBUG|306.337|RootActorProxy: Fetching tabs
+DEBUG|306.337|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|306.351|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|306.351|RootActorProxy: Received 1 tabs
+DEBUG|306.545|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|306.545|RootActorProxy: Received tabListChanged event
+DEBUG|306.545|RootActorProxy: Fetching tabs
+DEBUG|306.545|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|306.554|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|306.554|RootActorProxy: Received 1 tabs
+DEBUG|306.751|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|306.751|RootActorProxy: Received tabListChanged event
+DEBUG|306.751|RootActorProxy: Fetching tabs
+DEBUG|306.751|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|306.757|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|306.757|RootActorProxy: Received 1 tabs
+DEBUG|306.971|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|306.971|RootActorProxy: Received tabListChanged event
+DEBUG|306.971|RootActorProxy: Fetching tabs
+DEBUG|306.971|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|306.972|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|306.972|RootActorProxy: Received 1 tabs
+DEBUG|307.193|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|307.193|RootActorProxy: Received tabListChanged event
+DEBUG|307.193|RootActorProxy: Fetching tabs
+DEBUG|307.193|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|307.194|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|307.194|RootActorProxy: Received 1 tabs
+DEBUG|307.425|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|307.426|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|307.425|RootActorProxy: Fetching tabs
+DEBUG|307.425|RootActorProxy: Received tabListChanged event
+DEBUG|307.444|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|307.444|RootActorProxy: Received 1 tabs
+DEBUG|307.689|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|307.689|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|307.689|RootActorProxy: Fetching tabs
+DEBUG|307.689|RootActorProxy: Received tabListChanged event
+DEBUG|307.690|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|307.690|RootActorProxy: Received 1 tabs
+DEBUG|307.899|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|307.899|RootActorProxy: Received tabListChanged event
+DEBUG|307.899|RootActorProxy: Fetching tabs
+DEBUG|307.899|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|307.901|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|307.901|RootActorProxy: Received 1 tabs
+DEBUG|308.103|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|308.103|RootActorProxy: Received tabListChanged event
+DEBUG|308.103|RootActorProxy: Fetching tabs
+DEBUG|308.104|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|308.114|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|308.114|RootActorProxy: Received 1 tabs
+DEBUG|308.323|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|308.323|RootActorProxy: Fetching tabs
+DEBUG|308.323|RootActorProxy: Received tabListChanged event
+DEBUG|308.323|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|308.334|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|308.334|RootActorProxy: Received 1 tabs
+DEBUG|308.543|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|308.544|RootActorProxy: Fetching tabs
+DEBUG|308.544|RootActorProxy: Received tabListChanged event
+DEBUG|308.544|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|308.548|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|308.548|RootActorProxy: Received 1 tabs
+DEBUG|308.781|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|308.781|RootActorProxy: Received tabListChanged event
+DEBUG|308.781|RootActorProxy: Fetching tabs
+DEBUG|308.781|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|308.785|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|308.785|RootActorProxy: Received 1 tabs
+DEBUG|309.022|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|309.023|RootActorProxy: Received tabListChanged event
+DEBUG|309.023|RootActorProxy: Fetching tabs
+DEBUG|309.023|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|309.041|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|309.041|RootActorProxy: Received 1 tabs
+DEBUG|309.276|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|309.276|RootActorProxy: Fetching tabs
+DEBUG|309.276|RootActorProxy: Received tabListChanged event
+DEBUG|309.276|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|309.290|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|309.290|RootActorProxy: Received 1 tabs
+DEBUG|309.558|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|309.558|RootActorProxy: Received tabListChanged event
+DEBUG|309.558|RootActorProxy: Fetching tabs
+DEBUG|309.558|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|309.619|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|309.619|RootActorProxy: Received 1 tabs
+DEBUG|315.308|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|315.308|RootActorProxy: Received tabListChanged event
+DEBUG|315.308|RootActorProxy: Fetching tabs
+DEBUG|315.308|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|315.326|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|315.326|RootActorProxy: Received 1 tabs
+DEBUG|315.527|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|315.527|RootActorProxy: Received tabListChanged event
+DEBUG|315.527|RootActorProxy: Fetching tabs
+DEBUG|315.527|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|315.541|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|315.541|RootActorProxy: Received 1 tabs
+DEBUG|315.745|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|315.745|RootActorProxy: Fetching tabs
+DEBUG|315.745|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|315.745|RootActorProxy: Received tabListChanged event
+DEBUG|315.767|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|315.767|RootActorProxy: Received 1 tabs
+DEBUG|316.001|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|316.001|RootActorProxy: Received tabListChanged event
+DEBUG|316.001|RootActorProxy: Fetching tabs
+DEBUG|316.001|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|316.003|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|316.003|RootActorProxy: Received 1 tabs
+DEBUG|316.206|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|316.206|RootActorProxy: Received tabListChanged event
+DEBUG|316.206|RootActorProxy: Fetching tabs
+DEBUG|316.206|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|316.216|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|316.216|RootActorProxy: Received 1 tabs
+DEBUG|316.446|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|316.446|RootActorProxy: Received tabListChanged event
+DEBUG|316.446|RootActorProxy: Fetching tabs
+DEBUG|316.446|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|316.449|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|316.449|RootActorProxy: Received 1 tabs
+DEBUG|316.667|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|316.667|RootActorProxy: Received tabListChanged event
+DEBUG|316.667|RootActorProxy: Fetching tabs
+DEBUG|316.667|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|316.684|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|316.684|RootActorProxy: Received 1 tabs
+DEBUG|316.879|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|316.879|RootActorProxy: Received tabListChanged event
+DEBUG|316.879|RootActorProxy: Fetching tabs
+DEBUG|316.879|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|316.880|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|316.880|RootActorProxy: Received 1 tabs
+DEBUG|317.084|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|317.084|RootActorProxy: Received tabListChanged event
+DEBUG|317.084|RootActorProxy: Fetching tabs
+DEBUG|317.084|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|317.093|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|317.093|RootActorProxy: Received 1 tabs
+DEBUG|317.308|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|317.308|RootActorProxy: Fetching tabs
+DEBUG|317.308|RootActorProxy: Received tabListChanged event
+DEBUG|317.308|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|317.325|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|317.325|RootActorProxy: Received 1 tabs
+DEBUG|317.571|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|317.571|RootActorProxy: Received tabListChanged event
+DEBUG|317.571|RootActorProxy: Fetching tabs
+DEBUG|317.571|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|317.573|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|317.573|RootActorProxy: Received 1 tabs
+DEBUG|317.809|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|317.810|RootActorProxy: Received tabListChanged event
+DEBUG|317.810|RootActorProxy: Fetching tabs
+DEBUG|317.810|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|317.821|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|317.821|RootActorProxy: Received 1 tabs
+DEBUG|318.059|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|318.059|RootActorProxy: Received tabListChanged event
+DEBUG|318.059|RootActorProxy: Fetching tabs
+DEBUG|318.059|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|318.063|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|318.063|RootActorProxy: Received 1 tabs
+DEBUG|318.272|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|318.272|RootActorProxy: Received tabListChanged event
+DEBUG|318.272|RootActorProxy: Fetching tabs
+DEBUG|318.272|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|318.273|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|318.273|RootActorProxy: Received 1 tabs
+DEBUG|318.515|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|318.515|RootActorProxy: Received tabListChanged event
+DEBUG|318.515|RootActorProxy: Fetching tabs
+DEBUG|318.515|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|318.518|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|318.518|RootActorProxy: Received 1 tabs
+DEBUG|318.734|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|318.734|RootActorProxy: Fetching tabs
+DEBUG|318.734|RootActorProxy: Received tabListChanged event
+DEBUG|318.734|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|318.745|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|318.745|RootActorProxy: Received 1 tabs
+DEBUG|318.972|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|318.972|RootActorProxy: Received tabListChanged event
+DEBUG|318.972|RootActorProxy: Fetching tabs
+DEBUG|318.972|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|318.984|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|318.984|RootActorProxy: Received 1 tabs
+DEBUG|319.220|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|319.220|RootActorProxy: Received tabListChanged event
+DEBUG|319.220|RootActorProxy: Fetching tabs
+DEBUG|319.220|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|319.221|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|319.221|RootActorProxy: Received 1 tabs
+DEBUG|319.466|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|319.466|RootActorProxy: Fetching tabs
+DEBUG|319.466|RootActorProxy: Received tabListChanged event
+DEBUG|319.466|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|319.484|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|319.484|RootActorProxy: Received 1 tabs
+DEBUG|319.700|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|319.700|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|319.700|RootActorProxy: Received tabListChanged event
+DEBUG|319.700|RootActorProxy: Fetching tabs
+DEBUG|319.713|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|319.713|RootActorProxy: Received 1 tabs
+DEBUG|319.979|DataBreakpointsManager: Setting 0 data breakpoints
+DEBUG|325.364|DebugConnection: Received response/event {"from":"root","type":"tabListChanged"}
+DEBUG|325.364|RootActorProxy: Received tabListChanged event
+DEBUG|325.364|RootActorProxy: Fetching tabs
+DEBUG|325.364|DebugConnection: Sending request {"to":"root","type":"listTabs"}
+DEBUG|325.381|DebugConnection: Received response/event {"tabs":[{"actor":"server1.conn0.tabDescriptor8","browserId":9,"browsingContextID":17,"isZombieTab":false,"outerWindowID":37,"selected":true,"title":"WDD-330","traits":{"watcher":true,"supportsReloadDescriptor":true},"url":"http://127.0.0.1:3000/index.html"}],"from":"root"}
+DEBUG|325.381|RootActorProxy: Received 1 tabs
+INFO |325.413|FirefoxDebugSession: Connection to Firefox closed - terminating debug session

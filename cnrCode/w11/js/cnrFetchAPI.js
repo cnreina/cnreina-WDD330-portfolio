@@ -10,7 +10,6 @@ const cnrFetch_BASE_URL = 'http://127.0.0.1:8080/';
 const cnrFetch_METHOD_GET = 'GET';
 const cnrFetch_METHOD_POST = 'POST';
 const cnrFetch_METHOD_PUT = 'PUT';
-const cnrFetch_ERROR_NAME = 'cnr_ERROR';
 
 
 /* ************************************************************************* */
@@ -42,7 +41,7 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
   // request options
   let cnrRequestOptions = {
     method: cnrMethodParam,
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json'
     }
@@ -66,7 +65,11 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
   // fetch data
   try {
     const cnrFetchResponseVar = await fetch(cnrRequestUrlVar, cnrRequestOptions);
+    console.log("cnrFetchResponseVar:\n", cnrFetchResponseVar);
+
     const cnrJSONVar = await cnrFetchResponseVar.json();
+    console.log("cnrJSONVar:\n", cnrJSONVar);
+
     if(cnrJSONVar === null || cnrJSONVar === ''){
       console.log('ERROR: cnrFetchRequestJSON > cnrJSONVar ', cnrJSONVar);
       return null;
@@ -75,7 +78,7 @@ export async function cnrFetchRequestJSON(cnrPartialURLParam, cnrMethodParam = c
     return cnrJSONVar;
 
   } catch (cnrFetchError) {
-    console.log(`${cnrFetch_ERROR_NAME}: `, cnrFetchError);
+    console.log("ERROR: cnrFetchRequestJSON\n", cnrJSONVar);
     return null;
 
   };

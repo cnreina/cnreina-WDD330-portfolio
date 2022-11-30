@@ -10,7 +10,6 @@
 }
 
 html, body {
-  /* position: absolute; */
   width: 100vw;
   height: 100%;
   padding: 10px;
@@ -23,9 +22,8 @@ html, body {
 }
 
 main {
-  /* align-self: center; */
   display: grid;
-  grid-template-columns: calc(100% - 10px);
+  grid-template-columns: 100%;
   justify-content: center;
   min-width: 100%;
   padding: 0px;
@@ -125,18 +123,6 @@ hr {
 
 .cnrhidden{
   display: none;
-}
-
-/*	ANIMATIONS */
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #cce6ff, 0 0 20px #cce6ff, 0 0 30px #99ccff, 
-    0 0 40px #99ccff, 0 0 50px #99ccff, 0 0 60px #99ccff, 0 0 70px #99ccff;
-  }
-  to {
-    text-shadow: 0 0 20px #004d99, 0 0 30px #004d99, 0 0 40px #3399ff, 
-    0 0 50px #3399ff, 0 0 60px #3399ff, 0 0 70px #3399ff, 0 0 80px #3399ff;
-  }
 }
 
 /*	MAIN */
@@ -292,4 +278,16 @@ hr {
   margin-left: 2%;
   font-size: 14px;
   width: 96%;
+}
+
+/*	ANIMATIONS */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #cce6ff, 0 0 20px #cce6ff, 0 0 30px #99ccff, 
+    0 0 40px #99ccff, 0 0 50px #99ccff, 0 0 60px #99ccff, 0 0 70px #99ccff;
+  }
+  to {
+    text-shadow: 0 0 20px #004d99, 0 0 30px #004d99, 0 0 40px #3399ff, 
+    0 0 50px #3399ff, 0 0 60px #3399ff, 0 0 70px #3399ff, 0 0 80px #3399ff;
+  }
 }
