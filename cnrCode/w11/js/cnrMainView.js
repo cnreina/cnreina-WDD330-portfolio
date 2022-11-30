@@ -27,9 +27,9 @@ window.onload = function () {
   cnrLoginForm.addEventListener('reset', cnrResetFormHandler, false);
   cnrLoginForm.email.addEventListener('keyup', cnrValidateEmailHandler);
   cnrLoginForm.password.addEventListener('keyup', cnrValidatePasswordHandler);
-  // init submit button
-  const cnrSubmitButton = document.getElementById('cnrsubmitbutton');
-  cnrSubmitButton.addEventListener('pointerup', cnrSubmitButtonPointerUpHandler);
+  // init login button
+  const cnrLoginButton = document.getElementById('cnrloginbutton');
+  cnrLoginButton.addEventListener('pointerup', cnrLoginButtonPointerUpHandler);
 
   // init email errors
   const cnrEmailLabel = document.getElementById("cnremaillabel");
@@ -66,11 +66,11 @@ window.onload = function () {
 // HANDLERS
 
 /** cnrSubmitButtonPointerUpHandler */
-function cnrSubmitButtonPointerUpHandler(cnrParam) {
+function cnrLoginButtonPointerUpHandler(cnrParam) {
   cnrParam.preventDefault();
 
   if(cnrAuth === null){
-    console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrAuth\n', cnrAuth);
+    console.log('ERROR: cnrLoginButtonPointerUpHandler > cnrAuth\n', cnrAuth);
     return;
   };
 
