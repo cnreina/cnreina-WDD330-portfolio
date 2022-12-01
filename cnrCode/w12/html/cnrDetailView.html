@@ -1,0 +1,68 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+      <link href="../../res/favicon.ico" rel="icon" type="image/x-icon"/>
+      <title>WDD-330</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name=	"Cache-Control" content="no-cache"/>
+      <meta name=	"Content-Security-Policy" content="sandbox allow-modals"/>
+    <style>
+      @import "../css/cnrDetailView.css" screen;
+   </style>
+  </head>
+  <body>
+    <main>
+      <!-- Header Section -->
+      <section class="cnrheadersections">
+         <div class="cnrheaderdivs">
+            <h1 class="cnrmaintitles" title="cnrmaintitles">Week 12</h1>
+            <h5 class="cnrmainsubtitles" title="cnrmainsubtitles">W12 Detail View</h5>
+         </div>
+         <div class="cnrsubheaderdivs">
+            <a href="../../../index.html" class="cnrhomelinks">Home Page</a>
+            <p class="cnrcopyright">Carlos N Reina 2022</p>
+         </div>
+      </section>
+      <hr>
+      <!-- Main Section -->
+      <section class="cnrmainsections">
+        <div class="cnrmaindivs">
+           <!-- CARD -->
+           <div class="cnrjscontentdivs">
+              <div class="cnrcardheaderdivs">
+                 <p class="cnrcardheadertitles" id="cnrcardheadertitle"></p>
+              </div>
+              <div class="cnrcardcontentdivs cnrjsscrollable">
+                 <div class="cnrcardcelldivs">
+                    <div class="cnrcardinfodivs">
+                       <div class="cnrcardbasicinfodivs">
+                          <p><b>Time:</b></p><p class="cnrcardbasicinfovalues" id="cnrtime"></p>
+                          <p><b>Location:</b></p><p class="cnrcardbasicinfovalues" id="cnrlocation"></p>
+                          <p><b>Magnitude:</b></p><p class="cnrcardbasicinfovalues" id="cnrmagnitude"></p>
+                          <p><b>Details URL:</b></p><p class="cnrcardbasicinfovalues" id="cnrdetailsurl"></p>
+                          <p><b>Longitud:</b></p><p class="cnrcardbasicinfovalues" id="cnrlongitud"></p>
+                          <p><b>Latitude:</b></p><p class="cnrcardbasicinfovalues" id="cnrlatitude"></p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <!-- MAP -->
+              <div class="cnrmapdivs">
+                <div id="map"><!-- javascript --></div>
+              </div>
+
+           </div>
+        </div>
+     </section>
+      <div class="cnrnavigationdivs">
+        <div class="cnrcommentnavs">
+           <div class="cnrbacklinkdivs cnrnouserselection" id="cnrbacklinkdiv">
+              <a class="cnrbacklinks" id="cnrbacklink" href="../html/cnrMainView.html">Back to List</a>
+           </div>
+        </div>
+     </div>
+   </main>
+    <script src="../js/cnrDetailView.js" type="module"></script>
+  </body>
+</html>

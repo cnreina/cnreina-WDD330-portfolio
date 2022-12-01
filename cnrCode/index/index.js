@@ -99,6 +99,10 @@ const links = [
     url: "cnrCode/w11/html/cnrMainView.html"
   },
   {
+    label: "Week 12 (Challenge 2 Test)",
+    url: "cnrCode/w12/html/cnrMainView.html"
+  },
+  {
     label: "Challenge 2 (...)",
     url: "cnrCode/challenge2/html/cnrMainView.html"
   }
