@@ -84,16 +84,18 @@ function cnrGetQueryStringValue(cnrKeyParam) {
  * Gets quakes data from API. 
 */
 function cnrGetQuakeDetails(cnrURLParam) {
-  // fetch quake details
-  const cnrHeaders = new Headers();
-  const cnrRequest = new Request(cnrURLParam, {
+  // request options
+  const cnrQuakesRequestUrlVar = cnrURLParam;
+  let cnrRequestOptions = {
     method: 'GET',
-    headers: cnrHeaders,
     mode: 'cors',
-    cache: 'default'
-  });
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
-  fetch(cnrRequest).then((response) => response.json())
+  // fetch quakes
+  fetch(cnrQuakesRequestUrlVar, cnrRequestOptions).then((response) => response.json())
     .then((cnrJSONData) => cnrProcesResponseJSON(cnrJSONData));
 }; // cnrGetQuakes
 

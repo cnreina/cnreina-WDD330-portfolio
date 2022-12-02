@@ -6,8 +6,6 @@
 /* ************************************************************************* 
 INITIALIZE */
 
-import * as cnrData from './cnrData.js';
-
 const cnrQuakeURL = "../html/cnrQuakeView.html";
 
 
