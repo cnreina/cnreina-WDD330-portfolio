@@ -3,30 +3,45 @@
   cnreina.com
 */
 
+/*	NOTES 
+  Bug:
+    Do not use form tag, replace it with div tag.
+    Using form tag causes fetch to only work in mobile mode, failing in desktop.
+
+*/
 
 /* ************************************************************************* */
 // INITIALIZE
 
-import * as cnrAuthModule from './cnrAuth.js';
+const cnrFetch_BASE_URL = 'http://127.0.0.1:8080/';
+const cnrFetch_METHOD_GET = 'GET';
+const cnrFetch_METHOD_POST = 'POST';
+const cnrFetch_METHOD_PUT = 'PUT';
 
-/**	cnrAuth. 
- * Basic JWT authentication. 
- * Functions: 
- * cnrLogIn, 
- * cnrGetCurrentUserDataByEmail, 
- * cnrLastError. 
-*/
-const cnrAuth = new cnrAuthModule.cnrAuthClass();
+const cnrRequest_URL_PATH_LOGIN = 'login';
+const cnrRequest_URL_PATH_USERS = 'users';
+const cnrRequest_URL_PATH_POSTS = 'posts';
+const cnrRequest_METHOD_POST = 'POST';
+const cnrRequest_METHOD_GET = 'GET';
+
+let cnrToken = null;
+let cnrUser = null;
+let cnrCurrentUserEmail = null;
 
 const cnrHomeURL = '../html/cnrMainView.html'
 
 /**	window.onload. */
 window.onload = function () {
   // init login form
-  const cnrLoginForm = document.forms['cnrlogin'];
+  const cnrLoginForm = document.getElementById("cnrlogin");
   cnrLoginForm.addEventListener('reset', cnrResetFormHandler, false);
-  cnrLoginForm.email.addEventListener('keyup', cnrValidateEmailHandler);
-  cnrLoginForm.password.addEventListener('keyup', cnrValidatePasswordHandler);
+
+  const cnrLoginEmail = document.getElementById("email");
+  cnrLoginEmail.addEventListener('keyup', cnrValidateEmailHandler, false);
+
+  const cnrLoginPassword = document.getElementById("password");
+  cnrLoginPassword.addEventListener('keyup', cnrValidatePasswordHandler, false);
+
   // init submit button
   const cnrSubmitButton = document.getElementById('cnrsubmitbutton');
   cnrSubmitButton.addEventListener('pointerup', cnrSubmitButtonPointerUpHandler);
@@ -68,27 +83,25 @@ window.onload = function () {
 /** cnrSubmitButtonPointerUpHandler */
 function cnrSubmitButtonPointerUpHandler(cnrParam) {
   cnrParam.preventDefault();
-
-  if(cnrAuth === null){
-    console.log('ERROR: cnrSubmitButtonPointerUpHandler > cnrAuth\n', cnrAuth);
-    return;
-  };
-
+  if (cnrToken != null) { return; };
+  
   // get form data
   const cnrLoginForm = document.forms['cnrlogin'];
   let cnrErrorCountVar = 0;
 
   // get email input
-  const cnrEmailVar = cnrLoginForm.email.value;
+  const cnrEmailVar = document.getElementById("email").value;
   if (cnrEmailVar === null || cnrEmailVar === '') {
     cnrFormErrorHandler(true, "ERROR: Email is required", "cnremailerrordiv");
     cnrErrorCountVar++;
   } else {
     cnrFormErrorHandler(false, "", "cnremailerrordiv");
   };
+  // save current user email
+  cnrCurrentUserEmail = cnrEmailVar;
 
   // get password input
-  const cnrPasswordVar = cnrLoginForm.password.value;
+  const cnrPasswordVar = document.getElementById("password").value;
   if (cnrPasswordVar === null || cnrPasswordVar === '') {
     cnrFormErrorHandler(true, "ERROR: Password is required", "cnrpassworderrordiv");
     cnrErrorCountVar++;
@@ -99,8 +112,12 @@ function cnrSubmitButtonPointerUpHandler(cnrParam) {
   // check errors count
   if (cnrErrorCountVar != 0) { return; };
   
-  // login
-  cnrAuth.cnrLogIn(cnrEmailVar, cnrPasswordVar, cnrLoginCallback);
+  // LOGIN
+  const cnrBodyDataVar = {
+    email: cnrEmailVar,
+    password: cnrPasswordVar
+  };
+  cnrFetchJSON(cnrRequest_URL_PATH_LOGIN, cnrRequest_METHOD_POST, cnrBodyDataVar, cnrToken);
 
 }; // cnrSubmitButtonPointerUpHandler
 
@@ -108,17 +125,12 @@ function cnrSubmitButtonPointerUpHandler(cnrParam) {
 function cnrPostsButtonPointerUpHandler(cnrParam) {
   cnrParam.preventDefault();
 
-  if(cnrAuth === null){
-    console.log('ERROR: cnrPostsButtonPointerUpHandler > cnrAuth\n', cnrAuth);
-    return;
-  };
-
   if (cnrParam === null || cnrParam === '') {
     console.log('ERROR: cnrPostsButtonPointerUpHandler > cnrParam\n', cnrParam);
     return;
   };
 
-  cnrAuth.cnrGetCurrentUserPostsByEmail(cnrAuth.user.email, cnrPostsCallback);
+  cnrFetchJSON(cnrRequest_URL_PATH_POSTS, cnrRequest_METHOD_GET, null, cnrToken);
 
 }; // cnrPostsButtonPointerUpHandler
 
@@ -185,38 +197,55 @@ function cnrFormErrorHandler(cnrDisplayErrorParam, cnrErrorMessageParam, cnrElem
  * Handles login errors. 
  * Displays user data. 
 */
-function cnrLoginCallback(cnrErrorsParam = false) {  
-  if(cnrErrorsParam){
-    console.log('ERROR: cnrLoginCallback > cnrAuth.cnrLastError()\n', cnrAuth.cnrLastError());
+function cnrLoginCallback(cnrDataParam) {  
+  if(cnrDataParam === null || cnrDataParam === ''){
+    console.log('ERROR: cnrPostsCallback > cnrDataParam\n', cnrDataParam);
     return null;
   };
+
+  // save token
+  cnrToken = cnrDataParam;
 
   // clear password field
   document.getElementById('password').value = '';
   // hide login
   document.getElementById('cnrlogin').classList.add('cnrhidden');
 
-  // show user data
-  document.getElementById('cnridlabel').children[0].textContent = `${cnrAuth.cnrUser.id}`;
-  document.getElementById('cnrfirstnamelabel').children[0].textContent = `${cnrAuth.cnrUser.firstname}`;
-  document.getElementById('cnrlastnamelabel').children[0].textContent = `${cnrAuth.cnrUser.lastname}`;
-  document.getElementById('cnragelabel').children[0].textContent = `${cnrAuth.cnrUser.age}`;
-  document.getElementById('cnruseremaillabel').children[0].textContent = `${cnrAuth.cnrUser.email}`;
+  // get user data
+  cnrFetchJSON(cnrRequest_URL_PATH_USERS, cnrRequest_METHOD_GET, null, cnrToken);
+
+}; // cnrLoginCallback
+
+/** cnrUserCallback. 
+ * Displays user data. 
+*/
+function cnrUserCallback(cnrDataParam) {
+  if(cnrDataParam === null || cnrDataParam === ''){
+    console.log('ERROR: cnrUserCallback > cnrDataParam\n', cnrDataParam);
+    return null;
+  };
+
+  // save user
+  cnrUser = cnrDataParam;
+
+  // show user data view
+  const cnrDataVar = cnrDataParam;
+  document.getElementById('cnridlabel').children[0].textContent = `${cnrDataVar.id}`;
+  document.getElementById('cnrfirstnamelabel').children[0].textContent = `${cnrDataVar.firstname}`;
+  document.getElementById('cnrlastnamelabel').children[0].textContent = `${cnrDataVar.lastname}`;
+  document.getElementById('cnragelabel').children[0].textContent = `${cnrDataVar.age}`;
+  document.getElementById('cnruseremaillabel').children[0].textContent = `${cnrDataVar.email}`;
 
   document.getElementById('cnruserdata').classList.remove('cnrhidden');
 
-}; // cnrLoginCallback
+}; // cnrUserCallback
 
 /** cnrPostsCallback. 
  * Displays user posts. 
 */
-function cnrPostsCallback(cnrErrorsParam = false, cnrPosts) {
-  if(cnrErrorsParam){
-    console.log('ERROR: cnrPostsCallback > cnrAuth.cnrLastError()\n', cnrAuth.cnrLastError());
-    return null;
-  };
-  if (cnrPosts === null || cnrPosts === '') {
-    console.log('ERROR: cnrPostsCallback > cnrPosts\n', cnrPosts);
+function cnrPostsCallback(cnrDataParam) {
+  if(cnrDataParam === null || cnrDataParam === ''){
+    console.log('ERROR: cnrPostsCallback > cnrDataParam\n', cnrDataParam);
     return null;
   };
 
@@ -227,46 +256,47 @@ function cnrPostsCallback(cnrErrorsParam = false, cnrPosts) {
   document.getElementById('cnruserposts').classList.remove('cnrhidden');
 
   // display posts
+  const cnrPostsVar = cnrDataParam;
   const cnrPostsDiv = document.getElementById("cnrpostscontainerdiv");
-  cnrPosts.forEach(cnrPost => {
+  cnrPostsVar.forEach(cnrPostVar => {
     // create post container
     const cnrPostContainerVar = document.createElement('div');
     cnrPostContainerVar.classList.add('cnrpostdivs');
-    cnrPostContainerVar.id = `cnrpostdiv${cnrPost.id}`;
+    cnrPostContainerVar.id = `cnrpostdiv${cnrPostVar.id}`;
 
     // create id text
     const cnrPostIdVar = document.createElement('p');
     cnrPostIdVar.classList.add('cnrposttext');
-    cnrPostIdVar.id = `cnrpostid${cnrPost.id}`;
-    cnrPostIdVar.textContent = `ID: ${cnrPost.id}`;
+    cnrPostIdVar.id = `cnrpostid${cnrPostVar.id}`;
+    cnrPostIdVar.textContent = `ID: ${cnrPostVar.id}`;
     cnrPostContainerVar.append(cnrPostIdVar);
 
     // create user id text
     const cnrPostUserIdVar = document.createElement('p');
     cnrPostUserIdVar.classList.add('cnrposttext');
-    cnrPostUserIdVar.id = `cnrpostuserid${cnrPost.id}`;
-    cnrPostUserIdVar.textContent = `User ID: ${cnrPost.userId}`;
+    cnrPostUserIdVar.id = `cnrpostuserid${cnrPostVar.id}`;
+    cnrPostUserIdVar.textContent = `User ID: ${cnrPostVar.userId}`;
     cnrPostContainerVar.append(cnrPostUserIdVar);
 
     // create title text
     const cnrPostTitleVar = document.createElement('p');
     cnrPostTitleVar.classList.add('cnrposttext');
-    cnrPostTitleVar.id = `cnrposttitle${cnrPost.id}`;
-    cnrPostTitleVar.textContent = `Title: ${cnrPost.title}`;
+    cnrPostTitleVar.id = `cnrposttitle${cnrPostVar.id}`;
+    cnrPostTitleVar.textContent = `Title: ${cnrPostVar.title}`;
     cnrPostContainerVar.append(cnrPostTitleVar);
 
     // create created text
     const cnrPostCreatedVar = document.createElement('p');
     cnrPostCreatedVar.classList.add('cnrposttext');
-    cnrPostCreatedVar.id = `cnrpostcreated${cnrPost.id}`;
-    cnrPostCreatedVar.textContent = `Created: ${cnrPost.createdAt}`;
+    cnrPostCreatedVar.id = `cnrpostcreated${cnrPostVar.id}`;
+    cnrPostCreatedVar.textContent = `Created: ${cnrPostVar.createdAt}`;
     cnrPostContainerVar.append(cnrPostCreatedVar);
 
     // create created text
     const cnrPostContentVar = document.createElement('p');
     cnrPostContentVar.classList.add('cnrposttext');
-    cnrPostContentVar.id = `cnrpostcontent${cnrPost.id}`;
-    cnrPostContentVar.textContent = `Content: ${cnrPost.content}`;
+    cnrPostContentVar.id = `cnrpostcontent${cnrPostVar.id}`;
+    cnrPostContentVar.textContent = `Content: ${cnrPostVar.content}`;
     cnrPostContainerVar.append(cnrPostContentVar);
 
     // save post container
@@ -275,3 +305,106 @@ function cnrPostsCallback(cnrErrorsParam = false, cnrPosts) {
   });
 
 }; // cnrPostsCallback
+
+
+/* ************************************************************************* */
+// CONTROL
+
+/**	cnrFetchJSON. 
+ * Requests JSON data. 
+ * Returns JSON data on success. 
+ * Returns null on errors. 
+*/
+export async function cnrFetchJSON(cnrPartialURLParam, cnrMethodParam = cnrFetch_METHOD_GET, cnrBodyParam = null, cnrTokenParam = null) {
+  if(cnrPartialURLParam === null || cnrPartialURLParam === ''){
+    console.log('ERROR: cnrFetchRequest > cnrPartialURLParam\n', cnrPartialURLParam);
+    return null;
+  };
+  if(cnrMethodParam === null || cnrMethodParam === ''){
+    console.log('ERROR: cnrFetchRequest > cnrMethodParam\n', cnrMethodParam);
+    return null;
+  };
+  if (
+    cnrMethodParam != cnrFetch_METHOD_GET &&
+    cnrMethodParam != cnrFetch_METHOD_POST &&
+    cnrMethodParam != cnrFetch_METHOD_PUT
+  ) {
+    console.log('ERROR: cnrFetchRequest > cnrMethodParam\n', cnrMethodParam);
+    return null;
+  };
+
+  // request options
+  let cnrRequestOptions = {
+    method: cnrMethodParam,
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  // prepare body
+  if (cnrMethodParam === cnrFetch_METHOD_POST || cnrMethodParam === cnrFetch_METHOD_PUT) {
+    if(cnrBodyParam === null || cnrBodyParam === ''){
+      console.log('ERROR: cnrFetchRequest > cnrBodyParam\n', cnrBodyParam);
+      return null;
+    };
+    cnrRequestOptions.body = JSON.stringify(cnrBodyParam);
+  };
+  
+  // prepare token
+  if (cnrTokenParam) {cnrRequestOptions.headers.Authorization = `Bearer ${cnrTokenParam}`;};
+  
+  // prepare url
+  const cnrRequestUrlVar = `${cnrFetch_BASE_URL}${cnrPartialURLParam}`;
+  
+  // fetch data
+  fetch(cnrRequestUrlVar, cnrRequestOptions).then((cnrResponseParam) => cnrResponseParam.json())
+    .then((cnrJSONData) => cnrProcesResponseJSON(cnrPartialURLParam, cnrJSONData));
+
+}; // cnrFetchRequest
+
+/**	cnrProcesResponseJSON. 
+ * Processes response json from fetch request. 
+ * Updates data. 
+*/
+function cnrProcesResponseJSON(cnrPartialURLParam, cnrResponseJSONParam) {
+  if (cnrPartialURLParam === null || cnrPartialURLParam === '') {
+    console.log('ERROR: cnrProcesResponseJSON > cnrPartialURLParam');
+    return null;
+  };
+  if (cnrResponseJSONParam === null || cnrResponseJSONParam === '') {
+    console.log('ERROR: cnrProcesResponseJSON > cnrResponseJSONParam');
+    return null;
+  };
+
+  // process JSON
+  const cnrPartialURLVar = cnrPartialURLParam;
+  const cnrJSONVar = cnrResponseJSONParam;  
+  switch (cnrPartialURLVar) {
+    case cnrRequest_URL_PATH_LOGIN:
+      cnrLoginCallback(cnrJSONVar.accessToken);
+      break;
+    
+    case cnrRequest_URL_PATH_USERS:
+      cnrJSONVar.forEach(cnrUser => {
+        if (cnrUser.email === cnrCurrentUserEmail) {
+          cnrUserCallback(cnrUser);
+        };
+      });
+      break;
+    
+    case cnrRequest_URL_PATH_POSTS:
+      let cnrPostsVar = [];
+      cnrJSONVar.forEach(cnrPost => {
+        if (cnrPost.userId === cnrCurrentUserEmail) {
+          cnrPostsVar.push(cnrPost);
+        };
+      });
+      cnrPostsCallback(cnrPostsVar);
+      break;
+
+    default:
+      break;
+  };
+  
+}; // cnrProcesResponseJSON
