@@ -14,7 +14,6 @@
 // MODULES
 import * as cnrData from './cnrData.js';
 import * as cnrDisplay from './cnrDisplay.js';
-import * as cnrGeoLocation from './cnrGeoLocationAPI.js';
 
 let cnrQuakes;
 
@@ -41,6 +40,33 @@ window.onload = function () {
  * Gets device current location. 
  * Fetches quakes data from USGS API. 
 */
+// async function cnrGetQuakes() {
+//   // get device location
+//   const cnrCurrentLocation = await cnrGetCurrentLocation();
+  
+//   // prepare url
+//   const cnrQuakes_API_SRC = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
+//   const cnrQuakes_API_RESPONSE_TYPE = 'geojson';
+//   const cnrQuakes_API_START_TIME = '2019-01-01';
+//   const cnrQuakes_API_END_TIME = '2019-02-02';
+//   const cnrQuakes_API_MAX_RADIUS_KM = '100';
+//   const cnrQuakeLatitudVar = cnrCurrentLocation.coords.latitude;
+//   const cnrQuakeLongitudVar = cnrCurrentLocation.coords.longitude;
+//   const cnrQuakesRequestUrlVar = `${cnrQuakes_API_SRC}?format=${cnrQuakes_API_RESPONSE_TYPE}&starttime=${cnrQuakes_API_START_TIME}&endtime=${cnrQuakes_API_END_TIME}&latitude=${cnrQuakeLatitudVar}&longitude=${cnrQuakeLongitudVar}&maxradiuskm=${cnrQuakes_API_MAX_RADIUS_KM}`;
+  
+//   const cnrHeaders = new Headers();
+//   const cnrRequest = new Request(cnrQuakesRequestUrlVar, {
+//     method: 'GET',
+//     headers: cnrHeaders,
+//     // mode: 'cors',
+//     cache: 'no-cache'
+//   });
+
+//   // fetch quakes
+//   fetch(cnrRequest).then((response) => response.json())
+//     .then((cnrJSONData) => cnrProcesResponseJSON(cnrJSONData));
+// }; // cnrGetQuakes
+
 async function cnrGetQuakes() {
   // get device location
   const cnrCurrentLocation = await cnrGetCurrentLocation();
@@ -55,18 +81,24 @@ async function cnrGetQuakes() {
   const cnrQuakeLongitudVar = cnrCurrentLocation.coords.longitude;
   const cnrQuakesRequestUrlVar = `${cnrQuakes_API_SRC}?format=${cnrQuakes_API_RESPONSE_TYPE}&starttime=${cnrQuakes_API_START_TIME}&endtime=${cnrQuakes_API_END_TIME}&latitude=${cnrQuakeLatitudVar}&longitude=${cnrQuakeLongitudVar}&maxradiuskm=${cnrQuakes_API_MAX_RADIUS_KM}`;
   
-  const cnrHeaders = new Headers();
-  const cnrRequest = new Request(cnrQuakesRequestUrlVar, {
+  // request options
+  let cnrRequestOptions = {
     method: 'GET',
-    headers: cnrHeaders,
     mode: 'cors',
-    cache: 'default'
-  });
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
   // fetch quakes
-  fetch(cnrRequest).then((response) => response.json())
+  fetch(cnrQuakesRequestUrlVar, cnrRequestOptions).then((response) => response.json())
     .then((cnrJSONData) => cnrProcesResponseJSON(cnrJSONData));
 }; // cnrGetQuakes
+
+
+
+
+
 
 /**	cnrProcesResponseJSON. 
  * Processes response json from fetch request. 
