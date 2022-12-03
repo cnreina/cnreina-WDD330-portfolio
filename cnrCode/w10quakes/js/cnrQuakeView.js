@@ -121,7 +121,7 @@ function cnrProcesResponseJSON(cnrResponseJSONParam) {
     lng: cnrResponseJSONParam.geometry.coordinates[0]
   };
   cnrMAP_API_ZOOM = 7;
-  // init map script
+  // init map script CNRMAP_API_KEY
   const cnrMAP_API_KEY = cnrSecrets.cnrAPI_KEY_MAP;
   const cnrMAP_API_VERSION = `weekly`;
   const cnrMAP_API_SRC = `https://maps.googleapis.com/maps/api/js?key=${cnrMAP_API_KEY}&callback=cnrInitMap&v=${cnrMAP_API_VERSION}`;
