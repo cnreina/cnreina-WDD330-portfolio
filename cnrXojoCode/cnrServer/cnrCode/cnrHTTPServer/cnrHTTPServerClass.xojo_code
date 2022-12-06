@@ -594,6 +594,31 @@ Protected Class cnrHTTPServerClass
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Var cnrCountVar As Integer = 0
+			  Var cnrConnectedCountVar As Integer = 0
+			  Var cnrTCPSocketArrayVar() As TCPSocket = cnrServerSocket.ActiveConnections
+			  For cnrCountVar = 0 To cnrTCPSocketArrayVar.LastIndex
+			    If cnrTCPSocketArrayVar(cnrCountVar).IsConnected Then
+			      cnrConnectedCountVar = cnrConnectedCountVar + 1
+			    End If
+			  Next
+			  
+			  Return cnrConnectedCountVar
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Return
+			  
+			End Set
+		#tag EndSetter
+		cnrServerConnectionsCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  // connections string
 			  Var cnrCountVar As Integer
 			  Var cnrConnectionsStringVar() As String

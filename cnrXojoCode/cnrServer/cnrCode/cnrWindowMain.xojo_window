@@ -119,7 +119,7 @@ Begin Window cnrWindowMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   204
+      Left            =   388
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -256,7 +256,7 @@ Begin Window cnrWindowMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   296
+      Left            =   480
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -265,6 +265,70 @@ Begin Window cnrWindowMain
       MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton PushButton5
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Pause"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   204
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton PushButton6
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Unpause"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   296
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
@@ -366,6 +430,10 @@ End
 
 	#tag Method, Flags = &h21
 		Private Function cnrHandleHTTPFormDataGetResponseEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrFormDataParam As String) As String
+		  // check server state
+		  If cnrServerIsPaused("") = True Then
+		    Return ""
+		  End If
 		  
 		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
 		  TextArea1.AddText(CurrentMethodName + EndOfLine)
@@ -512,67 +580,111 @@ End
 		  End If
 		  
 		  // process data
-		  Var cnrResponseJSONVar As JSONItem
+		  Var cnrJSONDataVar As JSONItem
 		  Try
-		    cnrResponseJSONVar = New JSONItem(cnrJSONDataParam)
-		    If cnrResponseJSONVar = Nil Then
+		    cnrJSONDataVar = New JSONItem(cnrJSONDataParam)
+		    If cnrJSONDataVar = Nil Then
 		      TextArea1.AddText(EndOfLine)
-		      TextArea1.AddText("ERROR: cnrResponseJSONVar = Nil " + EndOfLine)
+		      TextArea1.AddText("ERROR: cnrJSONDataVar = Nil " + EndOfLine)
 		      TextArea1.AddText(EndOfLine)
 		      Return ""
 		    End If
 		  Catch
 		    TextArea1.AddText(EndOfLine)
-		    TextArea1.AddText("ERROR: cnrResponseJSONVar = Nil " + EndOfLine)
+		    TextArea1.AddText("ERROR: cnrJSONDataVar = Nil " + EndOfLine)
 		    TextArea1.AddText(EndOfLine)
 		    Return ""
 		  End Try
 		  
-		  // check pause
-		  If cnrServerPaused = True And cnrResponseJSONVar.Value("type") <> "server" Then
+		  // check server state
+		  If cnrServerIsPaused(cnrJSONDataVar.Value("type")) = True Then
 		    Return ""
 		  End If
 		  
-		  // process server control commands
-		  Var message As JSONItem = New JSONItem
-		  Var parameter As JSONItem
-		  parameter = New JSONItem
-		  parameter.Value("type") = "server"
-		  parameter.Value("encoding") = "application/json"
-		  Select Case cnrResponseJSONVar.Value("type")
+		  // process command type
+		  Var cnrResponseJSONVar As JSONItem = New JSONItem
+		  Var cnrParameterJSONVar As JSONItem
+		  cnrParameterJSONVar = New JSONItem
+		  cnrParameterJSONVar.Value("type") = cnrJSONDataVar.Value("type")
+		  cnrParameterJSONVar.Value("encoding") = "string"
+		  cnrParameterJSONVar.Value("command") = cnrJSONDataVar.Value("command")
+		  Select Case cnrJSONDataVar.Value("type")
+		    // server command
 		  Case "server"
-		    Select Case cnrResponseJSONVar.Value("command")
+		    Select Case cnrJSONDataVar.Value("command")
 		    Case "on"
 		      cnrServerPaused = False
-		      parameter.Value("command") = "on"
-		      message.Value("cnrCommand") = parameter
-		      Var cnrJSONStringVar As String = message.ToString
+		      
+		      cnrParameterJSONVar.Value("response") = "on"
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
 		      Return cnrJSONStringVar
 		      
 		    Case "off"
 		      cnrServerPaused = True
-		      parameter.Value("command") = "off" TODO
-		      message.Value("cnrCommand") = parameter
-		      Var cnrJSONStringVar As String = message.ToString
+		      
+		      cnrParameterJSONVar.Value("response") = "off"
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
 		      Return cnrJSONStringVar
 		      
 		    Case "state"
-		      cnrServerPaused = True
 		      If cnrServerPaused = True Then
-		        parameter.Value("command") = "state-off"
+		        cnrParameterJSONVar.Value("response") = "off"
 		      Else
-		        parameter.Value("command") = "state-on"
+		        cnrParameterJSONVar.Value("response") = "on"
 		      End If
-		      message.Value("cnrCommand") = parameter
-		      Var cnrJSONStringVar As String = message.ToString
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "time"
+		      Var cnrCurrentTimeVar As String = cnrServerInstance.cnrServerTime
+		      cnrParameterJSONVar.Value("response") = cnrCurrentTimeVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "connections"
+		      Var cnrConnectionsVar As String = cnrServerInstance.cnrServerConnectionsString
+		      cnrParameterJSONVar.Value("response") = cnrConnectionsVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "info"
+		      Var cnrConnectionsVar As String = cnrServerInstance.cnrServerString
+		      cnrParameterJSONVar.Value("response") = cnrConnectionsVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
 		      Return cnrJSONStringVar
 		      
 		    Case Else
-		      System.DebugLog(cnrResponseJSONVar.Value("command"))
+		      // command data error
+		      // debug
+		      #If DebugBuild
+		        System.DebugLog(CurrentMethodName + " - ERROR: unknown command" + EndOfLine + cnrJSONDataVar.Value("command"))
+		      #EndIf
+		      // return error
+		      cnrParameterJSONVar.Value("response") = "error unknown command"
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
 		    End Select
 		    
+		    // other command
 		  Case Else
-		    System.DebugLog(cnrResponseJSONVar.Value("type"))
+		    // command type error
+		    // debug
+		    #If DebugBuild
+		      System.DebugLog(CurrentMethodName + EndOfLine + "ERROR: unknown type")
+		    #EndIf
+		    // return error
+		    cnrParameterJSONVar.Value("response") = "error unknown type"
+		    cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		    Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		    Return cnrJSONStringVar
+		    
 		  End Select
 		  
 		End Function
@@ -722,14 +834,17 @@ End
 		    MessageBox("ERROR: Failed to create server instance (" + CurrentMethodName + ")")
 		    Quit
 		  End If
-		  cnrServer = cnrNewServerVar
+		  cnrServerInstance = cnrNewServerVar
 		  
-		  AddHandler cnrServer.cnrServerErrorEvent, AddressOf cnrHandleServerErrorEvent
-		  AddHandler cnrServer.cnrServerStartEvent, AddressOf cnrHandleServerStartEvent
-		  AddHandler cnrServer.cnrServerStopEvent, AddressOf cnrHandleServerStopEvent
+		  AddHandler cnrServerInstance.cnrServerErrorEvent, AddressOf cnrHandleServerErrorEvent
+		  AddHandler cnrServerInstance.cnrServerStartEvent, AddressOf cnrHandleServerStartEvent
+		  AddHandler cnrServerInstance.cnrServerStopEvent, AddressOf cnrHandleServerStopEvent
 		  
 		  // HTTP connection handles are set when socket is created (See cnrHandleNewHTTPSocketEvent)
-		  AddHandler cnrServer.cnrNewHTTPSocketEvent, AddressOf cnrHandleNewHTTPSocketEvent
+		  AddHandler cnrServerInstance.cnrNewHTTPSocketEvent, AddressOf cnrHandleNewHTTPSocketEvent
+		  
+		  // server state
+		  cnrServerPaused = False
 		  
 		End Sub
 	#tag EndMethod
@@ -743,35 +858,48 @@ End
 
 	#tag Method, Flags = &h0
 		Function cnrServerIsListening() As Boolean
-		  Return cnrServer.cnrServerSocket.IsListening
+		  Return cnrServerInstance.cnrServerSocket.IsListening
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function cnrServerIsPaused(cnrDataType As String) As Boolean
+		  // we let 'server' commands pass
+		  If cnrServerPaused = True And cnrDataType = "server" Then
+		    Return False
+		  End If
+		  
+		  // return pause state
+		  Return cnrServerPaused
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub cnrStartServer(cnrPortParam As Integer)
-		  cnrServer.cnrStartServer(cnrPortParam)
+		  cnrServerInstance.cnrStartServer(cnrPortParam)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub cnrStopServer()
-		  cnrServer.cnrStopServer
+		  cnrServerInstance.cnrStopServer
 		  
 		End Sub
 	#tag EndMethod
 
 
 	#tag Note, Name = README
-		A demo app and window to test cnrServer.
+		A demo app and window to test cnrServerInstance.
 		
 		
 	#tag EndNote
 
 	#tag Note, Name = TODO
 		
-		SSP71 commands.
+		Process SSP71 commands.
 		
 		process string request > return cnrstudents.txt file
 		
@@ -791,7 +919,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private cnrServer As cnrHTTPServerClass
+		Private cnrServerInstance As cnrHTTPServerClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -834,6 +962,22 @@ End
 		  
 		  Quit
 		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton5
+	#tag Event
+		Sub Action()
+		  cnrPauseServer(True)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton6
+	#tag Event
+		Sub Action()
+		  cnrPauseServer(False)
 		  
 		End Sub
 	#tag EndEvent
