@@ -1,0 +1,124 @@
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPConnectedEvent
+
+Socket ID: 16
+Socket UUID: 3E86C6A2E384B0B22C4A1D47DBE49E07
+Socket Local Address: 10.0.1.123
+Socket Remote Address: 127.0.0.1
+Socket Port: 8080
+
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPRequestAvailableEvent
+
+POST /html/cnrForm.cnr HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:98.0) Gecko/20100101 Firefox/98.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+X-Request-ID: 1095e3a8287bb4ae46025ba94710ab5b
+Content-Type: multipart/form-data; boundary=---------------------------196808842812230810723791764332
+Content-Length: 1772
+Origin: http://localhost:8080
+DNT: 1
+Connection: keep-alive
+Referer: http://localhost:8080/html/cnrmain.html
+Cookie: __stripe_mid=02cabd85-813f-443c-b207-f53341f77a970472c6; connect.sid=s%3A9xsLJEDhmKDEjrueq9UPiuBl69piqc8t.nfl1h8yTrOhaG3L54hjWsl4cjELLFICL2pofCCBxkiU; cnrSessionID=F68CF71DE3FF7274E3B16F5EC768131E
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrperformance"
+Solo: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrlocation"
+Building 1: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrroom"
+Room 1: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrtime_slot"
+08:00am: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrfirst_name"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrlast_name"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrstudent_id"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrskill"
+Beginner: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrinstrument"
+Piano: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrfirst_name_2"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrlast_name_2"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrstudent_id_2"
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrskill_2"
+Beginner: 
+-----------------------------196808842812230810723791764332: 
+Content-Disposition: form-data; name="cnrinstrument_2"
+Piano: 
+-----------------------------196808842812230810723791764332--: 
+cnrperformance: Solo
+cnrlocation: Building 1
+cnrroom: Room 1
+cnrtime_slot: 08:00am
+cnrfirst_name: 
+cnrlast_name: 
+cnrstudent_id: 
+cnrskill: Beginner
+cnrinstrument: Piano
+cnrfirst_name_2: 
+cnrlast_name_2: 
+cnrstudent_id_2: 
+cnrskill_2: Beginner
+cnrinstrument_2: Piano
+
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPResponseSendEvent
+
+HTTP/1.1 200 OK
+Content-Type:application/json; charset=UTF-8
+Content-Length:4664
+Connection:close
+Date:Feb 13, 2022 at 14:40:22
+
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPSendProgressEvent
+
+Socket ID: 16
+Socket UUID: 3E86C6A2E384B0B22C4A1D47DBE49E07
+Socket Local Address: 10.0.1.123
+Socket Remote Address: 127.0.0.1
+Socket Port: 8080
+
+Bytes Sent: 720
+Bytes Remaining: 0
+
+Time: Feb 13, 2022 at 14:40:22
+
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPResponseSendCompleteEvent
+
+Socket ID: 16
+Socket UUID: 3E86C6A2E384B0B22C4A1D47DBE49E07
+Socket Local Address: 10.0.1.123
+Socket Remote Address: 127.0.0.1
+Socket Port: 8080
+
+Time: Feb 13, 2022 at 14:40:22
+
+--------------------------------------------------------------
+cnrWindowMain.cnrHandleHTTPConnectionClosedEvent
+
+Socket ID: 16
+Socket UUID: 3E86C6A2E384B0B22C4A1D47DBE49E07
+Socket Local Address: 10.0.1.123
+Socket Remote Address: 127.0.0.1
+Socket Port: 8080
+

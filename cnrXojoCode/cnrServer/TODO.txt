@@ -1,0 +1,106 @@
+Version 1
+-------------------------------------
+
+implement Fetch_API
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
+TCP to Serial interface
+Server command handler > pass to serial
+
+IR to Serial interface
+IR to TCP interface
+Server command handler > handle IR, Serial, TCP, Etc.
+
+Server Constant > cnr_EVENT_COMMAND_PASSTHRU_CONST (Pass command to TCP, Serial, Etc).
+
+create template for javascript after frontend is fully implemented.
+
+Version 2
+-------------------------------------
+
+refactor > move all classes to console app > Xojo for interfacing and GUIs.
+Create console apps for each server type (http, tcp, Etc).
+Xojo interface/gui selects console executable for corresponding server type (http, tcp, Etc).
+Xojo interface/gui passes parameters for server properties.
+
+
+Version 3
+-------------------------------------
+
+refactor > move all classes to C++ > Xojo for interfacing and GUIs.
+Create C++ console apps for each server type (http, tcp, Etc).
+Xojo interface/gui selects C++ executable for corresponding server type (http, tcp, Etc).
+Xojo interface/gui passes parameters for server properties.
+
+
+TESTS
+-------------------------------------
+
+### GET
+GET https://localhost:8080 HTTP/1.1
+
+### GET
+GET http://localhost:8080 HTTP/1.1
+
+### GET Query Strings
+GET https://localhost:8080/login?name=foo&password=bar
+
+### POST multipart/form-data
+POST http://localhost:8080/cnrForm HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:98.0) Gecko/20100101 Firefox/98.0
+Accept: application/json
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+X-Request-ID: 82e134800f45f394356c2dcfbc0281b1
+Content-Type: multipart/form-data; boundary=---------------------------196808842812230810723791764332
+
+###
+POST http://127.0.0.1:8080/cnrCommand HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Connection: close
+
+{
+    "type": "ssp71",
+    "encoding": "text/plain",
+    "command": "V+"
+}
+
+
+
+OTHER
+-------------------------------------
+
+cnrperformance: Solo
+cnrlocation: Building 1
+cnrroom: Room 1
+cnrtime_slot: 08:00am
+cnrfirst_name: 
+cnrlast_name: 
+cnrstudent_id: 
+cnrskill: Beginner
+cnrinstrument: Piano
+cnrfirst_name_2: 
+cnrlast_name_2: 
+cnrstudent_id_2: 
+cnrskill_2: Beginner
+cnrinstrument_2: Piano
+
+
+=====================
+
+// add recipients
+Var CR As String = Encodings.UTF8.Chr(13)
+Var LF As String = Encodings.UTF8.Chr(10)
+Var s As String
+s = ToAddressField.Text.ReplaceAll(",", CR)
+s = s.ReplaceAll(CR + LF, CR)
+Var recipients() As String
+recipients = s.Split(CR)
+For Each recipient As String In recipients
+  mail.AddRecipient(recipient.Trim)
+Next
+
+
+
