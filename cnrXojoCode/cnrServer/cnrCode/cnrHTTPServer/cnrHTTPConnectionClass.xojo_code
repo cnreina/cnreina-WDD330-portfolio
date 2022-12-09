@@ -474,18 +474,18 @@ Protected Class cnrHTTPConnectionClass
 		    Return
 		  End If
 		  If cnrRequestParam.cnrPath.IsEmpty Then
-		    cnrSetLastError(CurrentMethodName, "cnrRequestParam.cnrGetPath.IsEmpty")
+		    cnrSetLastError(CurrentMethodName, "cnrRequestParam.cnrPath.IsEmpty")
 		    cnrSendHTTPErrorResponse(cnrRequestParam, cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
 		    Return
 		  End If
 		  
 		  //********** PROCESS GET REQUEST
 		  
-		  //********** STATIC FILE REQUEST
+		  // STATIC FILE REQUEST
 		  If cnrRequestParam.cnrPath.IndexOf(".") > 0 Or cnrRequestParam.cnrPath = "/" Then
 		    // find requested file
 		    If cnrRequestParam.cnrPath.IsEmpty Then
-		      cnrSetLastError(CurrentMethodName, "cnrRequestParam.cnrGetPath.IsEmpty")
+		      cnrSetLastError(CurrentMethodName, "cnrRequestParam.cnrPath.IsEmpty")
 		      cnrSendHTTPErrorResponse(cnrRequestParam, cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
 		      Return
 		    End If
@@ -560,13 +560,17 @@ Protected Class cnrHTTPConnectionClass
 		    
 		    //  SEND RESPONSE
 		    cnrSendHTTPFileResponse(cnrRequestParam)
+		    Return
+		    
+		  Else
+		    
+		    //********** PROCESS UNKNOWN GET REQUEST
+		    
+		    //  SEND ERROR RESPONSE
+		    cnrSetLastError(CurrentMethodName, "UNKNOWN GET REQUEST")
+		    cnrSendHTTPErrorResponse(cnrRequestParam, cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
+		    Return
 		  End If
-		  
-		  
-		  
-		  
-		  
-		  
 		  
 		  
 		  
@@ -793,11 +797,10 @@ Protected Class cnrHTTPConnectionClass
 		    cnrRequestParam.cnrResponse.cnrSetSocketID(cnrHTTPSocketObject.Handle.ToString)
 		    cnrRequestParam.cnrResponse.cnrSetSentTime(DateTime.Now.ToString)
 		    cnrRequestParam.cnrResponse.cnrSetHTTPVersion(cnrHTTP_VERSION_CONST)
-		    cnrRequestParam.cnrResponse.cnrSetStatusCode(cnrHTTP_RESPONSE_CODE_OK_CONST)
+		    cnrRequestParam.cnrResponse.cnrSetStatusCode(cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
 		    
 		    // body
-		    
-		    cnrRequestParam.cnrResponse.cnrSetResponseBody("{""200"": ""Ok""}")
+		    cnrRequestParam.cnrResponse.cnrSetResponseBody("{""401"": ""Not Found""}")
 		    Var cnrAcceptHeaderVar As String = cnrRequestParam.cnrHeaders.cnrGetValueByKeyName("Accept")
 		    If cnrAcceptHeaderVar = "application/json"  Or cnrAcceptHeaderVar = "*/*" Then
 		      // get user response data
@@ -818,6 +821,8 @@ Protected Class cnrHTTPConnectionClass
 		          cnrSendHTTPErrorResponse(cnrRequestParam, cnrHTTP_RESPONSE_CODE_SERVER_ERROR_CONST)
 		          Return
 		        End Try
+		        // set status
+		        cnrRequestParam.cnrResponse.cnrSetStatusCode(cnrHTTP_RESPONSE_CODE_OK_CONST)
 		        // set body
 		        cnrRequestParam.cnrResponse.cnrSetResponseBody(cnrEventCallBackStringVar)
 		      End If

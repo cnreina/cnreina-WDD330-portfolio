@@ -343,6 +343,17 @@ End
 
 #tag WindowCode
 	#tag Event
+		Sub Close()
+		  If cnrServerInstance.cnrServerIsListening Then
+		    cnrStopServer
+		  End If
+		  
+		  Quit
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  cnrMain
 		  
@@ -351,79 +362,105 @@ End
 
 
 	#tag Method, Flags = &h21
-		Private Sub cnrHandleDataAvailableEvent(cnrSenderParam As cnrHTTPConnectionClass)
+		Private Sub cnrDisplayLogLocal()
+		  If cnrLastLogMessage.IsEmpty Then
+		    Return
+		  End If
 		  If CheckBoxShowData.Value = False Then
 		    Return
 		  End If
 		  
 		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
+		  TextArea1.AddText(cnrGetLastLogString + EndOfLine)
 		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrLastDataAvailable + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function cnrGetLastLogString() As String
+		  If cnrLastLogMessage.IsEmpty Then
+		    Return ""
+		  End If
+		  
+		  Return cnrLastLogMessage
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub cnrHandleDataAvailableEvent(cnrSenderParam As cnrHTTPConnectionClass)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrLastDataAvailable)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPCommandReceivedEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrTypeParam As String, cnrEncodingParam As String, cnrCommandParam As String)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrReceivedTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("Type: " + cnrTypeParam + EndOfLine)
-		  TextArea1.AddText("Encoding: " + cnrEncodingParam + EndOfLine)
-		  TextArea1.AddText("Command: " + cnrCommandParam + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrReceivedTime)
+		  cnrStringBuilderArrayVar.Add("Type: " + cnrTypeParam)
+		  cnrStringBuilderArrayVar.Add("Encoding: " + cnrEncodingParam)
+		  cnrStringBuilderArrayVar.Add("Command: " + cnrCommandParam)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPConnectedEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPConnectionClosedEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPDisconnectedEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPErrorEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText("Error Message: " + cnrSenderParam.cnrLastErrorMessage + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("cnrLastDataAvailable: " + cnrSenderParam.cnrLastDataAvailable + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  cnrStringBuilderArrayVar.Add("Error Message: " + cnrSenderParam.cnrLastErrorMessage)
+		  cnrStringBuilderArrayVar.Add("cnrLastDataAvailable: " + cnrSenderParam.cnrLastDataAvailable)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
@@ -435,20 +472,18 @@ End
 		    Return ""
 		  End If
 		  
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrReceivedTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  //TextArea1.AddText(cnrFormDataParam + EndOfLine)
-		  //TextArea1.AddText(EndOfLine)
-		  
+		  // prepare log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrReceivedTime)
 		  If cnrFormDataParam.IsEmpty Then
-		    TextArea1.AddText("cnrFormDataParam.IsEmpty" + EndOfLine)
-		    TextArea1.AddText(EndOfLine)
+		    cnrStringBuilderArrayVar.Add("cnrFormDataParam.IsEmpty")
 		  End If
 		  
 		  If cnrServerPaused = True Then
+		    // save log
+		    Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		    cnrSaveLogMessage(cnrStringBuilderTextVar)
 		    Return ""
 		  End If
 		  
@@ -492,38 +527,39 @@ End
 		  
 		  Var cnrJSONStringVar As String = cnrJSONObjectVar.ToString
 		  
-		  TextArea1.AddText(cnrJSONStringVar + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  cnrStringBuilderArrayVar.Add(cnrJSONStringVar)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
+		  // return json
 		  Return cnrJSONStringVar
-		  
-		  
-		  
-		  
-		  
-		  
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPFormDataReceivedEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrFormDataParam As String)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrReceivedTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrFormDataParam + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // prepare log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrReceivedTime)
+		  cnrStringBuilderArrayVar.Add(cnrFormDataParam)
 		  
 		  // parse form fields
 		  Var cnrContentTypeVar As String  = cnrSenderParam.cnrRequest.cnrHeaders.cnrGetValueByKeyName("Content-Type")
 		  If cnrContentTypeVar.IndexOf("boundary=") < 0 Then
+		    // save log
+		    Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		    cnrSaveLogMessage(cnrStringBuilderTextVar)
 		    Return
 		  End If
 		  Var cnrBoundaryVar As String = cnrContentTypeVar.Right(cnrContentTypeVar.Length - cnrContentTypeVar.IndexOf("boundary="))
 		  cnrBoundaryVar = cnrBoundaryVar.Replace("boundary=", "")
 		  If cnrBoundaryVar.IsEmpty Then
+		    // save log
+		    Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		    cnrSaveLogMessage(cnrStringBuilderTextVar)
 		    Return
 		  End If
 		  
@@ -553,46 +589,44 @@ End
 		  Next
 		  
 		  For Each cnrFormField As cnrStringPairStruct In cnrRequestBodyFieldsArrayVar
-		    TextArea1.AddText(cnrFormField.cnrPair + EndOfLine)
+		    // update log
+		    cnrStringBuilderArrayVar.Add(cnrFormField.cnrPair)
 		  Next
-		  TextArea1.AddText(EndOfLine)
 		  
-		  
-		  
-		  
-		  
-		  
+		  // save log
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function cnrHandleHTTPJSONGetResponseEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrJSONDataParam As String) As String
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrReceivedTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  
+		  // prepare log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrReceivedTime)
 		  If cnrJSONDataParam.IsEmpty Then
-		    TextArea1.AddText("cnrJSONDataParam.IsEmpty" + EndOfLine)
-		    TextArea1.AddText(EndOfLine)
+		    cnrStringBuilderArrayVar.Add("cnrJSONDataParam.IsEmpty")
 		  End If
+		  
 		  
 		  // process data
 		  Var cnrJSONDataVar As JSONItem
 		  Try
 		    cnrJSONDataVar = New JSONItem(cnrJSONDataParam)
 		    If cnrJSONDataVar = Nil Then
-		      TextArea1.AddText(EndOfLine)
-		      TextArea1.AddText("ERROR: cnrJSONDataVar = Nil " + EndOfLine)
-		      TextArea1.AddText(EndOfLine)
+		      // save log
+		      cnrStringBuilderArrayVar.Add("ERROR: cnrJSONDataVar = Nil ")
+		      Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		      cnrSaveLogMessage(cnrStringBuilderTextVar)
 		      Return ""
 		    End If
 		  Catch
-		    TextArea1.AddText(EndOfLine)
-		    TextArea1.AddText("ERROR: cnrJSONDataVar = Nil " + EndOfLine)
-		    TextArea1.AddText(EndOfLine)
+		    // save log
+		    cnrStringBuilderArrayVar.Add("ERROR: cnrJSONDataVar = Nil ")
+		    Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		    cnrSaveLogMessage(cnrStringBuilderTextVar)
 		    Return ""
 		  End Try
 		  
@@ -600,6 +634,10 @@ End
 		  If cnrServerIsPaused(cnrJSONDataVar.Value("type")) = True Then
 		    Return ""
 		  End If
+		  
+		  // save log
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		  // process command type
 		  Var cnrResponseJSONVar As JSONItem = New JSONItem
@@ -692,80 +730,81 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPJSONReceivedEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrJSONDataParam As String)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrReceivedTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrJSONDataParam + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrReceivedTime)
+		  cnrStringBuilderArrayVar.Add(cnrJSONDataParam)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPRequestAvailableEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine + EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrRequest.cnrString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrRequest.cnrString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPResponseSendCompleteEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("Time: " + cnrSenderParam.cnrResponse.cnrSentTime + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  cnrStringBuilderArrayVar.Add("Time: " + cnrSenderParam.cnrResponse.cnrSentTime)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPResponseSendEvent(cnrSenderParam As cnrHTTPConnectionClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrResponse.cnrString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrResponse.cnrString)
 		  If Not cnrSenderParam.cnrResponse.cnrResponseBody.IsEmpty Then
-		    TextArea1.AddText(cnrSenderParam.cnrResponse.cnrResponseBody + EndOfLine)
-		    TextArea1.AddText(EndOfLine)
+		    cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrResponse.cnrResponseBody)
 		  End If
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleHTTPSendProgressEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrBytesSentParam As Integer, cnrBytesLeftParam As Integer)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("Bytes Sent: " + cnrBytesSentParam.ToString + EndOfLine)
-		  TextArea1.AddText("Bytes Remaining: " + cnrBytesLeftParam.ToString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("Time: " + DateTime.Now.ToString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrConnectionString)
+		  cnrStringBuilderArrayVar.Add("Bytes Sent: " + cnrBytesSentParam.ToString)
+		  cnrStringBuilderArrayVar.Add("Bytes Remaining: " + cnrBytesLeftParam.ToString)
+		  cnrStringBuilderArrayVar.Add("Time: " + DateTime.Now.ToString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleNewHTTPSocketEvent(cnrSenderParam As cnrHTTPServerClass, cnrHTTPConnectionParam As cnrHTTPConnectionClass)
-		  // update log
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText("Server UUID: " + cnrSenderParam.cnrServerUUID + EndOfLine)
-		  TextArea1.AddText(cnrHTTPConnectionParam.cnrConnectionString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add("Server UUID: " + cnrSenderParam.cnrServerUUID)
+		  cnrStringBuilderArrayVar.Add(cnrHTTPConnectionParam.cnrConnectionString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		  // setup handlers
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPDataAvailableEvent, AddressOf cnrHandleDataAvailableEvent
@@ -788,40 +827,42 @@ End
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPResponseSendEvent, AddressOf cnrHandleHTTPResponseSendEvent
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPSendProgressEvent, AddressOf cnrHandleHTTPSendProgressEvent
 		  
-		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleServerErrorEvent(cnrSenderParam As cnrHTTPServerClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrServerTime + EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrError.cnrGetErrorsString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrServerTime)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrError.cnrGetErrorsString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleServerStartEvent(cnrSenderParam As cnrHTTPServerClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrServerString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrServerString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub cnrHandleServerStopEvent(cnrSenderParam As cnrHTTPServerClass)
-		  TextArea1.AddText(cnrDisplayDivider + EndOfLine)
-		  TextArea1.AddText(CurrentMethodName + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
-		  TextArea1.AddText(cnrSenderParam.cnrServerString + EndOfLine)
-		  TextArea1.AddText(EndOfLine)
+		  // save log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrServerString)
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
 		End Sub
 	#tag EndMethod
@@ -852,6 +893,26 @@ End
 	#tag Method, Flags = &h0
 		Sub cnrPauseServer(cnrPauseParam As Boolean)
 		  cnrServerPaused = cnrPauseParam
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub cnrSaveLogMessage(cnrDataParam As String)
+		  If cnrDataParam.IsEmpty Then
+		    Return
+		  End If
+		  
+		  // save log
+		  cnrLastLogMessage = cnrDataParam
+		  
+		  // display local
+		  cnrDisplayLogLocal
+		  
+		  // debug log
+		  #If DebugBuild
+		    System.DebugLog(cnrDisplayDivider + EndOfLine + cnrDataParam)
+		  #EndIf
 		  
 		End Sub
 	#tag EndMethod
@@ -916,6 +977,10 @@ End
 
 	#tag Property, Flags = &h21
 		Private cnrDisplayDivider As String = "=============================================="
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private cnrLastLogMessage As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
