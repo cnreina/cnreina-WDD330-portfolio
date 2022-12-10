@@ -467,11 +467,6 @@ End
 
 	#tag Method, Flags = &h21
 		Private Function cnrHandleHTTPFormDataGetResponseEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrFormDataParam As String) As String
-		  // check server state
-		  If cnrServerIsPaused("") = True Then
-		    Return ""
-		  End If
-		  
 		  // prepare log
 		  Var cnrStringBuilderArrayVar() As String
 		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
@@ -601,6 +596,48 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function cnrHandleHTTPGetResponseAuthorizationEvent(cnrSenderParam as cnrHTTPConnectionClass, cnrRequestObjectParam as cnrHTTPRequestClass) As Boolean
+		  #Pragma Unused cnrSenderParam
+		  
+		  // prepare log
+		  Var cnrStringBuilderArrayVar() As String
+		  cnrStringBuilderArrayVar.Add(CurrentMethodName)
+		  If cnrServerPaused = True Then
+		    cnrStringBuilderArrayVar.Add("False")
+		  Else
+		    cnrStringBuilderArrayVar.Add("True")
+		  End If
+		  // save log
+		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
+		  cnrSaveLogMessage(cnrStringBuilderTextVar)
+		  
+		  // we authorize all requests of type 'server' when server is paused
+		  If cnrServerPaused = True And cnrRequestObjectParam.cnrMethod = "POST" Then
+		    Try
+		      If cnrRequestObjectParam.cnrHeaders.cnrGetValueByKeyName("Content-Type") <> "application/json" Then
+		        Return False
+		      End If
+		      
+		      Var cnrJSONDataVar As JSONItem = New JSONItem(cnrRequestObjectParam.cnrBody)
+		      If cnrJSONDataVar = Nil Then
+		        Return False
+		      End If
+		      
+		      If cnrJSONDataVar.Value("type") = "server" Then
+		        Return True
+		      End If
+		      
+		    Catch
+		      Return False
+		    End Try
+		  End If
+		  
+		  Return Not cnrServerPaused
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function cnrHandleHTTPJSONGetResponseEvent(cnrSenderParam As cnrHTTPConnectionClass, cnrJSONDataParam As String) As String
 		  // prepare log
 		  Var cnrStringBuilderArrayVar() As String
@@ -611,7 +648,7 @@ End
 		  End If
 		  
 		  
-		  // process data
+		  // PROCESS DATA
 		  Var cnrJSONDataVar As JSONItem
 		  Try
 		    cnrJSONDataVar = New JSONItem(cnrJSONDataParam)
@@ -629,11 +666,6 @@ End
 		    cnrSaveLogMessage(cnrStringBuilderTextVar)
 		    Return ""
 		  End Try
-		  
-		  // check server state
-		  If cnrServerIsPaused(cnrJSONDataVar.Value("type")) = True Then
-		    Return ""
-		  End If
 		  
 		  // save log
 		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
@@ -693,6 +725,26 @@ End
 		    Case "info"
 		      Var cnrConnectionsVar As String = cnrServerInstance.cnrServerString
 		      cnrParameterJSONVar.Value("response") = cnrConnectionsVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "login"
+		      cnrParameterJSONVar.Value("response") = "Not Implemented"
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "log"
+		      Var cnrLogVar As String = cnrGetLastLogString
+		      cnrParameterJSONVar.Value("response") = cnrLogVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "errors"
+		      Var cnrErrorsVar As String = "Not Implemented"
+		      cnrParameterJSONVar.Value("response") = cnrErrorsVar
 		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
 		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
 		      Return cnrJSONStringVar
@@ -826,6 +878,8 @@ End
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPResponseSendCompleteEvent, AddressOf cnrHandleHTTPResponseSendCompleteEvent
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPResponseSendEvent, AddressOf cnrHandleHTTPResponseSendEvent
 		  AddHandler cnrHTTPConnectionParam.cnrHTTPSendProgressEvent, AddressOf cnrHandleHTTPSendProgressEvent
+		  
+		  AddHandler cnrHTTPConnectionParam.cnrHTTPGetResponseAuthorizationEvent, AddressOf cnrHandleHTTPGetResponseAuthorizationEvent
 		  
 		End Sub
 	#tag EndMethod

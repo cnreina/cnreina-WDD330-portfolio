@@ -411,10 +411,16 @@ Protected Class cnrHTTPConnectionClass
 		    Return
 		  End If
 		  
-		  RaiseEvent cnrHTTPRequestAvailableEvent
+		  // ********** GET RESPONSE APPROVAL
+		  Var cnrAuthorizationVar As Boolean = RaiseEvent cnrHTTPGetResponseAuthorizationEvent(cnrRequestObjectParam)
+		  If cnrAuthorizationVar = False Then
+		    cnrSetLastError(CurrentMethodName, "cnrHTTPGetResponseAuthorizationEvent = False")
+		    cnrSendHTTPErrorResponse(cnrRequestObjectParam, cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
+		    Return
+		  End If
+		  
 		  
 		  // ********** PROCESS HTTP MESSAGE
-		  
 		  Select Case cnrRequestObjectParam.cnrMethod
 		    // OPTIONS
 		  Case "OPTIONS"
@@ -434,12 +440,10 @@ Protected Class cnrHTTPConnectionClass
 		    // Unknown
 		  Case Else
 		    cnrSetLastError(CurrentMethodName, "Unknown Request Method")
+		    cnrSendHTTPErrorResponse(cnrRequestObjectParam, cnrHTTP_RESPONSE_CODE_NOT_FOUND_CONST)
 		    Return
 		    
 		  End Select
-		  
-		  
-		  
 		  
 		  
 		  
@@ -826,6 +830,7 @@ Protected Class cnrHTTPConnectionClass
 		        // set body
 		        cnrRequestParam.cnrResponse.cnrSetResponseBody(cnrEventCallBackStringVar)
 		      End If
+		      
 		    End If
 		    
 		    // headers
@@ -1084,7 +1089,9 @@ Protected Class cnrHTTPConnectionClass
 		    
 		  Case Else
 		    cnrSetLastError(CurrentMethodName, "Unknown cnrErrorTypeParam (" + cnrErrorTypeParam + ")")
-		    cnrHTTPSocketObject.Close
+		    // send header response
+		    cnrRequestParam.cnrResponse.cnrSetSentTime(DateTime.Now.ToString)
+		    cnrSendHTTPHeaderResponse(cnrRequestParam)
 		    Return
 		    
 		  End Select
@@ -1355,6 +1362,10 @@ Protected Class cnrHTTPConnectionClass
 
 	#tag Hook, Flags = &h0
 		Event cnrHTTPFormDataReceivedEvent(cnrFormDataParam As String)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event cnrHTTPGetResponseAuthorizationEvent(cnrRequestParam As cnrHTTPRequestClass) As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
