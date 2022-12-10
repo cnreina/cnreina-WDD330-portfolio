@@ -103,8 +103,8 @@ const links = [
     url: "cnrCode/w12/html/cnrMainView.html"
   },
   {
-    label: "Challenge 2 (...)",
-    url: "cnrCode/challenge2/html/cnrMainView.html"
+    label: "Challenge 2 (Server Control)",
+    url: "cnrCode/w14challenge2/html/cnrMainView.html"
   }
 ];
 

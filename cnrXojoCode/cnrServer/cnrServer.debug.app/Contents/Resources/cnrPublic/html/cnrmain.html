@@ -1,0 +1,255 @@
+<!--
+    Carlos N Reina
+    cnreina@gmail.com
+    cnreina.com
+-->
+
+<!-- NOTES
+    Warning: When using FormData to submit POST requests using XMLHttpRequest or the Fetch_API with the multipart/form-data Content-Type (e.g. when uploading Files and Blobs to the server), do not explicitly set the Content-Type header on the request. Doing so will prevent the browser from being able to set the Content-Type header with the boundary expression it will use to delimit form fields in the request body.
+
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+    https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+    https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#submitting_forms_and_uploading_files
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Web Page Main></title>
+        <link rel="icon" type="image/png" href="/assets/cnrsolo.png"></link>
+        <link rel="apple-touch-icon" type="image/png" href="/assets/cnrsolo.png"></link>
+        <link rel="icon" href="/assets/favicon.ico"></link>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta NAME="Description" content="Web Page Main"></meta>
+
+        <style>
+            @import "/css/cnrmain_screen_small.css" screen and (min-width:300px);
+            @import "/css/cnrmain_screen_medium.css" screen and (min-width:800px);
+            @import "/css/cnrmain_screen_large.css" screen and (min-width:1024px);
+        </style>
+    </head>
+    <body id="cnrpage_body">
+            <!-- *************** MAIN_HEADER *************** -->
+        <header>
+            <div id="cnrmain_header_img">
+                <img src="/assets/cnrinstrument.png" alt="Logo" title="Our Logo" style="width: 50px;">
+            </div>
+            <div class="cnrmain_header_content">
+                <h2>Web Page Main</h2>
+            </div>
+        </header>
+        <!-- ************** MAIN_CONTENT *************** -->
+        <div class="cnrmain_content_containers">
+
+            <!-- START FORM CONTAINERS -->
+            <div class="cnrform_containers">
+                <h3><img src="/assets/cnrname.png" alt="name icon"  style="width: 30px;"> Form Containers</h3>
+                <!-- START FORM 1 CONTAINER -->
+                <div id="cnrform_container1">
+                    <form action="/cnrForm" method="POST" class="cnrforms" id="cnrform" enctype="multipart/form-data">
+                        <!-- START PERFORMANCE CONTAINER -->
+                        <div class="cnrform_input_containers" id="cnrperformance_container">
+                            <h3>Performance</h3>
+                            <div id="cnrperformance_type_location_container">
+                                <!-- type -->
+                                <div id="cnrperformance_type_container">
+                                    <h3 title="Please select a Performance Type">Type 
+                                        <select id="cnrperformance" name="cnrperformance">
+                                            <option value="Solo">Solo</option>
+                                            <option value="Duet">Duet</option>
+                                            <option value="Concerto">Concerto</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                                <!-- location -->                    
+                                <div id="cnrlocation_container">
+                                    <h3 title="Please select a building">Building 
+                                        <select id="cnrlocation" name="cnrlocation">
+                                            <option value="Building 1">Building 1</option>
+                                            <option value="Building 2">Building 2</option>
+                                            <option value="Building 3">Building 3</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div id="cnrperformance_room_time_container">
+                                <!-- room -->
+                                <div id="cnrroom_container">
+                                    <h3 title="Please select a room">Room 
+                                        <select id="cnrroom" name="cnrroom">
+                                            <option value="Room 1">Room 1</option>
+                                            <option value="Room 2">Room 2</option>
+                                            <option value="Room 3">Room 3</option>
+                                            <option value="Room 4">Room 4</option>
+                                            <option value="Room 5">Room 5</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                                <!-- time -->
+                                <div id="cnrtime_container">
+                                    <h3 title="Please select a time slot">Time 
+                                        <select id="cnrtime_slot" name="cnrtime_slot">
+                                            <option value="08:00am">08:00am</option>
+                                            <option value="10:00am">10:00am</option>
+                                            <option value="01:00pm">01:00pm</option>
+                                            <option value="03:00pm">03:00pm</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- END PERFORMANCE CONTAINER -->
+
+                        <hr>
+
+                        <!-- START STUDENT 1 CONTAINER -->
+                        <div class="cnrform_input_containers" id="cnrstudent1_container">
+                            <h3>Student 1</h3>
+                            <div id="cnrstudent1_firstlastname_container">
+                                <!-- first name -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your first name">First Name <input type="text" id="cnrfirst_name" name="cnrfirst_name"></h3>
+                                </div>
+                                <!-- last name -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your last name">Last Name <input type="text" id="cnrlast_name" name="cnrlast_name"></h3>
+                                </div>
+                            </div> <!-- cnrstudent1_firstlastname_container -->
+
+                            <div id="cnrstudent1_id_container">
+                                <!-- id -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your Student ID">Student ID <input type="text" id="cnrstudent_id" name="cnrstudent_id"></h3>
+                                </div>
+                            </div> <!-- cnrstudent1_id_container -->
+
+                            <div id="cnrstudent1_skill_instrument_container">
+                                <!-- skill -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your skill level">Skill Level 
+                                        <select id="cnrskill" name="cnrskill">
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Pre-advanced">Pre-advanced</option>
+                                            <option value="Advanced">Advanced</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                                <!-- instrument -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please select an instrument">Instrument 
+                                        <select id="cnrinstrument" name="cnrinstrument">
+                                            <option value="Piano">Piano</option>
+                                            <option value="Voice">Voice</option>
+                                            <option value="String">String</option>
+                                            <option value="Organ">Organ</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                            </div> <!-- cnrstudent1_skill_instrument_container -->
+                        </div>
+                        <!-- END STUDENT 1 CONTAINER -->
+
+                        <hr>
+
+                        <!-- START STUDENT 2 CONTAINER -->
+                        <div class="cnrform_input_containers" id="cnrstudent2_container">
+                            <h3>Student 2</h3>
+                            <div id="cnrstudent2_firstlastname_container">
+                                <!-- first name -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your first name">First Name <input type="text" id="cnrfirst_name_2" name="cnrfirst_name_2"></h3>
+                                </div>
+                                <!-- last name -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your last name">Last Name <input type="text" id="cnrlast_name_2" name="cnrlast_name_2"></h3>
+                                </div>
+                            </div> <!-- student2_first_last_container -->
+
+                            <div id="cnrstudent2_id_container">
+                                <!-- id -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your Student ID">Student ID <input type="text" id="cnrstudent_id_2" name="cnrstudent_id_2"></h3>
+                                </div>
+                            </div> <!-- cnrstudent2_id_container -->
+
+                            <div id="cnrstudent2_skill_instrument_container">
+                                <!-- skill -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please provide your skill level">Skill Level 
+                                        <select id="cnrskill_2" name="cnrskill_2">
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Pre-advanced">Pre-advanced</option>
+                                            <option value="Advanced">Advanced</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                                <!-- instrument -->
+                                <div class="cnrform_input_containers">
+                                    <h3 title="Please select an instrument">Instrument 
+                                        <select id="cnrinstrument_2" name="cnrinstrument_2">
+                                            <option value="Piano">Piano</option>
+                                            <option value="Voice">Voice</option>
+                                            <option value="String">String</option>
+                                            <option value="Organ">Organ</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </h3>
+                                </div>
+                            </div> <!-- cnrstudent2_skill_instrument_container -->
+                        </div>
+                        <!-- END STUDENT 2 CONTAINER -->
+
+                        <!-- START FORM BUTTONS CONTAINERS -->
+                        <div class="cnrform_buttons_containers">
+                            <input type="button" id="cnrregister" name="cnrregister" value="Register">
+                            <input type="button" id="cnrclear" name="cnrclear" value="Clear Form">
+                        </div>
+                        <!-- END FORM BUTTONS CONTAINERS -->
+
+                    </form>
+                </div>
+                <!-- END FORM 1 CONTAINER -->
+            </div>
+            <!-- END FORM CONTAINERS -->
+
+            <!-- START STUDENT TABLE CONTAINERS -->
+            <div class="cnrtable_students_containers">
+                <table class="cnrtable_students" id="cnrtable_students_1">
+                    <caption><img src="/assets/cnrname.png" alt="icon"  style="width: 30px;"> Registered Students</caption>
+                    <tr class="cnrtable_students_header_rows">
+                        <th class="cnrtable_students_rows">Name</th>
+                        <th class="cnrtable_students_rows">Location</th>
+                        <th class="cnrtable_students_rows">Time</th>
+                        <th class="cnrtable_students_rows">Performance</th>
+                        <th class="cnrtable_students_rows">Instrument</th>
+                        <th class="cnrtable_students_rows">Skill Level</th>
+                    </tr>
+                    <!-- table content rows loaded by javascript -->
+                </table>
+            </div>
+            <!-- END STUDENT TABLE CONTAINERS -->
+
+        </div> <!-- cnrmain_content -->
+
+        <!-- ***************** FOOTER ****************** -->
+
+        <footer>
+            <p>Carlos N Reina</p>
+        </footer>
+
+        <!-- ***************** SCRIPTS ****************** -->
+
+        <!-- <script type="text/javascript" src="/js/cnrmain.js"></script> -->
+        <script type="text/javascript" src="/js/cnrmain.js"></script>
+
+    </body>
+
+</html>
+

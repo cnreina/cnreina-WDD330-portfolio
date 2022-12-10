@@ -1,0 +1,102 @@
+/*
+	BYU Idaho 2019
+	CS213 Web Engineering I
+	Carlos N Reina
+ */
+
+
+/* style_screen_large.css */
+
+
+/*************** RESPONSIVE LAYOUT - (LARGE) ***************/
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 100px;
+	padding: 5px;
+	background-color: white;
+}
+
+/* **************** MAIN HEADERS *************** */
+.mainHeaders {
+	margin: 0px;
+	padding: 0px 5px 10px 5px;
+	font-size: 14px;
+}
+
+hr {
+	margin: 8px 0px;
+	padding: 0px;
+	width: 100%;
+	color: lightgrey;
+}
+
+/* ************** MAIN CONTAINERS ************* */
+.mainContainers {
+	display: grid;
+	grid-column: auto;
+	background-color: rgb(207, 219, 193);
+}
+
+/* ************* INPUT CONTAINERS ************* */
+.inputContainers {
+	background-color: rgb(84, 120, 199);
+	padding: 10px;
+	color: aliceblue;
+}
+
+/* *************** INPUT FIELDS *************** */
+.inputFields {
+	min-width: 100%;
+}
+
+/* ************ RESPONSE CONTAINERS ************ */
+.responseContainers {
+	padding: 40px;
+}
+#responseTable td {
+	min-width: 130px;
+	margin: 0px;
+	padding: 0px 5px;
+}
+
+/* ************ CONTROLS CONTAINERS ************ */
+.controlsContainers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0px;
+	padding: 0px;
+	min-width: 100%;
+	background-color: brown;
+}
+.controlButtons {
+	min-width: 100px;
+	min-height: 30px;
+	margin: 10px;
+	padding: 0px;
+}
+
+/* ***************** MAIN FOOTER *************** */
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	background-color: black;
+	color: white;
+	text-align: center;
+	line-height: 2.5;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	opacity: 0.5;
+}

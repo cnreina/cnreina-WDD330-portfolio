@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<!--
+   BYU Idaho 2019
+   CS213 Web Engineering I
+   Carlos N Reina
+-->
+
+<!-- assign11.html -->
+
+<html lang="en">
+
+<head>
+    <title>PHP Form Processing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta NAME="Description" content="Shopping Cart">
+    <link rel="icon" href="/assets/favicon.ico"></link>
+
+    <style>
+        @import "css/assign11_screen_small.css" screen and (max-width:640px);
+        @import "css/assign11_screen_medium.css" screen and (min-width:640px);
+        @import "css/assign11_screen_large.css" screen and (min-width:1024px);
+    </style>
+</head>
+
+<!-- *************** MAIN_HEADER *************** -->
+
+<body id="page_top">
+    <header>
+        <div id="main_header_img">
+            <img src="assets/cnrworld.png" alt="Logo" title="Our Logo">
+        </div>
+        <div class="main_header_content">
+            <h2>Online Shopping</h2>
+            <p>PHP Form Processing</p>
+        </div>
+    </header>
+
+    <!-- ************** MAIN_CONTENT *************** -->
+    <div id="main_content">
+
+        <!-- *************** MAIN_TABLE **************** -->
+        <div class="table_containers">
+            <table id="shopping_items_container">
+                <caption>Items Available</caption>
+                <tr class="table_header_rows">
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th>Cart</th>
+                </tr>
+                <tr class="table_content_rows">
+                    <td><img src="assets/cnritem_0.png" alt="Item 0 picture"><strong>Beautiful suburban home</strong><br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's standard dummy text
+                        ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+                    <td>$180,000</td>
+                    <td><input type="checkbox" class="cart_checkboxes" id="check_0" title="Beautiful suburban home $180,000.00" value="Add to cart"> Add</td>
+                </tr>
+
+                <tr class="table_content_rows">
+                    <td><img src="assets/cnritem_1.png" alt="Item 1 picture"><strong>Delivery truck</strong><br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's standard dummy text ever since
+                        the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+                    <td>$75,000</td>
+                    <td><input type="checkbox" class="cart_checkboxes" id="check_1" title="Delivery truck $75,000.00" value="Add to cart"> Add</td>
+                </tr>
+
+                <tr class="table_content_rows">
+                    <td><img src="assets/cnritem_2.png" alt="Item 2 picture"><strong>Smartphone</strong><br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's standard dummy text ever since
+                        the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+                    <td>$1,150</td>
+                    <td><input type="checkbox" class="cart_checkboxes" id="check_2" title="Smartphone $1,050.00" value="Add to cart"> Add</td>
+                </tr>
+
+                <tr class="table_content_rows">
+                    <td><img src="assets/cnritem_3.png" alt="Item 3 picture"><strong>Laptop</strong><br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+                    <td>$2,150</td>
+                    <td><input type="checkbox" class="cart_checkboxes" id="check_3" title="Laptop $2,150.00" value="Add to cart"> Add</td>
+                </tr>
+
+                <tr class="table_content_rows">
+                    <td><img src="assets/cnritem_4.png" alt="Item 4 picture"><strong>Printer</strong><br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
+                    <td>$230</td>
+                    <td><input type="checkbox" class="cart_checkboxes" id="check_4" title="Printer $230.00" value="Add to cart"> Add</td>
+                </tr>
+            </table>
+        </div>
+        <!-- table_containers -->
+
+        <!-- ************** MAIN_FORM *************** -->
+        <div class="form_containers">
+            <form action="assign11.php" method="POST" id="main_form">
+                <div class="form_input_containers">
+                    <h3 title="Please provide your first name">First Name <input type="text" id="first_name" name="first_name"></h3>
+                    <p class="input_error_text" id="first_name_message">Please provide your first name</p>
+                </div>
+                <div class="form_input_containers">
+                    <h3 title="Please provide your last name">Last Name <input type="text" id="last_name" name="last_name"></h3>
+                    <p class="input_error_text" id="last_name_message">Please provide your last name</p>
+                </div>
+                <div class="form_input_containers">
+                    <h3 title="Please provide your address">Address</h3>
+                    <textarea id="address" name="address"></textarea>
+                    <p class="input_error_text" id="address_name_message">Please provide your address</p>
+                </div>
+                <div class="form_input_containers">
+                    <h3 title="Please provide your phone number">Phone <input type="text" id="phone" name="phone"></h3>
+                    <p class="input_error_text" id="phone_message">Please provide your phone number</p>
+                </div>
+
+                <div class="form_input_containers">
+                    <h3 title="Please select your credit card type">Credit Card Type </h3>
+                    <table id="card_type_radio_button_container">
+                        <tr>
+                            <td>
+                                <p class="radio_text"> Apple Card</p>
+                            </td>
+                            <td><input type="radio" id="card_1" name="card" value="apple_card"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="radio_text"> Visa</p>
+                            </td>
+                            <td><input type="radio" id="card_2" name="card" value="Visa"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="radio_text"> Mastercard</p>
+                            </td>
+                            <td><input type="radio" id="card_3" name="card" value="mastercard"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="radio_text"> American Express</p>
+                            </td>
+                            <td><input type="radio" id="card_4" name="card" value="american_express"></td>
+                        </tr>
+                    </table>
+                    <p class="input_error_text" id="credit_card_type_message">Please select a card type</p>
+                </div>
+
+                <div class="form_input_containers">
+                    <h3 title="Please provide your Credit Card number">Credit Card # <input type="text" id="credit_card" name="credit_card"></h3>
+                    <p class="input_error_text" id="credit_card_number_message">Please provide your Credit Card number</p>
+                </div>
+                <div class="form_input_containers">
+                    <h3 title="Please provide your Credit Card expiration date">Credit Card Expiration Date <input type="text" id="exp_date" name="exp_date"></h3>
+                    <p class="input_error_text" id="credit_card_dxpiration_date_message">Please provide your Credit Card Expiration Date</p>
+                </div>
+
+                <div class="form_output_fields">
+                    <h3 title="Total amount to pay">Total <input type="text" id="total" name="total" readonly></h3>
+                </div>
+                <div class="form_buttons">
+                    <input type="button" id="validate" name="validate" value="Validate">
+                    <input type="reset" id="reset" name="reset" value="Clear Form">
+                </div>
+
+                <div style="display: none;">
+                    <textarea style="display: none;" id="selectedItems" name="selectedItems" value="" readonly></textarea>
+                </div>
+
+            </form>
+        </div>
+        <!-- form_containers -->
+    </div>
+    <!-- main_content -->
+
+    <!-- ***************** FOOTER ****************** -->
+    <footer>
+        <p>2019 Carlos N Reina</p>
+    </footer>
+
+    <!-- ***************** SCRIPTS ****************** -->
+    <script type="text/javascript" src="js/assign11.js"></script>
+</body>
+
+</html>
