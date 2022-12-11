@@ -7,6 +7,8 @@
 /* ************************************************************************* */
 // INITIALIZE
 
+import * as cnrFetchModule from './cnrFetchModule.js';
+
 const cnrTOP_OFFSET = 6;
 const cnrLEFT_OFFSET = 4;
 
@@ -92,7 +94,7 @@ function cnrProcessPointerUpEvent(cnrCommandParam) {
   cnrElement.style.transform = `translate(0px, 0px)`;
 
   // send command
-  cnrFetchPOST(cnrCommandParam, "", cnrFetchResponseCallback, cnrFetchErrorCallback);
+  cnrFetchModule.cnrPOSTcnrCommand(cnrCommandParam, "", cnrFetchResponseCallback, cnrFetchErrorCallback);
 
 };
 
@@ -121,34 +123,6 @@ function cnrIsValidCommand(cnrParam){
   };
   return false;
 }; // cnrIsValidCommand
-
-/** cnrFetch */
-function cnrFetchPOST(cnrCommandParam, cnrArgsParam, cnrResponseCallbackParam, cnrErrorCallbackParam){
-  fetch("http://127.0.0.1:8080/cnrCommand", {
-    "method": "POST",
-    "headers": {
-      "user-agent": "vscode-restclient",
-      "host": "localhost:8080",
-      "content-type": "application/json",
-      "accept": "application/json",
-      "connection": "close"
-    },
-    "body": JSON.stringify({
-      "type": "server",
-      "encoding": "string",
-      "command": cnrCommandParam,
-      "args": cnrArgsParam
-    })
-  })
-  .then(response => {
-    // console.log(response);
-    cnrResponseCallbackParam(response);
-  })
-  .catch(err => {
-    // console.error(err);
-    cnrErrorCallbackParam(err);
-  });
-}; // cnrFetch
 
 /** cnrFetchResponseCallback */
 async function cnrFetchResponseCallback(cnrParam) {
