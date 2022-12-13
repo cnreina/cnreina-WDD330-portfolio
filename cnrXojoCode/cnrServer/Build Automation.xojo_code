@@ -30,6 +30,14 @@
 					Subdirectory = 
 					FolderItem = Li4vY25yUHVibGljLw==
 				End
+				Begin CopyFilesBuildStep cnrCopyCertFolderMacOS
+					AppliesTo = 0
+					Architecture = 0
+					Target = 0
+					Destination = 1
+					Subdirectory = 
+					FolderItem = Li4vY25yQ2VydC8=
+				End
 				Begin SignProjectStep Sign
 				  DeveloperID=
 				End
@@ -44,6 +52,14 @@
 					Destination = 1
 					Subdirectory = 
 					FolderItem = Li4vY25yUHVibGljLw==
+				End
+				Begin CopyFilesBuildStep cnrCopyCertFolderWindows
+					AppliesTo = 0
+					Architecture = 0
+					Target = 0
+					Destination = 1
+					Subdirectory = 
+					FolderItem = Li4vY25yQ2VydC8=
 				End
 			End
 #tag EndBuildAutomation

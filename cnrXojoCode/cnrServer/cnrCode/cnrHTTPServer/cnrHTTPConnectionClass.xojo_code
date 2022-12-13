@@ -208,17 +208,6 @@ Protected Class cnrHTTPConnectionClass
 		  
 		  
 		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
 		End Sub
 	#tag EndMethod
 
@@ -656,13 +645,13 @@ Protected Class cnrHTTPConnectionClass
 		    // headers
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Date", DateTime.Now.ToString)
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Server", "cnrServer-" + App.Version)
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Origin", "/")
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Origin", "*")
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Headers", "X-PINGOTHER, Content-Type")
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Headers", "*")
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Max-Age", "86400")
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Vary", "Accept-Encoding, Origin")
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Keep-Alive", "timeout=2, max=100")
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Connection", "Keep-Alive")
+		    // cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Vary", "Accept-Encoding, Origin")
+		    // cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Keep-Alive", "timeout=2, max=100")
+		    // cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Connection", "Keep-Alive")
 		    
 		    // SEND RESPONSE
 		    cnrSendHTTPHeaderResponse(cnrRequestParam)
@@ -834,12 +823,16 @@ Protected Class cnrHTTPConnectionClass
 		    End If
 		    
 		    // headers
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Date", DateTime.Now.ToString)
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Server", "cnrServer-" + App.Version)
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Origin", "*")
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Allow-Headers", "*")
+		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Access-Control-Max-Age", "86400")
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Content-Type", "application/json")
 		    // The Content-Length header indicates the size of the message body, in bytes, sent to the recipient
 		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Content-Length", Str(cnrRequestParam.cnrResponse.cnrResponseBody.Length))
 		    //cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Connection", "close")
-		    cnrRequestParam.cnrResponse.cnrResponseHeaders.cnrSetValueByKeyName("Date", DateTime.Now.ToString)
 		    
 		    // SEND RESPONSE
 		    cnrSendHTTPJSONResponse(cnrRequestParam)
@@ -1319,16 +1312,17 @@ Protected Class cnrHTTPConnectionClass
 		  End If
 		  
 		  // certificate
-		  cnrNewHTTPSocketVar.SSLEnabled = True
+		  cnrNewHTTPSocketVar.SSLEnabled = False
 		  // cnrNewHTTPSocketVar.CertificatePassword = ""
 		  // cnrNewHTTPSocketVar.CertificateRejectionFile = ""
 		  
 		  Var cnrCertificateFileVar As FolderItem
-		  cnrCertificateFileVar = SpecialFolder.Resources.Child("cnrCert/selfsigned.crt")
-		  If cnrCertificateFileVar.Exists Then
-		    cnrNewHTTPSocketVar.CertificateFile = cnrCertificateFileVar
+		  cnrCertificateFileVar = SpecialFolder.Resources.Child("cnrCert").Child("cnrServer.crt")
+		  If cnrCertificateFileVar.Exists = False Then
+		    cnrSetLastError(CurrentMethodName, "cnrCertificateFileVar.Exists = False")
+		    Return
 		  End If
-		  
+		  cnrNewHTTPSocketVar.CertificateFile = cnrCertificateFileVar
 		  
 		  // properties
 		  cnrHTTPSocketUUIDString = cnrGetNewUUID
