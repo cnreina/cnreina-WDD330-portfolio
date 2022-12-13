@@ -7,7 +7,7 @@
 /* ************************************************************************* */
 // INITIALIZE
 
-const cnrFetchBaseURL = "http://127.0.0.1/"
+const cnrFetchBaseURL = "http://cnreina.com/"
 
 
 window.onload = function () {

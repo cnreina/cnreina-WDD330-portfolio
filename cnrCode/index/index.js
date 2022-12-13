@@ -99,12 +99,8 @@ const links = [
     url: "cnrCode/w11/html/cnrMainView.html"
   },
   {
-    label: "Week 12 (Challenge 2 Test)",
-    url: "cnrCode/w12/html/cnrMainView.html"
-  },
-  {
     label: "Challenge 2 (Server Control)",
-    url: "cnrCode/w14challenge2/html/cnrMainView.html"
+    url: "http://cnreina.com/html/cnrMainView.html"
   }
 ];
 
