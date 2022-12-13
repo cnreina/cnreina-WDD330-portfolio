@@ -1,5 +1,5 @@
 #tag Class
-Protected Class cnrHTTPServerClass
+Protected Class cnrHTTPSServerClass
 	#tag Method, Flags = &h21
 		Private Function cnrGetNewUUID() As String
 		  Var cnrDateTimeNowVar As String = DateTime.Now.ToString
@@ -28,7 +28,7 @@ Protected Class cnrHTTPServerClass
 		    Return Nil
 		  End If
 		  
-		  // create new instance of cnrHTTPConnectionClass (Contains a TCPSocket/SSLSocket) and pass it back to the server
+		  // create new instance of cnrHTTPConnectionClass (Parent = TCPSocket) and pass it back to the server
 		  Var cnrNewHTTPConnectionVar As cnrHTTPConnectionClass = New cnrHTTPConnectionClass
 		  
 		  // notify and pass the new socket

@@ -15,6 +15,7 @@ cnrTools
 .debug
 *.debug
 .app
+*.debug.app
 *.pdf
 Builds*
 Scripts

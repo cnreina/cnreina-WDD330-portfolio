@@ -632,6 +632,22 @@ End
 		    End Try
 		  End If
 		  
+		  // we authorize all requests for the main page when server is paused
+		  If cnrServerPaused = True And cnrRequestObjectParam.cnrMethod = "GET" Then
+		    Try
+		      If cnrRequestObjectParam.cnrPath.Contains("cnrMainView") = True Then
+		        Return True
+		      End If
+		      
+		      If cnrRequestObjectParam.cnrPath.Contains("cnrFetchModule") = True Then
+		        Return True
+		      End If
+		      
+		    Catch
+		      Return False
+		    End Try
+		  End If
+		  
 		  Return Not cnrServerPaused
 		  
 		End Function
@@ -745,6 +761,13 @@ End
 		    Case "errors"
 		      Var cnrErrorsVar As String = "Not Implemented"
 		      cnrParameterJSONVar.Value("response") = cnrErrorsVar
+		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
+		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
+		      Return cnrJSONStringVar
+		      
+		    Case "home"
+		      Var cnrHomePageVar As String = "index.html"
+		      cnrParameterJSONVar.Value("response") = cnrHomePageVar
 		      cnrResponseJSONVar.Value("cnrCommand") = cnrParameterJSONVar
 		      Var cnrJSONStringVar As String = cnrResponseJSONVar.ToString
 		      Return cnrJSONStringVar
@@ -906,6 +929,8 @@ End
 		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
 		  cnrSaveLogMessage(cnrStringBuilderTextVar)
 		  
+		  cnrServerPaused = False
+		  
 		End Sub
 	#tag EndMethod
 
@@ -917,6 +942,8 @@ End
 		  cnrStringBuilderArrayVar.Add(cnrSenderParam.cnrServerString)
 		  Var cnrStringBuilderTextVar As String = String.FromArray(cnrStringBuilderArrayVar, EndOfLine)
 		  cnrSaveLogMessage(cnrStringBuilderTextVar)
+		  
+		  cnrServerPaused = True
 		  
 		End Sub
 	#tag EndMethod

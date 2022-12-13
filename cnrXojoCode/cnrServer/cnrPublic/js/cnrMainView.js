@@ -26,6 +26,9 @@ window.onload = function () {
     };
   };
 
+  // get server state
+  cnrFetchModule.cnrPOSTcnrCommand("state", "", cnrFetchResponseCallback, cnrFetchErrorCallback);
+
 }; // window.onload
 
 
@@ -115,8 +118,7 @@ function cnrIsValidCommand(cnrParam){
   if (
     cnrParam === 'on' ||
     cnrParam === 'off' ||
-    cnrParam === 'info' ||
-    cnrParam === 'connections' ||
+    cnrParam === 'home' ||
     cnrParam === 'state'
   ) {
     return true;  
@@ -143,17 +145,34 @@ async function cnrFetchResponseCallback(cnrParam) {
       cnrContainerElement.classList.remove('cnrstateoff');
       cnrContainerElement.classList.add('cnrstateon');
     };
+
     // OFF
     if(cnrJSONData.cnrCommand.response === 'off'){
       const cnrContainerElement = document.getElementById('cnrcardheaderdiv');
       cnrContainerElement.classList.remove('cnrstateon');
       cnrContainerElement.classList.add('cnrstateoff');
     };
+    return;
   };
-  
+
+  // process home page request
+  if (cnrJSONData.cnrCommand.command === 'home') {
+    if(cnrJSONData.cnrCommand.response != ''){
+      window.location.href = cnrJSONData.cnrCommand.response;
+      console.log('Home Page: ', cnrJSONData.cnrCommand.response);
+    };
+    return;
+  };
+
 }; // cnrFetchResponseCallback
 
 /** cnrFetchErrorCallback */
 function cnrFetchErrorCallback(cnrParam){
   console.log(cnrParam);
+
+  // reset views
+  const cnrContainerElement = document.getElementById('cnrcardheaderdiv');
+  cnrContainerElement.classList.remove('cnrstateon');
+  cnrContainerElement.classList.remove('cnrstateoff');
+  
 }; // cnrFetchErrorCallback
