@@ -1312,21 +1312,35 @@ Protected Class cnrHTTPConnectionClass
 		  // INITIALIZE
 		  
 		  // socket
-		  Var cnrNewHTTPSocketVar As TCPSocket = New TCPSocket
+		  Var cnrNewHTTPSocketVar As SSLSocket = New SSLSocket
 		  If cnrNewHTTPSocketVar = Nil Then
 		    cnrSetLastError(CurrentMethodName, "cnrNewHTTPSocketVar = Nil")
 		    Return
 		  End If
+		  
+		  // certificate
+		  cnrNewHTTPSocketVar.SSLEnabled = True
+		  // cnrNewHTTPSocketVar.CertificatePassword = ""
+		  // cnrNewHTTPSocketVar.CertificateRejectionFile = ""
+		  
+		  Var cnrCertificateFileVar As FolderItem
+		  cnrCertificateFileVar = SpecialFolder.Resources.Child("cnrCert/selfsigned.crt")
+		  If cnrCertificateFileVar.Exists Then
+		    cnrNewHTTPSocketVar.CertificateFile = cnrCertificateFileVar
+		  End If
+		  
+		  
+		  // properties
+		  cnrHTTPSocketUUIDString = cnrGetNewUUID
+		  cnrLastDataAvailableString = ""
+		  
+		  // handlers
 		  AddHandler cnrNewHTTPSocketVar.Connected, AddressOf cnrHandleSocketConnectedEvent
 		  AddHandler cnrNewHTTPSocketVar.DataAvailable, AddressOf cnrHandleSocketDataAvailableEvent
 		  AddHandler cnrNewHTTPSocketVar.Error, AddressOf cnrHandleSocketErrorEvent
 		  AddHandler cnrNewHTTPSocketVar.SendComplete, AddressOf cnrHandleSocketSendCompleteEvent
 		  AddHandler cnrNewHTTPSocketVar.SendProgress, AddressOf cnrHandleSocketSendProgressEvent
 		  cnrHTTPSocketObject = cnrNewHTTPSocketVar
-		  
-		  // properties
-		  cnrHTTPSocketUUIDString = cnrGetNewUUID
-		  cnrLastDataAvailableString = ""
 		  
 		End Sub
 	#tag EndMethod
@@ -1451,7 +1465,7 @@ Protected Class cnrHTTPConnectionClass
 
 
 	#tag Property, Flags = &h21
-		Private cnrHTTPSocketObject As TCPSocket
+		Private cnrHTTPSocketObject As SSLSocket
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

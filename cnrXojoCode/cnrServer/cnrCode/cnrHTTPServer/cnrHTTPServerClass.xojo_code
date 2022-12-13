@@ -28,7 +28,7 @@ Protected Class cnrHTTPServerClass
 		    Return Nil
 		  End If
 		  
-		  // create new instance of cnrHTTPConnectionClass (Parent = TCPSocket) and pass it back to the server
+		  // create new instance of cnrHTTPConnectionClass (Contains a TCPSocket/SSLSocket) and pass it back to the server
 		  Var cnrNewHTTPConnectionVar As cnrHTTPConnectionClass = New cnrHTTPConnectionClass
 		  
 		  // notify and pass the new socket
@@ -777,6 +777,14 @@ Protected Class cnrHTTPServerClass
 			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="cnrServerConnectionsCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
